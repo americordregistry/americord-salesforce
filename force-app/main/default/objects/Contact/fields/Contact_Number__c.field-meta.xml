@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact_Number__c</fullName>
+    <description>Used as a control number before de-duping for Outside Sales, June 2018.</description>
+    <displayFormat>C-{00000}</displayFormat>
+    <externalId>false</externalId>
+    <label>Contact Number</label>
+    <trackHistory>false</trackHistory>
+    <type>AutoNumber</type>
+</CustomField>

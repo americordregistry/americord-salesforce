@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Surrogate_Shipping_Address</fullName>
+    <active>true</active>
+    <description>When kit is shipped to surrogate, all shipping fields are required.</description>
+    <errorConditionFormula>AND ( 
+NOT($Setup.Americord_Settings__c.Bypass_Validation_Rule__c),
+ISPICKVAL(StageName, &quot;Enrolled&quot;),
+Ship_Kit_to_Surrogate__c = true,
+OR (
+ISBLANK(Surrogate_FirstName__c),
+ISBLANK(Surrogate_LastName__c),
+ISBLANK(Surrogate_City__c),
+ISBLANK(Surrogate_Postal_Code__c),
+ISBLANK(TEXT(Surrogate_State_Province__c)),
+ISBLANK(Surrogate_Street_Address__c)))</errorConditionFormula>
+    <errorMessage>When shipping kit to Surrogate, you must include Surrogate&apos;s first name, last name, shipping street, city, state and zip.</errorMessage>
+</ValidationRule>

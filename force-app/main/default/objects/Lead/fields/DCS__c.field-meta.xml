@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DCS__c</fullName>
+    <inlineHelpText>Open and check the DCS to make sure that it is complete. The form should be completed entirely, but as long as the 2000ml question is answered and the lab has completed the bottom, this is sufficient.</inlineHelpText>
+    <label>DCS</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Complete</fullName>
+                <default>false</default>
+                <label>Complete</label>
+            </value>
+            <value>
+                <fullName>Incomplete</fullName>
+                <default>false</default>
+                <label>Incomplete</label>
+            </value>
+            <value>
+                <fullName>Collection at lab</fullName>
+                <default>false</default>
+                <label>Collection at lab</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

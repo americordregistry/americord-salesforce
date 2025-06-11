@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billing_Issue_Flag__c</fullName>
+    <description>Indicate if there is some billing issue or other issue that must be resolved. Select &quot;Resolved&quot; only if the issue has been fixed.</description>
+    <inlineHelpText>Indicate if there is some billing issue or other issue that must be resolved. Select &quot;Resolved&quot; only if the issue has been fixed.</inlineHelpText>
+    <label>Billing Issue Flag</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Need new cc</fullName>
+                <default>false</default>
+                <label>Need new cc</label>
+            </value>
+            <value>
+                <fullName>Client provided new cc</fullName>
+                <default>false</default>
+                <label>Client provided new cc</label>
+            </value>
+            <value>
+                <fullName>Client due referral gift card</fullName>
+                <default>false</default>
+                <label>Client due referral gift card</label>
+            </value>
+            <value>
+                <fullName>Refund</fullName>
+                <default>false</default>
+                <label>Refund</label>
+            </value>
+            <value>
+                <fullName>Billing error</fullName>
+                <default>false</default>
+                <label>Billing error</label>
+            </value>
+            <value>
+                <fullName>Uncollectible</fullName>
+                <default>false</default>
+                <label>Uncollectible</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

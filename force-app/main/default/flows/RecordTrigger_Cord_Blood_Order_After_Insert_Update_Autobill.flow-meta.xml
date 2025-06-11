@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>This will call the apex to send the partner conversion data to impact.</description>
+        <name>Send_Partner_Conversion_Data</name>
+        <label>Send Partner Conversion Data</label>
+        <locationX>50</locationX>
+        <locationY>647</locationY>
+        <actionName>PartnerConversion</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>lstIds</name>
+            <value>
+                <elementReference>varTCollectionInvoiceForConversion</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>PartnerConversion</nameSegment>
+    </actionCalls>
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Add invoice to the CBO for processing</description>
+        <name>Assign_Invoice_CBO_to_Collection</name>
+        <label>Assign Invoice/CBO to Collection</label>
+        <locationX>50</locationX>
+        <locationY>539</locationY>
+        <assignmentItems>
+            <assignToReference>varTCollectionInvoiceForConversion</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Send_Partner_Conversion_Data</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Determine if the auto billpay has been checked.</description>
+        <name>Is_Auto_Billpay_Checked</name>
+        <label>Is Auto Billpay Checked?</label>
+        <locationX>380</locationX>
+        <locationY>323</locationY>
+        <defaultConnectorLabel>NO - Auto Billpay Not Checked</defaultConnectorLabel>
+        <rules>
+            <name>YES_Auto_Billpay_Checked</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.fw1__Auto_BillPay__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Is_This_For_A_Partner_Lead</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>YES - Auto Billpay Checked</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determine if this is for a partner lead.</description>
+        <name>Is_This_For_A_Partner_Lead</name>
+        <label>Is This For A Partner Lead?</label>
+        <locationX>182</locationX>
+        <locationY>431</locationY>
+        <defaultConnectorLabel>NO - Not Partner</defaultConnectorLabel>
+        <rules>
+            <name>YES_Partner</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.fw2__Opportunity__r.Impact_Partner_Id__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordType.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Stem Cell Banking</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Invoice_CBO_to_Collection</targetReference>
+            </connector>
+            <label>YES - Partner</label>
+        </rules>
+    </decisions>
+    <description>This flow will run on insert/update for Cordblood order. This flow should eventually be added to the other flow for consolidation.</description>
+    <environments>Default</environments>
+    <interviewLabel>RecordTrigger:Cord Blood Order After Insert Update - Autobill {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RecordTrigger:Cord Blood Order After Insert Update - Autobill</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>254</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_Auto_Billpay_Checked</targetReference>
+        </connector>
+        <object>fw1__Invoice__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Collection that will hold the IDs for the invoices/cbo to send to partner.</description>
+        <name>varTCollectionInvoiceForConversion</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

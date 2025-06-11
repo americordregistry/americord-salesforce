@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>aircall__Is_Missed_call__c</fullName>
+    <deprecated>false</deprecated>
+    <formula>BEGINS(LOWER(Subject), &apos;missed call&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Is Missed call</label>
+    <type>Checkbox</type>
+</CustomField>

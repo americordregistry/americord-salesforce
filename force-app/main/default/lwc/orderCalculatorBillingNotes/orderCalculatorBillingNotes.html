@@ -1,0 +1,19 @@
+<template>
+    <div class="slds-box slds-var-m-top_small">
+        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+            <div class="slds-media__body">
+                <h2 class="slds-card__header-title">
+                    <div class="slds-card__header slds-truncate" title="Annual Storage">
+                        <span>Billing Notes</span>
+                        <lightning-helptext content="Enter a maximum of 4000 characters"></lightning-helptext>
+                    </div>
+                </h2>
+            </div>
+        </header>
+        <div class="slds-form-element">
+            <div class="slds-form-element__control">
+                <textarea id="billing-notes" name="billingNotes" rows=12 class="slds-textarea" onblur={handleChange} placeholder="Enter billing notes here..." maxlength="4000">{billingNotes}</textarea>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Relation_to_Baby_is_required</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND (
+TEXT (StageName) = &quot;Enrolled&quot;,
+ISBLANK (Text(Relation_to_Baby__c) ) 
+)</errorConditionFormula>
+    <errorMessage>Please indicate Contact Relationship to Baby, either Mother, Father, Grandparent or Other.</errorMessage>
+</ValidationRule>

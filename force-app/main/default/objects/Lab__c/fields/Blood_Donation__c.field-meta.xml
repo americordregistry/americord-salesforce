@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Blood_Donation__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Name: Blood Donation
+Type: Checkbox
+Description/Help: This field will flag clients who have opted in on blood donation.This field value is automatically set based on the selection of a donation product.</description>
+    <inlineHelpText>Name: Blood Donation
+Type: Checkbox
+Description/Help: This field will flag clients who have opted in on blood donation.This field value is automatically set based on the selection of a donation product.</inlineHelpText>
+    <label>Blood Donation</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

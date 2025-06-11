@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Send an email to the apex automation emails</description>
+        <name>Send_Email_For_Error_Log</name>
+        <label>Send Email For Error Log</label>
+        <locationX>138</locationX>
+        <locationY>647</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>Loop_For_Each_Email_Recipient</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>Loop_For_Each_Email_Recipient.User.Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>formTEmailSubject</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>textTErrorLogEmailBody</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+    </actionCalls>
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <description>Checks to see if error log is error type.</description>
+        <name>Is_Error_Log_and_Error_Type</name>
+        <label>Is Error Log and Error Type</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <defaultConnectorLabel>NO - Not Error Type</defaultConnectorLabel>
+        <rules>
+            <name>YES_Error_Type</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Error</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Error_Email_Recipients</targetReference>
+            </connector>
+            <label>YES - Error Type</label>
+        </rules>
+    </decisions>
+    <description>Flow that runs after a new Error Log record is created.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>Email Subject</description>
+        <name>formTEmailSubject</name>
+        <dataType>String</dataType>
+        <expression>&apos;Error Log Created&apos;</expression>
+    </formulas>
+    <formulas>
+        <description>This is a formula that will generate an email body for the error log.</description>
+        <name>formTErrorLogEmailBody</name>
+        <dataType>String</dataType>
+        <expression>&apos;ERROR LOG ID: &apos;+{!$Record.Record_Id__c}+
+&apos;PROCESS: &apos;+{!$Record.Process__c}+
+&apos;DESCRIPTION: &apos;+{!$Record.Description__c}+
+&apos;CLASS: &apos;+{!$Record.Class__c}+
+&apos;HTTP RESPONSE: &apos;+{!$Record.HTTP_Response__c}+
+&apos;METHOD: &apos;+{!$Record.Method__c}</expression>
+    </formulas>
+    <formulas>
+        <name>formTErrorLogRecordLink</name>
+        <dataType>String</dataType>
+        <expression>LEFT($Api.Partner_Server_URL_570, FIND( &apos;/services&apos;, $Api.Partner_Server_URL_570)) &amp; {!$Record.Id}</expression>
+    </formulas>
+    <interviewLabel>RecordTrigger:Error Log After Insert {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RecordTrigger:Error Log After Insert</label>
+    <loops>
+        <description>Loop over email recipeints</description>
+        <name>Loop_For_Each_Email_Recipient</name>
+        <label>Loop For Each Email Recipient</label>
+        <locationX>50</locationX>
+        <locationY>539</locationY>
+        <collectionReference>Get_Error_Email_Recipients</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Send_Email_For_Error_Log</targetReference>
+        </nextValueConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Get the error email recipients.</description>
+        <name>Get_Error_Email_Recipients</name>
+        <label>Get Error Email Recipients</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_For_Each_Email_Recipient</targetReference>
+        </connector>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>ApexEmailNotification</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_Error_Log_and_Error_Type</targetReference>
+        </connector>
+        <object>Error_Log__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <description>This is the email body for the error log email.</description>
+        <name>textTErrorLogEmailBody</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;An error log record has been created. Here are the details:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;ERROR LOG ID&lt;/strong&gt;: {!$Record.Id}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;PROCESS&lt;/strong&gt;: {!$Record.Process__c}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;DESCRIPTION&lt;/strong&gt;: {!$Record.Description__c}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;CLASS&lt;/strong&gt;: {!$Record.Class__c}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;HTTP RESPONSE&lt;/strong&gt;: {!$Record.HTTP_Response__c}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;METHOD&lt;/strong&gt;: {!$Record.Method__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;{!formTErrorLogRecordLink}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!formTErrorLogRecordLink}&lt;/a&gt;&lt;/p&gt;</text>
+    </textTemplates>
+</Flow>

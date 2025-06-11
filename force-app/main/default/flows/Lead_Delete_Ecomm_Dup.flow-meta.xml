@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <interviewLabel>Lead Delete Ecomm Dup {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Lead Delete Ecomm Dup</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordDeletes>
+        <name>Delete_Ecomm_Dup_Lead</name>
+        <label>Delete Ecomm Dup Lead</label>
+        <locationX>251</locationX>
+        <locationY>163</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varLeadID</elementReference>
+            </value>
+        </filters>
+        <object>Lead</object>
+    </recordDeletes>
+    <recordLookups>
+        <name>Lookup_Ecomm_Dup_Lead</name>
+        <label>Lookup Ecomm Dup Lead</label>
+        <locationX>254</locationX>
+        <locationY>60</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Delete_Ecomm_Dup_Lead</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varLeadID</elementReference>
+            </value>
+        </filters>
+        <object>Lead</object>
+        <outputAssignments>
+            <assignToReference>varLeadID</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+    </recordLookups>
+    <startElementReference>Lookup_Ecomm_Dup_Lead</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>varLeadID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Amount_formula__c</fullName>
+    <formula>IF( CONTAINS(Product__c, &quot;1999&quot;), 1999, 
+IF( CONTAINS(Product__c, &quot;199&quot;), 2388, 
+IF( CONTAINS(Product__c, &quot;398&quot;), 4776, 
+IF( CONTAINS(Product__c, &quot;3998&quot;), 3998, 
+IF(CONTAINS(Product__c, &quot;4998&quot;), 4998, 
+IF(CONTAINS(Product__c, &quot;498&quot;), 5976, 
+IF(CONTAINS(Product__c, &quot;1,998&quot;), 1998,  
+IF(CONTAINS(Product__c, &quot;500&quot;), 500,
+IF(CONTAINS(Product__c, &quot;1699&quot;), 1699,
+IF(CONTAINS(Product__c, &quot;1849&quot;), 1849,
+IF(CONTAINS(Product__c, &quot;1898&quot;), 1898,
+IF(CONTAINS(Product__c, &quot;1899&quot;), 1899,
+IF(CONTAINS(Product__c, &quot;1949&quot;), 1949,
+IF(CONTAINS(Product__c, &quot;1,999&quot;), 1999,
+IF(CONTAINS(Product__c, &quot;3787&quot;), 3787,
+IF(CONTAINS(Product__c, &quot;3798&quot;), 3798,
+IF(CONTAINS(Product__c, &quot;3898&quot;), 3898,
+IF(CONTAINS(Product__c, &quot;3999&quot;), 3999,
+IF(CONTAINS(Product__c, &quot;4899&quot;), 4899,
+IF(CONTAINS(Product__c, &quot;4999&quot;), 4999,
+IF(CONTAINS(Product__c, &quot;7796&quot;), 7796,
+IF(CONTAINS(Product__c, &quot;7996&quot;), 7996,
+IF(CONTAINS(Product__c, &quot;7998&quot;), 7998,
+IF(CONTAINS(Product__c, &quot;9996&quot;), 9996,
+IF(CONTAINS(Product__c, &quot;197&quot;), 4728,
+IF(CONTAINS(Product__c, &quot;208&quot;), 2496,
+IF(CONTAINS(Product__c, &quot;83.25&quot;), 999,
+IF(CONTAINS(Product__c, &quot;3899&quot;), 3899,
+IF(CONTAINS(Product__c, &quot;186&quot;), 2232,
+IF(CONTAINS(Product__c, &quot;131.70&quot;), 2502.30,
+0))))))))))))))))))))))))))))))</formula>
+    <label>Sales Amount</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

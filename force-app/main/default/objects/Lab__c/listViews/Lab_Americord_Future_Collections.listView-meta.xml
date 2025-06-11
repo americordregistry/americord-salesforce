@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lab_Americord_Future_Collections</fullName>
+    <columns>Baby_s_Due_Date_new__c</columns>
+    <columns>LPI_M__c</columns>
+    <columns>LPI_M2__c</columns>
+    <columns>NAME</columns>
+    <columns>Certificate_ID__c</columns>
+    <columns>Shipping_State__c</columns>
+    <columns>Mother_s_Last_Name__c</columns>
+    <columns>Placenta_2_0_Amnion_Ordered__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Processing_Lab__c</field>
+        <operation>equals</operation>
+        <value>Americord</value>
+    </filters>
+    <filters>
+        <field>Cord_Blood_Collection_Completed__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Is_Voided_LU__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>DCS__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>Baby_s_Due_Date_new__c</field>
+        <operation>equals</operation>
+        <value>NEXT_90_DAYS</value>
+    </filters>
+    <label>Lab Americord - Future Collections</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+        <portalRole>VitalantLabPartnerExecutive</portalRole>
+        <portalRole>VitalantLabPartnerManager</portalRole>
+        <portalRole>VitalantLabPartnerUser</portalRole>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Childrens_Name__c</fullName>
+    <description>Combines name of all children. Used for pop-up alerts on Americord Client Service App (Lighnting).</description>
+    <externalId>false</externalId>
+    <formula>If (NOT(ISBLANK( Baby_C_Name_of_Child__c)), &quot;Triplets: &quot;&amp; Name_of_Child__c&amp;&quot;, &quot;&amp;Baby_B_Name_of_Child__c&amp;&quot; &amp; &quot;&amp;Baby_C_Name_of_Child__c &amp;&quot; - &quot;&amp; Text(MONTH(Birth_Date_from_Courier__c))&amp;&quot;/&quot;&amp;Text(DAY(Birth_Date_from_Courier__c))&amp;&quot;/&quot;&amp;Text(YEAR(Birth_Date_from_Courier__c)) ,
+IF (AND
+(ISBLANK(Baby_C_Name_of_Child__c), NOT(ISBLANK( Baby_B_Name_of_Child__c))), &quot;Twins: &quot;&amp;Name_of_Child__c&amp;&quot; &amp; &quot; &amp;Baby_B_Name_of_Child__c&amp;&quot; - &quot;&amp; Text(MONTH(Birth_Date_from_Courier__c))&amp;&quot;/&quot;&amp;Text(DAY(Birth_Date_from_Courier__c))&amp;&quot;/&quot;&amp;Text(YEAR(Birth_Date_from_Courier__c)),
+IF (AND
+(ISBLANK(Baby_C_Name_of_Child__c), ISBLANK( Baby_B_Name_of_Child__c), NOT(ISBLANK( Name_of_Child__c))),
+&quot;Child: &quot;&amp;Name_of_Child__c&amp;&quot; - &quot;&amp; Text(MONTH(Birth_Date_from_Courier__c))&amp;&quot;/&quot;&amp;Text(DAY(Birth_Date_from_Courier__c))&amp;&quot;/&quot;&amp;Text(YEAR(Birth_Date_from_Courier__c)),
+&quot;&quot;)))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Children&apos;s Name</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

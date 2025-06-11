@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Shipping_Method__c</fullName>
+    <description>Based on baby&apos;s due date, determines the best shipping method.  Twins and Triplets always ship Priority Overnight. Due Date within 1 month = Priority Overnight; 1 month to 2 months = 2nd Day Air; Greater than 2 months = Ground</description>
+    <externalId>false</externalId>
+    <formula>IF( CONTAINS(Product_Lookup__r.Name, &quot;twins&quot;), &quot;PRIORITY_OVERNIGHT&quot;,
+IF( CONTAINS(Product_Lookup__r.Name, &quot;triplets&quot;), &quot;PRIORITY_OVERNIGHT&quot;, 
+IF(Babys_Due_Date__c-TODAY()&lt;31, &quot;PRIORITY_OVERNIGHT&quot;,
+IF(Babys_Due_Date__c-TODAY()&gt;60, &quot;FEDEX_GROUND&quot;,&quot;FEDEX_2_DAY&quot;))))</formula>
+    <label>Shipping Method</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

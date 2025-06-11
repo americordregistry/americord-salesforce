@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description>This flow can be used for all insert or updates to the account record before save.</description>
+    <formulas>
+        <description>Formula that will reformat the phone field to the E164 format.</description>
+        <name>formTPhoneFormat_E164</name>
+        <dataType>String</dataType>
+        <expression>if (
+    len(
+        SUBSTITUTE(
+            SUBSTITUTE(
+                SUBSTITUTE(
+                    SUBSTITUTE(
+                        SUBSTITUTE(
+                            SUBSTITUTE({!$Record.Phone}, &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;), &quot;+&quot;, &quot;&quot;), &quot;.&quot;, &quot;&quot;)) = 10,
+    &quot;+1&quot; +
+    SUBSTITUTE(
+        SUBSTITUTE(
+            SUBSTITUTE(
+                SUBSTITUTE(
+                    SUBSTITUTE(
+                        SUBSTITUTE({!$Record.Phone}, &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;), &quot;+&quot;, &quot;&quot;), &quot;.&quot;, &quot;&quot;), {!$Record.Phone})</expression>
+    </formulas>
+    <interviewLabel>RecordTrigger:Account Insert Before Save {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RecordTrigger:Account Insert or Update Before Save</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Updates the account phone fields to the E.164 format.</description>
+        <name>Update_Phone_to_E_164_Format</name>
+        <label>Update Phone to E.164 Format</label>
+        <locationX>176</locationX>
+        <locationY>311</locationY>
+        <inputAssignments>
+            <field>Phone</field>
+            <value>
+                <elementReference>formTPhoneFormat_E164</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Phone_to_E_164_Format</targetReference>
+        </connector>
+        <object>Account</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

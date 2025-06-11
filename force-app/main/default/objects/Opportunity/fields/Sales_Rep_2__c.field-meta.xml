@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Rep_2__c</fullName>
+    <description>For Returning/Upgrade Clients Campaign</description>
+    <inlineHelpText>Used for Returning/Upgrade Clients Campaign</inlineHelpText>
+    <label>Sales Rep 2</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Reps</valueSetName>
+    </valueSet>
+</CustomField>

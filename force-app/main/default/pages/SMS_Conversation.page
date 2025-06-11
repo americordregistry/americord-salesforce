@@ -1,0 +1,3 @@
+<apex:page standardController="fw1__Invoice__c" sidebar="false" docType="html-5.0" standardStylesheets="false" lightningstylesheets="true">
+<tdc_tsw:SMS_Conversation_Component />
+</apex:page>

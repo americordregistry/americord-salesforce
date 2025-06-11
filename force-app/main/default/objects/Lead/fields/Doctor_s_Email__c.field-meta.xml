@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Doctor_s_Email__c</fullName>
+    <defaultValue>&quot;1&quot;&amp;$Organization.Fax&amp;&quot;@efaxsend.com&quot;</defaultValue>
+    <description>Send Informed Consent forms to this email address for distribution via e-Fax to the doctor&apos;s offices. The email should be in the following format: 18888888888@efaxsend.com</description>
+    <externalId>false</externalId>
+    <label>Doctor&apos;s Email</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Email</type>
+    <unique>false</unique>
+</CustomField>

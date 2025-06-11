@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CS_New_Collection_Send_SMS</fullName>
+    <columns>NAME</columns>
+    <columns>Cord_Blood_Collection_Completed__c</columns>
+    <columns>DCS__c</columns>
+    <columns>SMS_Sent_Collection_at_Lab__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>DCS__c</field>
+        <operation>equals</operation>
+        <value>Collection at lab</value>
+    </filters>
+    <filters>
+        <field>SMS_Sent_Collection_at_Lab__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>CS - New Collection; Send SMS</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

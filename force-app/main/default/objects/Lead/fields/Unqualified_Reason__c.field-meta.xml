@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Unqualified_Reason__c</fullName>
+    <description>After choosing &quot;Unqualified&quot; from Status, please choose the reason why you unqualified the lead</description>
+    <label>Unqualified Reason</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Status</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Annual Payments</fullName>
+                <default>false</default>
+                <label>Annual Payments</label>
+            </value>
+            <value>
+                <fullName>Birth Plan Only</fullName>
+                <default>false</default>
+                <label>Birth Plan Only</label>
+            </value>
+            <value>
+                <fullName>Chose Competitor - CBR</fullName>
+                <default>false</default>
+                <label>Chose Competitor - CBR</label>
+            </value>
+            <value>
+                <fullName>Chose Competitor - Cryocell</fullName>
+                <default>false</default>
+                <label>Chose Competitor - Cryocell</label>
+            </value>
+            <value>
+                <fullName>Chose Competitor - Evercord</fullName>
+                <default>false</default>
+                <label>Chose Competitor - Evercord</label>
+            </value>
+            <value>
+                <fullName>Chose Competitor - FamilyCord</fullName>
+                <default>false</default>
+                <label>Chose Competitor - FamilyCord</label>
+            </value>
+            <value>
+                <fullName>Chose Competitor - Lifebank</fullName>
+                <default>false</default>
+                <label>Chose Competitor - Lifebank</label>
+            </value>
+            <value>
+                <fullName>Chose Competitor - None given</fullName>
+                <default>false</default>
+                <label>Chose Competitor - None given</label>
+            </value>
+            <value>
+                <fullName>Chose Competitor - StemCyte</fullName>
+                <default>false</default>
+                <label>Chose Competitor - StemCyte</label>
+            </value>
+            <value>
+                <fullName>Chose Competitor - Viacord</fullName>
+                <default>false</default>
+                <label>Chose Competitor - Viacord</label>
+            </value>
+            <value>
+                <fullName>Decided not to bank</fullName>
+                <default>false</default>
+                <label>Decided not to bank</label>
+            </value>
+            <value>
+                <fullName>Delayed clamping</fullName>
+                <default>false</default>
+                <label>Delayed clamping</label>
+            </value>
+            <value>
+                <fullName>Don&apos;t think they will need stem cells</fullName>
+                <default>false</default>
+                <label>Don&apos;t think they will need stem cells</label>
+            </value>
+            <value>
+                <fullName>Donating</fullName>
+                <default>false</default>
+                <label>Donating</label>
+            </value>
+            <value>
+                <fullName>Medical Reasons</fullName>
+                <default>false</default>
+                <label>Medical Reasons</label>
+            </value>
+            <value>
+                <fullName>Miscarried</fullName>
+                <default>false</default>
+                <label>Miscarried</label>
+            </value>
+            <value>
+                <fullName>No Info</fullName>
+                <default>false</default>
+                <label>No Info</label>
+            </value>
+            <value>
+                <fullName>Not Interested - Bad Experience</fullName>
+                <default>false</default>
+                <label>Not Interested - Bad Experience</label>
+            </value>
+            <value>
+                <fullName>Not Interested - Banking</fullName>
+                <default>false</default>
+                <label>Not Interested - Banking</label>
+            </value>
+            <value>
+                <fullName>Not Interested - Cannot Afford</fullName>
+                <default>false</default>
+                <label>Not Interested - Cannot Afford</label>
+            </value>
+            <value>
+                <fullName>Not Interested - Changed Mind</fullName>
+                <default>false</default>
+                <label>Not Interested - Changed Mind</label>
+            </value>
+            <value>
+                <fullName>Not Interested - No Reason Given / Hung up</fullName>
+                <default>false</default>
+                <label>Not Interested - No Reason Given / Hung up</label>
+            </value>
+            <value>
+                <fullName>Not Interested - Not worth the price</fullName>
+                <default>false</default>
+                <label>Not Interested - Not worth the price</label>
+            </value>
+            <value>
+                <fullName>Not Interested - Spouse decision</fullName>
+                <default>false</default>
+                <label>Not Interested - Spouse decision</label>
+            </value>
+            <value>
+                <fullName>Not Pregnant</fullName>
+                <default>false</default>
+                <label>Not Pregnant</label>
+            </value>
+            <value>
+                <fullName>Outside United States</fullName>
+                <default>false</default>
+                <label>Outside United States</label>
+            </value>
+            <value>
+                <fullName>Unknown / Other</fullName>
+                <default>false</default>
+                <label>Unknown / Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

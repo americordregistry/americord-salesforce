@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hybrid_First_Payment_Lifetime__c</fullName>
+    <formula>(( Number_of_Products__c * 4250) + Sum_of_Product_Price_wo_Storage__c + Est_Total_Monthly_Fees__c - Sales_Discount__c - 199)/2</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Hybrid First Payment - Lifetime OLD</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

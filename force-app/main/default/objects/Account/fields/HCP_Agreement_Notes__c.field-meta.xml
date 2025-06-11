@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HCP_Agreement_Notes__c</fullName>
+    <description>Used to track problems or inconsistencies with HCP Agreements.</description>
+    <label>HCP Agreement Notes</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <type>TextArea</type>
+</CustomField>

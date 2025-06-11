@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Open</fullName>
+    <columns>Time_Zone__c</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <columns>Phone__c</columns>
+    <columns>OPPORTUNITY.LEAD_SOURCE</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>OPPORTUNITY.LAST_ACTIVITY</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Number_of_Births__c</columns>
+    <columns>Ecomm_Status__c</columns>
+    <columns>Number_of_Products__c</columns>
+    <columns>Incoming_Source__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.LEAD_SOURCE</field>
+        <operation>equals</operation>
+        <value>Ambassador,Bing,Bing: SEO,Bing PPC,Calendly,Client Referral,Consumer Affairs,Direct,Doctor Referral,Facebook,Facebook-Instagram,Family Member,Google,Google: SEO,Google PPC,Lifetime Upgrade LP,Live Chat,Returning Client</value>
+    </filters>
+    <label>Open</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lab_Cryopoint_Audit_Lab_Data</fullName>
+    <booleanFilter>1 AND 4 And 5 and (2 or 3)</booleanFilter>
+    <columns>Mother_s_Last_Name__c</columns>
+    <columns>NAME</columns>
+    <columns>DCS__c</columns>
+    <columns>DCS_Uploaded__c</columns>
+    <columns>Forms__c</columns>
+    <columns>Birth_Date_from_Courier__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>DCS__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>DCS_Uploaded__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Forms__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>Processing_Lab__c</field>
+        <operation>equals</operation>
+        <value>Cryopoint</value>
+    </filters>
+    <filters>
+        <field>Birth_Date_from_Courier__c</field>
+        <operation>equals</operation>
+        <value>LAST_N_DAYS:160</value>
+    </filters>
+    <label>Lab Cryopoint - Audit Lab Data</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+        <portalRole>NewLabPartnerUser</portalRole>
+    </sharedTo>
+</ListView>

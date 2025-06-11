@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Placenta_2_0_Amnion_Stored__c</fullName>
+    <label>Placenta 2.0 (Amnion) Stored</label>
+    <summaryFilterItems>
+        <field>Baby__c.Placenta_2_0_Am_Cryogenically_Preserved__c</field>
+        <operation>equals</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Baby__c.Lab__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

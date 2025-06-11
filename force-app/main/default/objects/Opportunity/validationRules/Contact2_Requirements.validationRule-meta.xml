@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact2_Requirements</fullName>
+    <active>true</active>
+    <description>Contact2 requires first name, last name and relation to baby.</description>
+    <errorConditionFormula>AND (
+ISPICKVAL ( StageName , &quot;Enrolled&quot;),
+NOT (ISBLANK (Contact2_FirstName__c)) ||
+NOT (ISBLANK (Contact2_LastName__c)) ||  
+NOT (ISBLANK (TEXT(Contact2_Relation_to_Baby__c))),
+ISBLANK (Contact2_FirstName__c) ||
+ISBLANK (Contact2_LastName__c) ||  
+ISBLANK (TEXT(Contact2_Relation_to_Baby__c)),
+ $User.Department = &quot;Inside Sales&quot; 
+
+)</errorConditionFormula>
+    <errorMessage>For Contact2 please provide a First Name, Last Name and Relationship to Baby.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowTest xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flowApiName>RecordTrigger_Donation_on_Update</flowApiName>
+    <label>When Invoiced Status</label>
+    <testPoints>
+        <elementApiName>Start</elementApiName>
+        <parameters>
+            <leftValueReference>$Record</leftValueReference>
+            <type>InputTriggeringRecordInitial</type>
+            <value>
+                <sobjectValue>{&quot;Cord_Blood__c&quot;:false,&quot;Cord_Tissue__c&quot;:false,&quot;Donation_Process_Status__c&quot;:&quot;Sent To Tissue Bank&quot;,&quot;OwnerId&quot;:&quot;0058X00000FKwl3QAD&quot;,&quot;Placenta_Tissue__c&quot;:false}</sobjectValue>
+            </value>
+        </parameters>
+        <parameters>
+            <leftValueReference>$Record</leftValueReference>
+            <type>InputTriggeringRecordUpdated</type>
+            <value>
+                <sobjectValue>{&quot;Cord_Blood__c&quot;:false,&quot;Cord_Tissue__c&quot;:false,&quot;Donation_Process_Status__c&quot;:&quot;Invoiced&quot;,&quot;OwnerId&quot;:&quot;0058X00000FKwl3QAD&quot;,&quot;Placenta_Tissue__c&quot;:false}</sobjectValue>
+            </value>
+        </parameters>
+    </testPoints>
+    <testPoints>
+        <assertions>
+            <conditions>
+                <leftValueReference>$Record.Invoice_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+        </assertions>
+        <elementApiName>Finish</elementApiName>
+    </testPoints>
+</FlowTest>

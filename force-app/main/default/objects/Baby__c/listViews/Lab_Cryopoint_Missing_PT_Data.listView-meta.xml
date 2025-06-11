@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lab_Cryopoint_Missing_PT_Data</fullName>
+    <columns>Collection_Date__c</columns>
+    <columns>NAME</columns>
+    <columns>Placenta_Tissue_Cryogenically_Preserved__c</columns>
+    <columns>PT_Sterility_Result_AST__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Processing_Lab__c</field>
+        <operation>equals</operation>
+        <value>Cryopoint</value>
+    </filters>
+    <filters>
+        <field>Placenta_Tissue_Cryogenically_Preserved__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>PT_Sterility_Result_AST__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>Lab Cryopoint - Missing PT Data</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+        <portalRoleAndSubordinates>NewLabPartnerExecutive</portalRoleAndSubordinates>
+        <portalRoleAndSubordinates>NewLabPartnerManager</portalRoleAndSubordinates>
+        <portalRoleAndSubordinates>NewLabPartnerUser</portalRoleAndSubordinates>
+    </sharedTo>
+</ListView>

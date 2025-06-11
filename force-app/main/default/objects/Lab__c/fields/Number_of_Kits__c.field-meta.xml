@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Number_of_Kits__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF ( CONTAINS(Product_Ordered__c, &quot;single&quot;), 1,
+IF ( CONTAINS(Product_Ordered__c, &quot;twins&quot;), 2,
+IF ( CONTAINS(Product_Ordered__c, &quot;triplets&quot;), 3, 
+IF ( CONTAINS(Product_Ordered__c, &quot;SINGLE&quot;), 1,
+IF ( CONTAINS(Product_Ordered__c, &quot;TWINS&quot;), 2,
+IF ( CONTAINS(Product_Ordered__c, &quot;TRIPLES&quot;), 3,
+IF ( Number_of_Births__c = &quot;Single&quot;, 1, 
+IF ( Number_of_Births__c = &quot;Twins&quot;, 2,
+IF ( Number_of_Births__c = &quot;Triples&quot;, 3,
+0)))))))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Number of Kits</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

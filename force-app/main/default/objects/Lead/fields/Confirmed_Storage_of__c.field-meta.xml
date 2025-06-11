@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Confirmed_Storage_of__c</fullName>
+    <label>Confirmed Storage of</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Just Cord Blood</fullName>
+                <default>false</default>
+                <label>Just Cord Blood</label>
+            </value>
+            <value>
+                <fullName>Cord Blood and Cord Tissue</fullName>
+                <default>false</default>
+                <label>Cord Blood and Cord Tissue</label>
+            </value>
+            <value>
+                <fullName>Cord Blood and Placenta Tissue – One Installment</fullName>
+                <default>false</default>
+                <label>Cord Blood and Placenta Tissue – One Installment</label>
+            </value>
+            <value>
+                <fullName>Cord Blood and Placenta Tissue – 12 Month Plan</fullName>
+                <default>false</default>
+                <label>Cord Blood and Placenta Tissue – 12 Month Plan</label>
+            </value>
+            <value>
+                <fullName>Cord Blood, Cord Tissue and Placenta Tissue – One Installment</fullName>
+                <default>false</default>
+                <label>Cord Blood, Cord Tissue and Placenta Tissue – One Installment</label>
+            </value>
+            <value>
+                <fullName>Cord Blood Cord Tissue and Placenta Tissue – 12 Month Plan</fullName>
+                <default>false</default>
+                <label>Cord Blood Cord Tissue and Placenta Tissue – 12 Month Plan</label>
+            </value>
+            <value>
+                <fullName>Cord Tissue – One Installment</fullName>
+                <default>false</default>
+                <label>Cord Tissue – One Installment</label>
+            </value>
+            <value>
+                <fullName>Cord Tissue – 12 Month Plan</fullName>
+                <default>false</default>
+                <label>Cord Tissue – 12 Month Plan</label>
+            </value>
+            <value>
+                <fullName>Placenta Tissue – One Installment</fullName>
+                <default>false</default>
+                <label>Placenta Tissue – One Installment</label>
+            </value>
+            <value>
+                <fullName>Placenta Tissue – 12 Month Plan</fullName>
+                <default>false</default>
+                <label>Placenta Tissue – 12 Month Plan</label>
+            </value>
+            <value>
+                <fullName>Cord Tissue and Placenta Tissue – One Installment</fullName>
+                <default>false</default>
+                <label>Cord Tissue and Placenta Tissue – One Installment</label>
+            </value>
+            <value>
+                <fullName>Cord Tissue and Placenta Tissue – 12 Month Plan</fullName>
+                <default>false</default>
+                <label>Cord Tissue and Placenta Tissue – 12 Month Plan</label>
+            </value>
+            <value>
+                <fullName>Twins – Just Cord Blood – One Installment</fullName>
+                <default>false</default>
+                <label>Twins – Just Cord Blood – One Installment</label>
+            </value>
+            <value>
+                <fullName>Twins – Just Cord Blood – 12 Month Plan</fullName>
+                <default>false</default>
+                <label>Twins – Just Cord Blood – 12 Month Plan</label>
+            </value>
+            <value>
+                <fullName>Twins – Cord Blood and Placenta Tissue – One Installment</fullName>
+                <default>false</default>
+                <label>Twins – Cord Blood and Placenta Tissue – One Installment</label>
+            </value>
+            <value>
+                <fullName>Twins – Cord Blood and Placenta Tissue – 12 Month Plan</fullName>
+                <default>false</default>
+                <label>Twins – Cord Blood and Placenta Tissue – 12 Month Plan</label>
+            </value>
+            <value>
+                <fullName>Twins – Cord Blood and Cord Tissue – One Installment</fullName>
+                <default>false</default>
+                <label>Twins – Cord Blood and Cord Tissue – One Installment</label>
+            </value>
+            <value>
+                <fullName>Twins – Cord Blood and Cord Tissue – 12 Month Plan</fullName>
+                <default>false</default>
+                <label>Twins – Cord Blood and Cord Tissue – 12 Month Plan</label>
+            </value>
+            <value>
+                <fullName>Twins – Cord Blood Cord Tissue and Placenta Tissue – One Installment</fullName>
+                <default>false</default>
+                <label>Twins – Cord Blood Cord Tissue and Placenta Tissue – One Installment</label>
+            </value>
+            <value>
+                <fullName>Twins – Cord Blood Cord Tissue and Placenta Tissue – 12 Month Plan</fullName>
+                <default>false</default>
+                <label>Twins – Cord Blood Cord Tissue and Placenta Tissue – 12 Month Plan</label>
+            </value>
+            <value>
+                <fullName>Twins – Cord Tissue – One Installment</fullName>
+                <default>false</default>
+                <label>Twins – Cord Tissue – One Installment</label>
+            </value>
+            <value>
+                <fullName>Twins – Cord Tissue – 12 Month Plan</fullName>
+                <default>false</default>
+                <label>Twins – Cord Tissue – 12 Month Plan</label>
+            </value>
+            <value>
+                <fullName>Twins – Placenta Tissue – One Installment</fullName>
+                <default>false</default>
+                <label>Twins – Placenta Tissue – One Installment</label>
+            </value>
+            <value>
+                <fullName>Twins – Placenta Tissue – 12 Month Plan</fullName>
+                <default>false</default>
+                <label>Twins – Placenta Tissue – 12 Month Plan</label>
+            </value>
+            <value>
+                <fullName>Twins – Cord Tissue and Placenta Tissue – One Installment</fullName>
+                <default>false</default>
+                <label>Twins – Cord Tissue and Placenta Tissue – One Installment</label>
+            </value>
+            <value>
+                <fullName>Twins – Cord Tissue and Placenta Tissue – 12 Month Plan</fullName>
+                <default>false</default>
+                <label>Twins – Cord Tissue and Placenta Tissue – 12 Month Plan</label>
+            </value>
+            <value>
+                <fullName>Triplets – Cord Blood – One Installment</fullName>
+                <default>false</default>
+                <label>Triplets – Cord Blood – One Installment</label>
+            </value>
+            <value>
+                <fullName>Triplets – Cord Blood – 12 Month Plan</fullName>
+                <default>false</default>
+                <label>Triplets – Cord Blood – 12 Month Plan</label>
+            </value>
+            <value>
+                <fullName>Triplets – Cord Blood and Cord Tissue – One Installment</fullName>
+                <default>false</default>
+                <label>Triplets – Cord Blood and Cord Tissue – One Installment</label>
+            </value>
+            <value>
+                <fullName>Triplets – Cord Blood and Cord Tissue – 12 Month Plan</fullName>
+                <default>false</default>
+                <label>Triplets – Cord Blood and Cord Tissue – 12 Month Plan</label>
+            </value>
+            <value>
+                <fullName>Triplets – Cord Blood and Placenta Tissue – One Installment</fullName>
+                <default>false</default>
+                <label>Triplets – Cord Blood and Placenta Tissue – One Installment</label>
+            </value>
+            <value>
+                <fullName>Triplets – Cord Blood and Placenta Tissue – 12 Month Plan</fullName>
+                <default>false</default>
+                <label>Triplets – Cord Blood and Placenta Tissue – 12 Month Plan</label>
+            </value>
+            <value>
+                <fullName>Triplets – Cord Blood Cord Tissue and Placenta Tissue – One Installment</fullName>
+                <default>false</default>
+                <label>Triplets – Cord Blood Cord Tissue and Placenta Tissue – One Installment</label>
+            </value>
+            <value>
+                <fullName>Triplets – Cord Blood Cord Tissue and Placenta Tissue – 12 Month Plan</fullName>
+                <default>false</default>
+                <label>Triplets – Cord Blood Cord Tissue and Placenta Tissue – 12 Month Plan</label>
+            </value>
+            <value>
+                <fullName>Triplets – Cord Tissue – One Installment</fullName>
+                <default>false</default>
+                <label>Triplets – Cord Tissue – One Installment</label>
+            </value>
+            <value>
+                <fullName>Triplets – Cord Tissue – 12 Month Plan</fullName>
+                <default>false</default>
+                <label>Triplets – Cord Tissue – 12 Month Plan</label>
+            </value>
+            <value>
+                <fullName>Triplets – Placenta Tissue – One Installment</fullName>
+                <default>false</default>
+                <label>Triplets – Placenta Tissue – One Installment</label>
+            </value>
+            <value>
+                <fullName>Triplets – Placenta Tissue – 12 Month Plan</fullName>
+                <default>false</default>
+                <label>Triplets – Placenta Tissue – 12 Month Plan</label>
+            </value>
+            <value>
+                <fullName>Triplets – Cord Tissue and Placenta Tissue – One Installment</fullName>
+                <default>false</default>
+                <label>Triplets – Cord Tissue and Placenta Tissue – One Installment</label>
+            </value>
+            <value>
+                <fullName>Triplets – Cord Tissue and Placenta Tissue – 12 Month Plan</fullName>
+                <default>false</default>
+                <label>Triplets – Cord Tissue and Placenta Tissue – 12 Month Plan</label>
+            </value>
+            <value>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+                <label>Cancelled</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

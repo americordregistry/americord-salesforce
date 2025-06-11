@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Monthly_Fees</fullName>
+    <columns>MasterLabel</columns>
+    <columns>Numeric_Births__c</columns>
+    <columns>Sum_of_Products__c</columns>
+    <columns>Amount__c</columns>
+    <columns>Payment_Plan_Info__c</columns>
+    <columns>DeveloperName</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Monthly Fees</label>
+</ListView>

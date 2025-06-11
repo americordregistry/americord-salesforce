@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This permissionset can be used to exclude a user from MFA requirements.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Americord Waive MFA Requirement</label>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>BypassMFAForUiLogins</name>
+    </userPermissions>
+</PermissionSet>

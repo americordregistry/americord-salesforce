@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Birth_Time_Zone_from_Courier__c</fullName>
+    <label>Birth Time Zone from Courier</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Eastern Time Zone</fullName>
+                <default>false</default>
+                <label>Eastern Time Zone</label>
+            </value>
+            <value>
+                <fullName>Pacific Time Zone</fullName>
+                <default>false</default>
+                <label>Pacific Time Zone</label>
+            </value>
+            <value>
+                <fullName>Central Time Zone</fullName>
+                <default>false</default>
+                <label>Central Time Zone</label>
+            </value>
+            <value>
+                <fullName>Mountain Time Zone</fullName>
+                <default>false</default>
+                <label>Mountain Time Zone</label>
+            </value>
+            <value>
+                <fullName>Atlantic Time Zone</fullName>
+                <default>false</default>
+                <label>Atlantic Time Zone</label>
+            </value>
+            <value>
+                <fullName>Samoa Time Zone</fullName>
+                <default>false</default>
+                <label>Samoa Time Zone</label>
+            </value>
+            <value>
+                <fullName>Alaska Time Zone</fullName>
+                <default>false</default>
+                <label>Alaska Time Zone</label>
+            </value>
+            <value>
+                <fullName>Hawaii–Aleutian Time Zone</fullName>
+                <default>false</default>
+                <label>Hawaii–Aleutian Time Zone</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

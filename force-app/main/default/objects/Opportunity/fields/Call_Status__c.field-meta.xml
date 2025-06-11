@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Call_Status__c</fullName>
+    <label>Call Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>DCW#</fullName>
+                <default>false</default>
+                <label>DCW#</label>
+            </value>
+            <value>
+                <fullName>No Info</fullName>
+                <default>false</default>
+                <label>No Info</label>
+            </value>
+            <value>
+                <fullName>Asked to not be called</fullName>
+                <default>false</default>
+                <label>Asked to not be called</label>
+            </value>
+            <value>
+                <fullName>Prefers Email</fullName>
+                <default>false</default>
+                <label>Prefers Email</label>
+            </value>
+            <value>
+                <fullName>SMS Only - Coreg</fullName>
+                <default>false</default>
+                <label>SMS Only - Coreg</label>
+            </value>
+            <value>
+                <fullName>Can&apos;t afford</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Can&apos;t afford</label>
+            </value>
+            <value>
+                <fullName>Duplicate</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Duplicate</label>
+            </value>
+            <value>
+                <fullName>Hung up</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Hung up</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hospital_Reimbursed__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This field will track if the hospital has been compensated for the donation.</description>
+    <inlineHelpText>This field will track if the hospital has been compensated for the donation.</inlineHelpText>
+    <label>Hospital Reimbursed</label>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

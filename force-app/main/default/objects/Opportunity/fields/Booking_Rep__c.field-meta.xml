@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Booking_Rep__c</fullName>
+    <label>Booking Rep</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Maria Cabus</fullName>
+                <default>false</default>
+                <label>Maria Cabus</label>
+            </value>
+            <value>
+                <fullName>Charity Mae dela Cruz</fullName>
+                <default>false</default>
+                <label>Charity Mae dela Cruz</label>
+            </value>
+            <value>
+                <fullName>Cynthia Chang</fullName>
+                <default>false</default>
+                <label>Cynthia Chang</label>
+            </value>
+            <value>
+                <fullName>Eric Brown</fullName>
+                <default>false</default>
+                <label>Eric Brown</label>
+            </value>
+            <value>
+                <fullName>Joane Gojol</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Joane Gojol</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

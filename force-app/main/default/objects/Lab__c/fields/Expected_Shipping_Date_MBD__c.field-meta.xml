@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Expected_Shipping_Date_MBD__c</fullName>
+    <formula>IF ( WEEKDAY(DATEVALUE( MBD_Required_Date_Time__c ))= 1, DATEVALUE( MBD_Required_Date_Time__c )+1,
+IF ( WEEKDAY(DATEVALUE( MBD_Required_Date_Time__c ))= 7, DATEVALUE( MBD_Required_Date_Time__c )+2,
+IF ( AND(
+WEEKDAY(DATEVALUE( MBD_Required_Date_Time__c ))= 6,
+OR( HOUR(TIMEVALUE( MBD_Required_Date_Time__c )) &lt; 4,
+HOUR(TIMEVALUE( MBD_Required_Date_Time__c )) &gt; 17)), DATEVALUE( MBD_Required_Date_Time__c )+3,
+IF (
+OR( HOUR(TIMEVALUE( MBD_Required_Date_Time__c )) &lt; 4,
+HOUR(TIMEVALUE( MBD_Required_Date_Time__c )) &gt; 17), DATEVALUE( MBD_Required_Date_Time__c )+1, DATEVALUE( MBD_Required_Date_Time__c )))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Expected Shipping Date MBD</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

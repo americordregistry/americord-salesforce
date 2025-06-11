@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DCS_is_Uploaded__c</fullName>
+    <description>Used for Checklist to determine if client is ready for AC Cert.</description>
+    <formula>Lab__r.DCS_Uploaded__c</formula>
+    <label>DCS is Uploaded</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

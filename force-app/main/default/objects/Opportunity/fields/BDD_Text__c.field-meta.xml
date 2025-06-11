@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BDD_Text__c</fullName>
+    <description>Created for Xant&apos;s Sort, which currently does not work with date fields.</description>
+    <externalId>false</externalId>
+    <formula>IF (Baby_s_Due_Date__c &lt; Today()+30, 30,
+IF ( Baby_s_Due_Date__c &lt; Today()+60, 60,
+IF ( Baby_s_Due_Date__c &lt; Today()+90, 90,
+IF ( Baby_s_Due_Date__c &lt; Today()+120, 120,
+null))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>BDD Text</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

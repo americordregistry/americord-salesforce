@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <description>Determine if the current owner is Service or Info</description>
+        <name>Is_Owner_Service_or_Info_User</name>
+        <label>Is Owner Service or Info User</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <defaultConnectorLabel>NO - Not Service or Info</defaultConnectorLabel>
+        <rules>
+            <name>YES_Service_Or_Info_Owner</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Owner.Username</leftValueReference>
+                <operator>StartsWith</operator>
+                <rightValue>
+                    <stringValue>info@americordblood.com</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Owner.Username</leftValueReference>
+                <operator>StartsWith</operator>
+                <rightValue>
+                    <stringValue>services@americordblood.com</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Hubspot_User</targetReference>
+            </connector>
+            <label>YES - Service Or Info Owner</label>
+        </rules>
+    </decisions>
+    <description>Main flow for opportunity after insert.</description>
+    <environments>Default</environments>
+    <interviewLabel>RecordTrigger: Opportunity After Insert {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RecordTrigger: Opportunity After Insert</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Lookup hubspot user.</description>
+        <name>Get_Hubspot_User</name>
+        <label>Get Hubspot User</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Set_Opportunity_Owner_To_Hubspot</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Username</field>
+            <operator>StartsWith</operator>
+            <value>
+                <stringValue>hubspot@americordblood.com</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>User</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>Update the owner to the hubspot owner.</description>
+        <name>Set_Opportunity_Owner_To_Hubspot</name>
+        <label>Set Opportunity Owner To Hubspot</label>
+        <locationX>50</locationX>
+        <locationY>539</locationY>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>Get_Hubspot_User.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_Owner_Service_or_Info_User</targetReference>
+        </connector>
+        <object>Opportunity</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

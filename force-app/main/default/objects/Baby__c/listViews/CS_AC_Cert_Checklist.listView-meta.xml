@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CS_AC_Cert_Checklist</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Kit_ID__c</columns>
+    <columns>Collection_Date__c</columns>
+    <columns>Docusign_is_Completed__c</columns>
+    <columns>DCS_is_Uploaded__c</columns>
+    <columns>Product_s_have_been_preserved__c</columns>
+    <columns>Name_is_Completed__c</columns>
+    <columns>Name_of_Child__c</columns>
+    <columns>Order_is_Not_Canceled__c</columns>
+    <columns>AC_Certificate__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>DCS_is_Uploaded__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Docusign_is_Completed__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Name_is_Completed__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Product_s_have_been_preserved__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Order_is_Not_Canceled__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>AC_Certificate__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>CS - AC Cert Checklist</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

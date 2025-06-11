@@ -1,0 +1,7 @@
+<apex:page standardController="Lead">
+  <apex:iframe rendered="{!IF((lead.Email != ''), true, false)}"
+    src="https://app.kissmetrics.com/salesforce/people/find/{!lead.Email}?mode=embedded&key=ba0e657a76b53a1be230c445a0febc7000367245&secret=702280f978096f437e52cb62fe26f003b32e8498"
+    width="100%"
+    scrolling="true"
+  />
+</apex:page>

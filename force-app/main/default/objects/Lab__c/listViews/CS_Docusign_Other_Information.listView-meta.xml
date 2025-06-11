@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CS_Docusign_Other_Information</fullName>
+    <columns>NAME</columns>
+    <columns>Other_optional_for_title_2nd_dr_etc__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Other_optional_for_title_2nd_dr_etc__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <label>CS - Docusign Other Information</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

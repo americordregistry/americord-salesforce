@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ear_or_body_piercing__c</fullName>
+    <inlineHelpText>In the past 12 months have you: Had any ear or body piercing in which sterile procedures were not used?</inlineHelpText>
+    <label>19. ear or body piercing</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>MHQ</valueSetName>
+    </valueSet>
+</CustomField>

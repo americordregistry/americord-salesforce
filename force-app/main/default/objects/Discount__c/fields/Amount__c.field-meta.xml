@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Amount__c</fullName>
+    <description>Dollar amount of the discount.</description>
+    <inlineHelpText>The dollar amount of the discount. Only select if the Method is Amount.</inlineHelpText>
+    <label>Amount</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

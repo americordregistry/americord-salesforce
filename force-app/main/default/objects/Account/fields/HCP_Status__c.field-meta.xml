@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HCP_Status__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF (
+AND(
+  NOT(ISNULL(Territory__c)), 
+  CONTAINS(TEXT(HCP_Agreement__c), &quot;Signed&quot;) || CONTAINS(TEXT(HCP_Agreement__c), &quot;No Stipend&quot;) ||  CONTAINS(TEXT(HCP_Agreement__c), &quot;W-9 Only&quot;) ,
+  Ninety_Days_Activity__c &gt; 0), &quot;Active&quot;, 
+IF (
+AND(
+  NOT(ISBLANK(Territory__c)), 
+  CONTAINS(TEXT(HCP_Agreement__c), &quot;Signed&quot;) || CONTAINS(TEXT(HCP_Agreement__c), &quot;No Stipend&quot;) || CONTAINS(TEXT(HCP_Agreement__c), &quot;W-9 Only&quot;),
+  Ninety_Days_Activity__c &lt; 1), &quot;Passive&quot;,
+IF (
+AND(
+   Owner.Start_Date__c &gt; (today() - 100), 
+  NOT(ISNULL(Territory__c)), 
+  Ninety_Days_Activity__c &gt; 2), &quot;Active&quot;,
+
+ NULL)))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>HCP Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

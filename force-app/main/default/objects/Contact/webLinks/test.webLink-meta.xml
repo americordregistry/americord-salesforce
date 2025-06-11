@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>test</fullName>
+    <availability>online</availability>
+    <displayType>link</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>600</height>
+    <linkType>url</linkType>
+    <masterLabel>test</masterLabel>
+    <openType>sidebar</openType>
+    <protected>false</protected>
+    <url>/apex/rsdoc__GenerateDocument?id={!Contact.Id}&amp;templateId=GDT-000036&amp;attach=true&amp;download=true&amp;output=pdf</url>
+</WebLink>

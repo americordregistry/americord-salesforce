@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ISBT__c</fullName>
+    <caseSensitive>false</caseSensitive>
+    <description>This is the ISBT Id for this donation. This field is populated from the associated lab record via a flow on lab.</description>
+    <externalId>true</externalId>
+    <inlineHelpText>This is the ISBT Id for this donation.</inlineHelpText>
+    <label>ISBT</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>true</unique>
+</CustomField>

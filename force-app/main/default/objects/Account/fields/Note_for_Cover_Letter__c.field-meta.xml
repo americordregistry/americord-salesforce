@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Note_for_Cover_Letter__c</fullName>
+    <defaultValue>&quot;Thank you for your interest in partnering with Americord Registry. As we discussed, here is your Health Care Providers&apos; Agreement. Please review, sign, and return at your earliest convenience. Feel free to call or email with any questions.&quot;</defaultValue>
+    <label>Note for Cover Letter</label>
+    <length>500</length>
+    <trackHistory>false</trackHistory>
+    <type>LongTextArea</type>
+    <visibleLines>10</visibleLines>
+</CustomField>

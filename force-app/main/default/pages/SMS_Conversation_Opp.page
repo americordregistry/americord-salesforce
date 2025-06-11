@@ -1,0 +1,4 @@
+<apex:page standardController="Opportunity" sidebar="false"
+docType="html-5.0" standardStylesheets="false"  showHeader="false" applyHtmlTag="false" applyBodyTag="false" lightningstylesheets="true">
+<tdc_tsw:SMS_Conversation_Component /> 
+</apex:page>

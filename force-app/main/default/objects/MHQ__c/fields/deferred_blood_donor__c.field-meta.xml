@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>deferred_blood_donor__c</fullName>
+    <inlineHelpText>Have you EVER: Been deferred as a blood donor for a reason other than anemia or being underweight?</inlineHelpText>
+    <label>42. deferred blood donor</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>MHQ</valueSetName>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Brochures__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Check this box if we have sent Americord brochures to this office.</inlineHelpText>
+    <label>Brochures</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

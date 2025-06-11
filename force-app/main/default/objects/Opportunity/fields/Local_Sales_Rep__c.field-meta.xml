@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Local_Sales_Rep__c</fullName>
+    <description>Not used, can be deleted</description>
+    <label>Local Sales Rep (old)</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Melissa Keil</fullName>
+                <default>false</default>
+                <label>Melissa Keil</label>
+            </value>
+            <value>
+                <fullName>Kimberly Schienberg</fullName>
+                <default>false</default>
+                <label>Kimberly Schienberg</label>
+            </value>
+            <value>
+                <fullName>Brian Packard</fullName>
+                <default>false</default>
+                <label>Brian Packard</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

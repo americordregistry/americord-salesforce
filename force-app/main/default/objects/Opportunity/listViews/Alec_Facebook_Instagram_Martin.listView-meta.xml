@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Alec_Facebook_Instagram_Martin</fullName>
+    <columns>CORE.USERS.LAST_NAME</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>Email__c</columns>
+    <columns>Phone__c</columns>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <columns>Baby_s_Due_Date__c</columns>
+    <columns>Email_Invalid__c</columns>
+    <columns>DCW__c</columns>
+    <columns>Delete__c</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Change_Owner_to_Americord__c</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.LEAD_SOURCE</field>
+        <operation>equals</operation>
+        <value>Facebook,Facebook-Instagram,Instagram</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.CREATED_DATE</field>
+        <operation>greaterOrEqual</operation>
+        <value>7/1/2019 12:00 AM</value>
+    </filters>
+    <filters>
+        <field>Change_Owner_to_Americord__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.FIRST_NAME</field>
+        <operation>equals</operation>
+        <value>Martin</value>
+    </filters>
+    <label>Alec - Facebook / Instagram (Martin)</label>
+    <sharedTo>
+        <role>CEO</role>
+    </sharedTo>
+</ListView>

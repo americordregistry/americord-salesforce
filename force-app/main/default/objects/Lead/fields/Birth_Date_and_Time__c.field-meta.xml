@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Birth_Date_and_Time__c</fullName>
+    <inlineHelpText>This field is being retired and replaced with separate fields for birth date and time, so time can be recorded in local time and converted to employee time for accurate tracking.</inlineHelpText>
+    <label>Birth Date and Time (OLD)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>DateTime</type>
+</CustomField>

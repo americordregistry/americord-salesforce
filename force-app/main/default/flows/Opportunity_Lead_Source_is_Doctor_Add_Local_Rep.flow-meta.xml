@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Territory_is_Not_Null</name>
+        <label>Territory is Not Null</label>
+        <locationX>370</locationX>
+        <locationY>52</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Not_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varTerritory</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Opportunity_with_Local_Rep</targetReference>
+            </connector>
+            <label>Not Null</label>
+        </rules>
+    </decisions>
+    <formulas>
+        <name>formLocalSalesRep</name>
+        <dataType>String</dataType>
+        <expression>if ({!varTerritory} = &quot;CA - Los Angeles&quot;, &quot;Kimberly Schienberg&quot;,
+if ({!varTerritory} = &quot;NY - Manhattan&quot;, &quot;Brian Packard&quot;,
+if ({!varTerritory} = &quot;CA - Orange/Riverside&quot;, &quot;Melissa Keil&quot;,
+null)))</expression>
+    </formulas>
+    <interviewLabel>Opportunity Lead Source is Doctor Add Local Rep {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Opportunity Lead Source is Doctor Add Local Rep</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Lookup_Territory</name>
+        <label>Lookup Territory</label>
+        <locationX>218</locationX>
+        <locationY>50</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Territory_is_Not_Null</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varShippingZipCode</elementReference>
+            </value>
+        </filters>
+        <object>Territory__c</object>
+        <outputAssignments>
+            <assignToReference>varTerritory</assignToReference>
+            <field>Territory__c</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Opportunity_with_Local_Rep</name>
+        <label>Update Opportunity with Local Rep</label>
+        <locationX>563</locationX>
+        <locationY>53</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varOpportunityID</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Local_Sales_Rep__c</field>
+            <value>
+                <elementReference>formLocalSalesRep</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Opportunity</object>
+    </recordUpdates>
+    <startElementReference>Lookup_Territory</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>varOpportunityID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>varShippingZipCode</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>varTerritory</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

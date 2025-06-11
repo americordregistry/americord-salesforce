@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Proliferation_Assay_Test_CT__c</fullName>
+    <description>New picklist values added 9/11/2016, data updated accordingly.</description>
+    <inlineHelpText>Test is required or requested = Required. Test results are available and report is completed = Completed.</inlineHelpText>
+    <label>Proliferation Assay Test- CT</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Required</fullName>
+                <default>false</default>
+                <label>Required</label>
+            </value>
+            <value>
+                <fullName>Completed</fullName>
+                <default>false</default>
+                <label>Completed</label>
+            </value>
+            <value>
+                <fullName>Completed - Good</fullName>
+                <default>false</default>
+                <label>Completed - Good</label>
+            </value>
+            <value>
+                <fullName>Completed - Fair</fullName>
+                <default>false</default>
+                <label>Completed - Fair</label>
+            </value>
+            <value>
+                <fullName>Completed - Discarded</fullName>
+                <default>false</default>
+                <label>Completed - Discarded</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

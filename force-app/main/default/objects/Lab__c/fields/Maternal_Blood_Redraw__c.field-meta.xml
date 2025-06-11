@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Maternal_Blood_Redraw__c</fullName>
+    <description>4/3/12 MS: This field should be completed if the lab requests a replacement. If maternal blood tubes were missing, hemolyzed, or collection was not done according to the instructions in the DCS, &quot;Replacement Requested&quot; should be selected.</description>
+    <inlineHelpText>This field should be completed if the lab requests a replacement maternal blood sample.</inlineHelpText>
+    <label>Maternal Blood Redraw</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>MBD Required (Lab)</fullName>
+                <default>false</default>
+                <label>MBD Required (Lab)</label>
+            </value>
+            <value>
+                <fullName>Sent to Allied</fullName>
+                <default>false</default>
+                <label>Sent to Allied</label>
+            </value>
+            <value>
+                <fullName>Allied Error</fullName>
+                <default>false</default>
+                <label>Allied Error</label>
+            </value>
+            <value>
+                <fullName>Received by Allied</fullName>
+                <default>false</default>
+                <label>Received by Allied</label>
+            </value>
+            <value>
+                <fullName>SHIPPED</fullName>
+                <default>false</default>
+                <label>SHIPPED</label>
+            </value>
+            <value>
+                <fullName>MBD Received (Lab)</fullName>
+                <default>false</default>
+                <label>MBD Received (Lab)</label>
+            </value>
+            <value>
+                <fullName>MBD Shipped (Andwin)</fullName>
+                <default>false</default>
+                <label>MBD Shipped (Andwin)</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

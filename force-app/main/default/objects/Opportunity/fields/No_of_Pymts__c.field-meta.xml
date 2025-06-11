@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>No_of_Pymts__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(TEXT( Payment_Plans__c ), 
+&quot;12M&quot;, 12, 
+&quot;24M&quot;, 24, 
+&quot;36M&quot;, 36, 
+&quot;48M&quot;, 48, 
+&quot;HY12&quot;, 11,
+&quot;HY18&quot;, 17,
+null)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>No of Pymts</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

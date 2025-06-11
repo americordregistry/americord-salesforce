@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_My_Genome_Customer_Email</name>
+        <label>Send My Genome Customer Email</label>
+        <locationX>50</locationX>
+        <locationY>242</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>setBabyGenomeStatus</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>formTRecipientEmails</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Americord myGenome Order Started</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>textTempMyGenomeCustomerSurveyConsent</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_My_Newborn_Customer_Email</name>
+        <label>Send My Newborn Customer Email</label>
+        <locationX>50</locationX>
+        <locationY>758</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>setBabyNewbornStatus</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>formTRecipientEmails</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Americord myNewborn Order Started</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>textTempMyNewbornCustomerSurveyConsent</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+    </actionCalls>
+    <apiVersion>56.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Sets the Genome Status to Sent Customer Email</description>
+        <name>setBabyGenomeStatus</name>
+        <label>setBabyGenomeStatus</label>
+        <locationX>50</locationX>
+        <locationY>350</locationY>
+        <assignmentItems>
+            <assignToReference>recBabyRecordsToProcess.My_Genome_Order_Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>constSentCustomerEmail</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>updBabyRecordStatus</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Sets the My Newborn Status to Sent Customer Email</description>
+        <name>setBabyNewbornStatus</name>
+        <label>setBabyNewbornStatus</label>
+        <locationX>50</locationX>
+        <locationY>866</locationY>
+        <assignmentItems>
+            <assignToReference>recBabyRecordsToProcess.My_Newborn_Order_Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>constSentCustomerEmail</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>updBabyNewbornStatus</targetReference>
+        </connector>
+    </assignments>
+    <constants>
+        <description>Constant for the Status field - Sent Customer Consent Email</description>
+        <name>constSentCustomerEmail</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Sent Customer Consent Email</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <description>This is the constant value for status - Sent To Veritas</description>
+        <name>constSentToVeritas</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Sent To Veritas</stringValue>
+        </value>
+    </constants>
+    <decisions>
+        <description>Determine if sending for My Genome or My Newborn values.</description>
+        <name>Updating_My_Genome</name>
+        <label>Updating My Genome</label>
+        <locationX>182</locationX>
+        <locationY>134</locationY>
+        <defaultConnector>
+            <targetReference>Updating_My_Newborn</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not My Genome</defaultConnectorLabel>
+        <rules>
+            <name>My_Genome</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>recBabyRecordsToProcess.My_Genome_Order_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>constSentToVeritas</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>recBabyRecordsToProcess.My_Genome_Consent_URL__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_My_Genome_Customer_Email</targetReference>
+            </connector>
+            <label>My Genome</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determine if My Newborn values updated to send customer email.</description>
+        <name>Updating_My_Newborn</name>
+        <label>Updating My Newborn</label>
+        <locationX>182</locationX>
+        <locationY>650</locationY>
+        <defaultConnectorLabel>My Newborn Not Set</defaultConnectorLabel>
+        <rules>
+            <name>My_Newborn_Set</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>recBabyRecordsToProcess.My_Newborn_Order_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>constSentToVeritas</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>recBabyRecordsToProcess.My_Newborn_Consent_URL__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_My_Newborn_Customer_Email</targetReference>
+            </connector>
+            <label>My Newborn Set</label>
+        </rules>
+    </decisions>
+    <description>This flow will send an email to the customer for each baby record.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>Formula that will be a text of comma separated emails</description>
+        <name>formTRecipientEmails</name>
+        <dataType>String</dataType>
+        <expression>{!recBabyRecordsToProcess.Lab__r.Mothers_Email__c}+&quot;,clients@americordblood.com&quot;</expression>
+    </formulas>
+    <interviewLabel>Genome Send Customer Email {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Genome Send Customer Email</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Update the Baby My Newborn record to indicate we have sent the email.</description>
+        <name>updBabyNewbornStatus</name>
+        <label>updBabyNewbornStatus</label>
+        <locationX>50</locationX>
+        <locationY>974</locationY>
+        <inputReference>recBabyRecordsToProcess</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Update the Baby record to indicate we have sent the email.</description>
+        <name>updBabyRecordStatus</name>
+        <label>updBabyRecordStatus</label>
+        <locationX>50</locationX>
+        <locationY>458</locationY>
+        <connector>
+            <targetReference>Updating_My_Newborn</targetReference>
+        </connector>
+        <inputReference>recBabyRecordsToProcess</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Updating_My_Genome</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <description>This is the template that can be used to send to the customer on enrolling in My Genome service.</description>
+        <name>textTempMyGenomeCustomerSurveyConsent</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;&lt;img src=&quot;https://20728238.fs1.hubspotusercontent-na1.net/hubfs/20728238/VeritasAmericordHeader.png&quot; alt=&quot;VeritasAmericordHeader.png&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 11pt; font-family: Arial; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;Thank you for purchasing myGenome with Americord!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 11pt; font-family: Arial; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;The next step is providing your informed consent and demographic information to our testing partner, Veritas.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 11pt;&quot;&gt;In addition to Americord, Veritas serves many other prestigious health and wellness institutions in over 30 countries, including Harvard Medical School, Brigham Health, the Mayo Clinic, and Duke Health, to name a few.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 11pt; font-family: Arial; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;To take the next step in your testing, please click here:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 11pt; font-family: Arial; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;{!recBabyRecordsToProcess.My_Genome_Consent_URL__c}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 11pt; font-family: Arial; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;If you have questions, please contact us at (866) 503-6005 or clients@americordblood.com.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;table class=&quot;ql-table-blob&quot; style=&quot;border-collapse: collapse; font-family: Arial, sans-serif; font-size: 12px; line-height: 135%; color: rgb(35, 73, 109); margin-bottom: 0px; padding: 0px; border-spacing: 0px !important; white-space: pre;&quot; width=&quot;100%&quot;&gt;    &lt;tbody style=&quot;white-space: pre;&quot;&gt;        &lt;tr style=&quot;white-space: pre;&quot;&gt;            &lt;td align=&quot;center&quot; valign=&quot;top&quot; style=&quot;border-collapse: collapse; font-family: Arial, sans-serif; font-size: 15px; color: rgb(35, 73, 109); word-break: break-word; text-align: center; margin-bottom: 0px; line-height: 135%; padding: 10px 20px; white-space: pre;&quot;&gt;&lt;p style=&quot;font-family: Arial, sans-serif; font-size: 12px; font-weight: normal; text-decoration: none; font-style: normal; color: rgb(35, 73, 109); white-space: pre;&quot; dir=&quot;lrt&quot;&gt;Americord Registry, LLC., 225 Broadway, Suite 1903, New York, NY 10007, United States&lt;/p&gt;&lt;p style=&quot;white-space: pre;&quot;&gt;&lt;a data-unsubscribe=&quot;true&quot; href=&quot;https://hs-20728238.s.hubspotemail.net/hs/manage-preferences/unsubscribe-all-test?languagePreference=en&amp;amp;d=VmYj7n5pWF9-VKgD3Q3_YlyBW2m3bL73_YlyBN1JxwY5GKd_PV20N518Hl37xVyLn7j2pxfp-N21hrv81B4mv1&amp;amp;v=3&quot; style=&quot;mso-line-height-rule:exactly; font-family:Helvetica,Arial,sans-serif; font-size:12px; color:#00a4bd; font-weight:normal; text-decoration:underline; font-style:normal&quot; data-hs-link-id=&quot;0&quot;&gt;Unsubscribe&lt;br&gt;&lt;/a&gt;&lt;a data-unsubscribe=&quot;true&quot; href=&quot;https://hs-20728238.s.hubspotemail.net/hs/manage-preferences/unsubscribe-test?languagePreference=en&amp;amp;d=VmYj7n5pWF9-VKgD3Q3_YlyBW2m3bL73_YlyBN1JxwY5GKd_PV20N518Hl37xVyLn7j2pxfp-N21hrv81B4mv1&amp;amp;v=3&quot; style=&quot;mso-line-height-rule:exactly; font-family:Helvetica,Arial,sans-serif; font-size:12px; color:#00a4bd; font-weight:normal; text-decoration:underline; font-style:normal&quot; data-hs-link-id=&quot;0&quot;&gt;Manage preferences&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <description>Text template that can be used to send to customer when enrolling in My Newborn service.</description>
+        <name>textTempMyNewbornCustomerSurveyConsent</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;&lt;img src=&quot;https://20728238.fs1.hubspotusercontent-na1.net/hubfs/20728238/VeritasAmericordHeader.png&quot; alt=&quot;VeritasAmericordHeader.png&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 11pt;&quot;&gt;Thank you for purchasing myNewborn with Americord!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 11pt;&quot;&gt;The next step is providing your informed consent and demographic information to our testing partner, Veritas.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 11pt; font-family: Arial; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;In addition to Americord, Veritas serves many other prestigious health and wellness institutions in over 30 countries, including Harvard Medical School, Brigham Health, the Mayo Clinic, and Duke Health, to name a few.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 11pt;&quot;&gt;To take the next step in your testing, please click here:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 11pt;&quot;&gt;{!recBabyRecordsToProcess.My_Newborn_Consent_URL__c}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Arial; font-size: 14.6667px; background-color: rgb(255, 255, 255);&quot;&gt;If you have questions, please contact us at (866) 503-6005 or clients@americordblood.com.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;table class=&quot;ql-table-blob&quot; style=&quot;border-collapse: collapse; font-family: Arial, sans-serif; font-size: 12px; line-height: 135%; color: rgb(35, 73, 109); margin-bottom: 0px; padding: 0px; border-spacing: 0px !important; white-space: pre;&quot; width=&quot;100%&quot;&gt;    &lt;tbody style=&quot;white-space: pre;&quot;&gt;        &lt;tr style=&quot;white-space: pre;&quot;&gt;            &lt;td style=&quot;border-collapse: collapse; font-family: Arial, sans-serif; font-size: 15px; color: rgb(35, 73, 109); word-break: break-word; text-align: center; margin-bottom: 0px; line-height: 135%; padding: 10px 20px; white-space: pre;&quot; valign=&quot;top&quot; align=&quot;center&quot;&gt;&lt;p dir=&quot;lrt&quot; style=&quot;font-family: Arial, sans-serif; font-size: 12px; font-weight: normal; text-decoration: none; font-style: normal; color: rgb(35, 73, 109); white-space: pre;&quot;&gt;Americord Registry, LLC., 225 Broadway, Suite 1903, New York, NY 10007, United States&lt;/p&gt;&lt;p style=&quot;white-space: pre;&quot;&gt;&lt;a data-hs-link-id=&quot;0&quot; style=&quot;mso-line-height-rule:exactly; font-family:Helvetica,Arial,sans-serif; font-size:12px; color:#00a4bd; font-weight:normal; text-decoration:underline; font-style:normal&quot; href=&quot;https://hs-20728238.s.hubspotemail.net/hs/manage-preferences/unsubscribe-all-test?languagePreference=en&amp;amp;d=VmYj7n5pWF9-VKgD3Q3_YlyBW2m3bL73_YlyBN1JxwY5GKd_PV20N518Hl37xVyLn7j2pxfp-N21hrv81B4mv1&amp;amp;v=3&quot; data-unsubscribe=&quot;true&quot;&gt;Unsubscribe&lt;br&gt;&lt;/a&gt;&lt;a data-hs-link-id=&quot;0&quot; style=&quot;mso-line-height-rule:exactly; font-family:Helvetica,Arial,sans-serif; font-size:12px; color:#00a4bd; font-weight:normal; text-decoration:underline; font-style:normal&quot; href=&quot;https://hs-20728238.s.hubspotemail.net/hs/manage-preferences/unsubscribe-test?languagePreference=en&amp;amp;d=VmYj7n5pWF9-VKgD3Q3_YlyBW2m3bL73_YlyBN1JxwY5GKd_PV20N518Hl37xVyLn7j2pxfp-N21hrv81B4mv1&amp;amp;v=3&quot; data-unsubscribe=&quot;true&quot;&gt;Manage preferences&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</text>
+    </textTemplates>
+    <variables>
+        <description>This is the baby record we will use to send the email.</description>
+        <name>recBabyRecordsToProcess</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Baby__c</objectType>
+    </variables>
+</Flow>

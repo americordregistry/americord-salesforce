@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Commission_Created__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Used to track when a Commission Record is already created for the referrer of this account. Used to eliminate duplicates.</description>
+    <label>Commission Created</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

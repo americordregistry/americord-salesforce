@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Scheduled_birth__c</fullName>
+    <description>Info added to a record when customer selects &quot;Planned C-Section or Induction.[My delivery has been scheduled.]&quot; from step one of enrollment process.</description>
+    <label>Scheduled birth</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>TextArea</type>
+</CustomField>

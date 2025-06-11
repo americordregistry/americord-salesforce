@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sale_Type_Direct_or_Complex__c</fullName>
+    <description>Used for Playbooks to define Direct vs Complex</description>
+    <externalId>false</externalId>
+    <formula>IF(
+OR(
+CONTAINS(Acquisition_Program__c, &quot;Birth Plan&quot;),
+CONTAINS(Acquisition_Program__c, &quot;Sweepstakes&quot;),
+CONTAINS(Acquisition_Program__c, &quot;WTE_DEALS&quot;),
+CONTAINS(Acquisition_Program__c, &quot;Your Baby Club API&quot;)), &quot;Complex&quot;,
+  &quot;Direct&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Sale Type: Direct or Complex</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

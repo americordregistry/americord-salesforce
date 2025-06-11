@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>This action will issue a refresh on the current record page. Assumes the component has been added to the Lightning page.</description>
+        <name>Refresh_the_current_page</name>
+        <label>Refresh the current page</label>
+        <locationX>314</locationX>
+        <locationY>1118</locationY>
+        <actionName>c:refreshView</actionName>
+        <actionType>component</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <nameSegment>c:refreshView</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_Genome_Order</name>
+        <label>Send Genome Order</label>
+        <locationX>314</locationX>
+        <locationY>878</locationY>
+        <actionName>GenomeOrderOutbound</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Genome_Order_Sent</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>lstGenomeBabyRecords</name>
+            <value>
+                <elementReference>varTBabyRecords</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>GenomeOrderOutbound</nameSegment>
+    </actionCalls>
+    <apiVersion>56.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Set the collection of baby IDs.</description>
+        <name>Set_Baby_IDs</name>
+        <label>Set Baby IDs</label>
+        <locationX>314</locationX>
+        <locationY>758</locationY>
+        <assignmentItems>
+            <assignToReference>varTBabyRecords</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Send_Genome_Order</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Determine if this is a genome cheek order.</description>
+        <name>Is_Genome_Cheek_Order</name>
+        <label>Is Genome Cheek Order</label>
+        <locationX>248</locationX>
+        <locationY>278</locationY>
+        <defaultConnector>
+            <targetReference>Get_Integration_CMD_Records</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>NO - Not Genome Cheek</defaultConnectorLabel>
+        <rules>
+            <name>YES_Genome_Cheeck</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Baby_Record.My_Newborn_Order_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>CHEEK SWAB ORDER - CS TO HANDLE</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Genome_Cheek_Order</targetReference>
+            </connector>
+            <label>YES - Genome Cheeck</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determine if integration is enabled. If so, continue.</description>
+        <name>Is_Integration_Enabled</name>
+        <label>Is Integration Enabled</label>
+        <locationX>446</locationX>
+        <locationY>518</locationY>
+        <defaultConnector>
+            <targetReference>Genome_Integration_Disabled</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Integration is disabled</defaultConnectorLabel>
+        <rules>
+            <name>Integration_is_enabled</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Integration_CMD_Records.Genomics_Integration_Active__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>scrSendGenomeOrder</targetReference>
+            </connector>
+            <label>Integration is enabled</label>
+        </rules>
+    </decisions>
+    <description>This screen flow will send the initial order and the lab updates to Veritas.</description>
+    <environments>Default</environments>
+    <interviewLabel>ScreenFlow: Send Genome Order {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>ScreenFlow: Send Genome Order</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <description>Get the baby records</description>
+        <name>Get_Baby_Record</name>
+        <label>Get Baby Record</label>
+        <locationX>248</locationX>
+        <locationY>158</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_Genome_Cheek_Order</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Baby__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get the custom metadata records for Americord Integration</description>
+        <name>Get_Integration_CMD_Records</name>
+        <label>Get Integration CMD Records</label>
+        <locationX>446</locationX>
+        <locationY>398</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_Integration_Enabled</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Label</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>CurrentSettings</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Americord_Integration_Setting__mdt</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <screens>
+        <description>Notify user that this is a genome cheek order.</description>
+        <name>Genome_Cheek_Order</name>
+        <label>Genome Cheek Order</label>
+        <locationX>50</locationX>
+        <locationY>398</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>GenomeCheekOrderNotification</name>
+            <fieldText>&lt;p&gt;You cannot submit this Genome Order. This baby records has a Genome service ordered that is using the cheek swab. &lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Genome_Integration_Disabled</name>
+        <label>Genome Integration Disabled</label>
+        <locationX>578</locationX>
+        <locationY>638</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>txtGenomeOrderIntegrationDisabled</name>
+            <fieldText>&lt;p&gt;The integration with Veritas is currently disabled. To enable, update the Americord Integration Settings metadata.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Genome_Order_Sent</name>
+        <label>Genome Order Sent</label>
+        <locationX>314</locationX>
+        <locationY>998</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Refresh_the_current_page</targetReference>
+        </connector>
+        <fields>
+            <name>txtGenomeOrderSent</name>
+            <fieldText>&lt;p&gt;The call to send the Order or Sample update information to Veritas is complete. &lt;strong&gt;You may need to refresh the record to verify the status.&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>scrSendGenomeOrder</name>
+        <label>Send Genome Order</label>
+        <locationX>314</locationX>
+        <locationY>638</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Set_Baby_IDs</targetReference>
+        </connector>
+        <fields>
+            <name>txtSendGenomeDesc</name>
+            <fieldText>&lt;p&gt;To submit initial order or to send the updated lab value to Veritas, click the Send button. &lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <nextOrFinishButtonLabel>Send</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>122</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Baby_Record</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>This is the current record Baby record Id.</description>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>This is the collection of baby record ids (text) to send to Apex for calling Veritas.</description>
+        <name>varTBabyRecords</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

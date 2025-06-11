@@ -1,0 +1,10 @@
+<apex:page standardController="Lab__c"
+           sidebar="false"
+           showHeader="false"
+           showChat="false" lightningstylesheets="true">
+
+<apex:pageMessage summary="Docusign is not Complete" 
+                  severity="info" 
+                  strength="1"
+                  rendered="{!Lab__c.DocuSign_Status__c != 'Completed'}" />
+</apex:page>

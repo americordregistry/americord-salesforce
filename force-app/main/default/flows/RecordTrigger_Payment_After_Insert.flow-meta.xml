@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Echeck_Receipt</name>
+        <label>Send Echeck Receipt</label>
+        <locationX>842</locationX>
+        <locationY>792</locationY>
+        <actionName>fw1__Payment__c.eCheck_Receipt</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>fw1__Payment__c.eCheck_Receipt</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <description>Send payment receipt.</description>
+        <name>Send_Payment_Receipt</name>
+        <label>Send Payment Receipt</label>
+        <locationX>578</locationX>
+        <locationY>684</locationY>
+        <actionName>fw1__Payment__c.Payment_Receipt</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>fw1__Payment__c.Payment_Receipt</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>59.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <description>Determine if ACH Payment.</description>
+        <name>Is_Payment_ACH</name>
+        <label>Is Payment ACH?</label>
+        <locationX>974</locationX>
+        <locationY>684</locationY>
+        <defaultConnectorLabel>NOT - ACH</defaultConnectorLabel>
+        <rules>
+            <name>YES_ACH_Payment</name>
+            <conditionLogic>1 AND  (2 OR 3) AND 4</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.fw1__Invoice__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.fw1__Payment_Method__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>eCheck</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.fw1__Payment_Method__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>ACH</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.fw1__Amount__c</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Echeck_Receipt</targetReference>
+            </connector>
+            <label>YES - ACH Payment</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determine if the payment method is credit card.</description>
+        <name>Is_Payment_Method_Credit_Card</name>
+        <label>Is Payment Method Credit Card</label>
+        <locationX>776</locationX>
+        <locationY>576</locationY>
+        <defaultConnector>
+            <targetReference>Is_Payment_ACH</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>NO - Not CC</defaultConnectorLabel>
+        <rules>
+            <name>YES_Credit_Card</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Deposit__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.fw1__Total_Paid_Amount__c</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.fw1__Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Captured</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.fw1__Invoice__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Payment_Receipt</targetReference>
+            </connector>
+            <label>YES - Credit Card</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>See if payment related to opportunity.</description>
+        <name>Is_Payment_Related_To_Opportunity</name>
+        <label>Is Payment Related To Opportunity?</label>
+        <locationX>182</locationX>
+        <locationY>276</locationY>
+        <defaultConnectorLabel>NO - Not Related to Opp</defaultConnectorLabel>
+        <rules>
+            <name>YES_Related_to_Opp</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.fw1__Opportunity__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.fw1__Opportunity__r.StageName</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Enrolled</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.fw1__Opportunity__r.StageName</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed Lost</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.fw1__Opportunity__r.StageName</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Expired</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Opportunity_with_Authorization</targetReference>
+            </connector>
+            <label>YES - Related to Opp</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determine if new credit card.</description>
+        <name>Is_This_A_New_Credit_Card</name>
+        <label>Is This A New Credit Card?</label>
+        <locationX>776</locationX>
+        <locationY>276</locationY>
+        <defaultConnector>
+            <targetReference>Is_Payment_Method_Credit_Card</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>NO - Not New</defaultConnectorLabel>
+        <rules>
+            <name>YES_New_CC</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.fw1__Reference__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>New Credit Card</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Invoice_with_new_CC</targetReference>
+            </connector>
+            <label>YES - New CC</label>
+        </rules>
+    </decisions>
+    <description>Main flow for after payment record insert.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>formula for the dummy value on the payment.</description>
+        <name>formDTCreatedDateForPayment</name>
+        <dataType>DateTime</dataType>
+        <expression>NOW() - 59/1440</expression>
+    </formulas>
+    <interviewLabel>RecordTrigger: Payment After Insert {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RecordTrigger: Payment After Insert</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Update the opp with authorization.</description>
+        <name>Update_Opportunity_with_Authorization</name>
+        <label>Update Opportunity with Authorization</label>
+        <locationX>50</locationX>
+        <locationY>384</locationY>
+        <connector>
+            <targetReference>Update_Payment_Deposit</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Authorized_Payment__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Authorization_ID__c</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Authorized_Payment__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>fw1__Total_Paid_Amount__c</field>
+            <value>
+                <elementReference>$Record.fw1__Total_Paid_Amount__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.fw1__Opportunity__r</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Update the payment deposit to true.</description>
+        <name>Update_Payment_Deposit</name>
+        <label>Update Payment Deposit</label>
+        <locationX>50</locationX>
+        <locationY>492</locationY>
+        <inputAssignments>
+            <field>Deposit__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>353</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_Payment_Related_To_Opportunity</targetReference>
+        </connector>
+        <object>fw1__Payment__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <scheduledPaths>
+            <name>Five_Minutes_After_Insert</name>
+            <connector>
+                <targetReference>Is_This_A_New_Credit_Card</targetReference>
+            </connector>
+            <label>Five Minutes After Insert</label>
+            <maxBatchSize>10</maxBatchSize>
+            <offsetNumber>5</offsetNumber>
+            <offsetUnit>Minutes</offsetUnit>
+            <recordField>CreatedDate</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <description>Call subflow that will update the CBO/Invoice with the new CC.</description>
+        <name>Update_Invoice_with_new_CC</name>
+        <label>Update Invoice with new CC</label>
+        <locationX>644</locationX>
+        <locationY>384</locationY>
+        <connector>
+            <targetReference>Is_Payment_Method_Credit_Card</targetReference>
+        </connector>
+        <flowName>Invoice_Update_new_credit_card</flowName>
+        <inputAssignments>
+            <name>ContactId</name>
+            <value>
+                <elementReference>$Record.fw1__Contact__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>emailAddress</name>
+            <value>
+                <elementReference>$Record.fw1__Email__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>InvoiceId</name>
+            <value>
+                <elementReference>$Record.fw1__Invoice__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>PaymentId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+</Flow>

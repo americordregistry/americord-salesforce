@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Notify CS team of the uncancel.</description>
+        <name>Notify_CS_Team_Invoice_Date_Might_be_wrong</name>
+        <label>Notify CS Team - Invoice Date Might be wrong</label>
+        <locationX>204</locationX>
+        <locationY>2387</locationY>
+        <actionName>fw1__Invoice__c.Send_CS_team_email_when_order_is_canceled_then_uncanceled_and_Invoice_Date_is_wr</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Reactivate_Portal_Authorization</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>fw1__Invoice__c.Send_CS_team_email_when_order_is_canceled_then_uncanceled_and_Invoice_Date_is_wr</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <constants>
+        <description>Constant that can be used to enable/disable code.</description>
+        <name>constALWAYS_FALSE</name>
+        <dataType>Boolean</dataType>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </constants>
+    <decisions>
+        <description>Determine if we found a matching payment plan record.</description>
+        <name>Did_We_Find_a_Payment_Plan_Record</name>
+        <label>Did We Find a Payment Plan Record</label>
+        <locationX>182</locationX>
+        <locationY>839</locationY>
+        <defaultConnector>
+            <targetReference>Is_Cancellation_Date_Set</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>NO - No Payment Record Found</defaultConnectorLabel>
+        <rules>
+            <name>YES_Found_a_Payment_Record</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Payment_Plan_Record</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Order_for_Billing_Values</targetReference>
+            </connector>
+            <label>YES - Found a Payment Record</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determine if auto billpay and new process</description>
+        <name>Is_Auto_Billpay_Check_and_New_Process</name>
+        <label>Is Auto Billpay Check and New Process</label>
+        <locationX>336</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>Is_Autobill_Checked_To_Start_Billing_and_no_Payment_Plan</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>NO - Bill Not Checked</defaultConnectorLabel>
+        <rules>
+            <name>YES_Bill_Pay_and_New_Process</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.fw1__Auto_BillPay__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.New_Process__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Price_and_Date_For_Billing</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>YES - Bill Pay and New Process</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Verify if order is set to autobill and then setup billing.</description>
+        <name>Is_Autobill_Checked_To_Start_Billing_and_no_Payment_Plan</name>
+        <label>Is Autobill Checked To Start Billing and no Payment Plan</label>
+        <locationX>336</locationX>
+        <locationY>623</locationY>
+        <defaultConnector>
+            <targetReference>Is_Cancellation_Date_Set</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>NO - Not Autobill Set</defaultConnectorLabel>
+        <rules>
+            <name>YES_Autobill_Checked</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.fw1__Auto_BillPay__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.fw1__Payment_Plan__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Payment_Plan_Record</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>YES - Autobill Checked</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Check to see if Cancellation date has been set for order.</description>
+        <name>Is_Cancellation_Date_Set</name>
+        <label>Is Cancellation Date Set?</label>
+        <locationX>336</locationX>
+        <locationY>1223</locationY>
+        <defaultConnector>
+            <targetReference>Is_Cancellation_Date_Unset</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>NO - Cancellation Date Not Set</defaultConnectorLabel>
+        <rules>
+            <name>YES_Cancellation_Date_Set</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Cancellation_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Invoice_Order_For_Cancellation</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>YES - Cancellation Date Set</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Check to see if we were cancelled and now not.</description>
+        <name>Is_Cancellation_Date_Unset</name>
+        <label>Is Cancellation Date Unset?</label>
+        <locationX>336</locationX>
+        <locationY>1955</locationY>
+        <defaultConnector>
+            <targetReference>Update_Parent_Phone_For_SMS</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>NO - Not Uncanceled</defaultConnectorLabel>
+        <rules>
+            <name>YES_Uncanceled</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record__Prior.Cancellation_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Cancellation_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Triggering_Record_Cancellation_Unset</targetReference>
+            </connector>
+            <label>YES - Uncanceled</label>
+        </rules>
+    </decisions>
+    <description>This is the main flow that will run after the invoice record is inserted or updated.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>Formula that will flag when the email reminder should be sent.</description>
+        <name>formBOOLSendChecklistReminder</name>
+        <dataType>Boolean</dataType>
+        <expression>iF(AND(
+ISCHANGED({!$Record.Reminder_Call_Date__c}),
+DATEVALUE({!$Record.Reminder_Call_Date__c}) = Today()
+),TRUE,FALSE)</expression>
+    </formulas>
+    <formulas>
+        <description>This is the formula that will return today&apos;s date.</description>
+        <name>formDTToday</name>
+        <dataType>Date</dataType>
+        <expression>Today()</expression>
+    </formulas>
+    <formulas>
+        <description>This formula will return a date/time that is two minutes from now.</description>
+        <name>formDTTwoMinutesFromNow</name>
+        <dataType>DateTime</dataType>
+        <expression>NOW() - 0.04007</expression>
+    </formulas>
+    <interviewLabel>RecordTrigger:Cord Blood Order After Insert or Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RecordTrigger:Cord Blood Order After Insert or Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Get the associated recordtype for Annual.</description>
+        <name>Get_Annual_Recordtype_for_Invoice</name>
+        <label>Get Annual Recordtype for Invoice</label>
+        <locationX>204</locationX>
+        <locationY>1439</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Update_Associated_Annual_Invoices</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>SobjectType</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>fw1__Invoice__c</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Annual Storage</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>RecordType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get the associated payment plan record for the selected plan on the invoice.</description>
+        <name>Get_Payment_Plan_Record</name>
+        <label>Get Payment Plan Record</label>
+        <locationX>182</locationX>
+        <locationY>731</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Did_We_Find_a_Payment_Plan_Record</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Payment_Plan_Stored__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>fw1__Payment_Plan__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>Activate the portal auth record for client.</description>
+        <name>Reactivate_Portal_Authorization</name>
+        <label>Reactivate Portal Authorization</label>
+        <locationX>204</locationX>
+        <locationY>2495</locationY>
+        <connector>
+            <targetReference>Update_Parent_Phone_For_SMS</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <stringValue>Active</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.fw1__Contact__r.Portal_Authentication__r</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>This will update related cord blood order/invoices that have the triggering record as the parent and are annual recordtypes.</description>
+        <name>Update_Associated_Annual_Invoices</name>
+        <label>Update Associated Annual Invoices</label>
+        <locationX>204</locationX>
+        <locationY>1547</locationY>
+        <connector>
+            <targetReference>Update_Lab_For_Cancellation</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Parent_Order__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Annual_Recordtype_for_Invoice.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>fw1__Auto_BillPay__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>fw1__Is_Voided__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>fw1__Invoice__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Update the triggering record for cancellation.</description>
+        <name>Update_Invoice_Order_For_Cancellation</name>
+        <label>Update Invoice/Order For Cancellation</label>
+        <locationX>204</locationX>
+        <locationY>1331</locationY>
+        <connector>
+            <targetReference>Get_Annual_Recordtype_for_Invoice</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>fw1__Auto_BillPay__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>fw1__Is_Voided__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Update the lab for cancellation.</description>
+        <name>Update_Lab_For_Cancellation</name>
+        <label>Update Lab For Cancellation</label>
+        <locationX>204</locationX>
+        <locationY>1655</locationY>
+        <connector>
+            <targetReference>Deactivate_Portal_If_Active_Orders</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>Collection_Kit_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>On Hold</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Collection_Kit_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Ready to Ship</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Collection_Kit_Status__c</field>
+            <value>
+                <stringValue>Order Canceled</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.Lab__r</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Set lab for order uncancel.</description>
+        <name>Update_Lab_Uncancel_Order</name>
+        <label>Update Lab - Uncancel Order</label>
+        <locationX>204</locationX>
+        <locationY>2171</locationY>
+        <connector>
+            <targetReference>Update_Triggering_Autobill_Pay</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Birth_Date_from_Courier__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Collection_Kit_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Order Canceled</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Cord_Blood_Collection_Completed__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Kit_Sent__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Collection_Kit_Status__c</field>
+            <value>
+                <stringValue>Ready to Ship</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.Lab__r</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Update the order for payment plan, audit total price and invoice date.</description>
+        <name>Update_Order_for_Billing_Values</name>
+        <label>Update Order for Billing Values</label>
+        <locationX>50</locationX>
+        <locationY>947</locationY>
+        <connector>
+            <targetReference>Is_Cancellation_Date_Set</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Audit_Total_Price__c</field>
+            <value>
+                <elementReference>$Record.fw1__Total_Invoice_Amount__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>fw1__Invoice_Date__c</field>
+            <value>
+                <elementReference>formDTToday</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>fw1__Payment_Plan__c</field>
+            <value>
+                <elementReference>Get_Payment_Plan_Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Update the triggering record field for SMS Phone from Contact</description>
+        <name>Update_Parent_Phone_For_SMS</name>
+        <label>Update Parent Phone For SMS</label>
+        <locationX>336</locationX>
+        <locationY>2687</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>fw1__Contact__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Phone_for_SMS__c</field>
+            <value>
+                <elementReference>$Record.fw1__Contact__r.Mobile_Phone_for_SMS__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>This will update the audit price and date for billing.</description>
+        <name>Update_Price_and_Date_For_Billing</name>
+        <label>Update Price and Date For Billing</label>
+        <locationX>204</locationX>
+        <locationY>431</locationY>
+        <connector>
+            <targetReference>Is_Autobill_Checked_To_Start_Billing_and_no_Payment_Plan</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Audit_Total_Price__c</field>
+            <value>
+                <elementReference>$Record.fw1__Total_Invoice_Amount__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>fw1__Invoice_Date__c</field>
+            <value>
+                <elementReference>formDTToday</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Set triggering record for auto bill pay.</description>
+        <name>Update_Triggering_Autobill_Pay</name>
+        <label>Update Triggering - Autobill Pay</label>
+        <locationX>204</locationX>
+        <locationY>2279</locationY>
+        <connector>
+            <targetReference>Notify_CS_Team_Invoice_Date_Might_be_wrong</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>fw1__Payment_Plan__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>fw1__Auto_BillPay__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Update triggering record for cancellation unset.</description>
+        <name>Update_Triggering_Record_Cancellation_Unset</name>
+        <label>Update Triggering Record - Cancellation Unset</label>
+        <locationX>204</locationX>
+        <locationY>2063</locationY>
+        <connector>
+            <targetReference>Update_Lab_Uncancel_Order</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>fw1__Is_Voided__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>210</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_Auto_Billpay_Check_and_New_Process</targetReference>
+        </connector>
+        <object>fw1__Invoice__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <description>Call subflow to deactivate portal.</description>
+        <name>Deactivate_Portal_If_Active_Orders</name>
+        <label>Deactivate Portal If Active Orders</label>
+        <locationX>204</locationX>
+        <locationY>1763</locationY>
+        <connector>
+            <targetReference>Is_Cancellation_Date_Unset</targetReference>
+        </connector>
+        <flowName>Cord_Blood_Order_Deactive_Portal_Authentication_when_order_is_canceled</flowName>
+        <inputAssignments>
+            <name>varAccountID</name>
+            <value>
+                <elementReference>$Record.fw1__Account__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varPortalAuthentication</name>
+            <value>
+                <elementReference>$Record.fw1__Contact__r.Portal_Authentication__c</elementReference>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <textTemplates>
+        <description>Template that will be used to send admin notification about missing payment plan.</description>
+        <name>textTempErrorForMatchingPaymentPlan</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;Unable to find the payment plan for the invoice while setting the billing/payment plan information. An error has been logged.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Flow: RecordTrigger:Cord Blood Order After Insert or Update&lt;/p&gt;&lt;p&gt;Invoice ID:{!$Record.Id}&lt;/p&gt;&lt;p&gt;Invoice Name: {!$Record.Name}&lt;/p&gt;</text>
+    </textTemplates>
+</Flow>

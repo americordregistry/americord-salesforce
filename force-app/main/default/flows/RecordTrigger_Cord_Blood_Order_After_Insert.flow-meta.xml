@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>This email alert will send an internal email notifying receivers that we have a new order.</description>
+        <name>Send_Internal_Email_That_Order_Is_Created</name>
+        <label>Send Internal Email That Order Is Created</label>
+        <locationX>842</locationX>
+        <locationY>384</locationY>
+        <actionName>fw1__Invoice__c.Internal_email_New_Order</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Send_Order_Confirmation</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>fw1__Invoice__c.Internal_email_New_Order</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <description>This will send the confirmation email to the client.</description>
+        <name>Send_Order_Confirmation</name>
+        <label>Send Order Confirmation</label>
+        <locationX>842</locationX>
+        <locationY>492</locationY>
+        <actionName>fw1__Invoice__c.Send_Order_Confirmation_Email</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>fw1__Invoice__c.Send_Order_Confirmation_Email</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>60.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Placeholder_element</name>
+        <label>Placeholder element</label>
+        <locationX>50</locationX>
+        <locationY>276</locationY>
+        <assignmentItems>
+            <assignToReference>boolDummy</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <constants>
+        <description>This constant will hold the value of the Stem Cell Banking record type.</description>
+        <name>constRecordTypeNameStemCell</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Stem_Cell_Banking</stringValue>
+        </value>
+    </constants>
+    <decisions>
+        <description>Determine if the products/services or storage changed.</description>
+        <name>Did_Services_Change</name>
+        <label>Did Services Change?</label>
+        <locationX>446</locationX>
+        <locationY>384</locationY>
+        <defaultConnectorLabel>NO - No Change</defaultConnectorLabel>
+        <rules>
+            <name>YES_Prod_Services_Storage_Changed</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Products_or_Services_Ordered_Formatted__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>Call_Calculate_Products_Services_Ordered.varTProductsServicesOrdered</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Storage_Ordered_Formatted__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>Call_Calculate_Products_Services_Ordered.varTStorageOrdered</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Updated_CBO_For_Products_Services_Ordered</targetReference>
+            </connector>
+            <label>YES - Prod/Services/Storage Changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determine if this invoice is stem cell banking</description>
+        <name>Is_This_A_Stem_Cell_Banking_Invoice</name>
+        <label>Is This A Stem Cell Banking Invoice?</label>
+        <locationX>974</locationX>
+        <locationY>276</locationY>
+        <defaultConnectorLabel>NO - Not Stem Cell Type</defaultConnectorLabel>
+        <rules>
+            <name>YES_Stem_Cell_Banking_Type</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>constRecordTypeNameStemCell</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Internal_Email_That_Order_Is_Created</targetReference>
+            </connector>
+            <label>YES - Stem Cell Banking Type</label>
+        </rules>
+    </decisions>
+    <description>The main flow for Cord Blood Order After Insert</description>
+    <environments>Default</environments>
+    <interviewLabel>RecordTrigger: Cord Blood Order After Insert {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RecordTrigger: Cord Blood Order After Insert</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Update the CBO for the products/services/storage ordered</description>
+        <name>Updated_CBO_For_Products_Services_Ordered</name>
+        <label>Updated CBO For Products/Services Ordered</label>
+        <locationX>314</locationX>
+        <locationY>492</locationY>
+        <inputAssignments>
+            <field>Products_or_Services_Ordered_Formatted__c</field>
+            <value>
+                <elementReference>Call_Calculate_Products_Services_Ordered.varTProductsServicesOrdered</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Storage_Ordered_Formatted__c</field>
+            <value>
+                <elementReference>Call_Calculate_Products_Services_Ordered.varTStorageOrdered</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>386</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Placeholder_element</targetReference>
+        </connector>
+        <object>fw1__Invoice__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <scheduledPaths>
+            <name>One_Minute_After_Insert</name>
+            <connector>
+                <targetReference>Call_Calculate_Products_Services_Ordered</targetReference>
+            </connector>
+            <label>One Minute After Insert</label>
+            <offsetNumber>1</offsetNumber>
+            <offsetUnit>Minutes</offsetUnit>
+            <recordField>CreatedDate</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <scheduledPaths>
+            <name>One_Hour_After_Insert</name>
+            <connector>
+                <targetReference>Is_This_A_Stem_Cell_Banking_Invoice</targetReference>
+            </connector>
+            <label>One Hour After Insert</label>
+            <offsetNumber>1</offsetNumber>
+            <offsetUnit>Hours</offsetUnit>
+            <recordField>CreatedDate</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <description>Call the products/services order subflow to compute the total of products/services.</description>
+        <name>Call_Calculate_Products_Services_Ordered</name>
+        <label>Call Calculate Products/Services Ordered</label>
+        <locationX>446</locationX>
+        <locationY>276</locationY>
+        <connector>
+            <targetReference>Did_Services_Change</targetReference>
+        </connector>
+        <flowName>Calculate_Products_Services_Ordered</flowName>
+        <inputAssignments>
+            <name>varTCordBloodOrderId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <variables>
+        <name>boolDummy</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

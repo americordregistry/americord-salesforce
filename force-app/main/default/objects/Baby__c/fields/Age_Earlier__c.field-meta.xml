@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Age_Earlier__c</fullName>
+    <description>Provides Baby&apos;s Birthday earlier, used for Handwrytten so we can send cards before actual birthday. Currenly set up for three weeks prior.</description>
+    <externalId>false</externalId>
+    <formula>If ( AND (Age__c &gt;= 0, Age__c &lt;= 5), Age__c + 1, null)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Provides Baby&apos;s Birthday earlier, used for Handwrytten so we can send cards before actual birthday. Currenly set up for three weeks prior.</inlineHelpText>
+    <label>Age - Earlier</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

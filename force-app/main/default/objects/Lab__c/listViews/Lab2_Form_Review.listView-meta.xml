@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lab2_Form_Review</fullName>
+    <booleanFilter>2 AND (1 or 3)</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Mother_s_Last_Name__c</columns>
+    <columns>Certificate_ID__c</columns>
+    <columns>Birth_Date_from_Courier__c</columns>
+    <columns>DCS__c</columns>
+    <columns>Forms__c</columns>
+    <columns>Form_Review_Notes_Sent_to_Client__c</columns>
+    <columns>Client_response_to_Lab_Inquiries__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Collection_Date__c</field>
+        <operation>equals</operation>
+        <value>LAST_N_DAYS:360</value>
+    </filters>
+    <filters>
+        <field>Processing_Lab__c</field>
+        <operation>equals</operation>
+        <value>Lifeforce</value>
+    </filters>
+    <filters>
+        <field>Birth_Date_from_Courier__c</field>
+        <operation>equals</operation>
+        <value>LAST_N_DAYS:360</value>
+    </filters>
+    <label>Lab Lifeforce - Form Review</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+        <portalRole>LifeforceLabPartnerUser</portalRole>
+    </sharedTo>
+</ListView>

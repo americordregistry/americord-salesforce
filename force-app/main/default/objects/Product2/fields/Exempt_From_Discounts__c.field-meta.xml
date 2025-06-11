@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Exempt_From_Discounts__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>If checked, this product will not have any discounts applied.</description>
+    <inlineHelpText>Check this box for Products that should not allow any discounting to be applied.</inlineHelpText>
+    <label>Exempt From Discounts</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

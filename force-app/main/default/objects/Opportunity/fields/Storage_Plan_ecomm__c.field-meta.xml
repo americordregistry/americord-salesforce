@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Storage_Plan_ecomm__c</fullName>
+    <description>Used by ecomm to delay the population of Storage Plan until Products are populated.</description>
+    <label>Storage Plan (ecomm)</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>20YPP</fullName>
+                <default>false</default>
+                <label>20 Years Prepaid</label>
+            </value>
+            <value>
+                <fullName>ASP</fullName>
+                <default>false</default>
+                <label>Annual Storage</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

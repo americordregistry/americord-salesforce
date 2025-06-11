@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CRMG_Map__Google_Earth_Address</fullName>
+    <availability>online</availability>
+    <displayType>link</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>600</height>
+    <linkType>url</linkType>
+    <masterLabel>Address</masterLabel>
+    <openType>sidebar</openType>
+    <protected>false</protected>
+    <url>/apex/CRMG_Map__ShowEarth?addr={!Lead.Address}%20{!Lead.City}%20{!Lead.State}%20{!Lead.Country}%20{!Lead.PostalCode}</url>
+</WebLink>

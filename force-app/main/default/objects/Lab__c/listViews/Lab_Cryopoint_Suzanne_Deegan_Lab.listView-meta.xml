@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lab_Cryopoint_Suzanne_Deegan_Lab</fullName>
+    <columns>NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>NAME</field>
+        <operation>equals</operation>
+        <value>Suzanne Deegan Lab</value>
+    </filters>
+    <filters>
+        <field>Processing_Lab__c</field>
+        <operation>equals</operation>
+        <value>Cryopoint</value>
+    </filters>
+    <label>Lab Cryopoint - Suzanne Deegan Lab</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+        <portalRole>NewLabPartnerExecutive</portalRole>
+        <portalRole>NewLabPartnerManager</portalRole>
+        <portalRole>NewLabPartnerUser</portalRole>
+    </sharedTo>
+</ListView>

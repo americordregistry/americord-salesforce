@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Two_Fathers__c</fullName>
+    <description>Used with Rollup Helper to count fathers and identify any data quality issues because of incorrect deduping by Duplicate Field is populated by rollup/DLRS - Account_Count_Fathers</description>
+    <externalId>false</externalId>
+    <label>Two Fathers</label>
+    <precision>1</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CB_Volume_ml__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Entered as a number, maximum of three digits and one decimal place. For example, 123.4</inlineHelpText>
+    <label>CB Volume (ml)</label>
+    <precision>4</precision>
+    <required>false</required>
+    <scale>1</scale>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

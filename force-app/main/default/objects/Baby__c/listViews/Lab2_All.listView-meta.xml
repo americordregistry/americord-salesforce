@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lab2_All</fullName>
+    <columns>Kit_ID__c</columns>
+    <columns>NAME</columns>
+    <columns>Collection_Date__c</columns>
+    <columns>Process_Date__c</columns>
+    <columns>Elapse_Time__c</columns>
+    <columns>LPI_CB__c</columns>
+    <columns>LPI_CT__c</columns>
+    <columns>LPI_PT__c</columns>
+    <columns>TNCx10_6_pre__c</columns>
+    <columns>TNCx10_6_post__c</columns>
+    <columns>Cord_Tissue_Condition__c</columns>
+    <columns>Placenta_Tissue_Condition__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Processing_Lab__c</field>
+        <operation>equals</operation>
+        <value>Lifeforce</value>
+    </filters>
+    <label>Lifeforce - All</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+        <portalRole>LifeforceLabPartnerUser</portalRole>
+    </sharedTo>
+</ListView>

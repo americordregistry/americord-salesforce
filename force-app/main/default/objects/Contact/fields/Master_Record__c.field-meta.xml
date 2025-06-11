@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Master_Record__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Used to identify records that have been either reviewed or modified by the LSR, and should be used as the master during merging.</description>
+    <label>Master Record</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

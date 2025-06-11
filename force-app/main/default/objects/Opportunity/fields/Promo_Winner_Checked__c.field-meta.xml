@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Promo_Winner_Checked__c</fullName>
+    <description>Field to determine when the promo winner field was checked.</description>
+    <inlineHelpText>Field to determine when the promo winner field was checked.</inlineHelpText>
+    <label>Promo Winner Checked</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

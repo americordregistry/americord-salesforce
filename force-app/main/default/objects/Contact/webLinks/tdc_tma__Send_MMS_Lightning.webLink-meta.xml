@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>tdc_tma__Send_MMS_Lightning</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Send MMS</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>/apex/tdc_tma__SendMMS_Lightning?id={!Contact.Id}</url>
+</WebLink>

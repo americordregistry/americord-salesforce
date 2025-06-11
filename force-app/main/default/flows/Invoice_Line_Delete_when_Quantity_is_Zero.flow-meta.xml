@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <interviewLabel>Invoice Line Delete when Quantity is Zero {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Invoice Line Delete when Quantity is Zero</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordDeletes>
+        <name>Delete_Invoice_Line</name>
+        <label>Delete Invoice Line</label>
+        <locationX>248</locationX>
+        <locationY>145</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varInvoiceLineID</elementReference>
+            </value>
+        </filters>
+        <object>fw1__Invoice_Line__c</object>
+    </recordDeletes>
+    <recordLookups>
+        <name>Lookup_Invoice_Line_Item</name>
+        <label>Lookup Invoice Line Item</label>
+        <locationX>252</locationX>
+        <locationY>33</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Delete_Invoice_Line</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varInvoiceLineID</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>fw1__Quantity__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </filters>
+        <object>fw1__Invoice_Line__c</object>
+        <outputAssignments>
+            <assignToReference>varInvoiceLineID</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+    </recordLookups>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Lookup_Invoice_Line_Item</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>varInvoiceLineID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

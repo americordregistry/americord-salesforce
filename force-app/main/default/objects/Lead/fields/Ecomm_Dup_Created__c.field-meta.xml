@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ecomm_Dup_Created__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Used to prevent duplicate Ecomm Dups from being created because of Marketo Sync</description>
+    <label>Ecomm Dup Created</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

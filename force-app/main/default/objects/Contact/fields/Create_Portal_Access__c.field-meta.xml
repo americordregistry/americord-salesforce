@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Create_Portal_Access__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>When this field is checked, a Portal Authentication record is created, which gives user access to the Client Services Portal.</inlineHelpText>
+    <label>Create Portal Access</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

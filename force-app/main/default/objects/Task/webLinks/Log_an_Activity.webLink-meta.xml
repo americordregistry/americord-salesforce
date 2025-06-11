@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Log_an_Activity</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Log an Activity</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <url>https://americord.my.salesforce.com/00T/e?what_id={!Account.Id}&amp;who_id={!Contact.Id}&amp;tsk5 = Visit &amp;retURL=%2F{!Contact.Id}&amp;SaveURL=%2F{!Contact.Id}</url>
+</WebLink>

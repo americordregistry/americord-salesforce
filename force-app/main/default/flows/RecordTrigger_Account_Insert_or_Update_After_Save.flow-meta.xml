@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>57.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <description>Check to see if HCP Created</description>
+        <name>HCP_Created_Check</name>
+        <label>HCP Created Check</label>
+        <locationX>182</locationX>
+        <locationY>335</locationY>
+        <defaultConnector>
+            <targetReference>Medical_Professional_Check</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>HCP Not Created</defaultConnectorLabel>
+        <rules>
+            <name>HCP_Is_Created</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.HCP_Agreement__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Created</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_1_A1</targetReference>
+            </connector>
+            <label>HCP Is Created</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determin if Medical Professional.</description>
+        <name>Medical_Professional_Check</name>
+        <label>Medical Professional Check</label>
+        <locationX>182</locationX>
+        <locationY>671</locationY>
+        <defaultConnectorLabel>Not Med Professional</defaultConnectorLabel>
+        <rules>
+            <name>Is_Med_Professional</name>
+            <conditionLogic>(1 or 2) and (3 or 4 or 5 or 6 or 7 or 8 or 9 or 10 or 11 or 12) and (13 or 14)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Medical Professional</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Hospital</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ShippingState</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>CA</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ShippingState</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>California</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ShippingState</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>NY</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ShippingState</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>New York</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ShippingState</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Florida</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ShippingState</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>FL</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ShippingState</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Georgia</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ShippingState</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>GA</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ShippingState</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>NJ</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ShippingState</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>New Jersey</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ShippingPostalCode</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue></stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ShippingPostalCode</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Add_Territory_to_Account</targetReference>
+            </connector>
+            <label>Is Med Professional</label>
+        </rules>
+    </decisions>
+    <description>Main flow for logic on Account insert/update after save.</description>
+    <environments>Default</environments>
+    <interviewLabel>RecordTrigger:Account Insert or Update After Save {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RecordTrigger:Account Insert or Update After Save</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>HCP_Created_Check</targetReference>
+        </connector>
+        <object>Account</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <description>Call the add territory to account subflow</description>
+        <name>Add_Territory_to_Account</name>
+        <label>Add Territory to Account</label>
+        <locationX>50</locationX>
+        <locationY>791</locationY>
+        <flowName>Add_Territory_to_Account</flowName>
+        <inputAssignments>
+            <name>varAccountID</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varAccountZipCode</name>
+            <value>
+                <elementReference>$Record.ShippingPostalCode</elementReference>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <subflows>
+        <name>myRule_1_A1</name>
+        <label>Populate Attachment ID</label>
+        <locationX>50</locationX>
+        <locationY>455</locationY>
+        <connector>
+            <targetReference>Medical_Professional_Check</targetReference>
+        </connector>
+        <flowName>Account_populate_HCP_Agreement_Attachment_ID</flowName>
+        <inputAssignments>
+            <name>varAccountID</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+</Flow>

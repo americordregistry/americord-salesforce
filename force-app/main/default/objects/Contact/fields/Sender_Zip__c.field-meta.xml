@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sender_Zip__c</fullName>
+    <defaultValue>&quot;44483&quot;</defaultValue>
+    <description>used to populate Zenkraft FedEx record with sender address, we use Jennifer Dziedzic&apos;s address so packages are returned to her and can be reshipped.</description>
+    <externalId>false</externalId>
+    <label>Sender Zip</label>
+    <length>5</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

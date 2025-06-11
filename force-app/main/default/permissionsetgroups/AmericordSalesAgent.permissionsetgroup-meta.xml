@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Permission group for an Americord Sales agent persona.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>AmericordSalesAgent</label>
+    <permissionSets>Americord_Base</permissionSets>
+    <permissionSets>Americord_Sales</permissionSets>
+    <permissionSets>n2de__Distribution_Engine_User</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>

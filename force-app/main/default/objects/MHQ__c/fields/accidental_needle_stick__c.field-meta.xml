@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>accidental_needle_stick__c</fullName>
+    <inlineHelpText>In the past 12 months have you: Had any accidental needle stick where you were exposed to someone else’s blood through the needle stick that is known or suspected to have HIV/AIDS, hepatitis B or C?</inlineHelpText>
+    <label>22. accidental needle stick</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>MHQ</valueSetName>
+    </valueSet>
+</CustomField>

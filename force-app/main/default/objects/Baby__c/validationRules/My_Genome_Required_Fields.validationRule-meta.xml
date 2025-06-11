@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Genome_Required_Fields</fullName>
+    <active>true</active>
+    <description>This validation rule will verify that all required fields are populated for the My Genome integration.</description>
+    <errorConditionFormula>IF( $Setup.Americord_Settings__c.Bypass_Validation_Rule__c,FALSE,
+    ( 
+        AND(
+            NOT(ISBLANK(LPI_My_Genome__c)), 
+            OR(
+                ISBLANK(Lab__r.Mothers_Email__c),
+                ISBLANK(Lab__r.Mothers_Date_Of_Birth__c),
+                ISBLANK(Lab__r.Mother_s_Phone__c),
+                ISPICKVAL(Lab__r.Shipping_State_new__c, &apos;&apos;), 
+                ISBLANK( Lab__r.Shipping_City__c ) ,
+                ISBLANK( Lab__r.Shipping_Street__c ) ,
+                ISPICKVAL(Lab__r.Shipping_Country_new__c, &apos;&apos;)
+            )
+        )
+    )
+)</errorConditionFormula>
+    <errorMessage>Required My Genome fields not populated. You must enter Mother&apos;s Email, Mother&apos;s Phone Number, Mother&apos;s DOB and Shipping information on the Lab record.</errorMessage>
+</ValidationRule>

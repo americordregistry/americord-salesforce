@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <description>Determine if the status has been changed to complete?</description>
+        <name>Has_Status_Been_Changed_To_Complete</name>
+        <label>Has Status Been Changed To Complete?</label>
+        <locationX>446</locationX>
+        <locationY>431</locationY>
+        <defaultConnector>
+            <targetReference>Has_Tissue_Status_Changed</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>YES_Status_Changed_To_Sent_To_Tissue_Bank</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Donation_Process_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Sent To Tissue Bank</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Tissue_Acceptance_Status_to_Pending</targetReference>
+            </connector>
+            <label>YES - Status Changed To Sent To Tissue Bank</label>
+        </rules>
+        <rules>
+            <name>Yes_Status_is_Paid</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Donation_Process_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Paid</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Paid_Date</targetReference>
+            </connector>
+            <label>Yes - Status is Paid</label>
+        </rules>
+        <rules>
+            <name>YES_Status_is_Sent_To_Lab</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Donation_Process_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Sent To Lab</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Sent_To_Lab_Date</targetReference>
+            </connector>
+            <label>YES - Status is Sent To Lab</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determine if the donation status has changed</description>
+        <name>Has_the_Donation_Status_Changed</name>
+        <label>Has the Donation Status Changed?</label>
+        <locationX>732</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>Has_Tissue_Status_Changed</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>YES_Donation_status_has_changed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Donation_Process_Status__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Has_Status_Been_Changed_To_Complete</targetReference>
+            </connector>
+            <label>YES - Donation status has changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determine if the tissue status has changed.</description>
+        <name>Has_Tissue_Status_Changed</name>
+        <label>Has Tissue Status Changed?</label>
+        <locationX>732</locationX>
+        <locationY>815</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>YES_Tissue_Status_Changed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Tissue_Eligibility_Status__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>What_has_the_Tissue_Status_Been_Set_To</targetReference>
+            </connector>
+            <label>YES - Tissue Status Changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determine the status that the tissue status has been set to</description>
+        <name>What_has_the_Tissue_Status_Been_Set_To</name>
+        <label>What has the Tissue Status Been Set To?</label>
+        <locationX>534</locationX>
+        <locationY>923</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Set_to_Not_Eligible</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Tissue_Eligibility_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Ineligible</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Tissue_Not_Eligible_Date</targetReference>
+            </connector>
+            <label>Set to Not Eligible</label>
+        </rules>
+    </decisions>
+    <description>This is the main flow to use for the donation updates.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>Formula that will hold today&apos;s date.</description>
+        <name>formDTToday</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <interviewLabel>RecordTrigger: Donation on Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RecordTrigger: Donation on Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Set the paid date to today.</description>
+        <name>Set_Paid_Date</name>
+        <label>Set Paid Date</label>
+        <locationX>314</locationX>
+        <locationY>539</locationY>
+        <connector>
+            <targetReference>Has_Tissue_Status_Changed</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Paid_Date__c</field>
+            <value>
+                <elementReference>formDTToday</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Update the triggering record sent to lab date.</description>
+        <name>Set_Sent_To_Lab_Date</name>
+        <label>Set Sent To Lab Date</label>
+        <locationX>578</locationX>
+        <locationY>539</locationY>
+        <connector>
+            <targetReference>Has_Tissue_Status_Changed</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Sent_To_Lab_Date__c</field>
+            <value>
+                <elementReference>formDTToday</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Update the donation record&apos;s tissue acceptance to Pending Acceptance when complete status is set.</description>
+        <name>Set_Tissue_Acceptance_Status_to_Pending</name>
+        <label>Set Tissue Acceptance Status to Pending</label>
+        <locationX>50</locationX>
+        <locationY>539</locationY>
+        <connector>
+            <targetReference>Has_Tissue_Status_Changed</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Sent_To_Tissue_Bank_Date__c</field>
+            <value>
+                <elementReference>formDTToday</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Set the date the donation was marked not eligible.</description>
+        <name>Update_Tissue_Not_Eligible_Date</name>
+        <label>Update Tissue Not Eligible Date</label>
+        <locationX>402</locationX>
+        <locationY>1031</locationY>
+        <inputAssignments>
+            <field>Tissue_Denial_Date__c</field>
+            <value>
+                <elementReference>formDTToday</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>606</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Has_the_Donation_Status_Changed</targetReference>
+        </connector>
+        <object>Donation__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

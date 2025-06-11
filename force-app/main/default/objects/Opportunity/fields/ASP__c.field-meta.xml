@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ASP__c</fullName>
+    <formula>20*(150* Number_of_Products__c - (
+if (text( Number_of_Births__c  ) = &quot;Single&quot;,
+CASE (Number_of_Products__c,
+1,0, 
+2, 25, 
+3, 75, 
+0),
+if (text(Number_of_Births__c) = &quot;Twins&quot;,
+CASE (Number_of_Products__c,
+2,0, 
+3, 25, 
+4, 50,
+5, 100,
+6, 150,
+0),
+if (text(Number_of_Births__c) = &quot;Triplets&quot;,
+CASE (Number_of_Products__c,
+3,0, 
+6, 75, 
+9, 225,
+0),
+0)))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Calculates Annual Storage for 20 years based on Number of Products; includes Bundle Savings.</inlineHelpText>
+    <label>ASP Old</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

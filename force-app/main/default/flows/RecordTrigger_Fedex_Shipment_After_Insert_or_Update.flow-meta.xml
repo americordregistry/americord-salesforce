@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Send Email to Mother when kit is shipped.</description>
+        <name>Send_mother_email_when_kit_is_shipped</name>
+        <label>Send mother email when kit is shipped</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <actionName>zkfedex__Shipment__c.Send_mother_email_when_kit_is_shipped</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Update_Lab_On_Ship</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>zkfedex__Shipment__c.Send_mother_email_when_kit_is_shipped</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <description>Send email alert for MBD</description>
+        <name>Send_Mother_Email_When_MBD</name>
+        <label>Send Mother Email When MBD</label>
+        <locationX>314</locationX>
+        <locationY>539</locationY>
+        <actionName>zkfedex__Shipment__c.Send_mother_email_when_MBD_kit_is_shipped</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Add_the_task_for_Email_MBD</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>zkfedex__Shipment__c.Send_mother_email_when_MBD_kit_is_shipped</nameSegment>
+    </actionCalls>
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <description>Determine if tracking id and dept number are updated</description>
+        <name>Has_Tracking_ID_and_Dept_Number_been_set</name>
+        <label>Has Tracking ID and Dept Number been set</label>
+        <locationX>248</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>Has_Tracking_ID_and_Dept_Number_been_set_MBD</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>NO - Tracking Not Set and Not Non-MBD</defaultConnectorLabel>
+        <rules>
+            <name>YES_Non_MBD_and_Tracking_ID_Dept_Number_set</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.zkfedex__MasterTrackingId__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.zkfedex__ReferenceDeptNumber__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>P</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_mother_email_when_kit_is_shipped</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>YES - Non-MBD and Tracking ID/Dept Number set</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determine if tracking id and dept number are updated for MBD</description>
+        <name>Has_Tracking_ID_and_Dept_Number_been_set_MBD</name>
+        <label>Has Tracking ID and Dept Number been set - MBD</label>
+        <locationX>446</locationX>
+        <locationY>431</locationY>
+        <defaultConnectorLabel>NO - Tracking Not Set - MBD</defaultConnectorLabel>
+        <rules>
+            <name>YES_Tracking_ID_Dept_Number_set_MBD</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.zkfedex__MasterTrackingId__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.zkfedex__ReferenceDeptNumber__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>M</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Mother_Email_When_MBD</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>YES - Tracking ID/Dept Number set - MBD</label>
+        </rules>
+    </decisions>
+    <description>This is the main flow for after the fedex shipment is created or update</description>
+    <environments>Default</environments>
+    <interviewLabel>RecordTrigger: Fedex Shipment After Insert or Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RecordTrigger: Fedex Shipment After Insert or Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <description>Add the task for contact1 for email sent</description>
+        <name>Add_the_task_for_Email</name>
+        <label>Add the task for Email</label>
+        <locationX>50</locationX>
+        <locationY>647</locationY>
+        <inputAssignments>
+            <field>Subject</field>
+            <value>
+                <stringValue>Email Sent: Kit Shipped</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhatId</field>
+            <value>
+                <elementReference>$Record.Lab__r.Account__r.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhoId</field>
+            <value>
+                <elementReference>$Record.Lab__r.Contact__r.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Task</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordCreates>
+        <description>Add the task for contact1 for email sent for MBD</description>
+        <name>Add_the_task_for_Email_MBD</name>
+        <label>Add the task for Email - MBD</label>
+        <locationX>314</locationX>
+        <locationY>647</locationY>
+        <inputAssignments>
+            <field>Subject</field>
+            <value>
+                <stringValue>Email Sent: Kit Shipped - MBD</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhatId</field>
+            <value>
+                <elementReference>$Record.Lab__r.Account__r.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhoId</field>
+            <value>
+                <elementReference>$Record.Lab__r.Contact__r.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Task</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordUpdates>
+        <description>Update the related lab record with shipment details.</description>
+        <name>Update_Lab_On_Ship</name>
+        <label>Update Lab On Ship</label>
+        <locationX>50</locationX>
+        <locationY>539</locationY>
+        <connector>
+            <targetReference>Add_the_task_for_Email</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Kit_Sent__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Kit_Type__c</field>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.Lab__r</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>122</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Has_Tracking_ID_and_Dept_Number_been_set</targetReference>
+        </connector>
+        <object>zkfedex__Shipment__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>This collection will hold the tasks for the email.</description>
+        <name>recCollectionTaskForEmailSend</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Task</objectType>
+    </variables>
+    <variables>
+        <description>This is the individual task record for the email send for Contact2.</description>
+        <name>recTaskEamilForKitSend_Contact2</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Task</objectType>
+    </variables>
+    <variables>
+        <description>This record is the individual task record for email send - Contact1.</description>
+        <name>recTaskEmailForKitSend_Contact1</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Task</objectType>
+    </variables>
+    <variables>
+        <name>varTPlaceholder</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

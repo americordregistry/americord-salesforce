@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reassign_Date__c</fullName>
+    <description>Caculates when Facebook-Instagram leads should be reassigned, giving one day to delete bad leads.</description>
+    <formula>if (weekday( DATEVALUE(CreatedDate)) = 7, TODAY()+2, TODAY()+1)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Reassign Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

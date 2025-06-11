@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CS_Incomplete_DCS_and_Forms</fullName>
+    <booleanFilter>(1 OR 2) AND 3</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Collection_Date__c</columns>
+    <columns>DCS__c</columns>
+    <columns>Forms__c</columns>
+    <columns>DCS_Notes__c</columns>
+    <columns>Form_Review_Notes_Sent_to_Client__c</columns>
+    <columns>Client_response_to_Lab_Inquiries__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>DCS__c</field>
+        <operation>equals</operation>
+        <value>Incomplete</value>
+    </filters>
+    <filters>
+        <field>Forms__c</field>
+        <operation>equals</operation>
+        <value>Incomplete</value>
+    </filters>
+    <filters>
+        <field>Is_Voided_LU__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>CS - Incomplete DCS and Forms</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

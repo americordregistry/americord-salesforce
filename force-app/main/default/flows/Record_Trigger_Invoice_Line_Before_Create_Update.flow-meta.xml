@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <description>Determine if productcode and category are populated</description>
+        <name>Is_ProductCode_and_Category_Populated</name>
+        <label>Is ProductCode and Category Populated</label>
+        <locationX>380</locationX>
+        <locationY>311</locationY>
+        <defaultConnectorLabel>Populated</defaultConnectorLabel>
+        <rules>
+            <name>ProductCode_or_Category_Not_Populated</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Product_Code__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Category__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Kit_or_Not_Kit</targetReference>
+            </connector>
+            <label>Not Populated</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determine if the associated product is a kit or not.</description>
+        <name>Kit_or_Not_Kit</name>
+        <label>Kit or Not Kit</label>
+        <locationX>182</locationX>
+        <locationY>431</locationY>
+        <defaultConnector>
+            <targetReference>Update_Invoice_Line_For_ProductCode_and_Category</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not A Kit</defaultConnectorLabel>
+        <rules>
+            <name>Kit</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.fw1__Product2__r.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Stem Cell Collection Kit</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Kit_Record_for_Missing_Values</targetReference>
+            </connector>
+            <label>Kit</label>
+        </rules>
+    </decisions>
+    <description>Record trigger flow for Invoice Line</description>
+    <environments>Default</environments>
+    <interviewLabel>Record-Trigger: Invoice Line Before Create Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RecordTrigger: Invoice Line Before Create Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Invoice_Line_For_ProductCode_and_Category</name>
+        <label>Update Invoice Line For ProductCode and Category</label>
+        <locationX>314</locationX>
+        <locationY>551</locationY>
+        <inputAssignments>
+            <field>Category__c</field>
+            <value>
+                <elementReference>$Record.fw1__Product2__r.Family</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Product_Code__c</field>
+            <value>
+                <elementReference>$Record.fw2__Product__r.ProductCode</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>This update will set the kit invoice lines for category and product code.</description>
+        <name>Update_Kit_Record_for_Missing_Values</name>
+        <label>Update Kit Record for Missing Values</label>
+        <locationX>50</locationX>
+        <locationY>551</locationY>
+        <inputAssignments>
+            <field>Category__c</field>
+            <value>
+                <stringValue>Product</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Product_Code__c</field>
+            <value>
+                <stringValue>CollKit</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>254</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_ProductCode_and_Category_Populated</targetReference>
+        </connector>
+        <object>fw1__Invoice_Line__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lab_Americord_Client_Responses</fullName>
+    <booleanFilter>1 AND 2 AND (3 or 4)</booleanFilter>
+    <columns>Mother_s_Last_Name__c</columns>
+    <columns>LPI_M__c</columns>
+    <columns>LPI_M2__c</columns>
+    <columns>NAME</columns>
+    <columns>Client_response_to_Lab_Inquiries__c</columns>
+    <columns>DCS__c</columns>
+    <columns>Forms__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Processing_Lab__c</field>
+        <operation>equals</operation>
+        <value>Americord</value>
+    </filters>
+    <filters>
+        <field>Client_Responded__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>DCS__c</field>
+        <operation>equals</operation>
+        <value>Incomplete</value>
+    </filters>
+    <filters>
+        <field>Forms__c</field>
+        <operation>equals</operation>
+        <value>Incomplete</value>
+    </filters>
+    <label>Lab Americord - Client Responses</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+        <portalRole>VitalantLabPartnerExecutive</portalRole>
+        <portalRole>VitalantLabPartnerManager</portalRole>
+        <portalRole>VitalantLabPartnerUser</portalRole>
+    </sharedTo>
+</ListView>

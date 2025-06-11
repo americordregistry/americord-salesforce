@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Due_at_Checkout__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Checked if the Product on this line item is fully due at checkout. Maintained in a before-save flow.</description>
+    <label>Due at Checkout</label>
+    <type>Checkbox</type>
+</CustomField>

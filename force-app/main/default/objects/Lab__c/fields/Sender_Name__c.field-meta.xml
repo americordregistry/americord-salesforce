@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sender_Name__c</fullName>
+    <description>Used to populate the &quot;Sender&quot; information for FedEx Shipments sent from Zenkraft&apos;s Shipmate.</description>
+    <label>Sender Name</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Client Service Dept (NYC)</fullName>
+                <default>false</default>
+                <label>Client Service Dept (NYC)</label>
+            </value>
+            <value>
+                <fullName>Client Service Dept (CA)</fullName>
+                <default>false</default>
+                <label>Client Service Dept (CA)</label>
+            </value>
+            <value>
+                <fullName>Hospital Stasher</fullName>
+                <default>false</default>
+                <label>Hospital Stasher</label>
+            </value>
+            <value>
+                <fullName>Other Stasher</fullName>
+                <default>false</default>
+                <label>Other Stasher</label>
+            </value>
+            <value>
+                <fullName>Allied</fullName>
+                <default>false</default>
+                <label>Allied</label>
+            </value>
+            <value>
+                <fullName>Lab Shipped</fullName>
+                <default>true</default>
+                <label>Lab Shipped</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

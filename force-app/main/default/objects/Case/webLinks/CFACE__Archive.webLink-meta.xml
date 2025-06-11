@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CFACE__Archive</fullName>
+    <availability>online</availability>
+    <description>Used to archive case emails .</description>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Archive</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>/apex/cface__emailsArchive?id={!Case.Id}&amp;number={!Case.CaseNumber}&amp;type=a</url>
+</WebLink>

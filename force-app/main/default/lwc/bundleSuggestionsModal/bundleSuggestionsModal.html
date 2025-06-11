@@ -1,0 +1,27 @@
+<template>
+    <lightning-modal-header label={header}></lightning-modal-header>
+    <lightning-modal-body>
+        <div class="slds-text-heading_small slds-var-m-top_large">The products you are adding are also available in these bundles. If applicable, select the bundle you're looking for, or click dismiss to proceed with adding individual products.</div>
+        <lightning-radio-group name="Radio Group"
+            class="slds-var-m-top_large"
+            label="Matching Bundles"
+            options={bundleOptions}
+            value={value}
+            onchange={handleChange}>
+        </lightning-radio-group>
+    </lightning-modal-body>
+    <lightning-modal-footer>
+        <lightning-button 
+            class="slds-m-left_medium" 
+            label="Dismiss"
+            onclick={handleCancel}>
+        </lightning-button>
+        <lightning-button 
+            class="slds-m-left_medium" 
+            label="Save With Selected Bundle" 
+            variant="brand"
+            disabled={saveDisabled}
+            onclick={handleSave}>
+        </lightning-button>
+    </lightning-modal-footer>
+</template>

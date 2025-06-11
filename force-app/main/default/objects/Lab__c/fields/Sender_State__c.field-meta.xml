@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sender_State__c</fullName>
+    <defaultValue>&quot;NY&quot;</defaultValue>
+    <description>Used to populate the Send fields for FedEx shipments sent with Zenkraft Shipmate.</description>
+    <externalId>false</externalId>
+    <label>Sender State</label>
+    <length>20</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

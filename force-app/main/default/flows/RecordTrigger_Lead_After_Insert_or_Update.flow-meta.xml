@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>57.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Assign the userids from the Gets above.</description>
+        <name>Assign_User_Ids</name>
+        <label>Assign User Ids</label>
+        <locationX>314</locationX>
+        <locationY>695</locationY>
+        <assignmentItems>
+            <assignToReference>varTInfoUserId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Info_User.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTServicesUserId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Services_User.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTOwnerId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.OwnerId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Lead</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Check to see if email is unknown example email.</description>
+        <name>Is_Unknown_Example_Email</name>
+        <label>Is Unknown Example Email</label>
+        <locationX>182</locationX>
+        <locationY>335</locationY>
+        <defaultConnector>
+            <targetReference>Get_Info_User</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>NO - Not Unknown</defaultConnectorLabel>
+        <rules>
+            <name>YES_Is_Uknown_Example</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Email</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>unknown@example.com</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Delete_Lead</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>YES - Is Uknown Example</label>
+        </rules>
+    </decisions>
+    <description>This is the main flow that runs after the lead is inserted or updated.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>Formula for the company name of the lead.</description>
+        <name>formTCompanyName</name>
+        <dataType>String</dataType>
+        <expression>IF(
+	OR(
+		{!$Record.Company}==null,
+		{!$Record.Company}==&apos;Unknown&apos;
+	),{!$Record.FirstName} +&apos; &apos;+{!$Record.LastName },
+	{!$Record.Company}
+)</expression>
+    </formulas>
+    <formulas>
+        <description>Formula for the owner id given inputs.</description>
+        <name>formTOwnerId</name>
+        <dataType>String</dataType>
+        <expression>IF(
+	AND(
+		OR(
+			ISPICKVAL({!$Record.LeadSource},&apos;Returning Client&apos;),
+			ISPICKVAL({!$Record.LeadSource},&apos;Live Chat&apos;)
+		),
+		{!$Record.Ownerid}=={!varTInfoUserId}
+	),{!varTServicesUserId},
+	{!varTOwnerId}
+)</expression>
+    </formulas>
+    <interviewLabel>RecordTrigger:Lead After Insert or Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RecordTrigger:Lead After Insert or Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordDeletes>
+        <description>Delete the chat lead.</description>
+        <name>Delete_Lead</name>
+        <label>Delete Lead</label>
+        <locationX>50</locationX>
+        <locationY>455</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <object>Lead</object>
+    </recordDeletes>
+    <recordLookups>
+        <description>Get the info@ user for owner assignment</description>
+        <name>Get_Info_User</name>
+        <label>Get Info User</label>
+        <locationX>314</locationX>
+        <locationY>455</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Services_User</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Username</field>
+            <operator>StartsWith</operator>
+            <value>
+                <stringValue>info@americordblood.com</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>User</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get the services@americordblood.com</description>
+        <name>Get_Services_User</name>
+        <label>Get Services User</label>
+        <locationX>314</locationX>
+        <locationY>575</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_User_Ids</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Username</field>
+            <operator>StartsWith</operator>
+            <value>
+                <stringValue>services@americordblood.com</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>User</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>Update the triggering lead company name, ownerid.</description>
+        <name>Update_Lead</name>
+        <label>Update Lead</label>
+        <locationX>314</locationX>
+        <locationY>815</locationY>
+        <inputAssignments>
+            <field>Company</field>
+            <value>
+                <elementReference>formTCompanyName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Contact_Email__c</field>
+            <value>
+                <elementReference>$Record.Email</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Contact_FirstName__c</field>
+            <value>
+                <elementReference>$Record.FirstName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Contact_LastName__c</field>
+            <value>
+                <elementReference>$Record.LastName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Contact_Phone__c</field>
+            <value>
+                <elementReference>$Record.Phone</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>formTOwnerId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_Unknown_Example_Email</targetReference>
+        </connector>
+        <object>Lead</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Variable that holds the ID for the info@americordblood.com user.</description>
+        <name>varTInfoUserId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Store the original ownerid.</description>
+        <name>varTOwnerId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Variable that holds the user id for the services@americordblood.com user.</description>
+        <name>varTServicesUserId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

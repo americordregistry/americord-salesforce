@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Collection_Kit_Status__c</fullName>
+    <label>Collection Kit Status</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+                <label>On Hold</label>
+            </value>
+            <value>
+                <fullName>Ready to Ship</fullName>
+                <default>false</default>
+                <label>Ready to Ship</label>
+            </value>
+            <value>
+                <fullName>Sent to Allied</fullName>
+                <default>false</default>
+                <label>Sent to Allied</label>
+            </value>
+            <value>
+                <fullName>Allied Error</fullName>
+                <default>false</default>
+                <label>Allied Error</label>
+            </value>
+            <value>
+                <fullName>Received by Allied</fullName>
+                <default>false</default>
+                <label>Received by Allied</label>
+            </value>
+            <value>
+                <fullName>SHIPPED</fullName>
+                <default>false</default>
+                <label>SHIPPED</label>
+            </value>
+            <value>
+                <fullName>Order Canceled</fullName>
+                <default>false</default>
+                <label>Order Canceled</label>
+            </value>
+            <value>
+                <fullName>Same Day (CS Team)</fullName>
+                <default>false</default>
+                <label>Same Day (CS Team)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>hepatitis_type_3__c</fullName>
+    <inlineHelpText>In the past 12 months have you: Lived with, or had close contact, including sexual contact, with a person who has hepatitis? If yes: Asymptomatic /  Symptomatic</inlineHelpText>
+    <label>13.3 hepatitis type 3</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Asymptomatic</fullName>
+                <default>false</default>
+                <label>Asymptomatic</label>
+            </value>
+            <value>
+                <fullName>Symptomatic</fullName>
+                <default>false</default>
+                <label>Symptomatic</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

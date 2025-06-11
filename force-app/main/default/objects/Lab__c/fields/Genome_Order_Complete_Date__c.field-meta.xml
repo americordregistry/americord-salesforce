@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Genome_Order_Complete_Date__c</fullName>
+    <description>This is the aggregate rollup of the baby records max order completion date.</description>
+    <label>Genome Order Complete Date</label>
+    <summarizedField>Baby__c.Genome_Order_Complete_Date__c</summarizedField>
+    <summaryForeignKey>Baby__c.Lab__c</summaryForeignKey>
+    <summaryOperation>max</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Log completed task for sending the revised order email to client.</description>
+        <name>Log_Completed_Task_On_Invoice</name>
+        <label>Log Completed Task On Invoice</label>
+        <locationX>50</locationX>
+        <locationY>566</locationY>
+        <actionName>NewTask</actionName>
+        <actionType>quickAction</actionType>
+        <connector>
+            <targetReference>Send_Revised_Email_To_Client</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>contextId</name>
+            <value>
+                <elementReference>Get_Invoice_Record_for_Revised_Order.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Subject</name>
+            <value>
+                <stringValue>Sent Client Revised Order Email</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>OwnerId</name>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Status</name>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>NewTask</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <description>This will send the revised order to the client.</description>
+        <name>Send_Email_Alert_for_Revised_Order</name>
+        <label>Send Email Alert for Revised Order</label>
+        <locationX>50</locationX>
+        <locationY>458</locationY>
+        <actionName>fw1__Invoice__c.Order_Revised_before_Baby_is_Born</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Log_Completed_Task_On_Invoice</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>fw1__Invoice__c.Order_Revised_before_Baby_is_Born</nameSegment>
+    </actionCalls>
+    <apiVersion>60.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <description>Determine if this order should be sent a revised order email.</description>
+        <name>Check_to_see_if_we_should_send_revised_order_email</name>
+        <label>Check to see if we should send revised order email</label>
+        <locationX>182</locationX>
+        <locationY>242</locationY>
+        <defaultConnector>
+            <targetReference>Send_Revised_Order_Email_Not_Available</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>NO - Dont Send Revised Order Email</defaultConnectorLabel>
+        <rules>
+            <name>YES_Send_Revised_Order_Email</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Invoice_Record_for_Revised_Order.Id</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue></stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Invoice_Record_for_Revised_Order.RecordType.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Stem Cell Banking</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Invoice_Record_for_Revised_Order.fw1__Is_Voided__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Invoice_Record_for_Revised_Order.fw1__Auto_BillPay__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Revised_Order_Email_Confirm_To_Send</targetReference>
+            </connector>
+            <label>YES - Send Revised Order Email</label>
+        </rules>
+    </decisions>
+    <description>Send email alert for revised order before baby is born.</description>
+    <environments>Default</environments>
+    <interviewLabel>ScreenFlow - Send Revised Order To Client {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>ScreenFlow:Send Revised Order To Client</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <description>Get the record for the current order</description>
+        <name>Get_Invoice_Record_for_Revised_Order</name>
+        <label>Get Invoice Record for Revised Order</label>
+        <locationX>182</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_to_see_if_we_should_send_revised_order_email</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>fw1__Invoice__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <screens>
+        <description>Confirmation screen that we sent a revised email to the client.</description>
+        <name>Send_Revised_Email_To_Client</name>
+        <label>Send Revised Email To Client</label>
+        <locationX>50</locationX>
+        <locationY>674</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Sent_Email_Confirmation</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;We sent the revised email to the client and logged this activity on the invoice.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <nextOrFinishButtonLabel>Close</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>This screen will allow the user to cancel</description>
+        <name>Send_Revised_Order_Email_Confirm_To_Send</name>
+        <label>Send Revised Order Email Confirm To Send</label>
+        <locationX>50</locationX>
+        <locationY>350</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Send_Email_Alert_for_Revised_Order</targetReference>
+        </connector>
+        <fields>
+            <name>ConfirmToSendRevisedOrderToClient</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Are you sure you wish to send an email to the client for the revised order? &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Click Next to proceed or Close this window to cancel.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>Screen for displaying revised order not available.</description>
+        <name>Send_Revised_Order_Email_Not_Available</name>
+        <label>Send Revised Order Email Not Available</label>
+        <locationX>314</locationX>
+        <locationY>350</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>txtInvoiceNotValidForRevisedOrderEmail</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;The Invoice {!Get_Invoice_Record_for_Revised_Order.Name} is not eligible to have a revised order sent.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;&lt;u&gt;Status&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Recordtype: &lt;/span&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;{!Get_Invoice_Record_for_Revised_Order.RecordType.Name}&lt;/strong&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt; (This is only valid for Stem Cell Banking orders)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Canceled: {!Get_Invoice_Record_for_Revised_Order.fw1__Is_Voided__c} (This needs to be false)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Autobill Checked: {!Get_Invoice_Record_for_Revised_Order.fw1__Auto_BillPay__c} (This needs to be false)&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <nextOrFinishButtonLabel>Close</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Invoice_Record_for_Revised_Order</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>This is the invoice id to be used for the email alert of revised order.</description>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

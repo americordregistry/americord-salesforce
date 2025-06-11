@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>paymentplanawareness__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Used for WTE Survey. Data comes from Marketo and is mapped to Account and Opportunity.</description>
+    <label>Payment plan awareness</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

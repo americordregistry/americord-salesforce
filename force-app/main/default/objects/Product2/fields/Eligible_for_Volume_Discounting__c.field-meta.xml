@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Eligible_for_Volume_Discounting__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>There is still a (possibly temporary) mode of discounting based on quantities of Biobanking products selected.  This flag indicates that this product should be included in that calculation and discounting.</description>
+    <inlineHelpText>Indicates that this product is subject to automated discounting based on quantity.</inlineHelpText>
+    <label>Eligible for Volume Discounting</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

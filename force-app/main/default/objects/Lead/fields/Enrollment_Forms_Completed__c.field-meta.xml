@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Enrollment_Forms_Completed__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Enrollment forms completed?</description>
+    <label>Forms Signed</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

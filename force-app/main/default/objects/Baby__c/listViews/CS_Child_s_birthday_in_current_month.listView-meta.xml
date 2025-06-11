@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CS_Child_s_birthday_in_current_month</fullName>
+    <columns>Month_of_Child_s_Birthday__c</columns>
+    <columns>Child_s_Day_of_Birth__c</columns>
+    <columns>Age__c</columns>
+    <columns>NAME</columns>
+    <columns>Name_of_Child__c</columns>
+    <columns>Collection_Date__c</columns>
+    <columns>Child_s_Birthday_in_Current_Month__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Child_s_Birthday_in_Current_Month__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Is_canceled__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>CS - Child&apos;s birthday in current month</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

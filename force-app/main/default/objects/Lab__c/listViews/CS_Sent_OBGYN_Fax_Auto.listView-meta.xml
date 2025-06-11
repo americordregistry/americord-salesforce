@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CS_Sent_OBGYN_Fax_Auto</fullName>
+    <booleanFilter>1 AND 2 AND 3</booleanFilter>
+    <columns>NAME</columns>
+    <columns>DocuSign_Status__c</columns>
+    <columns>OBGYN_Email_for_Fax__c</columns>
+    <columns>Faxed_Consent__c</columns>
+    <columns>Collection_Date__c</columns>
+    <columns>Is_Voided_LU__c</columns>
+    <columns>Baby_s_Due_Date_new__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>DocuSign_Status__c</field>
+        <operation>equals</operation>
+        <value>Completed</value>
+    </filters>
+    <filters>
+        <field>OBGYN_Email_for_Fax__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>Faxed_Consent__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>CS - Sent OBGYN Fax (Auto)</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

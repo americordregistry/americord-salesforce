@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>fw1__Secondary_Billing_Contact__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <label>Secondary Billing Contact</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HCP_Status__c</fullName>
+    <description>Used to determine if HCP record is Active.</description>
+    <externalId>false</externalId>
+    <formula>IF (
+AND(
+OR ( 
+text( Agreement_Status_Contact__c)= &quot;Signed / Returned&quot;,
+text( Agreement_Status_Contact__c)= &quot;W-9 Only&quot;,
+text( Agreement_Status_Contact__c)= &quot;No Stipend&quot;),
+ Account.Ninety_Days_Activity__c &gt; 0), &quot;Active&quot;, &quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>HCP Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

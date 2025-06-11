@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Americord_Collateral__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Check this box if we have sent our collateral (Info kit, one sheets etc) to this business</inlineHelpText>
+    <label>Americord Collateral</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

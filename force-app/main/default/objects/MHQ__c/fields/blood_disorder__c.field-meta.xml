@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>blood_disorder__c</fullName>
+    <inlineHelpText>Have you EVER: Had a blood disorder or a bleeding problem (coagulation or platelet disorder)?</inlineHelpText>
+    <label>48. blood disorder</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>MHQ</valueSetName>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reason_for_Cancellaton__c</fullName>
+    <description>Complete this field if the client cancels the order after enrolling. Note why the client cancelled also.</description>
+    <inlineHelpText>Complete this field if the client cancels the order after enrolling. Note why the client cancelled also.</inlineHelpText>
+    <label>Cancellaton Reason</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Americord Fault</fullName>
+                <default>false</default>
+                <label>Americord Fault</label>
+            </value>
+            <value>
+                <fullName>Banked with another company due to cost</fullName>
+                <default>false</default>
+                <label>Banked with another company due to cost</label>
+            </value>
+            <value>
+                <fullName>Banked with another company-other</fullName>
+                <default>false</default>
+                <label>Banked with another company-other</label>
+            </value>
+            <value>
+                <fullName>Client has not responded</fullName>
+                <default>false</default>
+                <label>Client has not responded</label>
+            </value>
+            <value>
+                <fullName>Collection below benchmark</fullName>
+                <default>false</default>
+                <label>Collection below benchmark</label>
+            </value>
+            <value>
+                <fullName>Decided not to bank due to cost</fullName>
+                <default>false</default>
+                <label>Decided not to bank due to cost</label>
+            </value>
+            <value>
+                <fullName>Decided not to bank -explain</fullName>
+                <default>false</default>
+                <label>Decided not to bank -explain</label>
+            </value>
+            <value>
+                <fullName>Decided to donate publicly</fullName>
+                <default>false</default>
+                <label>Decided to donate publicly</label>
+            </value>
+            <value>
+                <fullName>Did not bring kit with them at time of delivery-due to emergency</fullName>
+                <default>false</default>
+                <label>Did not bring kit with them at time of delivery-due to emergency</label>
+            </value>
+            <value>
+                <fullName>Did not bring kit with them at time of delivery-forgot at home</fullName>
+                <default>false</default>
+                <label>Did not bring kit with them at time of delivery-forgot at home</label>
+            </value>
+            <value>
+                <fullName>Did not receive kit- labor started after 72 hours of enrolling</fullName>
+                <default>false</default>
+                <label>Did not receive kit- labor started after 72 hours of enrolling</label>
+            </value>
+            <value>
+                <fullName>Did not receive kit- labor started within 72 hours of enrolling</fullName>
+                <default>false</default>
+                <label>Did not receive kit- labor started within 72 hours of enrolling</label>
+            </value>
+            <value>
+                <fullName>Doctor could not obtain collection-explain</fullName>
+                <default>false</default>
+                <label>Doctor could not obtain collection-explain</label>
+            </value>
+            <value>
+                <fullName>Medical Complication</fullName>
+                <default>false</default>
+                <label>Medical Complication</label>
+            </value>
+            <value>
+                <fullName>Other - please explain</fullName>
+                <default>false</default>
+                <label>Other - please explain</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

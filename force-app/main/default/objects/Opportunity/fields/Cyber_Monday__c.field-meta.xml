@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cyber_Monday__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>temp field, used to identify who received SMS for Cyber Monday because the report only sent it to 1895 of the 8K that was suppose to get it</description>
+    <label>Cyber Monday</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

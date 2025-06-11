@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Schedule__c</fullName>
+    <description>auto populates payment schedule based on Account Owner profile. Outside Sales = monthly; Outreach Program = quarterly.</description>
+    <externalId>false</externalId>
+    <formula>if ( Owner.Profile.Name = &quot;Outside Sales&quot;, &quot;month&quot;,
+if ( Owner.Profile.Name = &quot;Outreach Program&quot;, &quot;quarter&quot;, null))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Payment Schedule</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

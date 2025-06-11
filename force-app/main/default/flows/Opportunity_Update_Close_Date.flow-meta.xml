@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>A1_Single_Opp</name>
+        <label>A1 - Single Opp</label>
+        <locationX>597</locationX>
+        <locationY>117</locationY>
+        <assignmentItems>
+            <assignToReference>rvarUpdateOppCloseDate.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>rvarSingleOpp4Loop.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>rvarUpdateOppCloseDate.CloseDate</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>formCloseDate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>A2_All_Opps_Collection</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>A2_All_Opps_Collection</name>
+        <label>A2 - All Opps Collection</label>
+        <locationX>501</locationX>
+        <locationY>250</locationY>
+        <assignmentItems>
+            <assignToReference>cvarAllOppsUpdated</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>rvarUpdateOppCloseDate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Opportunities</targetReference>
+        </connector>
+    </assignments>
+    <formulas>
+        <name>formCloseDate</name>
+        <dataType>Date</dataType>
+        <expression>if (ISBLANK({!rvarSingleOpp4Loop.Baby_s_Due_Date__c}), DATEVALUE({!rvarSingleOpp4Loop.CreatedDate})+280, {!rvarSingleOpp4Loop.Baby_s_Due_Date__c})</expression>
+    </formulas>
+    <interviewLabel>Opportunity Update Close Date {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Opportunity Update Close Date</label>
+    <loops>
+        <name>Loop_Opportunities</name>
+        <label>Loop Opportunities</label>
+        <locationX>340</locationX>
+        <locationY>92</locationY>
+        <assignNextValueToReference>rvarSingleOpp4Loop</assignNextValueToReference>
+        <collectionReference>Get_Opportunities_when_Close_Date_is_Wrong</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>A1_Single_Opp</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_Opportunity_Close_Date</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>When Close Date is not the baby&apos;s due date or when baby&apos;s due date is null and close date is not the create date plus 280 days, fix Close Date. 
+
+if (
+OR (
+AND(
+ISBLANK( Baby_s_Due_Date__c ),
+CloseDate != (DATEVALUE(Create_Date_Time__c)+280)),
+CloseDate != Baby_s_Due_Date__c), true, false)</description>
+        <name>Get_Opportunities_when_Close_Date_is_Wrong</name>
+        <label>Get Opportunities when Close Date is Wrong</label>
+        <locationX>186</locationX>
+        <locationY>87</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_Opportunities</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Close_Date_is_Wrong__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Opportunity</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Baby_s_Due_Date__c</queriedFields>
+        <queriedFields>CreatedDate</queriedFields>
+        <queriedFields>CloseDate</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Opportunity_Close_Date</name>
+        <label>Update Opportunity Close Date</label>
+        <locationX>191</locationX>
+        <locationY>360</locationY>
+        <inputReference>cvarAllOppsUpdated</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Get_Opportunities_when_Close_Date_is_Wrong</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>cvarAllOppsUpdated</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <name>rvarSingleOpp4Loop</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <name>rvarUpdateOppCloseDate</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+</Flow>

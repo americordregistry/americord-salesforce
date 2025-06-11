@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Zero_Dials</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Lead_Create_Date_Time__c</columns>
+    <columns>OPPORTUNITY.LEAD_SOURCE</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>Lead_Qualification__c</columns>
+    <columns>Pre_enrollment_Comments__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Contact__c</columns>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <columns>Baby_s_Due_Date__c</columns>
+    <columns>OPPORTUNITY.LAST_ACTIVITY</columns>
+    <columns>Price_with_Sales_Discount__c</columns>
+    <columns>Phone__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>New,No Contact,Contacted,Presentation,Hot to Close</value>
+    </filters>
+    <filters>
+        <field>Call_Status__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>Zero Dials</label>
+    <sharedTo>
+        <role>CEO</role>
+        <role>Sales</role>
+    </sharedTo>
+</ListView>

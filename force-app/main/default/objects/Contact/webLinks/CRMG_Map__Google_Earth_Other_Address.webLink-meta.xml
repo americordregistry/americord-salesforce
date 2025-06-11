@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CRMG_Map__Google_Earth_Other_Address</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>600</height>
+    <linkType>url</linkType>
+    <masterLabel>Google Earth Other Address</masterLabel>
+    <openType>sidebar</openType>
+    <protected>false</protected>
+    <url>/apex/CRMG_Map__ShowEarth?addr={!Contact.OtherAddress}%20{!Contact.OtherCity}%20{!Contact.OtherState}%20{!Contact.OtherCountry}%20{!Contact.OtherPostalCode}</url>
+</WebLink>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ecomm_Lead_Relationship__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <inlineHelpText>Used to track ecomm orders with timed workflow</inlineHelpText>
+    <label>Ecomm Lead Relationship</label>
+    <referenceTo>Lead</referenceTo>
+    <relationshipLabel>Leads</relationshipLabel>
+    <relationshipName>Leads</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

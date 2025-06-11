@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Audit_MBD_Not_received_by_Lab</fullName>
+    <columns>NAME</columns>
+    <columns>Birth_Date_from_Courier__c</columns>
+    <columns>Maternal_Blood_Redraw__c</columns>
+    <columns>MBD_Shipping_Method__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Maternal_Blood_Redraw__c</field>
+        <operation>equals</operation>
+        <value>MBD Shipped (Andwin),MBD Required (Lab),MBD Requested (AC)</value>
+    </filters>
+    <filters>
+        <field>Birth_Date_from_Courier__c</field>
+        <operation>greaterThan</operation>
+        <value>1/1/2017</value>
+    </filters>
+    <label>Audit - MBD Not received by Lab</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

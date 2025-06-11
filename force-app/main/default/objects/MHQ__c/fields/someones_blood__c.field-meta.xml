@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>someones_blood__c</fullName>
+    <inlineHelpText>In the past 12 months have you: Come into contact with or exposed to someone else’s blood, known or suspected to be infected with HIV, hepatitis B or hepatitis C?</inlineHelpText>
+    <label>25. someones blood</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>MHQ</valueSetName>
+    </valueSet>
+</CustomField>

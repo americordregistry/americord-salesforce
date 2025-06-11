@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Placental_Tissue_or_Placenta_2_0</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND (
+ Placenta_Tissue__c &gt;0,
+ Placenta_2_0__c &gt; 0)</errorConditionFormula>
+    <errorMessage>You can order EITHER Placental Tissue or Placenta 2.0 (AMNION). Please select only one.</errorMessage>
+</ValidationRule>

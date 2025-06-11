@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Missing</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND (text(Status)=&quot;Activated&quot;,
+ISBLANK ( AccountId ))</errorConditionFormula>
+    <errorMessage>Please add the Account before activating this contract.</errorMessage>
+</ValidationRule>

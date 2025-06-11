@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Genomics_Integration_Active__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This flag will allow the genomics integration to be disabled.</description>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText>This flag will allow the genomics integration to be disabled.</inlineHelpText>
+    <label>Genomics Integration Active</label>
+    <type>Checkbox</type>
+</CustomField>

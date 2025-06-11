@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Send_Inf_Disease_Fax</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Send Inf Disease Fax</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>location.replace(&apos;/email/author/emailauthor.jsp?retURL=/{!Lab__c.Id}&amp;p24={!Lab__c.OBGYN_Email_for_Fax__c}&amp;template_id=00XU0000000dpVO&amp;p3_lkid={!Lab__c.Id}&amp;p3={!Lab__c.Name}&amp;p26=clients@americordblood.com&apos;);</url>
+</WebLink>

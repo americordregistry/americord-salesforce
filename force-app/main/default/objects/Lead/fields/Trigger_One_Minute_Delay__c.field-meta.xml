@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Trigger_One_Minute_Delay__c</fullName>
+    <description>used to delay process builder workflow by 15 minute</description>
+    <formula>CreatedDate -   0.03109</formula>
+    <label>Trigger Fifteen Minute Delay</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>DateTime</type>
+</CustomField>

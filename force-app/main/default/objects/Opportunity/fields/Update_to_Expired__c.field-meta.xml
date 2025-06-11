@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Update_to_Expired__c</fullName>
+    <description>Used in flow to update Opportunity to Expired</description>
+    <formula>if(
+and (
+ IsClosed = false,
+or (
+ Baby_s_Due_Date__c &lt; (today() - 5) ,
+  DATEVALUE(CreatedDate) &lt; (today()-280))),true, false)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Update to Expired</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

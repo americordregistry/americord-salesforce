@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Totals_Due_at_Checkout__c</fullName>
+    <description>The total of all products that are marked with &quot;Due at Checkout&quot;</description>
+    <label>Product Totals Due at Checkout</label>
+    <summarizedField>OpportunityLineItem.TotalPrice</summarizedField>
+    <summaryFilterItems>
+        <field>OpportunityLineItem.Due_at_Checkout__c</field>
+        <operation>equals</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

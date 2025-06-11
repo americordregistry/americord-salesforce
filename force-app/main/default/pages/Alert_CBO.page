@@ -1,0 +1,28 @@
+<apex:page standardController="fw1__Invoice__c"
+           sidebar="false"
+           showHeader="false"
+           showChat="false" lightningstylesheets="true">
+
+<apex:pageMessage summary="Client is ready for Autobill." 
+                  severity="info" 
+                  strength="1"
+                  rendered="{!fw1__Invoice__c.Number_of_Products_Stored__c > 0 && fw1__Invoice__c.fw1__Auto_BillPay__c = false && fw1__Invoice__c.fw1__Is_Voided__c = false && fw1__Invoice__c.fw1__Balance_Due__c > 0 && fw1__Invoice__c.Sum_of_Past_Due_Amount__c = 0 }"  />
+<apex:pageMessage summary="Client is past due." 
+                  severity="warning" 
+                  strength="1"
+                  rendered="{!fw1__Invoice__c.Sum_of_Past_Due_Amount__c > 0 && fw1__Invoice__c.fw1__Is_Voided__c = false  }"  />
+<apex:pageMessage summary="Credit Card will expire soon." 
+                  severity="info" 
+                  strength="1"
+                  rendered="{!fw1__Invoice__c.Expiration_Days__c<60 && fw1__Invoice__c.Expiration_Days__c>0 && fw1__Invoice__c.fw1__Balance_Due__c > 0 && fw1__Invoice__c.fw1__Is_Voided__c = false}"  />
+<apex:pageMessage summary="Credit Card has expired." 
+                  severity="warning" 
+                  strength="1"
+                  rendered="{!fw1__Invoice__c.Expiration_Days__c<0 && fw1__Invoice__c.fw1__Balance_Due__c > 0 && fw1__Invoice__c.fw1__Is_Voided__c = false  }"  />
+<apex:pageMessage summary="Welcome Packet is not Complete." 
+                  severity="info" 
+                  strength="1"
+                  rendered="{!fw1__Invoice__c.Docusign_Status__c != "Completed" && fw1__Invoice__c.fw1__Is_Voided__c = false  }"  />
+
+
+</apex:page>

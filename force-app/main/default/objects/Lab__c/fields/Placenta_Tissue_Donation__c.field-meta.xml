@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Placenta_Tissue_Donation__c</fullName>
+    <description>This field will be used to track the Placenta Tissue Donation Service. This field will be populated by the Cord Blood Order Update flow and will hold the YES or null values.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field will be used to track the Placenta Tissue Donation Service. This field will be populated by the Cord Blood Order Update flow and will hold the YES or null values.</inlineHelpText>
+    <label>Placenta Tissue Donation</label>
+    <length>50</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>tdc_tvte__StatusOfEmailVerification__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF(tdc_tvte__success__c == true,
+CASE(tdc_tvte__Result__c, &apos;deliverable&apos;, IMAGE(&apos;/resource/tdc_tvte__VTMMessage/img/Deliverable2.png&apos;, &apos;Deliverable&apos;), 
+&apos;undeliverable&apos;, IMAGE(&apos;/resource/tdc_tvte__VTMMessage/img/Non-deliverable2.png&apos;, &apos;Not Deliverable&apos;), 
+&apos;risky&apos;, IMAGE(&apos;/resource/tdc_tvte__VTMMessage/img/Risky2.png&apos;, &apos;Risky&apos;), 
+&apos;unknown&apos;, IMAGE(&apos;/resource/tdc_tvte__VTMMessage/img/Unknown2.png&apos;, &apos;Unknown&apos;), tdc_tvte__Result__c) 
+, IMAGE(&apos;/resource/tdc_tvte__VTMMessage/img/Notverified1.png&apos;, &apos;Not Verified Yet&apos;))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Status Of Email Verification</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

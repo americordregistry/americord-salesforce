@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Allow_for_Product_Change_after_Autobill__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Field is only accessible by Admins. CS Team will ask for permission to change Products Stored so admin can check box, Otherwise, CS Team will get error message.</description>
+    <label>Allow for Product Change after Autobill</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

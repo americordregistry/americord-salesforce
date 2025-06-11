@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Authority_is_client_the_decision_maker__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>1 is no and 5 is yes, in between is an indication that they share the authority with one or more people.</inlineHelpText>
+    <label>AUTHORITY: Is client the decision-maker?</label>
+    <precision>1</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

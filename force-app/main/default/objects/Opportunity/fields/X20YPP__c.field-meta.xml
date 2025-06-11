@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X20YPP__c</fullName>
+    <formula>(2000* Number_of_Products__c )-
+(if (text(Number_of_Births__c) = &quot;Single&quot;,
+CASE (Number_of_Products__c,
+1,0, 
+2, 300, 
+3, 1000, 
+0),
+if (text(Number_of_Births__c) = &quot;Twins&quot;,
+CASE (Number_of_Products__c,
+2,0, 
+3, 300, 
+4, 600,
+5, 1300,
+6, 2000,
+0),
+if (text(Number_of_Births__c) = &quot;Triplets&quot;,
+CASE (Number_of_Products__c,
+3,0, 
+6, 900, 
+9, 3000,
+0),
+0))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>20YPP Old</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

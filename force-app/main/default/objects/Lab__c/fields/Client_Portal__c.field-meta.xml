@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Client_Portal__c</fullName>
+    <formula>Medical_Professional__r.Client_Portal__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Formula field to pull-in whether this Doctor Record is included in the &quot;Client Portal&quot; list purchased from ACOG.</inlineHelpText>
+    <label>Client Portal</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

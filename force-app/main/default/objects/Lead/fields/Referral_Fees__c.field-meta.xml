@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Referral_Fees__c</fullName>
+    <inlineHelpText>Referral fees must not be paid until both referrer and referee have their babies and pay for their cord blood banking services.  Referrer fees should be paid with a gift certificate; referee fees are paid as a discount on their cord blood banking services</inlineHelpText>
+    <label>Referral Fees</label>
+    <precision>3</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

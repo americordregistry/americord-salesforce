@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Asset_Content_Cookie__c</fullName>
+    <description>Syncs with Marketo. Cookie.</description>
+    <externalId>false</externalId>
+    <label>Asset / Content (Cookie)</label>
+    <length>200</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

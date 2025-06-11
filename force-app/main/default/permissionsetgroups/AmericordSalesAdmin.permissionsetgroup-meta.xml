@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Permission group for an Americord Sales Admin persona.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>AmericordSalesAdmin</label>
+    <status>Updated</status>
+</PermissionSetGroup>

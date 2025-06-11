@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Dialpad__IsCreatedFromDialpad__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>The check box will be set to true if the contact is created from the Dialpad</description>
+    <label>IsCreatedFromDialpad</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

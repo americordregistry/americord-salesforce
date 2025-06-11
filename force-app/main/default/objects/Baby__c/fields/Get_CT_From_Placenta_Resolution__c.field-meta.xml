@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Get_CT_From_Placenta_Resolution__c</fullName>
+    <description>This field will hold the notes/resolution from getting the CT sample from the Placenta.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field will hold the notes/resolution from getting the CT sample from the Placenta.</inlineHelpText>
+    <label>Get CT From Placenta Resolution</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

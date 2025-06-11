@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>File_not_attached</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND (text(Status)=&quot;Activated&quot;, 
+Number_of_File_Attached__c &lt; 1)</errorConditionFormula>
+    <errorMessage>Please upload a copy of the agreement or W-9 before activating this contract.</errorMessage>
+</ValidationRule>

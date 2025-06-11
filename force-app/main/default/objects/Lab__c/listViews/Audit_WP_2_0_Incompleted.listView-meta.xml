@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Audit_WP_2_0_Incompleted</fullName>
+    <booleanFilter>(1 or 2 or 3 or 4 or 5) and 6</booleanFilter>
+    <columns>CREATED_DATE</columns>
+    <columns>NAME</columns>
+    <columns>Stem_Cell_Agreement_Status__c</columns>
+    <columns>About_Your_Family_Status__c</columns>
+    <columns>Your_Health_Care_Team_Status__c</columns>
+    <columns>Informed_Consent_Status__c</columns>
+    <columns>MHQ_Status__c</columns>
+    <columns>DocuSign_Status__c</columns>
+    <columns>Stop_Welcome_Packet_Reminders__c</columns>
+    <columns>Second_signer_for_Agreement__c</columns>
+    <columns>Stem_Cell_Agreement_Status_2__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Stem_Cell_Agreement_Status__c</field>
+        <operation>notEqual</operation>
+        <value>Completed</value>
+    </filters>
+    <filters>
+        <field>MHQ_Status__c</field>
+        <operation>notEqual</operation>
+        <value>Completed</value>
+    </filters>
+    <filters>
+        <field>Your_Health_Care_Team_Status__c</field>
+        <operation>notEqual</operation>
+        <value>Completed</value>
+    </filters>
+    <filters>
+        <field>Informed_Consent_Status__c</field>
+        <operation>notEqual</operation>
+        <value>Completed</value>
+    </filters>
+    <filters>
+        <field>About_Your_Family_Status__c</field>
+        <operation>notEqual</operation>
+        <value>Completed</value>
+    </filters>
+    <filters>
+        <field>CREATED_DATE</field>
+        <operation>greaterThan</operation>
+        <value>7/3/2019 12:00 AM</value>
+    </filters>
+    <label>Audit - WP 2.0 Incompleted</label>
+</ListView>

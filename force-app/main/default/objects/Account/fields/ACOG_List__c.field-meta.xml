@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ACOG_List__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>List purchased May 2019.</description>
+    <label>ACOG List</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

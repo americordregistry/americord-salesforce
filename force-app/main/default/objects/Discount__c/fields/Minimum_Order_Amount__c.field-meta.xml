@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Minimum_Order_Amount__c</fullName>
+    <description>The minimum amount that the order must be in order to apply this discount.  Relevant for &quot;Whole Order&quot; discounts only.</description>
+    <label>Minimum Order Amount</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

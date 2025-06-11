@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Processing_Lab__c</fullName>
+    <description>Used to manage Lab (Partner Portal) access to record</description>
+    <externalId>false</externalId>
+    <formula>TEXT(Lab__r.Processing_Lab__c)</formula>
+    <inlineHelpText>LU field from the Lab page</inlineHelpText>
+    <label>Processing Lab</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

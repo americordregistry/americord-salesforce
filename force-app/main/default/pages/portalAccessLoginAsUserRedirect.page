@@ -1,0 +1,13 @@
+<apex:page controller="PortalAccessController">
+    <h1>
+        Redirecting to Portal. Please Wait...
+    </h1>
+    <script>
+        window.open('{!portalAccessLink}');
+        if (document.referrer == "") {
+            window.close();
+        } else {
+            window.history.back();
+        }
+    </script>
+</apex:page>

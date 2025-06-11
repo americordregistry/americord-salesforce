@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Multiple_Births__c</fullName>
+    <label>How many children are you having?</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Single</fullName>
+                <default>false</default>
+                <label>Single</label>
+            </value>
+            <value>
+                <fullName>Twins</fullName>
+                <default>false</default>
+                <label>Twins</label>
+            </value>
+            <value>
+                <fullName>Triplets</fullName>
+                <default>false</default>
+                <label>Triplets</label>
+            </value>
+            <value>
+                <fullName>3+</fullName>
+                <default>false</default>
+                <label>3+</label>
+            </value>
+            <value>
+                <fullName>1</fullName>
+                <default>false</default>
+                <label>1</label>
+            </value>
+            <value>
+                <fullName>2</fullName>
+                <default>false</default>
+                <label>2</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Luminis_All</fullName>
+    <columns>NAME</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Donation_Process_Status__c</columns>
+    <columns>First_Name__c</columns>
+    <columns>Last_Name__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Hospital__c</field>
+        <operation>equals</operation>
+        <value>Luminis Health - Anne Arundel Medical Center</value>
+    </filters>
+    <label>Luminis - All</label>
+</ListView>

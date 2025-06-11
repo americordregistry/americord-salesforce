@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Number_of_Births__c</fullName>
+    <description>This is the number of births for the donation.</description>
+    <label>Number of Births</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Single</fullName>
+                <default>false</default>
+                <label>Single</label>
+            </value>
+            <value>
+                <fullName>Twins</fullName>
+                <default>false</default>
+                <label>Twins</label>
+            </value>
+            <value>
+                <fullName>Triplets</fullName>
+                <default>false</default>
+                <label>Triplets</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

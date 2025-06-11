@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Plans__c</fullName>
+    <businessStatus>DeprecateCandidate</businessStatus>
+    <label>ZDEPRECATE_Payment Plans</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>OTP</fullName>
+                <default>false</default>
+                <label>One-time Payment</label>
+            </value>
+            <value>
+                <fullName>24M</fullName>
+                <default>false</default>
+                <label>24 Months</label>
+            </value>
+            <value>
+                <fullName>36M</fullName>
+                <default>false</default>
+                <label>36 Months</label>
+            </value>
+            <value>
+                <fullName>48M</fullName>
+                <default>false</default>
+                <label>48 Months</label>
+            </value>
+            <value>
+                <fullName>HY18</fullName>
+                <default>false</default>
+                <label>Hybrid - 18</label>
+            </value>
+            <value>
+                <fullName>12M</fullName>
+                <default>false</default>
+                <label>12 Months</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

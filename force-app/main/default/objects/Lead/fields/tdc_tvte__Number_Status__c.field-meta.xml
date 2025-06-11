@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>tdc_tvte__Number_Status__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF(NOT(ISBLANK(TEXT(tdc_tvte__Phone_Verification_Status__c))),
+CASE( tdc_tvte__Phone_Verification_Status__c,
+&apos;Valid&apos;, IMAGE(&apos;/resource/tdc_tvte__VTMMessage/img/ValidPhone.png&apos;,&apos;Valid&apos;),
+&apos;Invalid&apos;, IMAGE(&apos;/resource/tdc_tvte__VTMMessage/img/InvalidPhone.png&apos;,&apos;Invalid&apos;), tdc_tvte__Result__c)
++ &apos; &apos; + BR() + tdc_tvte__Verified_Phone__c ,IMAGE(&apos;/resource/tdc_tvte__VTMMessage/img/Notverified1.png&apos;,&apos;Not Verified Yet&apos;))</formula>
+    <label>Phone Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

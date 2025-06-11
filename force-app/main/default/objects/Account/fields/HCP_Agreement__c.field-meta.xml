@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HCP_Agreement__c</fullName>
+    <inlineHelpText>Use this to set the status of the relationship</inlineHelpText>
+    <label>HCP Agreement</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Created</fullName>
+                <default>false</default>
+                <label>Created</label>
+            </value>
+            <value>
+                <fullName>Send FAX</fullName>
+                <default>false</default>
+                <label>Send FAX</label>
+            </value>
+            <value>
+                <fullName>Sent</fullName>
+                <default>false</default>
+                <label>Sent</label>
+            </value>
+            <value>
+                <fullName>Signed / Returned</fullName>
+                <default>false</default>
+                <label>Signed / Returned</label>
+            </value>
+            <value>
+                <fullName>New</fullName>
+                <default>false</default>
+                <label>New</label>
+            </value>
+            <value>
+                <fullName>Initial Contact</fullName>
+                <default>false</default>
+                <label>Initial Contact</label>
+            </value>
+            <value>
+                <fullName>Negotiating</fullName>
+                <default>false</default>
+                <label>Negotiating</label>
+            </value>
+            <value>
+                <fullName>Presentation</fullName>
+                <default>false</default>
+                <label>Presentation</label>
+            </value>
+            <value>
+                <fullName>No Stipend</fullName>
+                <default>false</default>
+                <label>No Stipend</label>
+            </value>
+            <value>
+                <fullName>Not Interested</fullName>
+                <default>false</default>
+                <label>Not Interested</label>
+            </value>
+            <value>
+                <fullName>Canceled</fullName>
+                <default>false</default>
+                <label>Canceled</label>
+            </value>
+            <value>
+                <fullName>W-9 Only</fullName>
+                <default>false</default>
+                <label>W-9 Only</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

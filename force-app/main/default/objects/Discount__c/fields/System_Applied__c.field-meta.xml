@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>System_Applied__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Likely Temporary - Used for adding multi-biobanking services discounts that do not show up as findable in the builder.  Added via automation.  Once new pricing scheme is adopted, this field can be deprecated.</description>
+    <inlineHelpText>Used for adding multi-biobanking services discounts that do not show up as findable in the builder</inlineHelpText>
+    <label>System Applied</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

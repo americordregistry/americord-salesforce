@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Twins</fullName>
+    <columns>PRODUCT.NAME</columns>
+    <columns>PRODUCT.CUSTOMER_PRODUCT_ID</columns>
+    <columns>PRODUCT.DEFAULT_PRICE</columns>
+    <columns>PRODUCT.ACTIVE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>PRODUCT.NAME</field>
+        <operation>contains</operation>
+        <value>Twins</value>
+    </filters>
+    <label>Twins</label>
+</ListView>

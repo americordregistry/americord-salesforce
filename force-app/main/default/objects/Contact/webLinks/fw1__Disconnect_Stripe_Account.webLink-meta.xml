@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>fw1__Disconnect_Stripe_Account</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>true</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>300</height>
+    <isResizable>true</isResizable>
+    <linkType>page</linkType>
+    <masterLabel>Disconnect Stripe Account</masterLabel>
+    <openType>newWindow</openType>
+    <page>fw1__PlatformDeAuthorizeAccount</page>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <width>500</width>
+</WebLink>

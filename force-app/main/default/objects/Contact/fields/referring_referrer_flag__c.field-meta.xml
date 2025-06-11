@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>referring_referrer_flag__c</fullName>
+    <description>Formula field to bring in Referrer &quot;Referrer&quot; flag on the Referred contact record.</description>
+    <formula>Referring_Contact__r.Referrer__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Referrer Referrer Flag</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

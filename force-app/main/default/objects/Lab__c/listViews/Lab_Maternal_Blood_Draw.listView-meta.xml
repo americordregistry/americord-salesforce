@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lab_Maternal_Blood_Draw</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND 4 and 5</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Mother_s_Last_Name__c</columns>
+    <columns>Certificate_ID__c</columns>
+    <columns>Collection_Date__c</columns>
+    <columns>Maternal_Blood_Redraw__c</columns>
+    <columns>Lab_Comment_for_Internal_Use_Only__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Maternal_Blood_Redraw__c</field>
+        <operation>equals</operation>
+        <value>MBD Required (Lab),MBD Requested (AC),MBD Shipped (Andwin)</value>
+    </filters>
+    <filters>
+        <field>Date_Received_by_Lab__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>Is_Voided_LU__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Certificate_ID__c</field>
+        <operation>notContain</operation>
+        <value>LC</value>
+    </filters>
+    <filters>
+        <field>Processing_Lab__c</field>
+        <operation>notEqual</operation>
+        <value>Lifeforce</value>
+    </filters>
+    <label>Lab - Maternal Blood Draw</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+        <portalRole>AnswerConnectPartnerUser</portalRole>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Same_email_for_both_contacts</fullName>
+    <active>true</active>
+    <description>Prevents users from entering the same email for both contacts</description>
+    <errorConditionFormula>AND(
+    OR(
+        ISCHANGED(Email__c),
+        ISCHANGED(Contact2_Email__c)
+    ),
+    Email__c =  Contact2_Email__c,
+    NOT(ISBLANK (Email__c))
+)</errorConditionFormula>
+    <errorMessage>You cannot enter the same email for both contacts. Either enter a different email or only use the email address for the Mother.</errorMessage>
+</ValidationRule>

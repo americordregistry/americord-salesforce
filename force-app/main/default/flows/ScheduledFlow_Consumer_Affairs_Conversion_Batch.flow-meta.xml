@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>This action will process the opportunity IDs and make a call to CA for processing.</description>
+        <name>Send_Conversion_Data_To_Consumer_Affairs</name>
+        <label>Send Conversion Data To Consumer Affairs</label>
+        <locationX>50</locationX>
+        <locationY>768</locationY>
+        <actionName>ConsumerAffairsConversion</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>lstIds</name>
+            <value>
+                <elementReference>varCollOpportunityIds</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>ConsumerAffairsConversion</nameSegment>
+    </actionCalls>
+    <apiVersion>60.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>This will assign the current opportunity ID to the collection.</description>
+        <name>Assign_Opportunity_Ids_To_Collection</name>
+        <label>Assign Opportunity Ids To Collection</label>
+        <locationX>270</locationX>
+        <locationY>468</locationY>
+        <assignmentItems>
+            <assignToReference>varCollOpportunityIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Process_Opps_For_Sending_To_CA.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Process_Opps_For_Sending_To_CA</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Determine if we have records in the collection to send.</description>
+        <name>Do_We_Have_Records_To_Send</name>
+        <label>Do We Have Records To Send?</label>
+        <locationX>182</locationX>
+        <locationY>660</locationY>
+        <defaultConnectorLabel>NO - No Records</defaultConnectorLabel>
+        <rules>
+            <name>YES_Send</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Consumer_Affairs_Enrolled_Opps_From_Yesterday</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Conversion_Data_To_Consumer_Affairs</targetReference>
+            </connector>
+            <label>YES - Send</label>
+        </rules>
+    </decisions>
+    <description>This flow will be used to pull the data to send to Consumer Affairs.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>This formula will be used to pull the opps using yesterdays date/time at midnight.</description>
+        <name>formDTYesterdayMidnight</name>
+        <dataType>DateTime</dataType>
+        <expression>DATETIMEVALUE(TEXT(TODAY()-1)+&quot; 00:00:00&quot;)</expression>
+    </formulas>
+    <formulas>
+        <description>Formula to generate the midnight minus one second.</description>
+        <name>formDTYesterdayMidnightMinus1</name>
+        <dataType>DateTime</dataType>
+        <expression>DATETIMEVALUE(TEXT(TODAY()-1)+&quot; 23:59:59&quot;)</expression>
+    </formulas>
+    <interviewLabel>ScheduledFlow: Consumer Affairs Conversion Batch {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>ScheduledFlow: Consumer Affairs Conversion Batch</label>
+    <loops>
+        <description>Loop over the opps found and prepare call for CA processing.</description>
+        <name>Process_Opps_For_Sending_To_CA</name>
+        <label>Process Opps For Sending To CA</label>
+        <locationX>182</locationX>
+        <locationY>360</locationY>
+        <collectionReference>Get_Consumer_Affairs_Enrolled_Opps_From_Yesterday</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Opportunity_Ids_To_Collection</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Do_We_Have_Records_To_Send</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>This will get the opportunities that enrolled yesterday and were from CA.
+!!! The Datetime below uses GMT!!!</description>
+        <name>Get_Consumer_Affairs_Enrolled_Opps_From_Yesterday</name>
+        <label>Get Consumer Affairs Enrolled Opps From Yesterday</label>
+        <locationX>182</locationX>
+        <locationY>252</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Process_Opps_For_Sending_To_CA</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Consumer_Affairs_UUID__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>StageName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Enrolled</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>LastStageChangeDate</field>
+            <operator>LessThan</operator>
+            <value>
+                <elementReference>formDTYesterdayMidnightMinus1</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>LastStageChangeDate</field>
+            <operator>GreaterThanOrEqualTo</operator>
+            <value>
+                <elementReference>formDTYesterdayMidnight</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Opportunity</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Consumer_Affairs_Enrolled_Opps_From_Yesterday</targetReference>
+        </connector>
+        <schedule>
+            <frequency>Daily</frequency>
+            <startDate>2024-09-05</startDate>
+            <startTime>00:15:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>This variable will hold the Opportunity IDs that we will send to CA for processing.</description>
+        <name>varCollOpportunityIds</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

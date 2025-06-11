@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>This action will send an email to the owner and the sales manager.</description>
+        <name>Send_Email_to_Owner_and_Sales_Manager</name>
+        <label>Send Email to Owner and Sales Manager</label>
+        <locationX>248</locationX>
+        <locationY>1055</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>textTempInboundSMSBody</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddressesArray</name>
+            <value>
+                <elementReference>varTSMSEmailAddressCollection</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>New Inbound SMS Notification</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <description>This action will send a notification to a user of task that is for the SMS inbound.</description>
+        <name>Send_Inbound_SMS_Notification_To_Owner</name>
+        <label>Send Inbound SMS Notification To Owner</label>
+        <locationX>248</locationX>
+        <locationY>947</locationY>
+        <actionName>customNotificationAction</actionName>
+        <actionType>customNotificationAction</actionType>
+        <connector>
+            <targetReference>Send_Email_to_Owner_and_Sales_Manager</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>customNotifTypeId</name>
+            <value>
+                <elementReference>Get_custom_notification_type.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>body</name>
+            <value>
+                <elementReference>$Record.Subject</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>title</name>
+            <value>
+                <stringValue>Inbound SMS Received</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientIds</name>
+            <value>
+                <elementReference>varTRecipientIds</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetId</name>
+            <value>
+                <elementReference>$Record.WhatId</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>customNotificationAction</nameSegment>
+    </actionCalls>
+    <apiVersion>57.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Set the recipient IDs for the notification.</description>
+        <name>Set_Recipient_IDs_in_collection</name>
+        <label>Set Recipient IDs in collection</label>
+        <locationX>248</locationX>
+        <locationY>839</locationY>
+        <assignmentItems>
+            <assignToReference>varTRecipientIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.OwnerId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTSMSEmailAddressCollection</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.Owner:User.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTSMSEmailAddressCollection</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>constTSalesManagerEmailAddress</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Send_Inbound_SMS_Notification_To_Owner</targetReference>
+        </connector>
+    </assignments>
+    <constants>
+        <description>This is the email address of the Sales Manager.</description>
+        <name>constTSalesManagerEmailAddress</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>jas@americordblood.com</stringValue>
+        </value>
+    </constants>
+    <decisions>
+        <description>Determine if the data issue is for missing opp/account.</description>
+        <name>Does_Task_Have_Opp_Account_Data_Issue</name>
+        <label>Does Task Have Opp/Account Data Issue</label>
+        <locationX>644</locationX>
+        <locationY>731</locationY>
+        <defaultConnectorLabel>NO - No Issue for Opp/Acct Data</defaultConnectorLabel>
+        <rules>
+            <name>YES_Opp_Acct_Data_Issue</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Data_Quality_Description__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Missing: Account/Opportunity Reference</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.AccountId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Newest_Opp_For_Account</targetReference>
+            </connector>
+            <label>YES - Opp/Acct Data Issue</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>This decision will determine if the task is for an inbound SMS/text from Aircall.</description>
+        <name>Inbound_SMS_Received_Task</name>
+        <label>Inbound SMS Received Task?</label>
+        <locationX>446</locationX>
+        <locationY>623</locationY>
+        <defaultConnector>
+            <targetReference>Does_Task_Have_Opp_Account_Data_Issue</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not SMS Inbound</defaultConnectorLabel>
+        <rules>
+            <name>SMS_Inbound</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Subject</leftValueReference>
+                <operator>StartsWith</operator>
+                <rightValue>
+                    <stringValue>Sms received from</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_custom_notification_type</targetReference>
+            </connector>
+            <label>SMS Inbound</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Check to see if the Type field is blank</description>
+        <name>Is_Task_Type_Blank</name>
+        <label>Is Task Type Blank</label>
+        <locationX>446</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>Inbound_SMS_Received_Task</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>NO - Not Blank / Not Email/ Not SMS</defaultConnectorLabel>
+        <rules>
+            <name>YES_SMS_Inbound</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Subject</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Incoming Message Alert from 360 SMS App for Salesforce</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Task_SMS_Inbound</targetReference>
+            </connector>
+            <label>YES - SMS Inbound</label>
+        </rules>
+        <rules>
+            <name>YES_SMS_Outbound</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Subject</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Outgoing Message Alert from 360 SMS App for Salesforce</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Task_SMS_Outbound</targetReference>
+            </connector>
+            <label>YES - SMS Outbound</label>
+        </rules>
+        <rules>
+            <name>YES_Email</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Subject</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Email</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Task_Email</targetReference>
+            </connector>
+            <label>YES - Email</label>
+        </rules>
+    </decisions>
+    <description>This is the main task that will be used when a new task is created.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>Link to the record of the WhatId.</description>
+        <name>formTWhatIdRecordLink</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!$Api.Partner_Server_URL_550}, FIND( &apos;/services&apos;, {!$Api.Partner_Server_URL_550}))&amp;{!$Record.WhatId}</expression>
+    </formulas>
+    <formulas>
+        <description>Record link to with the Whoid</description>
+        <name>formTWhoIdRecordLink</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!$Api.Partner_Server_URL_550}, FIND( &apos;/services&apos;, {!$Api.Partner_Server_URL_550}))&amp;{!$Record.WhoId}</expression>
+    </formulas>
+    <interviewLabel>RecordTrigger: Task on Create {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RecordTrigger: Task on Create</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Get the custom notification type id for SMS inbound.</description>
+        <name>Get_custom_notification_type</name>
+        <label>Get custom notification type</label>
+        <locationX>248</locationX>
+        <locationY>731</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Set_Recipient_IDs_in_collection</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>CustomNotifTypeName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Inbound SMS Received</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>CustomNotificationType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get the newest opp for the related account.</description>
+        <name>Get_Newest_Opp_For_Account</name>
+        <label>Get Newest Opp For Account</label>
+        <locationX>512</locationX>
+        <locationY>839</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Update_Record_and_Set_Opportunity</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Contact__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.WhoId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Opportunity</object>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>Set the whatid to the OpportunityId.</description>
+        <name>Update_Record_and_Set_Opportunity</name>
+        <label>Update Record and Set Opportunity</label>
+        <locationX>512</locationX>
+        <locationY>947</locationY>
+        <inputAssignments>
+            <field>WhatId</field>
+            <value>
+                <elementReference>Get_Newest_Opp_For_Account.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Update the task for email type.</description>
+        <name>Update_Task_Email</name>
+        <label>Update Task - Email</label>
+        <locationX>578</locationX>
+        <locationY>431</locationY>
+        <connector>
+            <targetReference>Inbound_SMS_Received_Task</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Type</field>
+            <value>
+                <stringValue>Email</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Update the task for SMS Inbound Type</description>
+        <name>Update_Task_SMS_Inbound</name>
+        <label>Update Task - SMS Inbound</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <connector>
+            <targetReference>Inbound_SMS_Received_Task</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Type</field>
+            <value>
+                <stringValue>SMS - Incoming</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Update task type for SMS outbound</description>
+        <name>Update_Task_SMS_Outbound</name>
+        <label>Update Task - SMS Outbound</label>
+        <locationX>314</locationX>
+        <locationY>431</locationY>
+        <connector>
+            <targetReference>Inbound_SMS_Received_Task</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Type</field>
+            <value>
+                <stringValue>SMS - Outgoing</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>320</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_Task_Type_Blank</targetReference>
+        </connector>
+        <object>Task</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <description>Email body for the inbound SMS email.</description>
+        <name>textTempInboundSMSBody</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;A new inbound SMS has been received for {!$Record.Owner:User.FirstName} &lt;span style=&quot;color: rgb(68, 68, 68); background-color: rgb(255, 255, 255);&quot;&gt;{!$Record.Owner:User.LastName}&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Inbound Number: &lt;/strong&gt;&lt;span style=&quot;color: rgb(68, 68, 68); background-color: rgb(255, 255, 255);&quot;&gt;{!$Record.aircall__Phone_number__c}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;color: rgb(68, 68, 68); background-color: rgb(255, 255, 255);&quot;&gt;Aicall Number:&lt;/strong&gt;&lt;span style=&quot;color: rgb(68, 68, 68); background-color: rgb(255, 255, 255);&quot;&gt; {!$Record.aircall__Number_Name__c}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Opportunity: &lt;/strong&gt;&lt;a href=&quot;{!formTWhatIdRecordLink}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;&lt;strong&gt;{!$Record.Subject}&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!$Record.Description}&lt;/p&gt;</text>
+    </textTemplates>
+    <variables>
+        <description>This variable will hold the recipient IDs for the SMS notification.</description>
+        <name>varTRecipientIds</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Collection of email addresses to send to for SMS email notification.</description>
+        <name>varTSMSEmailAddressCollection</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Authorize</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>true</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>800</height>
+    <isResizable>true</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>Authorize</masterLabel>
+    <openType>newWindow</openType>
+    <position>topLeft</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <url>/apex/fw1__Payment?amount=1
+&amp;lookupField=Opportunity__c
+&amp;lookupId={!Opportunity.Id}
+&amp;reference={!Opportunity.Name}
+&amp;accountId={!Opportunity.AccountId}
+&amp;profile=new
+&amp;contactId={!Opportunity.ContactId__c}
+&amp;email={!Opportunity.Email__c}
+&amp;opportunity={!Opportunity.Id}
+&amp;paymentType=Authorization
+&amp;doNotClearRetryInfo=true</url>
+    <width>960</width>
+</WebLink>

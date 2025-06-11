@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cord_Tissue_Substitution__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This client has requested that we store cord tissue if placenta tissue cannot be validated.</description>
+    <inlineHelpText>This client has requested that we store cord tissue if placenta tissue cannot be validated.</inlineHelpText>
+    <label>Client wants CT if PT not valid</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

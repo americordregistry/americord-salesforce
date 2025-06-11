@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Saturday_Delivery__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Used to map to FedEx Saturday Delivery option. NG 6/2017</description>
+    <label>Saturday Delivery</label>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

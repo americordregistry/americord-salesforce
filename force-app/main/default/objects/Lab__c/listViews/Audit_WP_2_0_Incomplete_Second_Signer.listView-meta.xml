@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Audit_WP_2_0_Incomplete_Second_Signer</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Second_signer_for_Agreement__c</columns>
+    <columns>Stem_Cell_Agreement_Status_2__c</columns>
+    <columns>Stem_Cell_Agreement_Status__c</columns>
+    <columns>About_Your_Family_Status__c</columns>
+    <columns>Your_Health_Care_Team_Status__c</columns>
+    <columns>Informed_Consent_Status__c</columns>
+    <columns>MHQ_Status__c</columns>
+    <columns>DocuSign_Status__c</columns>
+    <columns>Stop_Welcome_Packet_Reminders__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Stem_Cell_Agreement_Status__c</field>
+        <operation>equals</operation>
+        <value>Completed</value>
+    </filters>
+    <filters>
+        <field>MHQ_Status__c</field>
+        <operation>equals</operation>
+        <value>Completed</value>
+    </filters>
+    <filters>
+        <field>Your_Health_Care_Team_Status__c</field>
+        <operation>equals</operation>
+        <value>Completed</value>
+    </filters>
+    <filters>
+        <field>Informed_Consent_Status__c</field>
+        <operation>equals</operation>
+        <value>Completed</value>
+    </filters>
+    <filters>
+        <field>Second_signer_for_Agreement__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>About_Your_Family_Status__c</field>
+        <operation>equals</operation>
+        <value>Completed</value>
+    </filters>
+    <filters>
+        <field>Stem_Cell_Agreement_Status_2__c</field>
+        <operation>notEqual</operation>
+        <value>Completed</value>
+    </filters>
+    <label>Audit - WP 2.0 Incomplete Second Signer</label>
+</ListView>

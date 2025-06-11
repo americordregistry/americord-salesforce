@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Email_address_is_required_for_Mother</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+NOT($Setup.Americord_Settings__c.Bypass_Validation_Rule__c),
+text(StageName) = &quot;Enrolled&quot;,
+or (
+AND (text(Contact2_Relation_to_Baby__c) = &quot;Mother&quot; &amp;&amp; IsBlank( Contact2_Email__c ),
+text(Relation_to_Baby__c) &lt;&gt; &quot;Mother&quot;),
+AND(
+text(Relation_to_Baby__c) = &quot;Mother&quot; &amp;&amp; IsBlank( Email__c ) ,
+text(Contact2_Relation_to_Baby__c) &lt;&gt; &quot;Mother&quot;),
+text( Contact2_Relation_to_Baby__c)  &lt;&gt;  &quot;Mother&quot; &amp;&amp; text(Relation_to_Baby__c) &lt;&gt; &quot;Mother&quot; &amp;&amp; IsBlank( Email__c )
+))</errorConditionFormula>
+    <errorMessage>Valid email address is required for the Mother or, if two Fathers, the first Father.</errorMessage>
+</ValidationRule>

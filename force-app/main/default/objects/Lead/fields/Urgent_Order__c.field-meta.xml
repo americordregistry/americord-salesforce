@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Urgent_Order__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>check this box if the client was in need of an expedited kit delivery.</description>
+    <inlineHelpText>check this box if the client was in need of an expedited kit delivery.</inlineHelpText>
+    <label>Urgent Order</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

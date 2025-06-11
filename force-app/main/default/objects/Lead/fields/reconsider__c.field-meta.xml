@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>reconsider__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>used by WTE API survey, sync&apos;d from Marketo and mapped to Opportunity and Account</description>
+    <label>reconsider</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

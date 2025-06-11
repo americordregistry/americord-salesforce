@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LPI_CB_Status__c</fullName>
+    <description>Status of the CB Sample.</description>
+    <label>LPI CB Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Quarantined</fullName>
+                <default>false</default>
+                <label>QUARANTINED</label>
+            </value>
+            <value>
+                <fullName>Permanent Storage</fullName>
+                <default>false</default>
+                <label>Permanent Storage</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

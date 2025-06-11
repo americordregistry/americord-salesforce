@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Audit_Forms_Not_Reviewed_by_Lab</fullName>
+    <columns>NAME</columns>
+    <columns>Collection_Date__c</columns>
+    <columns>ACord_Certificate_of_Storage_Generated__c</columns>
+    <columns>Forms__c</columns>
+    <columns>Form_Review_Notes_Sent_to_Client__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ACord_Certificate_of_Storage_Generated__c</field>
+        <operation>notEqual</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Forms__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>Collection_Date__c</field>
+        <operation>greaterThan</operation>
+        <value>N_DAYS_AGO:60</value>
+    </filters>
+    <filters>
+        <field>Is_Voided_LU__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>Audit - Forms Not Reviewed by Lab</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

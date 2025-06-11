@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_s_have_been_preserved__c</fullName>
+    <description>Used for Checklist to determine if client is ready for AC Cert.</description>
+    <formula>if ( Cord_Blood_Cryogenically_Preserved__c = true ||  Cord_Tissue_Cryogenically_Preserved__c = true ||  Placenta_Tissue_Cryogenically_Preserved__c = true ||
+ Placenta_2_0_Am_Cryogenically_Preserved__c = true, true, false)</formula>
+    <label>Product(s) have been preserved</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

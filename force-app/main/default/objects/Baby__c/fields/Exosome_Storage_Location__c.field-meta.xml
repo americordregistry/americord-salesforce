@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Exosome_Storage_Location__c</fullName>
+    <description>Storage location for the Exosome sample.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Storage location for the Exosome sample.</inlineHelpText>
+    <label>Exosome Storage Location</label>
+    <length>50</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

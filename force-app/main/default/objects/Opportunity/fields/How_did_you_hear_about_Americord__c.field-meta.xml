@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>How_did_you_hear_about_Americord__c</fullName>
+    <description>Populated from Ecomm form</description>
+    <label>How did you hear about Americord</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>BabyCenter</fullName>
+                <default>false</default>
+                <label>BabyCenter</label>
+            </value>
+            <value>
+                <fullName>buybuyBaby</fullName>
+                <default>false</default>
+                <label>buybuyBaby</label>
+            </value>
+            <value>
+                <fullName>Consumer Affairs</fullName>
+                <default>false</default>
+                <label>Consumer Affairs</label>
+            </value>
+            <value>
+                <fullName>Doctor</fullName>
+                <default>false</default>
+                <label>Doctor</label>
+            </value>
+            <value>
+                <fullName>Facebook</fullName>
+                <default>false</default>
+                <label>Facebook</label>
+            </value>
+            <value>
+                <fullName>Google</fullName>
+                <default>false</default>
+                <label>Google</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Referral</fullName>
+                <default>false</default>
+                <label>Referral</label>
+            </value>
+            <value>
+                <fullName>WhatToExpect</fullName>
+                <default>false</default>
+                <label>WhatToExpect</label>
+            </value>
+            <value>
+                <fullName>Your Baby Club</fullName>
+                <default>false</default>
+                <label>Your Baby Club</label>
+            </value>
+            <value>
+                <fullName>Returning Client</fullName>
+                <default>false</default>
+                <label>Returning Client</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

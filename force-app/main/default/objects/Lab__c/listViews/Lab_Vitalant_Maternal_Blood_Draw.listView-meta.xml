@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lab_Vitalant_Maternal_Blood_Draw</fullName>
+    <columns>Mother_s_Last_Name__c</columns>
+    <columns>LPI_M__c</columns>
+    <columns>LPI_M2__c</columns>
+    <columns>NAME</columns>
+    <columns>Maternal_Blood_Redraw__c</columns>
+    <columns>Birth_Date_from_Courier__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Processing_Lab__c</field>
+        <operation>equals</operation>
+        <value>Vitalant</value>
+    </filters>
+    <filters>
+        <field>Maternal_Blood_Redraw__c</field>
+        <operation>equals</operation>
+        <value>MBD Required (Lab),MBD Requested (AC),MBD Shipped (Andwin)</value>
+    </filters>
+    <label>Lab Vitalant - Maternal Blood Draw</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+        <portalRole>VitalantLabPartnerExecutive</portalRole>
+        <portalRole>VitalantLabPartnerManager</portalRole>
+        <portalRole>VitalantLabPartnerUser</portalRole>
+    </sharedTo>
+</ListView>

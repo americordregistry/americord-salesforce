@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Placental_Tissue_or_Placenta_2_0</fullName>
+    <active>true</active>
+    <description>when lab selects both products for preservation</description>
+    <errorConditionFormula>AND( 
+Placenta_Tissue_Cryogenically_Preserved__c = true,
+ Placenta_2_0_Am_Cryogenically_Preserved__c = true)</errorConditionFormula>
+    <errorMessage>You cannot store both Placental Tissue and Placenta 2.0 (Amnion). Please select only one.</errorMessage>
+</ValidationRule>

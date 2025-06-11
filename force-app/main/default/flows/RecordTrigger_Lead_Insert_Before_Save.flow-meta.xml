@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <description>Check to see if record created by the sales team.</description>
+        <name>Is_Created_By_Sales</name>
+        <label>Is Created By Sales</label>
+        <locationX>446</locationX>
+        <locationY>431</locationY>
+        <defaultConnector>
+            <targetReference>Update_Phone_to_E_164</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>NO - Not created by sales</defaultConnectorLabel>
+        <rules>
+            <name>YES_Created_by_Sales</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Owner:User.Department</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Sales</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Acquisition_Fields</targetReference>
+            </connector>
+            <label>YES - Created by Sales</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determine if the lead is a test lead.</description>
+        <name>Is_Testing_Lead</name>
+        <label>Is Testing Lead</label>
+        <locationX>248</locationX>
+        <locationY>311</locationY>
+        <defaultConnector>
+            <targetReference>Is_Created_By_Sales</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>NO - Not Test Lead</defaultConnectorLabel>
+        <rules>
+            <name>YES_Test_Lead</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Email</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>americordblood.com</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Email</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>mediasunrise.com</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Email</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>holmes-moriarty.com</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Email</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>acknowledgedigital.com</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Email</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>hawksem.com</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Email</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>thesherlockgroup.com</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Email</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>infomitic.com</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Email</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>miticon.com</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Email</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>everydayhealthinc.com</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Email</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>mailinator.com</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Email</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>fanfinders.com</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Email</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>sherlockhm.com</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Email</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>krajeski.net</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Email</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>executive-digital.com</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Email</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>mbooth.com</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Email</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>test@test</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Email</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>consumeraffairs.com</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.FirstName</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>est)</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.LastName</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>est)</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.LastName</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>TESTONLYWTE</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Info_User</targetReference>
+            </connector>
+            <label>YES - Test Lead</label>
+        </rules>
+    </decisions>
+    <description>This flow can be used to update the lead on record insert before save.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>Determine the acquisition program based on the Incoming_Source__c field</description>
+        <name>formTAcquisitionProgram</name>
+        <dataType>String</dataType>
+        <expression>CASE({!$Record.Incoming_Source__c},&quot;Call&quot;,&quot;OP|2021|02|Incoming Call&quot;,&quot;Email&quot;,&quot;OP|2021|02|Incoming Email&quot;,&quot;SMS&quot;,&quot;OP|2021|02|Incoming SMS&quot;,&quot;Doctor&apos;s Office&quot;,&quot;OP|2021|02|Doctor&quot;,&quot;OP|2018|08|1274|Created in Salesforce&quot;)</expression>
+    </formulas>
+    <formulas>
+        <description>This formula will convert the lead contact phone field to the E164 format.</description>
+        <name>forTContactPhone_E164Format</name>
+        <dataType>String</dataType>
+        <expression>if (
+    len(
+        SUBSTITUTE(
+            SUBSTITUTE(
+                SUBSTITUTE(
+                    SUBSTITUTE(
+                        SUBSTITUTE(
+                            SUBSTITUTE({!$Record.Contact_Phone__c}, &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;), &quot;+&quot;, &quot;&quot;), &quot;.&quot;, &quot;&quot;)) = 10,
+    &quot;+1&quot; +
+    SUBSTITUTE(
+        SUBSTITUTE(
+            SUBSTITUTE(
+                SUBSTITUTE(
+                    SUBSTITUTE(
+                        SUBSTITUTE({!$Record.Contact_Phone__c}, &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;), &quot;+&quot;, &quot;&quot;), &quot;.&quot;, &quot;&quot;), {!$Record.Contact_Phone__c})</expression>
+    </formulas>
+    <formulas>
+        <description>This formula will convert the Parent2 Phone to the E164 format.</description>
+        <name>forTParent2Phone_E164Format</name>
+        <dataType>String</dataType>
+        <expression>if (
+    len(
+        SUBSTITUTE(
+            SUBSTITUTE(
+                SUBSTITUTE(
+                    SUBSTITUTE(
+                        SUBSTITUTE(
+                            SUBSTITUTE({!$Record.Alt_Phone__c}, &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;), &quot;+&quot;, &quot;&quot;), &quot;.&quot;, &quot;&quot;)) = 10,
+    &quot;+1&quot; +
+    SUBSTITUTE(
+        SUBSTITUTE(
+            SUBSTITUTE(
+                SUBSTITUTE(
+                    SUBSTITUTE(
+                        SUBSTITUTE({!$Record.Alt_Phone__c}, &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;), &quot;+&quot;, &quot;&quot;), &quot;.&quot;, &quot;&quot;), {!$Record.Alt_Phone__c})</expression>
+    </formulas>
+    <formulas>
+        <description>This formula will compute the E.164 format for phone.</description>
+        <name>forTPhone_E164Format</name>
+        <dataType>String</dataType>
+        <expression>if (
+    len(
+        SUBSTITUTE(
+            SUBSTITUTE(
+                SUBSTITUTE(
+                    SUBSTITUTE(
+                        SUBSTITUTE(
+                            SUBSTITUTE({!$Record.Phone}, &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;), &quot;+&quot;, &quot;&quot;), &quot;.&quot;, &quot;&quot;)) = 10,
+    &quot;+1&quot; +
+    SUBSTITUTE(
+        SUBSTITUTE(
+            SUBSTITUTE(
+                SUBSTITUTE(
+                    SUBSTITUTE(
+                        SUBSTITUTE({!$Record.Phone}, &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;), &quot;+&quot;, &quot;&quot;), &quot;.&quot;, &quot;&quot;), {!$Record.Phone})</expression>
+    </formulas>
+    <formulas>
+        <description>This formula will reformat the lead surrogate phone to the E164 format.</description>
+        <name>forTSurrogatePhone_E164Format</name>
+        <dataType>String</dataType>
+        <expression>if (
+    len(
+        SUBSTITUTE(
+            SUBSTITUTE(
+                SUBSTITUTE(
+                    SUBSTITUTE(
+                        SUBSTITUTE(
+                            SUBSTITUTE({!$Record.Surrogates_Phone__c}, &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;), &quot;+&quot;, &quot;&quot;), &quot;.&quot;, &quot;&quot;)) = 10,
+    &quot;+1&quot; +
+    SUBSTITUTE(
+        SUBSTITUTE(
+            SUBSTITUTE(
+                SUBSTITUTE(
+                    SUBSTITUTE(
+                        SUBSTITUTE({!$Record.Surrogates_Phone__c}, &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;), &quot;+&quot;, &quot;&quot;), &quot;.&quot;, &quot;&quot;), {!$Record.Surrogates_Phone__c})</expression>
+    </formulas>
+    <interviewLabel>RecordTrigger:Lead Insert Before Save {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RecordTrigger:Lead Insert Before Save</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Get the info@americordblood.com user.</description>
+        <name>Get_Info_User</name>
+        <label>Get Info User</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Update_Owner_Lead_Source_Status_Fields</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Username</field>
+            <operator>StartsWith</operator>
+            <value>
+                <stringValue>info@americordblood.com</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>User</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>Update the Acquisition fields for Sales.</description>
+        <name>Update_Acquisition_Fields</name>
+        <label>Update Acquisition Fields</label>
+        <locationX>314</locationX>
+        <locationY>551</locationY>
+        <connector>
+            <targetReference>Update_Phone_to_E_164</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>mkto71_Acquisition_Date__c</field>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>mkto71_Acquisition_Program__c</field>
+            <value>
+                <elementReference>formTAcquisitionProgram</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Update the ownerid , leadsource, status field for test lead.</description>
+        <name>Update_Owner_Lead_Source_Status_Fields</name>
+        <label>Update Owner/Lead Source/Status Fields</label>
+        <locationX>50</locationX>
+        <locationY>551</locationY>
+        <inputAssignments>
+            <field>LeadSource</field>
+            <value>
+                <stringValue>Test</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>Get_Info_User.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Test</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>This step will update the phone field to the E.164 format if 10 digits</description>
+        <name>Update_Phone_to_E_164</name>
+        <label>Update Phone to E.164</label>
+        <locationX>446</locationX>
+        <locationY>767</locationY>
+        <inputAssignments>
+            <field>Alt_Phone__c</field>
+            <value>
+                <elementReference>forTParent2Phone_E164Format</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Contact_Phone__c</field>
+            <value>
+                <elementReference>forTContactPhone_E164Format</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Phone</field>
+            <value>
+                <elementReference>forTPhone_E164Format</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Surrogates_Phone__c</field>
+            <value>
+                <elementReference>forTSurrogatePhone_E164Format</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>122</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_Testing_Lead</targetReference>
+        </connector>
+        <object>Lead</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

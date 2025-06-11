@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>tattoo_state_regulated__c</fullName>
+    <inlineHelpText>In the past 12 months have you: Had a tattoo in which sterile procedures were not used? If yes, was tattoo applied by a state regulated entity with sterile needles and non reused ink?</inlineHelpText>
+    <label>20.1 tattoo state regulated</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>MHQ</valueSetName>
+    </valueSet>
+</CustomField>

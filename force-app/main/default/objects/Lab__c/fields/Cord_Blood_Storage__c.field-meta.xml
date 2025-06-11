@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cord_Blood_Storage__c</fullName>
+    <description>This field will be used to track the storage for the Cord Blood Service. This field will be populated by the Cord Blood Order Update flow and will hold the Annual, 20 Year or Lifetime values.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field will be used to track the storage for the Cord Blood Service. This field will be populated by the Cord Blood Order Update flow and will hold the Annual, 20 Year or Lifetime values.</inlineHelpText>
+    <label>Cord Blood Storage</label>
+    <length>50</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

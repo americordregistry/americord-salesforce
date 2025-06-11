@@ -4,6 +4,6 @@
     "**/bower_components": true,
     "**/.sfdx": true
   },
-  "codeBuilder.showWelcomePage": true,
+  "codeBuilder.showWelcomePage": false,
   "salesforce.einsteinForDevelopers.enable": false
 }

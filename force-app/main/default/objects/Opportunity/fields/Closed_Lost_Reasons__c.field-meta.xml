@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Closed_Lost_Reasons__c</fullName>
+    <label>Closed Lost Reasons</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>StageName</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Baby Came Early</fullName>
+                <default>false</default>
+                <label>Baby Came Early</label>
+            </value>
+            <value>
+                <fullName>Birth Plan Only</fullName>
+                <default>false</default>
+                <label>Birth Plan Only</label>
+            </value>
+            <value>
+                <fullName>Chose Competitor - Alphacord</fullName>
+                <default>false</default>
+                <label>Chose Competitor - Alphacord</label>
+            </value>
+            <value>
+                <fullName>Chose Competitor - CBR</fullName>
+                <default>false</default>
+                <label>Chose Competitor - CBR</label>
+            </value>
+            <value>
+                <fullName>Chose Competitor - Cryocell</fullName>
+                <default>false</default>
+                <label>Chose Competitor - Cryocell</label>
+            </value>
+            <value>
+                <fullName>Chose Competitor - Evercord</fullName>
+                <default>false</default>
+                <label>Chose Competitor - Evercord</label>
+            </value>
+            <value>
+                <fullName>Chose Competitor - FamilyCord</fullName>
+                <default>false</default>
+                <label>Chose Competitor - FamilyCord</label>
+            </value>
+            <value>
+                <fullName>Chose Competitor - Lifebank</fullName>
+                <default>false</default>
+                <label>Chose Competitor - Lifebank</label>
+            </value>
+            <value>
+                <fullName>Chose Competitor - Maze</fullName>
+                <default>false</default>
+                <label>Chose Competitor - Maze</label>
+            </value>
+            <value>
+                <fullName>Chose Competitor - None given</fullName>
+                <default>false</default>
+                <label>Chose Competitor - None given</label>
+            </value>
+            <value>
+                <fullName>Chose Competitor - StemCyte</fullName>
+                <default>false</default>
+                <label>Chose Competitor - StemCyte</label>
+            </value>
+            <value>
+                <fullName>Chose Competitor - Viacord</fullName>
+                <default>false</default>
+                <label>Chose Competitor - Viacord</label>
+            </value>
+            <value>
+                <fullName>Decided not to bank</fullName>
+                <default>false</default>
+                <label>Decided not to bank</label>
+            </value>
+            <value>
+                <fullName>Delayed clamping</fullName>
+                <default>false</default>
+                <label>Delayed clamping</label>
+            </value>
+            <value>
+                <fullName>Don&apos;t think they will need stem cells</fullName>
+                <default>false</default>
+                <label>Don&apos;t think they will need stem cells</label>
+            </value>
+            <value>
+                <fullName>Donating</fullName>
+                <default>false</default>
+                <label>Donating</label>
+            </value>
+            <value>
+                <fullName>Medical Reasons</fullName>
+                <default>false</default>
+                <label>Medical Reasons</label>
+            </value>
+            <value>
+                <fullName>Miscarried</fullName>
+                <default>false</default>
+                <label>Miscarried</label>
+            </value>
+            <value>
+                <fullName>No Info</fullName>
+                <default>false</default>
+                <label>No Info</label>
+            </value>
+            <value>
+                <fullName>Not Interested - Bad Experience</fullName>
+                <default>false</default>
+                <label>Not Interested - Bad Experience</label>
+            </value>
+            <value>
+                <fullName>Not Interested - Banking</fullName>
+                <default>false</default>
+                <label>Not Interested - Banking</label>
+            </value>
+            <value>
+                <fullName>Not Interested - Cannot Afford</fullName>
+                <default>false</default>
+                <label>Not Interested - Cannot Afford</label>
+            </value>
+            <value>
+                <fullName>Not Interested - Changed Mind</fullName>
+                <default>false</default>
+                <label>Not Interested - Changed Mind</label>
+            </value>
+            <value>
+                <fullName>Not Interested - No Reason Given / Hung up</fullName>
+                <default>false</default>
+                <label>Not Interested - No Reason Given / Hung up</label>
+            </value>
+            <value>
+                <fullName>Not Interested - Not worth the price</fullName>
+                <default>false</default>
+                <label>Not Interested - Not worth the price</label>
+            </value>
+            <value>
+                <fullName>Not Interested - Placenta Encapsulation Only</fullName>
+                <default>false</default>
+                <label>Not Interested - Placenta Encapsulation Only</label>
+            </value>
+            <value>
+                <fullName>Not Interested - Spouse decision</fullName>
+                <default>false</default>
+                <label>Not Interested - Spouse decision</label>
+            </value>
+            <value>
+                <fullName>Not Interested - Sweepstakes</fullName>
+                <default>false</default>
+                <label>Not Interested - Sweepstakes</label>
+            </value>
+            <value>
+                <fullName>Not Interested - Bad Number/Blocked</fullName>
+                <default>false</default>
+                <label>Not Interested - Bad Number/Blocked</label>
+            </value>
+            <value>
+                <fullName>Not Pregnant</fullName>
+                <default>false</default>
+                <label>Not Pregnant</label>
+            </value>
+            <value>
+                <fullName>Outside United States</fullName>
+                <default>false</default>
+                <label>Outside United States</label>
+            </value>
+            <value>
+                <fullName>Test</fullName>
+                <default>false</default>
+                <label>Test</label>
+            </value>
+            <value>
+                <fullName>Unknown / Other</fullName>
+                <default>false</default>
+                <label>Unknown / Other</label>
+            </value>
+            <value>
+                <fullName>Duplicate</fullName>
+                <default>false</default>
+                <label>Duplicate</label>
+            </value>
+            <value>
+                <fullName>Unworked Upgrade</fullName>
+                <default>false</default>
+                <label>Unworked Upgrade</label>
+            </value>
+            <value>
+                <fullName>Annual Payments</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Annual Payments</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Baby Came Early</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Birth Plan Only</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Chose Competitor - Alphacord</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Chose Competitor - CBR</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Chose Competitor - Cryocell</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Chose Competitor - Evercord</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Chose Competitor - FamilyCord</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Chose Competitor - Lifebank</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Chose Competitor - Maze</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Chose Competitor - None given</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Chose Competitor - StemCyte</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Chose Competitor - Viacord</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Decided not to bank</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Delayed clamping</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Don&apos;t think they will need stem cells</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Donating</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Medical Reasons</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Miscarried</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>No Info</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Not Interested - Bad Experience</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Not Interested - Banking</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Not Interested - Cannot Afford</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Not Interested - Changed Mind</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Not Interested - No Reason Given / Hung up</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Not Interested - Not worth the price</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Not Interested - Placenta Encapsulation Only</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Not Interested - Spouse decision</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Not Interested - Sweepstakes</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Not Pregnant</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Outside United States</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Test</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Unknown / Other</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Duplicate</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Unworked Upgrade</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

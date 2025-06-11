@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Callout to Apex to send the MHQ to the recipient.</description>
+        <name>Send_MHQ</name>
+        <label>Send MHQ</label>
+        <locationX>176</locationX>
+        <locationY>638</locationY>
+        <actionName>DocusignSendMHQ</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Document_Sent</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>lstMHQIds</name>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>DocusignSendMHQ</nameSegment>
+    </actionCalls>
+    <apiVersion>57.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Assign MHQ Id to the collection.</description>
+        <name>Assign_MHQ_ID_to_the_collection</name>
+        <label>Assign MHQ ID to the collection</label>
+        <locationX>176</locationX>
+        <locationY>518</locationY>
+        <assignmentItems>
+            <assignToReference>varTCollectionMHQIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varRecCollectionMHQ</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Get_MHQ_Record</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Send_MHQ</targetReference>
+        </connector>
+    </assignments>
+    <description>This screen flow will send the MHQ document for signing.</description>
+    <environments>Default</environments>
+    <interviewLabel>ScreenFlow: Send MHQ {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>ScreenFlow: Send MHQ</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <description>Get the Contact record for the current MHQ Recipient</description>
+        <name>Get_MHQ_Recipient</name>
+        <label>Get MHQ Recipient</label>
+        <locationX>176</locationX>
+        <locationY>278</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Confirm_and_Send</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_MHQ_Record.MHQ_Recipient__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Contact</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get the associated MHQ record.</description>
+        <name>Get_MHQ_Record</name>
+        <label>Get MHQ Record</label>
+        <locationX>176</locationX>
+        <locationY>158</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_MHQ_Recipient</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>MHQ__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <screens>
+        <description>This screen will be used to confirm the send of the MHQ to the customer.</description>
+        <name>Confirm_and_Send</name>
+        <label>Confirm and Send</label>
+        <locationX>176</locationX>
+        <locationY>398</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Assign_MHQ_ID_to_the_collection</targetReference>
+        </connector>
+        <fields>
+            <name>MHQConfirmMessage</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Confirm the following details:&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>ConfirmMHQRecipient</name>
+            <fieldText>&lt;p&gt;&lt;strong&gt;&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;MHQ Recipient Name: &lt;/strong&gt;{!Get_MHQ_Recipient.Name}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>ConfirmCloseIfWrong</name>
+            <fieldText>&lt;p&gt;If Recipient looks incorrect, close the window and update the record. Otherwise, click Send MHQ to send the recipient the docusign document.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <nextOrFinishButtonLabel>Send MHQ</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Document_Sent</name>
+        <label>Document Sent</label>
+        <locationX>176</locationX>
+        <locationY>758</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>DocumentSentConfirmation</name>
+            <fieldText>&lt;p&gt;The MHQ Document has been sent for signing.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_MHQ_Record</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>This is the record ID for the MHQ.</description>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Collection of MHQ records</description>
+        <name>varRecCollectionMHQ</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>MHQ__c</objectType>
+    </variables>
+    <variables>
+        <description>This is the collection of MHQ Ids.</description>
+        <name>varTCollectionMHQIds</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

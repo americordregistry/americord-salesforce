@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Agreement_Status_Contact__c</fullName>
+    <label>HCP Agreement</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Created</fullName>
+                <default>false</default>
+                <label>Created</label>
+            </value>
+            <value>
+                <fullName>Send FAX</fullName>
+                <default>false</default>
+                <label>Send FAX</label>
+            </value>
+            <value>
+                <fullName>Sent</fullName>
+                <default>false</default>
+                <label>Sent</label>
+            </value>
+            <value>
+                <fullName>Signed / Returned</fullName>
+                <default>false</default>
+                <label>Signed / Returned</label>
+            </value>
+            <value>
+                <fullName>W-9 Only</fullName>
+                <default>false</default>
+                <label>W-9 Only</label>
+            </value>
+            <value>
+                <fullName>Canceled</fullName>
+                <default>false</default>
+                <label>Canceled</label>
+            </value>
+            <value>
+                <fullName>No Stipend</fullName>
+                <default>false</default>
+                <label>No Stipend</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

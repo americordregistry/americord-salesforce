@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CRMG_Map__Google_Earth_Billing_Address</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>600</height>
+    <linkType>url</linkType>
+    <masterLabel>Billing Address</masterLabel>
+    <openType>sidebar</openType>
+    <protected>false</protected>
+    <url>/apex/CRMG_Map__ShowEarth?addr={!Contract.BillingStreet}%20{!Contract.BillingCity}%20{!Contract.BillingState}%20{!Contract.BillingCountry}%20{!Contract.BillingPostalCode}</url>
+</WebLink>

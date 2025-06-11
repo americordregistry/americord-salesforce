@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tissue_Eligibility_Status__c</fullName>
+    <description>This is the status of the tissue donation.</description>
+    <inlineHelpText>This is the status of the tissue donation.</inlineHelpText>
+    <label>Tissue Eligibility Status</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Eligible</fullName>
+                <default>false</default>
+                <label>Eligible</label>
+            </value>
+            <value>
+                <fullName>Ineligible</fullName>
+                <default>false</default>
+                <label>Ineligible</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

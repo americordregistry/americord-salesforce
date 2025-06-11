@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Client_Billed__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Collection sheet matches enrollment option and successfully billed client?</description>
+    <label>Billed</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

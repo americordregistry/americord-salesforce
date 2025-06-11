@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>End_Date__c</fullName>
+    <description>Last day that this code is valid.</description>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <inlineHelpText>Last day that this code is valid.</inlineHelpText>
+    <label>End Date</label>
+    <required>false</required>
+    <type>Date</type>
+</CustomField>

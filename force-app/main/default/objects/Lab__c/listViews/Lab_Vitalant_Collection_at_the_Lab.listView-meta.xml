@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lab_Vitalant_Collection_at_the_Lab</fullName>
+    <columns>Mother_s_Last_Name__c</columns>
+    <columns>LPI_M__c</columns>
+    <columns>LPI_M2__c</columns>
+    <columns>NAME</columns>
+    <columns>Certificate_ID__c</columns>
+    <columns>Birth_Date_from_Courier__c</columns>
+    <columns>DCS__c</columns>
+    <columns>Processing_Lab__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Cord_Blood_Collection_Completed__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Is_Voided_LU__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Processing_Lab__c</field>
+        <operation>equals</operation>
+        <value>Vitalant</value>
+    </filters>
+    <label>Lab Vitalant - Collection at the Lab</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+        <portalRole>VitalantLabPartnerExecutive</portalRole>
+        <portalRole>VitalantLabPartnerManager</portalRole>
+        <portalRole>VitalantLabPartnerUser</portalRole>
+    </sharedTo>
+</ListView>

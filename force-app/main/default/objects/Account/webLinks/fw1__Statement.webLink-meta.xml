@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>fw1__Statement</fullName>
+    <availability>online</availability>
+    <description>This button allows the user to search and send statements to related contact</description>
+    <displayType>button</displayType>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>true</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>850</height>
+    <isResizable>true</isResizable>
+    <linkType>page</linkType>
+    <masterLabel>Statement</masterLabel>
+    <openType>newWindow</openType>
+    <page>fw1__Statement</page>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <width>1250</width>
+</WebLink>

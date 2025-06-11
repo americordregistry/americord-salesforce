@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ScanAnything__PrintLabelsContinuous</fullName>
+    <availability>online</availability>
+    <description>LabelTac LT102: 1 inch wide, continuous tape</description>
+    <displayType>massActionButton</displayType>
+    <linkType>page</linkType>
+    <masterLabel>Print Labels (Continuous)</masterLabel>
+    <openType>replace</openType>
+    <page>ScanAnything__PrintLabelsContinuousAsset</page>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+</WebLink>

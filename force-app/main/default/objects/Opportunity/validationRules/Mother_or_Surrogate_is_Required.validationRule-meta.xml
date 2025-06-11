@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mother_or_Surrogate_is_Required</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND (text(StageName)=&quot;Enrolled&quot;,
+text(Relation_to_Baby__c)&lt;&gt;&quot;Mother&quot;,
+text(Contact2_Relation_to_Baby__c)&lt;&gt;&quot;Mother&quot;,
+ Surrogate__c = false)</errorConditionFormula>
+    <errorMessage>You must include at least one Mother or select the Surrogate checkbox.</errorMessage>
+</ValidationRule>

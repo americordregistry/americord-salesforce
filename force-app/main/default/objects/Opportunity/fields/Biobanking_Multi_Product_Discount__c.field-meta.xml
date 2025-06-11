@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Biobanking_Multi_Product_Discount__c</fullName>
+    <defaultValue>0</defaultValue>
+    <description>When customers purchase multiple bio-banking products, special pricing is applied.  This is only applied when the Biobanking products are selected outside of a defined bundle.</description>
+    <inlineHelpText>When customers purchase multiple bio-banking products, special pricing is applied.  This is only applied when the Biobanking products are selected outside of a defined bundle.</inlineHelpText>
+    <label>Biobanking Multi-Product Discount</label>
+    <precision>6</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

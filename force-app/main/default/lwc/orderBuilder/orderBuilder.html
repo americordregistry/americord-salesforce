@@ -1,0 +1,873 @@
+<template>
+    <div lwc:if={dataLoaded}>
+        <div lwc:if={showSpinner}>
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </div>
+        <ul class="slds-accordion ac-accordion-header-background">
+            <li class="slds-accordion__list-item  slds-var-m-bottom_large">
+                <section class="slds-accordion__section">
+                    <div class="slds-accordion__summary">
+                        <h2 class="slds-accordion__summary-heading ac-accordion-header-text-align">
+                            <button 
+                                class="slds-button slds-button_reset slds-accordion__summary-action"
+                                aria-controls="referenceId-01" 
+                                aria-expanded="false" 
+                                title="Accordion summary"
+                                onclick={handleOrderSummaryToggle}>
+                                <lightning-icon 
+                                    class="slds-var-m-right_x-small"
+                                    icon-name={orderSummarySectionIcon}
+                                    alternative-text="Expand" 
+                                    title="Expand"
+                                    size="x-small">
+                                </lightning-icon>
+                                <div class="slds-accordion__summary-content ac-flex-auto">
+                                    <div class="slds-grid">
+                                        <div class="slds-col slds-size_1-of-6">
+                                            <p>ORDER<br>SUMMARY:</p>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-6">
+                                            <p class="slds-text-body_small slds-text-align_center">TOTAL LIST PRICE: </p>
+                                            <lightning-formatted-number 
+                                                class="ac-med-font slds-text-align_center"
+                                                value={currentOrder.totalListPrice} 
+                                                maximum-fraction-digits="0" 
+                                                format-style="currency" 
+                                                currency-code="USD">
+                                            </lightning-formatted-number>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-6">
+                                            <p class="slds-text-body_small slds-text-align_center">BUNDLE SAVINGS: </p>
+                                            <lightning-formatted-number 
+                                                class="ac-med-font slds-text-align_center"
+                                                value={currentOrder.totalBundleSavings} 
+                                                maximum-fraction-digits="0" 
+                                                format-style="currency" 
+                                                currency-code="USD">
+                                            </lightning-formatted-number>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-6">
+                                            <p class="slds-text-body_small slds-text-align_center">OTHER DISCOUNTS: </p>
+                                            <lightning-formatted-number 
+                                                class="ac-med-font slds-text-align_center"
+                                                value={currentOrder.totalDiscount} 
+                                                maximum-fraction-digits="0" 
+                                                format-style="currency" 
+                                                currency-code="USD">
+                                            </lightning-formatted-number>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-6">
+                                            <p class="slds-text-body_small slds-text-align_center">ORDER PRICE: </p>
+                                            <lightning-formatted-number 
+                                                class="ac-med-font slds-text-align_center"
+                                                value={currentOrder.finalPrice} 
+                                                maximum-fraction-digits="0" 
+                                                format-style="currency" 
+                                                currency-code="USD">
+                                            </lightning-formatted-number>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-6">
+                                            <div lwc:if={dmlActionsDisabled}>
+                                                <lightning-icon 
+                                                    icon-name="utility:recycle_bin_empty" 
+                                                    alternative-text="Clear Order (Disabled)" 
+                                                    size="small" 
+                                                    title="Clear Order"
+                                                    class="ac-disabled-grey">
+                                                </lightning-icon>
+                                            </div>
+                                            <div lwc:else>
+                                                <lightning-icon 
+                                                    icon-name="utility:recycle_bin_empty" 
+                                                    onclick={handleOrderClear} 
+                                                    alternative-text="Clear Order" 
+                                                    size="small" 
+                                                    title="Clear Order"
+                                                    class="ac-large-icon-button">
+                                                </lightning-icon>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </button>
+                        </h2>
+                    </div>
+                    <div data-section-id="orderSummaryContents" class={orderSummarySectionClassList} >
+                        <div class="slds-grid">
+                            <div class="slds-col slds-size_1-of-1">
+                                <table>
+                                    <tr>
+                                        <th style="width:25%">Item Name</th>
+                                        <th style="width:10%; text-align: center">Quantity</th>
+                                        <th style="width:10%">List Price</th>
+                                        <th style="width:10%">Bundle Savings</th>
+                                        <th style="width:10%">Discount</th>
+                                        <th style="width:10%">Total Price</th>
+                                        <th style="width:10%"></th>
+                                    </tr>
+
+                                    <tr lwc:if={noItemsSelected} class="ac-tr-no-border">
+                                        <td>--</td>
+                                        <td style="text-align: center">--</td>
+                                        <td>--</td>
+                                        <td>--</td>
+                                        <td>--</td>
+                                        <td>--</td>
+                                    </tr>
+                                    <tr lwc:if={noItemsSelected} class="ac-tr-no-border">
+                                        <td colspan="6"><p><i>Add an item to this order below.</i></p></td>
+                                    </tr>
+
+                                    <template for:each={currentOrder.bundlesOrdered} for:item="bundle">
+                                        <tr key={bundle.selectorId} class="slds-accordion ac-data-row ac-shaded-row">
+                                            <td>
+                                                <p>
+                                                    <lightning-button-icon
+                                                        data-selected-bundle-id={bundle.selectorId} 
+                                                        icon-name={bundle.accordionIcon} 
+                                                        variant="bare" 
+                                                        alternative-text="Expand" 
+                                                        title="Expand"
+                                                        onclick={handleSelectedBundleToggle}>
+                                                    </lightning-button-icon>
+                                                    <lightning-formatted-text 
+                                                        value={bundle.name} linkify>
+                                                    </lightning-formatted-text>
+                                                </p>
+                                            </td>
+                                            <td>
+                                                <lightning-input 
+                                                    data-summary-bundle-quantity-input-id={bundle.selectorId}
+                                                    class="slds-align_absolute-center"
+                                                    style="width: 50%;"
+                                                    type="number" 
+                                                    min="1"
+                                                    message-when-range-underflow="Please enter a number greater than 0 or delete this line item."
+                                                    name="quantityInput" 
+                                                    label="Enter a number"
+                                                    variant="label-hidden"
+                                                    disabled={dmlActionsDisabled}
+                                                    value={bundle.quantity}
+                                                    onchange={handleSummaryBundleQuantity}
+                                                    onblur={handleSummaryBundleQuantitiesSet}>
+                                                </lightning-input>
+                                            </td>
+                                            <td>
+                                                <p><lightning-formatted-number 
+                                                    value={bundle.bundleMembersListPriceTotal}
+                                                    maximum-fraction-digits="2"
+                                                    format-style="currency" 
+                                                    currency-code="USD">
+                                                </lightning-formatted-number></p>
+                                            </td>
+                                            <td>
+                                                <div lwc:if={bundle.isSingleProductBundle}>
+                                                    <p><lightning-formatted-text 
+                                                        value="-">
+                                                    </lightning-formatted-text></p>
+                                                </div>
+                                                <div lwc:else>
+                                                    <p><lightning-formatted-number 
+                                                        value={bundle.bundleSavingsAtQuantity}
+                                                        maximum-fraction-digits="2"
+                                                        format-style="currency" 
+                                                        currency-code="USD">
+                                                    </lightning-formatted-number></p>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p><lightning-formatted-text 
+                                                    value="-">
+                                                </lightning-formatted-text></p>
+                                            </td>
+                                            <td>
+                                                <p><lightning-formatted-number 
+                                                    value={bundle.listPriceAtQuantity}
+                                                    maximum-fraction-digits="2"
+                                                    format-style="currency" 
+                                                    currency-code="USD">
+                                                </lightning-formatted-number></p>
+                                            </td>
+                                            <td>
+                                                <div lwc:if={dmlActionsDisabled}>
+                                                    <lightning-icon 
+                                                        icon-name="utility:recycle_bin_empty" 
+                                                        alternative-text="Remove Bundle (Disabled)" 
+                                                        size="small" 
+                                                        title="Remove Bundle"
+                                                        class="ac-disabled-grey">
+                                                    </lightning-icon>
+                                                </div>
+                                                <div lwc:else>
+                                                    <lightning-icon 
+                                                        data-item-removal-id={bundle.selectorId}
+                                                        icon-name="utility:recycle_bin_empty" 
+                                                        onclick={handleBundleRemoval} 
+                                                        alternative-text="Remove Bundle" 
+                                                        size="small" 
+                                                        title="Remove Bundle"
+                                                        class="ac-large-icon-button">
+                                                    </lightning-icon>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <template for:each={bundle.bundledProducts} for:item="bundleMember">
+                                            <tr key={bundleMember.product2Id} lwc:if={bundle.expanded} class="ac-data-row">
+                                                <td>
+                                                    <p style="text-indent: 30px;">
+                                                        <lightning-formatted-text 
+                                                            value={bundleMember.name} linkify>
+                                                        </lightning-formatted-text>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p><lightning-formatted-number 
+                                                        class="slds-align_absolute-center"
+                                                        value={bundleMember.quantity}
+                                                        maximum-fraction-digits="0">
+                                                    </lightning-formatted-number></p>
+                                                </td>
+                                                <td>
+                                                    <p><lightning-formatted-number 
+                                                        value={bundleMember.listPriceAtQuantity}
+                                                        maximum-fraction-digits="2"
+                                                        format-style="currency" 
+                                                        currency-code="USD">
+                                                    </lightning-formatted-number></p>
+                                                </td>
+                                                <td>
+                                                    <p><lightning-formatted-text 
+                                                        value="-">
+                                                    </lightning-formatted-text></p>
+                                                </td>
+                                                <td>
+                                                    <p><lightning-formatted-text 
+                                                        value="-">
+                                                    </lightning-formatted-text></p>
+                                                </td>
+                                                <td>
+                                                    <p><lightning-formatted-text 
+                                                        value="-">
+                                                    </lightning-formatted-text></p>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            
+                                        </template>
+                                    </template>
+                                    <template for:each={currentOrder.productsOrdered} for:item="prod">
+                                        <tr key={prod.selectorId} class="ac-data-row ac-shaded-row">
+                                            <td>
+                                                <p><lightning-formatted-text 
+                                                    value={prod.name} linkify>
+                                                </lightning-formatted-text></p>
+                                            </td>
+                                            <td>
+                                                <lightning-input 
+                                                    data-summary-prod-quantity-input-id={prod.selectorId}
+                                                    class="slds-align_absolute-center"
+                                                    style="width: 50%;"
+                                                    type="number" 
+                                                    min="1"
+                                                    message-when-range-underflow="Please enter a number greater than 0 or delete this line item."
+                                                    name="quantityInput" 
+                                                    label="Enter a number"
+                                                    variant="label-hidden"
+                                                    disabled={dmlActionsDisabled}
+                                                    value={prod.quantity}
+                                                    onchange={handleSummaryProductQuantity}
+                                                    onblur={handleSummaryProductQuantitiesSet}>
+                                                </lightning-input>
+                                            </td>
+                                            <td>
+                                                <p><lightning-formatted-number 
+                                                    value={prod.listPriceAtQuantity}
+                                                    maximum-fraction-digits="2"
+                                                    format-style="currency" 
+                                                    currency-code="USD">
+                                                </lightning-formatted-number></p>
+                                            </td>
+                                            <td>
+                                                <p><lightning-formatted-text 
+                                                    value="-">
+                                                </lightning-formatted-text></p>
+                                            </td>
+                                            <td>
+                                                <p><lightning-formatted-text 
+                                                    value="-">
+                                                </lightning-formatted-text></p>
+                                            </td>
+                                            <td>
+                                                <p><lightning-formatted-number 
+                                                    value={prod.listPriceAtQuantity}
+                                                    maximum-fraction-digits="2"
+                                                    format-style="currency" 
+                                                    currency-code="USD">
+                                                </lightning-formatted-number></p>
+                                            </td>
+                                            <td>
+                                                <div lwc:if={dmlActionsDisabled}>
+                                                    <lightning-icon 
+                                                        icon-name="utility:recycle_bin_empty" 
+                                                        alternative-text="Remove Item (Disabled)" 
+                                                        size="small" 
+                                                        title="Remove Item"
+                                                        class="ac-disabled-grey">
+                                                    </lightning-icon>
+                                                </div>
+                                                <div lwc:else>
+                                                    <lightning-icon 
+                                                        data-item-removal-id={prod.selectorId}
+                                                        icon-name="utility:recycle_bin_empty" 
+                                                        onclick={handleProductRemoval} 
+                                                        alternative-text="Remove Item" 
+                                                        size="small" 
+                                                        title="Remove Item"
+                                                        class="ac-large-icon-button">
+                                                    </lightning-icon>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                    
+                                    <template for:each={currentOrder.discountsOrdered} for:item="disc">
+                                        <tr key={disc.name} class="ac-data-row ac-shaded-row">
+                                            <td>
+                                                <p><lightning-formatted-text 
+                                                    value={disc.name} linkify>
+                                                </lightning-formatted-text></p>
+                                            </td>
+                                            <td>
+                                                <div lwc:if={disc.isDollarDiscount}>
+                                                    <p><lightning-formatted-number 
+                                                        value={disc.amount}
+                                                        class="slds-align_absolute-center"
+                                                        maximum-fraction-digits="2"
+                                                        format-style="currency" 
+                                                        currency-code="USD">
+                                                    </lightning-formatted-number></p>
+                                                </div>
+                                                <div lwc:elseif={disc.isPercentageDiscount}>
+                                                    <p><lightning-formatted-number 
+                                                        value={disc.percentage} 
+                                                        class="slds-align_absolute-center"
+                                                        format-style="percent"
+                                                        maximum-fraction-digits="1">
+                                                    </lightning-formatted-number></p>
+                                                </div>
+                                                
+                                            </td>
+                                            <td>
+                                                <p><lightning-formatted-text 
+                                                    value="-">
+                                                </lightning-formatted-text></p>
+                                            </td>
+                                            <td>
+                                                <p><lightning-formatted-text 
+                                                    value="-">
+                                                </lightning-formatted-text></p>
+                                            </td>
+                                            <td>
+                                                <p><lightning-formatted-number 
+                                                    value={disc.amountAsNegative}
+                                                    maximum-fraction-digits="2"
+                                                    format-style="currency" 
+                                                    currency-code="USD">
+                                                </lightning-formatted-number></p>
+                                            </td>
+                                            <td>
+                                                <p><lightning-formatted-number 
+                                                    value={disc.amountAsNegative}
+                                                    maximum-fraction-digits="2"
+                                                    format-style="currency" 
+                                                    currency-code="USD">
+                                                </lightning-formatted-number></p>
+                                            </td>
+                                            <td>
+                                                <div lwc:if={dmlActionsDisabled}>
+                                                    <lightning-icon 
+                                                        icon-name="utility:recycle_bin_empty" 
+                                                        alternative-text="Remove Discount (Disabled)" 
+                                                        size="small" 
+                                                        title="Remove Discount"
+                                                        class="ac-disabled-grey">
+                                                    </lightning-icon>
+                                                </div>
+                                                <div lwc:else>
+                                                    <lightning-icon 
+                                                        data-item-removal-id={disc.selectorId}
+                                                        icon-name="utility:recycle_bin_empty" 
+                                                        onclick={handleDiscountRemoval} 
+                                                        alternative-text="Remove Discount" 
+                                                        size="small" 
+                                                        title="Remove Discount"
+                                                        class="ac-large-icon-button">
+                                                    </lightning-icon>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </template>
+            
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </section>
+            </li>
+            <li class="slds-accordion__list-item  slds-var-m-bottom_large">
+                <section class="slds-accordion__section">
+                    <div class="slds-accordion__summary">
+                        <h2 class="slds-accordion__summary-heading">
+                            <button 
+                                class="slds-button slds-button_reset slds-accordion__summary-action slds-var-m-right_small"
+                                aria-controls="referenceId-02" 
+                                aria-expanded="false" 
+                                title="Accordion summary"
+                                onclick={handleAddItemSectionToggle}>
+                                <lightning-icon 
+                                    class="slds-var-m-right_x-small"
+                                    icon-name={addItemSectionIcon}
+                                    alternative-text="Expand" 
+                                    title="Expand"
+                                    size="x-small">
+                                </lightning-icon>
+                                <span class="slds-accordion__summary-content">
+                                    <lightning-formatted-rich-text 
+                                        value="ADD PRODUCTS, BUNDLES & DISCOUNTS">
+                                    </lightning-formatted-rich-text>
+                                </span>
+                            </button>
+                        </h2>
+                    </div>
+                    <div data-section-id="addItemsContents" class={addItemSectionClassList}>
+                        <div class="slds-grid ac-shaded-row ac-data-row">
+                            <div class="slds-col slds-size_1-of-3 ac-search-box">
+                                <div class="ac-input-border slds-var-m-left_small" onkeyup={handleItemFilter}>
+                                    <lightning-input 
+                                        name="item-search" 
+                                        label="Search for product, bundle or discount" 
+                                        type="search"
+                                        placeholder="Search for product, bundle or discount" 
+                                        variant="label-hidden"
+                                        onchange={handleItemSearchClear}>
+                                    </lightning-input>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-var-m-top_medium">
+                            <div class="slds-col slds-size_1-of-1">
+                                <table>
+                                    <tr>
+                                        <th style="width:10%"></th>
+                                        <th style="width:15%; text-align: center">Quantity</th>
+                                        <th style="width:20%">Product Name</th>
+                                        <th style="width:40%">Description</th>
+                                        <th style="width:15%">List Price</th>
+                                    </tr>
+
+                                    <tr lwc:if={noSearchableItemsFound} class="ac-tr-no-border">
+                                        <td></td>
+                                        <td style="text-align: center">--</td>
+                                        <td>--</td>
+                                        <td>--</td>
+                                        <td>--</td>
+                                    </tr>
+                                    <tr lwc:if={noSearchableItemsFound} class="ac-tr-no-border">
+                                        <td colspan="4"><p><i>No items match those search criteria.</i></p></td>
+                                    </tr>
+                     
+                                    <template for:each={displayedItems} for:item="item">
+                                        <tr key={item.Id} class="ac-data-row" data-search-term={item.searchName} data-item-display-row={item.selectorId}>
+                                            <td>
+                                                <div>
+                                                    <lightning-button-icon 
+                                                        data-select-item-id={item.selectorId}
+                                                        data-name="ItemSelectButton"
+                                                        icon-name="utility:add"   
+                                                        alternative-text="Select Item" 
+                                                        class="ac-select-button-unselected slds-button_icon-border slds-button slds-button_icon" 
+                                                        onclick={handleItemSelection} 
+                                                        title="Select Item"
+                                                        variant="bare"
+                                                        disabled={item.disabled}>
+                                                    </lightning-button-icon>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="ac-input-border slds-align_absolute-center">
+                                                    <div lwc:if={item.isDollarDiscount}>
+                                                        <lightning-input 
+                                                            style="width: 50%;"
+                                                            min="1"
+                                                            class="slds-align_absolute-center"
+                                                            data-discount-input-item-id={item.selectorId}
+                                                            type="number" 
+                                                            name="discountCurrencyInput" 
+                                                            value={item.discount.amount} 
+                                                            formatter="currency" 
+                                                            placeholder="$"
+                                                            step="0.01"
+                                                            variant="label-hidden"
+                                                            onchange={handleDiscountAmtChange}>
+                                                        </lightning-input>
+                                                    </div>
+                                                    <div lwc:elseif={item.isPercentageDiscount}>
+                                                        <lightning-input 
+                                                            style="width: 50%;"
+                                                            class="slds-align_absolute-center"
+                                                            data-discount-input-item-id={item.selectorId}
+                                                            type="number" 
+                                                            name="discountPercentageInput" 
+                                                            value={item.discount.percentage} 
+                                                            formatter="percent" 
+                                                            step="0.01"
+                                                            max=.99 
+                                                            message-when-range-overflow="Please enter a percentage in the format .##"
+                                                            variant="label-hidden"
+                                                            onchange={handleDiscountPercentageChange}>
+                                                        </lightning-input>
+                                                    </div>
+                                                    <div lwc:elseif={item.isCodeDiscountField}>
+                                                        <lightning-input 
+                                                            style="width: 50%;"
+                                                            class="slds-align_absolute-center"
+                                                            data-discount-input-item-id={item.selectorId}
+                                                            type="text" 
+                                                            name="discountCodeEntry" 
+                                                            variant="label-hidden"
+                                                            onchange={handleDiscountCodeEntry}>
+                                                        </lightning-input>
+                                                    </div>
+                                                    <div lwc:elseif={item.isDollarDiscount}>
+                                                        <lightning-formatted-number 
+                                                            class="slds-align_absolute-center"
+                                                            value={item.discount.amount}  
+                                                            maximum-fraction-digits="0" 
+                                                            format-style="currency" 
+                                                            currency-code="USD">
+                                                        </lightning-formatted-number>
+                                                    </div>
+                                                    <div lwc:elseif={item.isPercentageDiscount}>
+                                                        <lightning-formatted-number 
+                                                            class="slds-align_absolute-center"
+                                                            value={item.discount.percentage} 
+                                                            format-style="percent"
+                                                            maximum-fraction-digits="1">
+                                                        </lightning-formatted-number>
+                                                    </div>
+                                                    <div lwc:else>
+                                                        <lightning-input 
+                                                            class="slds-align_absolute-center"
+                                                            data-quantity-input-id={item.selectorId}
+                                                            style="width: 50%;"
+                                                            min="1"
+                                                            message-when-range-underflow="Please enter a number greater than 0."
+                                                            type="number" 
+                                                            name="quantityInput" 
+                                                            label="Enter a number"
+                                                            variant="label-hidden"
+                                                            value={item.quantity}
+                                                            onchange={handleLineItemQuantity}>
+                                                        </lightning-input>
+                                                    </div>
+                                                    
+                                                </div>
+                                                
+                                            </td>
+                                            <td>
+                                                <div style="position:relative">
+                                                    <p>{item.name}</p>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p><lightning-formatted-rich-text 
+                                                    value={item.contentsPreview} linkify>
+                                                </lightning-formatted-rich-text></p>
+                                            </td>
+                                            <td>
+                                                <p><lightning-formatted-number 
+                                                    value={item.listPrice}
+                                                    maximum-fraction-digits="2"
+                                                    format-style="currency" 
+                                                    currency-code="USD">
+                                                </lightning-formatted-number></p>
+                                            </td>
+                                        </tr>
+                                    </template>
+            
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </li>
+            <li class="slds-accordion__list-item slds-var-m-bottom_large">
+                <section class="slds-accordion__section">
+                    <div class="slds-accordion__summary">
+                        <h2 class="slds-accordion__summary-heading ac-accordion-header-text-align">
+                            <button 
+                                name="paymentSectionToggle"
+                                class="slds-button slds-button_reset slds-accordion__summary-action slds-var-m-right_small"
+                                aria-controls="referenceId-03" 
+                                title="Accordion summary"
+                                onclick={handlePaymentSummarySectionToggle}>
+                                <lightning-icon 
+                                    class="slds-var-m-right_x-small"
+                                    icon-name={paymentSummarySectionIcon}
+                                    alternative-text="Expand" 
+                                    title="Expand"
+                                    size="x-small">
+                                </lightning-icon>
+                                <span class="slds-accordion__summary-content ac-flex-auto slds-var-m-bottom_medium">
+                                    <div class="slds-grid">
+                                        <div class="slds-col slds-var-m-right_medium" style="max-width:fit-content">
+                                            <p>PAYMENT<br>OPTIONS:</p>
+                                        </div>
+                                        <div class="slds-col slds-size_2-of-12">
+                                            <lightning-combobox
+                                                class="ac-position-absolute"
+                                                name="payOptions"
+                                                label="Payment Options"
+                                                variant="label-hidden"
+                                                placeholder="Select"
+                                                disabled={payPlanSelectorDisabled}
+                                                options={payPlanSelectList}
+                                                value={currentOrder.paymentPlan.Id}
+                                                onchange={handlePPSummarySelect} >
+                                            </lightning-combobox>
+                                        </div>
+                                        <div class="slds-col">
+                                            <span class="ac-flex">
+                                                <p class="slds-text-body_small slds-text-align_center">Add to First<br>Payment</p>
+                                                <div class="ac-input-border">
+                                                    <lightning-input 
+                                                        style="max-width:7rem;"
+                                                        data-name="summaryLevelUpfrontChange"
+                                                        class="slds-var-m-left_small"
+                                                        type="number" 
+                                                        name="addToUpfront" 
+                                                        value={currentOrder.paymentPlan.additionalAmountOnFirstPayment} 
+                                                        message-when-range-overflow="Please enter a number less than the remaining amount due."
+                                                        max={currentOrder.paymentPlan.totalAmountAfterUpfront} 
+                                                        formatter="currency" 
+                                                        placeholder="$"
+                                                        step="0.01"
+                                                        variant="label-hidden"
+                                                        disabled={payPlanInputsDisabled}
+                                                        onchange={handleUpfrontGlobalChange}
+                                                        onblur={handleUpfrontChangeSet}>
+                                                    </lightning-input>                                            
+                                                </div>
+                                                <lightning-icon 
+                                                    icon-name="utility:clear"  
+                                                    class="ac-delete-icon"
+                                                    size="xx-small"
+                                                    variant="bare" 
+                                                    alternative-text="Clear Additional Amount" 
+                                                    title="ClearAdditionalAmount"
+                                                    onclick={handleSummaryAddtlAmountClear}>
+                                                </lightning-icon>
+                                            </span>
+                                        </div>
+                                        <div class="slds-col">
+                                            <p class="slds-text-body_small slds-text-align_center">ORDER PRICE:</p>
+                                            <div>
+                                                <lightning-formatted-number 
+                                                    class="ac-med-font slds-text-align_center"
+                                                    lwc:if={paymentPlanIsSelected} 
+                                                    value={currentOrder.paymentPlan.totalAmountBeforeInterest}  
+                                                    maximum-fraction-digits="2" 
+                                                    format-style="currency" 
+                                                    currency-code="USD">
+                                                </lightning-formatted-number>
+                                                <p lwc:else>--</p>
+                                            </div>
+                                        </div>
+                                        <div class="slds-col">
+                                            <p class="slds-text-body_small slds-text-align_center">DUE TODAY: </p>
+                                            <lightning-formatted-number 
+                                                class="ac-med-font slds-text-align_center"
+                                                lwc:if={paymentPlanIsSelected}  
+                                                value={currentOrder.totalDueAtCheckout}  
+                                                maximum-fraction-digits="2" 
+                                                format-style="currency" 
+                                                currency-code="USD">
+                                            </lightning-formatted-number>
+                                        </div>
+                                        <div class="slds-col">
+                                            <p class="slds-text-body_small slds-text-align_center">FIRST PAYMENT: </p>
+                                            <lightning-formatted-number 
+                                                class="ac-med-font slds-text-align_center"
+                                                lwc:if={paymentPlanIsSelected}  
+                                                value={currentOrder.paymentPlan.firstPayment} 
+                                                maximum-fraction-digits="2" 
+                                                format-style="currency" 
+                                                currency-code="USD">
+                                            </lightning-formatted-number>
+                                        </div>
+                                        <div class="slds-col">
+                                            <p lwc:if={currentOrder.paymentPlan.isAnnual} class="slds-text-body_small slds-text-align_center">ANNUAL PAYMENT: </p>
+                                            <p lwc:else class="slds-text-body_small slds-text-align_center">MONTHLY PAYMENT: </p>
+                                            <lightning-formatted-number 
+                                                class="ac-med-font slds-text-align_center"
+                                                lwc:if={paymentPlanIsSelected}  
+                                                value={currentOrder.paymentPlan.monthlyPaymentAmount} 
+                                                maximum-fraction-digits="2" 
+                                                format-style="currency" 
+                                                currency-code="USD">
+                                            </lightning-formatted-number>
+                                        </div>
+                                        <div class="slds-col">
+                                            <p class="slds-text-body_small slds-text-align_center">LIFETIME COST: </p>
+                                            <div lwc:if={paymentPlanIsSelected}>
+                                                <p lwc:if={currentOrder.paymentPlan.isAnnual} class="ac-med-font slds-text-align_center">--</p>
+                                                <lightning-formatted-number
+                                                    lwc:else
+                                                    class="ac-med-font slds-text-align_center"
+                                                    value={currentOrder.paymentPlan.totalAmountAfterInterest} 
+                                                    maximum-fraction-digits="2" 
+                                                    format-style="currency" 
+                                                    currency-code="USD">
+                                                </lightning-formatted-number>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </span>
+                            </button>
+                        </h2>
+                    </div>
+                    <div class="slds-var-m-top_large" data-section-id="paymentSummaryContents">
+                        <table>
+                            <tr>
+                                <th style="width:5%"></th>
+                                <th style="width:10%">Payment Plan</th>
+                                <th style="width:20%">Add to First Payment</th>
+                                <th style="width:12%">Due Today</th>
+                                <th style="width:12%">First Payment</th>
+                                <th style="width:12%">Monthly Payment</th>
+                                <th style="width:12%">Total Fees</th>
+                                <th style="width:17%">Total Lifetime Cost</th>
+                            </tr>
+                            <template for:each={paymentPlanOptions} for:item="pp">
+                                <tr key={pp.Id} class="ac-data-row">
+                                    <td>
+                                        <div class="radio">
+                                            <input 
+                                                type="radio" 
+                                                data-pp-selected-id={pp.Id} 
+                                                id={pp.name}
+                                                name="PaymentPlanRadioSelector"
+                                                checked={pp.selected}
+                                                disabled={payPlanSelectorDisabled}
+                                                onchange={handlePPSelect}>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p><lightning-formatted-text 
+                                            value={pp.name}>
+                                        </lightning-formatted-text></p>
+                                    </td>
+                                    <td>
+                                        <span class="ac-flex" lwc:if={pp.isOneTime}>
+                                            <p class="slds-align_absolute-center">--</p>
+                                        </span>
+                                        <span class="ac-flex" lwc:elseif={pp.isAnnual}>
+                                            <p class="slds-align_absolute-center">--</p>
+                                        </span>
+                                        <span lwc:else class="ac-flex">
+                                            <p class="slds-text-align_center">Add to First Payment</p>
+                                            <div class="ac-input-border slds-var-m-left_small">
+                                                <lightning-input 
+                                                    data-name="rowLevelUpfrontChange"
+                                                    style="width: 75%;"
+                                                    data-payment-upfront-added={pp.Id}
+                                                    type="number" 
+                                                    name="addToUpfront" 
+                                                    message-when-range-overflow="Please enter a number less than the remaining amount due."
+                                                    value={pp.additionalAmountOnFirstPayment} 
+                                                    max={pp.totalAmountAfterUpfront} 
+                                                    formatter="currency" 
+                                                    placeholder="$"
+                                                    step="0.01"
+                                                    variant="label-hidden"
+                                                    disabled={payPlanInputsDisabled}
+                                                    onchange={handleUpfrontPPSpecificChange}
+                                                    onblur={handleUpfrontChangeSet}>
+                                                </lightning-input>                                            
+                                            </div>
+                                        </span>
+                                        
+                                    </td>
+                                    <td>
+                                        <p lwc:if={pp.noProductsSelected}>--</p>
+                                        <p lwc:else><lightning-formatted-number 
+                                            value={pp.totalDueAtCheckout}
+                                            maximum-fraction-digits="2"
+                                            format-style="currency" 
+                                            currency-code="USD">
+                                        </lightning-formatted-number></p>
+                                    </td>
+                                    <td>
+                                        <p lwc:if={pp.noProductsSelected}>--</p>
+                                        <p lwc:else><lightning-formatted-number 
+                                            value={pp.firstPayment}
+                                            maximum-fraction-digits="2"
+                                            format-style="currency" 
+                                            currency-code="USD">
+                                        </lightning-formatted-number></p>
+                                    </td>
+                                    <td>
+                                        <p lwc:if={pp.noProductsSelected}>--</p>
+                                        <p lwc:elseif={pp.isOneTime}>--</p>
+                                        <p lwc:elseif={pp.isAnnual}>
+                                            <lightning-formatted-number 
+                                                value={pp.monthlyPaymentAmount}
+                                                maximum-fraction-digits="2"
+                                                format-style="currency" 
+                                                currency-code="USD">
+                                            </lightning-formatted-number><br><i>(Annual)</i></p>
+                                        <p lwc:else>
+                                            <lightning-formatted-number 
+                                                value={pp.monthlyPaymentAmount}
+                                                maximum-fraction-digits="2"
+                                                format-style="currency" 
+                                                currency-code="USD">
+                                        </lightning-formatted-number></p>
+                                    </td>
+                                    <td>
+                                        <p lwc:if={pp.noProductsSelected}>--</p>
+                                        <p lwc:elseif={pp.isOneTime}>--</p>
+                                        <p lwc:elseif={pp.isAnnual}>--</p>
+                                        <p lwc:else><lightning-formatted-number 
+                                            value={pp.totalFees}
+                                            maximum-fraction-digits="2"
+                                            format-style="currency" 
+                                            currency-code="USD">
+                                        </lightning-formatted-number></p>
+                                    </td>
+                                    <td>
+                                        <p lwc:if={pp.noProductsSelected}>--</p>
+                                        <p lwc:elseif={pp.isAnnual}>--</p>
+                                        <p lwc:else><lightning-formatted-number 
+                                            value={pp.totalAmountAfterInterest}
+                                            maximum-fraction-digits="2"
+                                            format-style="currency" 
+                                            currency-code="USD">
+                                        </lightning-formatted-number></p>
+                                    </td>
+                                </tr>
+                            </template>
+    
+                        </table>
+                    </div>
+                </section>
+            </li>
+        </ul>
+    </div>
+</template>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AllOpportunities</fullName>
+    <columns>CORE.USERS.FULL_NAME</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Phone__c</columns>
+    <columns>OPPORTUNITY.LEAD_SOURCE</columns>
+    <columns>Time_Zone__c</columns>
+    <columns>Pre_enrollment_Comments__c</columns>
+    <columns>Last_Activity_Date__c</columns>
+    <columns>Baby_s_Due_Date__c</columns>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>OPPORTUNITY.LAST_UPDATE</columns>
+    <columns>Ecomm_Status__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>Baby_s_Due_Date__c</field>
+        <operation>greaterThan</operation>
+        <value>6/24/2025</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>New,No Contact,Contacted,Appointment Set,Appointment Missed,Presentation,Hot to Close</value>
+    </filters>
+    <filters>
+        <field>Call_Status__c</field>
+        <operation>notContain</operation>
+        <value>DCW#</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.LEAD_SOURCE</field>
+        <operation>equals</operation>
+        <value>Ambassador,Bing,Bing: SEO,Bing PPC,Calendly,Client Referral,Consumer Affairs,Direct,Doctor Referral,eComm (Americord),Employee Referral,Facebook,Genesis Group,Google,Google: SEO,Google PPC,Live Chat,Returning Client,unknown,WTE</value>
+    </filters>
+    <label>All Opportunities - KY</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

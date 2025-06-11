@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reason_for_Discarded__c</fullName>
+    <label>Reason for Discarded</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Damaged upon receipt</fullName>
+                <default>false</default>
+                <label>Damaged upon receipt</label>
+            </value>
+            <value>
+                <fullName>Not viable for testing</fullName>
+                <default>false</default>
+                <label>Not viable for testing</label>
+            </value>
+            <value>
+                <fullName>Not checked on the DCS</fullName>
+                <default>false</default>
+                <label>Not checked on the DCS</label>
+            </value>
+            <value>
+                <fullName>Client request, below benchmark</fullName>
+                <default>false</default>
+                <label>Client request, below benchmark</label>
+            </value>
+            <value>
+                <fullName>Client request, other</fullName>
+                <default>false</default>
+                <label>Client request, other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pricing_Version__c</fullName>
+    <description>Optional, indicates the Pricing Version that uses this pricebook.  Versions are used by the website to provide different base pricing to web visitors.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Optional, indicates the Pricing Version that uses this pricebook.  Versions are used by the website to provide different base pricing to web visitors.</inlineHelpText>
+    <label>Pricing Version</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

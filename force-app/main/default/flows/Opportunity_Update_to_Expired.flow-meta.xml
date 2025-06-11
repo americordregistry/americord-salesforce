@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>A1_Single_Opportunity_to_be_Updated</name>
+        <label>A1 - Single Opportunity to be Updated</label>
+        <locationX>264</locationX>
+        <locationY>468</locationY>
+        <assignmentItems>
+            <assignToReference>rvarUpdateOpportunities.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>rvarSingleOppforLoop.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>rvarUpdateOpportunities.StageName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Expired</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>A2_Collection_Variable_for_all_Opportunities</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>A2_Collection_Variable_for_all_Opportunities</name>
+        <label>A2 - Collection Variable for all Opportunities</label>
+        <locationX>264</locationX>
+        <locationY>576</locationY>
+        <assignmentItems>
+            <assignToReference>cvarOpportunity</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>rvarUpdateOpportunities</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_all_Opportunities</targetReference>
+        </connector>
+    </assignments>
+    <constants>
+        <name>conStageNameExpired</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Expired</stringValue>
+        </value>
+    </constants>
+    <description>When &quot;Update to Expired&quot; checkbox is true, update Opportunity to Expired.</description>
+    <environments>Default</environments>
+    <interviewLabel>Opportunity Update to Expired {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Opportunity Update to Expired</label>
+    <loops>
+        <name>Loop_all_Opportunities</name>
+        <label>Loop all Opportunities</label>
+        <locationX>176</locationX>
+        <locationY>360</locationY>
+        <assignNextValueToReference>rvarSingleOppforLoop</assignNextValueToReference>
+        <collectionReference>Get_Opportunities_that_are_Expired</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>A1_Single_Opportunity_to_be_Updated</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_Opportunities</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>When checkbox &quot;Update to Expired&quot; is true, update Opportunity to Expired. Formula for checkbox is: 
+if(
+and (
+IsClosed = false,
+or (
+Baby_s_Due_Date__c &lt; (today() - 5) ,
+DATEVALUE(CreatedDate) &lt; (today()-280))),true, false)</description>
+        <name>Get_Opportunities_that_are_Expired</name>
+        <label>Get Opportunities that are Expired</label>
+        <locationX>176</locationX>
+        <locationY>252</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_all_Opportunities</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Update_to_Expired__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Opportunity</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>StageName</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Opportunities</name>
+        <label>Update Opportunities</label>
+        <locationX>176</locationX>
+        <locationY>768</locationY>
+        <inputReference>cvarOpportunity</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Opportunities_that_are_Expired</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Update_to_Expired__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Opportunity</object>
+        <schedule>
+            <frequency>Daily</frequency>
+            <startDate>2023-06-28</startDate>
+            <startTime>22:00:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Collection Variable to store all Opportunities that should be updated.</description>
+        <name>cvarOpportunity</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <name>rvarSingleOppforLoop</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <description>Single Record Variable to store all Opportunities that should be updated.</description>
+        <name>rvarUpdateOpportunities</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+</Flow>

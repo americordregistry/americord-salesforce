@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Plan_Keyword_2_LU__c</fullName>
+    <description>LU of the Payment Plan Keyword 2 from the Cord Blood Order object. Used for email and text when collection is received at the lab to remind parents of first payment. Based on Product Ordered.</description>
+    <externalId>false</externalId>
+    <formula>Cord_Blood_Order__r.Payment_Plan_Keyword_2__c</formula>
+    <label>Payment Plan Keyword 2 LU</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

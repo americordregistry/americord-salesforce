@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Reset the portal password for the user.</description>
+        <name>Reset_Portal_Password</name>
+        <label>Reset Portal Password</label>
+        <locationX>50</locationX>
+        <locationY>539</locationY>
+        <actionName>Portal_Authentication__c.Password_Reset</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Send_Welcome_Email</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Portal_Authentication__c.Password_Reset</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <description>Call the email alert to send the welcome message.</description>
+        <name>Send_Client_Portal_Welcome_Message</name>
+        <label>Send Client Portal Welcome Message</label>
+        <locationX>50</locationX>
+        <locationY>839</locationY>
+        <actionName>Portal_Authentication__c.Client_Portal_Welcome_Message</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Portal_Authentication__c.Client_Portal_Welcome_Message</nameSegment>
+    </actionCalls>
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <description>Determine if we need to send the welcome email.</description>
+        <name>Send_Welcome_Email</name>
+        <label>Send Welcome Email?</label>
+        <locationX>182</locationX>
+        <locationY>731</locationY>
+        <defaultConnectorLabel>NO - Dont send welcome email</defaultConnectorLabel>
+        <rules>
+            <name>YES_Send_Welcome_Email</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Send_Welcome_Email__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Client_Portal_Welcome_Message</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>YES - Send Welcome Email</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determine if we send the client a password reset for the portal record.</description>
+        <name>Should_We_Send_Client_Password_Reset</name>
+        <label>Should We Send Client Password Reset</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>Send_Welcome_Email</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>NO - Dont Reset</defaultConnectorLabel>
+        <rules>
+            <name>YES_Send_Reset</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Reset_Portal_Password__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Start</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Portal_Authorization_Record_For_Reset</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>YES - Send Reset</label>
+        </rules>
+    </decisions>
+    <description>This is the main flow that should be used for the Portal Authentication automation after insert or update.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>This is a formula for the reset date on the password reset.</description>
+        <name>formDTResetDate</name>
+        <dataType>Date</dataType>
+        <expression>TODAY() + 7</expression>
+    </formulas>
+    <formulas>
+        <description>Formula that will create the password reset token.</description>
+        <name>formTPasswordResetToken</name>
+        <dataType>String</dataType>
+        <expression>&quot;6&quot;+Right({!$Record.First_Name__c},1)+&quot;3&quot;+Right({!$Record.First_Name__c} ,1)+&quot;794&quot;+Right({!$Record.Last_Name__c} ,1)+&quot;-3a&quot;+Right({!$Record.Last_Name__c} ,1)+&quot;9-473&quot;+Right({!$Record.Last_Name__c} ,1)+&quot;-8&quot;+Right({!$Record.Last_Name__c} ,1)+Text(Month(Today()))+&quot;-65bb61&quot;+Right({!$Record.First_Name__c} ,1)+&quot;9&quot;+LEFT(TEXT(NOW()), 2)+LEFT(RIGHT(TEXT(NOW()), 3),2)</expression>
+    </formulas>
+    <interviewLabel>RecordTrigger: Portal Authentication After Create or Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RecordTrigger: Portal Authentication After Create or Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Update reset values for the portal auth record.</description>
+        <name>Update_Portal_Authorization_Record_For_Reset</name>
+        <label>Update Portal Authorization Record For Reset</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <connector>
+            <targetReference>Reset_Portal_Password</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Password_Reset_Expiration_Date__c</field>
+            <value>
+                <elementReference>formDTResetDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Password_Reset_Token__c</field>
+            <value>
+                <elementReference>formTPasswordResetToken</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Reset_Password_Required__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Reset_Portal_Password__c</field>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Should_We_Send_Client_Password_Reset</targetReference>
+        </connector>
+        <object>Portal_Authentication__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

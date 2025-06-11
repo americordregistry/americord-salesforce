@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Other_Family_Members_With_Service_Count__c</fullName>
+    <defaultValue>0</defaultValue>
+    <description>Holds the number of family members, not including babies, who are getting a service and require a Family Member record. Completed during the Enrollment Flow on Opportunities.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter the number of other family members (not including babies) who are receiving a service and will need a Family Member Record for the lab.</inlineHelpText>
+    <label>Other Family Members With Service Count</label>
+    <precision>1</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

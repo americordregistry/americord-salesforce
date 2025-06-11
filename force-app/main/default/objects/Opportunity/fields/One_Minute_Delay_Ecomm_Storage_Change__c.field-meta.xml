@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>One_Minute_Delay_Ecomm_Storage_Change__c</fullName>
+    <description>When Ecomm Storage is changed, this stored the Now () date and time minus 59 minutes. This is used to trigger an update to Storage Plan, after Products are stored on Opportunity. This field is populated via Process Builder and used by the same Process Builder.</description>
+    <label>One Minute Delay Ecomm Storage Change</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

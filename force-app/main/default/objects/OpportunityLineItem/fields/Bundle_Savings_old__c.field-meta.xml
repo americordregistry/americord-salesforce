@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bundle_Savings_old__c</fullName>
+    <businessStatus>DeprecateCandidate</businessStatus>
+    <description>Managed by flow: Update Opportunity Line Quantity, Discount and Price</description>
+    <label>ZDeprecateBundle Savings</label>
+    <precision>4</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <type>Currency</type>
+</CustomField>

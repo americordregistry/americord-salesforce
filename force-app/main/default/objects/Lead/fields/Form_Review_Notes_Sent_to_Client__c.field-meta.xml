@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Form_Review_Notes_Sent_to_Client__c</fullName>
+    <inlineHelpText>Questions from the lab that are sent to the client.  These comments must be client ready.</inlineHelpText>
+    <label>Form Review Notes Sent to Client</label>
+    <length>2000</length>
+    <trackHistory>false</trackHistory>
+    <type>LongTextArea</type>
+    <visibleLines>10</visibleLines>
+</CustomField>

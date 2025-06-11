@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Communications_Preferences_Enroll_Forms__c</fullName>
+    <externalId>false</externalId>
+    <formula>Text(Cord_Blood_Order__r.CP_Enrollment_Paperwork__c)</formula>
+    <inlineHelpText>Lookup from the Cord Blood Order</inlineHelpText>
+    <label>Communications Preferences: Enroll Forms</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

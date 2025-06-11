@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fulfillment_New_Orders</fullName>
+    <columns>Baby_s_Due_Date_new__c</columns>
+    <columns>NAME</columns>
+    <columns>Number_of_Kits_FedEx__c</columns>
+    <columns>Shipping_Notes__c</columns>
+    <columns>Shipping_Method__c</columns>
+    <columns>Shipping_Name__c</columns>
+    <columns>Shipping_City__c</columns>
+    <columns>Shipping_State__c</columns>
+    <columns>Shipping_Zip__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CREATED_DATE</field>
+        <operation>greaterOrEqual</operation>
+        <value>9/16/2016 12:00 AM</value>
+    </filters>
+    <filters>
+        <field>Is_Voided_LU__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Sender_Name__c</field>
+        <operation>equals</operation>
+        <value>Fulfillment Dept (Andwin)</value>
+    </filters>
+    <filters>
+        <field>Kit_Sent__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Andwin_S_O__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>Fulfillment - New Orders</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+        <portalRoleAndSubordinates>AmericordFulfillmentPortalPartnerExecutive</portalRoleAndSubordinates>
+        <portalRoleAndSubordinates>AmericordFulfillmentPortalPartnerManager</portalRoleAndSubordinates>
+        <portalRoleAndSubordinates>AmericordFulfillmentPortalPartnerUser</portalRoleAndSubordinates>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cord_Blood_Collection_Completed__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>The AirNet or Medical Courier confirmation was received. Stem cells were collected and delivered to the lab.</description>
+    <label>Courier P/U</label>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

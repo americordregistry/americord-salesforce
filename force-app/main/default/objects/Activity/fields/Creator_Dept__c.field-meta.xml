@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Creator_Dept__c</fullName>
+    <description>Used to identify tasks completed by Field Sales dept.</description>
+    <externalId>false</externalId>
+    <formula>CreatedBy.Department</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Creator Dept</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

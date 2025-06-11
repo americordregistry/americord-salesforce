@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Additional_Amount_on_First_Payment__c</fullName>
+    <defaultValue>0</defaultValue>
+    <description>Customers may choose to add an additional amount to the first payment of a multi-payment plan.  Customizable in the Order Builder.</description>
+    <label>Additional Amount on First Payment</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

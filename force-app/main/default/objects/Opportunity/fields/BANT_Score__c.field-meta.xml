@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BANT_Score__c</fullName>
+    <externalId>false</externalId>
+    <formula>Budget_What_is_the_client_s_budget__c +  Authority_is_client_the_decision_maker__c +  Need_what_is_clients_level_of_need__c + Timeframe_How_soon_will_client_decide__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>BANT Score</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

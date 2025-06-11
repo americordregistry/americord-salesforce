@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Link_Swap__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Check this box if this partner wishes to exchange link to each others websites.</inlineHelpText>
+    <label>Link Swap</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

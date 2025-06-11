@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Send email to mother when AC is set.</description>
+        <name>Send_email_To_Mother</name>
+        <label>Send email To Mother</label>
+        <locationX>116</locationX>
+        <locationY>863</locationY>
+        <actionName>Baby__c.Email_is_sent_to_Client_when_PDF_Certificate_is_created</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Set_Lab_AC_Cert</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Baby__c.Email_is_sent_to_Client_when_PDF_Certificate_is_created</nameSegment>
+    </actionCalls>
+    <apiVersion>57.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Set the variable for the Lab AC Cert.</description>
+        <name>Set_Lab_AC_Cert</name>
+        <label>Set Lab AC Cert</label>
+        <locationX>116</locationX>
+        <locationY>971</locationY>
+        <assignmentItems>
+            <assignToReference>varBooleanACCert</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Is_Testing_Required</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Set the values for setting the lab testing to false.</description>
+        <name>Set_Lab_Testing_False</name>
+        <label>Set Lab Testing False</label>
+        <locationX>314</locationX>
+        <locationY>1379</locationY>
+        <assignmentItems>
+            <assignToReference>varBooleanLabNeedsToUpdate</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Get_Associated_Lab.Lab_Testing_in_Progress__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Is_Cryopoint_And_Blank_Processing_Method</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Assignment to set lab testing to true.</description>
+        <name>Set_Lab_Testing_True</name>
+        <label>Set Lab Testing True</label>
+        <locationX>50</locationX>
+        <locationY>1271</locationY>
+        <assignmentItems>
+            <assignToReference>varBooleanLabNeedsToUpdate</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Get_Associated_Lab.Lab_Testing_in_Progress__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Is_Cryopoint_And_Blank_Processing_Method</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Determine if Certificate has been set for the Baby.</description>
+        <name>Has_AC_Certificate_been_set</name>
+        <label>Has AC Certificate been set?</label>
+        <locationX>248</locationX>
+        <locationY>755</locationY>
+        <defaultConnector>
+            <targetReference>Is_Testing_Required</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Cert has not been set</defaultConnectorLabel>
+        <rules>
+            <name>Cert_has_been_Set</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.AC_Certificate__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.AC_Certificate__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_email_To_Mother</targetReference>
+            </connector>
+            <label>Cert has been Set</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Check to see if this baby is processed at Cryopoint and processing method is blank.</description>
+        <name>Is_Cryopoint_And_Blank_Processing_Method</name>
+        <label>Is Cryopoint And Blank Processing Method</label>
+        <locationX>248</locationX>
+        <locationY>1655</locationY>
+        <defaultConnector>
+            <targetReference>Update_Lab_Record</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No Not Cryopoint</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Cryopoint_and_Process_Method_Blank</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Processing_Lab__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Cryopoint</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Cord_Blood_Processing_Method__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Processing_Method_to_Hetastarch</targetReference>
+            </connector>
+            <label>Yes Cryopoint and Process Method Blank</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determine if testing is required.</description>
+        <name>Is_Testing_Required</name>
+        <label>Is Testing Required</label>
+        <locationX>248</locationX>
+        <locationY>1163</locationY>
+        <defaultConnector>
+            <targetReference>Lab_Testing_Not_Required</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Testing Not Required</defaultConnectorLabel>
+        <rules>
+            <name>Testing_is_required</name>
+            <conditionLogic>(1 AND 5) OR (2 AND 6) OR (3 AND 7) OR (4 AND 8)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.CFU_Assay_Test__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Required</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Proliferation_Assay_Test_CT__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Required</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Proliferation_Assay_Test_PT__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Required</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Proliferation_Assay_Test_PT_2_0_AM__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Required</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CFU_Assay_Test__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Proliferation_Assay_Test_CT__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Proliferation_Assay_Test_PT__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Proliferation_Assay_Test_PT_2_0_AM__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Lab_Testing_True</targetReference>
+            </connector>
+            <label>Testing is required</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Set lab testing not required if not required flags.</description>
+        <name>Lab_Testing_Not_Required</name>
+        <label>Lab Testing Not Required</label>
+        <locationX>446</locationX>
+        <locationY>1271</locationY>
+        <defaultConnector>
+            <targetReference>Is_Cryopoint_And_Blank_Processing_Method</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No Update Needed</defaultConnectorLabel>
+        <rules>
+            <name>Lab_Testing_Is_Not_Required</name>
+            <conditionLogic>(1 AND 5) OR (2 AND 6) OR (3 AND 7) OR (4 AND 8)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.CFU_Assay_Test__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Required</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Proliferation_Assay_Test_CT__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Required</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Proliferation_Assay_Test_PT__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Required</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Proliferation_Assay_Test_PT_2_0_AM__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Required</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CFU_Assay_Test__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Proliferation_Assay_Test_CT__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Proliferation_Assay_Test_PT__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Proliferation_Assay_Test_PT_2_0_AM__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Lab_Testing_False</targetReference>
+            </connector>
+            <label>Lab Testing Is Not Required</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Test to see if we need to update the lab record.</description>
+        <name>Update_Lab_Record</name>
+        <label>Update Lab Record?</label>
+        <locationX>248</locationX>
+        <locationY>1955</locationY>
+        <defaultConnectorLabel>No Update Needed</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Update</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varBooleanLabNeedsToUpdate</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Associated_Lab_Record</targetReference>
+            </connector>
+            <label>Yes Update</label>
+        </rules>
+    </decisions>
+    <description>Main flow that runs for Insert/Updates on Baby after save.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>Formula that will set the Parent A field.</description>
+        <name>formTParentAName</name>
+        <dataType>String</dataType>
+        <expression>If ({!Get_Associated_Lab.Contact__c} = NULL,NULL,{!Get_Parent_A.Name})</expression>
+    </formulas>
+    <formulas>
+        <description>This formula will be used to set the name of the parent B field on the family member.</description>
+        <name>formTParentBName</name>
+        <dataType>String</dataType>
+        <expression>If ({!Get_Associated_Lab.Contact_2__c} = NULL,NULL,{!Get_Parent_B.Name})</expression>
+    </formulas>
+    <interviewLabel>RecordTrigger:Baby After Insert or Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RecordTrigger:Baby After Insert or Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Get the lab record baby is linked to.</description>
+        <name>Get_Associated_Lab</name>
+        <label>Get Associated Lab</label>
+        <locationX>248</locationX>
+        <locationY>323</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Parent_A</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Lab__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Lab__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get the contact record for parent A.</description>
+        <name>Get_Parent_A</name>
+        <label>Get Parent A</label>
+        <locationX>248</locationX>
+        <locationY>431</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Parent_B</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Associated_Lab.Contact__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Contact</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get the contact record for parent B.</description>
+        <name>Get_Parent_B</name>
+        <label>Get Parent B</label>
+        <locationX>248</locationX>
+        <locationY>539</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Set_Parents_A_B_On_Family_Member</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Associated_Lab.Contact_2__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Contact</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>This will set the parent a/b fields on the family member record.</description>
+        <name>Set_Parents_A_B_On_Family_Member</name>
+        <label>Set Parents A/B On Family Member</label>
+        <locationX>248</locationX>
+        <locationY>647</locationY>
+        <connector>
+            <targetReference>Has_AC_Certificate_been_set</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Parent_A__c</field>
+            <value>
+                <elementReference>formTParentAName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Parent_B__c</field>
+            <value>
+                <elementReference>formTParentBName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Sets the current records processing method to Hetastarch.</description>
+        <name>Set_Processing_Method_to_Hetastarch</name>
+        <label>Set Processing Method to Hetastarch</label>
+        <locationX>116</locationX>
+        <locationY>1763</locationY>
+        <connector>
+            <targetReference>Update_Lab_Record</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Cord_Blood_Processing_Method__c</field>
+            <value>
+                <stringValue>Hetastarch</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Update the lab record we have been working on.</description>
+        <name>Update_Associated_Lab_Record</name>
+        <label>Update Associated Lab Record</label>
+        <locationX>116</locationX>
+        <locationY>2063</locationY>
+        <inputReference>Get_Associated_Lab</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>122</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Associated_Lab</targetReference>
+        </connector>
+        <object>Baby__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Variable to hold the boolean update for the lab.</description>
+        <name>varBooleanACCert</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Variable to flag when the lab record needs to update.</description>
+        <name>varBooleanLabNeedsToUpdate</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Variable for the lab testing value.</description>
+        <name>varBooleanLabTesting</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <elementReference>Get_Associated_Lab.Lab_Testing_in_Progress__c</elementReference>
+        </value>
+    </variables>
+</Flow>

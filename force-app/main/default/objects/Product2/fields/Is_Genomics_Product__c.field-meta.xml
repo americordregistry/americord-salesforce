@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Genomics_Product__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>True if this is a genomics product OR a bundle containing a genomics product.</description>
+    <inlineHelpText>True if this is a genomics product OR a bundle containing a genomics product.</inlineHelpText>
+    <label>Is Genomics Product</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

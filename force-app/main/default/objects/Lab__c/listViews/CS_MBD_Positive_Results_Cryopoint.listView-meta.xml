@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CS_MBD_Positive_Results_Cryopoint</fullName>
+    <columns>NAME</columns>
+    <columns>Processing_Lab__c</columns>
+    <columns>MBD_Results__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Processing_Lab__c</field>
+        <operation>equals</operation>
+        <value>Cryopoint</value>
+    </filters>
+    <filters>
+        <field>MBD_Results__c</field>
+        <operation>equals</operation>
+        <value>Positive indication</value>
+    </filters>
+    <label>CS - MBD Positive Results (Cryopoint)</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

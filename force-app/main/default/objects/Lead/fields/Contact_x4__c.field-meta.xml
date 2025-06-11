@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact_x4__c</fullName>
+    <label>Contact x4</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Left Voicemail</fullName>
+                <default>false</default>
+                <label>Left Voicemail</label>
+            </value>
+            <value>
+                <fullName>Sent Email</fullName>
+                <default>false</default>
+                <label>Sent Email</label>
+            </value>
+            <value>
+                <fullName>Sent SMS</fullName>
+                <default>false</default>
+                <label>Sent SMS</label>
+            </value>
+            <value>
+                <fullName>No Answer, No VM</fullName>
+                <default>false</default>
+                <label>No Answer, No VM</label>
+            </value>
+            <value>
+                <fullName>No Answer, Sent SMS</fullName>
+                <default>false</default>
+                <label>No Answer, Sent SMS</label>
+            </value>
+            <value>
+                <fullName>Left Voicemail Sent Email</fullName>
+                <default>false</default>
+                <label>Left Voicemail Sent Email</label>
+            </value>
+            <value>
+                <fullName>No answer; Sent email</fullName>
+                <default>false</default>
+                <label>No answer; Sent email</label>
+            </value>
+            <value>
+                <fullName>Inbound</fullName>
+                <default>false</default>
+                <label>Inbound</label>
+            </value>
+            <value>
+                <fullName>Other-Explain</fullName>
+                <default>false</default>
+                <label>Other-Explain</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

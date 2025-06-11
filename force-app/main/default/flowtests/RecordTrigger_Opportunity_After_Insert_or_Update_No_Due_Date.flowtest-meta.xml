@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowTest xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>What happens when due date and close are different.</description>
+    <flowApiName>RecordTrigger_Opportunity_After_Insert_or_Update</flowApiName>
+    <label>Due Date Mismatch - Due Date In Past</label>
+    <testPoints>
+        <elementApiName>Start</elementApiName>
+        <parameters>
+            <leftValueReference>$Record</leftValueReference>
+            <type>InputTriggeringRecordInitial</type>
+            <value>
+                <sobjectValue>{&quot;Aircall_Dials__c&quot;:0,&quot;Annual_Payment_Plan_Exception__c&quot;:false,&quot;Authorized_Payment__c&quot;:false,&quot;Auto_Respond_After_Two_Day__c&quot;:false,&quot;Baby_is_born__c&quot;:false,&quot;Baby_s_Due_Date__c&quot;:&quot;2000-08-01&quot;,&quot;Bill_Surrogate_Company__c&quot;:false,&quot;Biobanking_Multi_Product_Discount__c&quot;:0,&quot;CB_Bag__c&quot;:&quot;5 Compartment&quot;,&quot;Canceled__c&quot;:false,&quot;Change_Owner_to_Americord__c&quot;:false,&quot;CloseDate&quot;:&quot;2023-08-24&quot;,&quot;Closed_Lost_Reasons__c&quot;:&quot;&quot;,&quot;Confirm_info_is_appropriate_for_LABEL__c&quot;:false,&quot;Cord_Blood_2_0__c&quot;:0,&quot;Cord_Blood__c&quot;:0,&quot;Cord_Tissue__c&quot;:0,&quot;Cyber_Monday__c&quot;:false,&quot;Delete__c&quot;:false,&quot;Deposit__c&quot;:199,&quot;Donation_reconsider__c&quot;:false,&quot;Dr_provided_info_about_Americord__c&quot;:false,&quot;Duplicate__c&quot;:false,&quot;Exosomes__c&quot;:0,&quot;Has_Been_Distributed__c&quot;:&quot;No&quot;,&quot;I_would_like_to_speak_with_a_Specialist__c&quot;:false,&quot;Inbound_Call__c&quot;:false,&quot;Include_in_lead_reassignment__c&quot;:false,&quot;Manual_Override_Quantities__c&quot;:false,&quot;My_Genome_Premium__c&quot;:0,&quot;My_Genome_Standard__c&quot;:0,&quot;Name&quot;:&quot;Martha Mother&quot;,&quot;Newborn_Genome__c&quot;:0,&quot;Newborn_Panel__c&quot;:0,&quot;Number_of_Births__c&quot;:&quot;Single&quot;,&quot;OwnerId&quot;:&quot;0058X00000FKwl3QAD&quot;,&quot;Placenta_2_0__c&quot;:0,&quot;Placenta_Tissue__c&quot;:0,&quot;Received_Black_Friday_2020_2__c&quot;:false,&quot;Reconsider__c&quot;:false,&quot;Returning_Client__c&quot;:false,&quot;SMS_Opt_out__c&quot;:false,&quot;Sales_Discount__c&quot;:0,&quot;Same_Day_Shipping_CS_Team__c&quot;:false,&quot;Same_Day_request_on_5_Star_CS_Slack__c&quot;:false,&quot;Saturday_Delivery__c&quot;:false,&quot;Ship_Kit_to_Surrogate__c&quot;:false,&quot;Shipping_Country__c&quot;:&quot;US&quot;,&quot;Shipping_Type__c&quot;:&quot;Standard&quot;,&quot;StageName&quot;:&quot;New&quot;,&quot;Surrogate__c&quot;:false,&quot;Temp_Trigger__c&quot;:false,&quot;dc3DisableDuplicateCheck__c&quot;:false,&quot;fw2__IsClone__c&quot;:false,&quot;n2de__Is_distributed__c&quot;:false,&quot;n2de__Is_reassigned__c&quot;:false,&quot;n2de__Is_rejected__c&quot;:false,&quot;n2de__Is_trigger_enabled__c&quot;:false,&quot;n2de__Is_triggered__c&quot;:false,&quot;paymentplanawareness__c&quot;:false,&quot;planningtobank__c&quot;:false,&quot;qbdialer__Dials__c&quot;:0,&quot;tdc_tsw__SMS_Opt_out__c&quot;:false}</sobjectValue>
+            </value>
+        </parameters>
+    </testPoints>
+    <testPoints>
+        <assertions>
+            <conditions>
+                <leftValueReference>$Record.CloseDate</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <dateValue>2023-08-24</dateValue>
+                </rightValue>
+            </conditions>
+        </assertions>
+        <elementApiName>Finish</elementApiName>
+    </testPoints>
+</FlowTest>

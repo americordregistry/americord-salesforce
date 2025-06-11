@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Field_Rep_Special_Commission__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Used by Jean to track those accounts that will be included in the special commission being paid to ex Field Reps.</description>
+    <label>Field Rep Special Commission</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

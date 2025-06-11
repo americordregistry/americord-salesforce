@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>tdc_tvte__Empty__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF(tdc_tvte__success__c == true, 
+
+CASE(tdc_tvte__Result__c, &apos;deliverable&apos;, &apos;Verified&apos;, 
+
+&apos;undeliverable&apos;, &apos;Verified&apos;, 
+
+&apos;risky&apos;, &apos;Verified&apos;, 
+
+&apos;unknown&apos;, &apos;Verified&apos;, tdc_tvte__Result__c) 
+
+, &apos;Not Verified&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Overall Legend</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Marketing_Discount__c</fullName>
+    <description>A discount that was added via a promotional code or similar.</description>
+    <inlineHelpText>A discount that was added via a promotional code or similar.</inlineHelpText>
+    <label>Marketing Discount</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <type>Currency</type>
+</CustomField>

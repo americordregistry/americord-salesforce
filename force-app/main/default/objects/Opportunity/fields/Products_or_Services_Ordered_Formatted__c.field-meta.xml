@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Products_or_Services_Ordered_Formatted__c</fullName>
+    <description>Formatted list of products/services ordered. Populated by flow.</description>
+    <inlineHelpText>Formatted list of products/services ordered.</inlineHelpText>
+    <label>Products or Services Ordered</label>
+    <length>32768</length>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

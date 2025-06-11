@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Call_Result__c</fullName>
+    <label>Call Result</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Left Voicemail</fullName>
+                <default>false</default>
+                <label>Left Voicemail</label>
+            </value>
+            <value>
+                <fullName>No answer, no vm</fullName>
+                <default>false</default>
+                <label>No answer, no vm</label>
+            </value>
+            <value>
+                <fullName>Sent SMS</fullName>
+                <default>false</default>
+                <label>Sent SMS</label>
+            </value>
+            <value>
+                <fullName>Sent Email</fullName>
+                <default>false</default>
+                <label>Sent Email</label>
+            </value>
+            <value>
+                <fullName>Bad Number</fullName>
+                <default>false</default>
+                <label>Bad Number</label>
+            </value>
+            <value>
+                <fullName>Not interested</fullName>
+                <default>false</default>
+                <label>Not interested</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

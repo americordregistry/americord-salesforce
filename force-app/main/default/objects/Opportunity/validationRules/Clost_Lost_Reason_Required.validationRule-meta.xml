@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Clost_Lost_Reason_Required</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+NOT($Setup.Americord_Settings__c.Bypass_Validation_Rule__c),
+text(StageName) = &quot;Closed Lost&quot;,
+ISBLANK(text(Closed_Lost_Reasons__c))
+)</errorConditionFormula>
+    <errorMessage>Provide a Closed Lost Reason to save this record.</errorMessage>
+</ValidationRule>

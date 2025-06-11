@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lab2_All_Collections</fullName>
+    <columns>Collection_Date__c</columns>
+    <columns>NAME</columns>
+    <columns>Forms__c</columns>
+    <columns>DCS__c</columns>
+    <columns>Certificate_ID__c</columns>
+    <columns>Baby_B_Kit_ID__c</columns>
+    <columns>Baby_C_Kit_ID__c</columns>
+    <columns>Father_s_Last_Name__c</columns>
+    <columns>Mother_s_Last_Name__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Processing_Lab__c</field>
+        <operation>equals</operation>
+        <value>Lifeforce</value>
+    </filters>
+    <filters>
+        <field>Is_Voided_LU__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>Lab Lifeforce - All Collections</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+        <portalRole>LifeforceLabPartnerUser</portalRole>
+    </sharedTo>
+</ListView>

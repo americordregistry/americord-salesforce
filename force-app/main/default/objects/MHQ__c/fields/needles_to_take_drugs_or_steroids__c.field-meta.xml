@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>needles_to_take_drugs_or_steroids__c</fullName>
+    <inlineHelpText>In the past 12 months have you: Had sexual contact with anyone who has ever used needles within the past 5 years to take drugs or steroids, or anything not prescribed by their doctor?</inlineHelpText>
+    <label>18. needles to take drugs or steroids</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>MHQ</valueSetName>
+    </valueSet>
+</CustomField>

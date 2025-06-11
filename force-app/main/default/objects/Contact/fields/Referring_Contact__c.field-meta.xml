@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Referring_Contact__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Referring Contact (new)</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>Clients that are part of the same account cannot refer themselves.</errorMessage>
+        <filterItems>
+            <field>$Source.AccountId</field>
+            <operation>notEqual</operation>
+            <valueField>Contact.AccountId</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Contact</referenceTo>
+    <relationshipLabel>Contacts (Referring Contact New)</relationshipLabel>
+    <relationshipName>Referred_By</relationshipName>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <type>Lookup</type>
+</CustomField>

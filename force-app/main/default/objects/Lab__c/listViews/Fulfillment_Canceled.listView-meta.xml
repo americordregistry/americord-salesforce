@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fulfillment_Canceled</fullName>
+    <columns>LAST_UPDATE</columns>
+    <columns>NAME</columns>
+    <columns>Baby_s_Due_Date_new__c</columns>
+    <columns>Kit_Type__c</columns>
+    <columns>Shipping_State__c</columns>
+    <columns>Number_of_Kits_FedEx__c</columns>
+    <columns>Shipping_Notes__c</columns>
+    <columns>Shipping_Street__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Andwin_S_O__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>Kit_Sent__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Is_Voided_LU__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Sender_Name__c</field>
+        <operation>notEqual</operation>
+        <value>Client Service Dept (NYC),Client Service Dept (CA)</value>
+    </filters>
+    <label>Fulfillment - Canceled</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+        <portalRole>AmericordFulfillmentPortalPartnerExecutive</portalRole>
+        <portalRole>AmericordFulfillmentPortalPartnerManager</portalRole>
+        <portalRole>AmericordFulfillmentPortalPartnerUser</portalRole>
+    </sharedTo>
+</ListView>

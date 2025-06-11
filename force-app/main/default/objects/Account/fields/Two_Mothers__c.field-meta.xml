@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Two_Mothers__c</fullName>
+    <description>Uses rollup help to count two or more mothers, used to identify error with Duplicate Check dedupe. Field is populated by rollup/DLRS - Account_Count_Mothers</description>
+    <externalId>false</externalId>
+    <label>Two Mothers</label>
+    <precision>1</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

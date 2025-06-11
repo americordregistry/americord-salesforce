@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Surrogate_Informed_Consent_Document_Type__c</fullName>
+    <description>This field will represent where the document is stored in Salesforce.</description>
+    <inlineHelpText>This field will represent where the document is stored in Salesforce.</inlineHelpText>
+    <label>Surrogate Informed Consent Document Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Attachment</fullName>
+                <default>false</default>
+                <label>Attachment</label>
+            </value>
+            <value>
+                <fullName>Content</fullName>
+                <default>false</default>
+                <label>Content</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

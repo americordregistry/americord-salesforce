@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NewThisWeek</fullName>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <columns>Baby_s_Due_Date__c</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>OPPORTUNITY.LEAD_SOURCE</columns>
+    <columns>Phone__c</columns>
+    <columns>Pre_enrollment_Comments__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.CREATED_DATE</field>
+        <operation>greaterThan</operation>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.NAME</field>
+        <operation>notContain</operation>
+        <value>(test)</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.LEAD_SOURCE</field>
+        <operation>contains</operation>
+        <value>Ambassador,Calendly,Client Referral,Consumer Affairs,Doctor Referral,Facebook,Facebook-Instagram,Google,Instagram,Live Chat,Returning Client</value>
+    </filters>
+    <label>New This Week</label>
+</ListView>

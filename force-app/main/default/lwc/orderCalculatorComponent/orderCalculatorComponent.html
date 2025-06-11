@@ -1,0 +1,35 @@
+<template>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_12-of-12">
+            <c-order-calculator-input></c-order-calculator-input>
+        </div>
+        <div class="slds-col slds-size_12-of-12">
+            <c-order-calculator-selection record-id={recordId}></c-order-calculator-selection>
+        </div>
+        <div class="slds-col slds-size_2-of-12">
+            <c-order-calculator-display-one-time-payment></c-order-calculator-display-one-time-payment>
+            <c-order-calculator-display-annual-storage></c-order-calculator-display-annual-storage>
+        </div>
+        <template if:false={isOrder}>
+            <div class="slds-col slds-size_5-of-12">
+                <c-order-calculator-display-hybrid></c-order-calculator-display-hybrid>
+            </div>
+            <div class="slds-col slds-size_5-of-12">
+                <c-order-calculator-display-monthly-payment></c-order-calculator-display-monthly-payment>
+            </div>
+        </template>
+        <template if:true={isOrder}>
+            <div class="slds-col slds-size_5-of-12">
+                <div class="slds-grid slds-grid_vertical">
+                    <c-order-calculator-display-hybrid></c-order-calculator-display-hybrid>
+                    <div class="slds-var-m-horizontal_small">
+                        <c-order-calculator-display-monthly-payment></c-order-calculator-display-monthly-payment>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col slds-size_5-of-12">
+                <c-order-calculator-billing-notes></c-order-calculator-billing-notes>
+            </div>
+        </template>
+    </div>
+</template>

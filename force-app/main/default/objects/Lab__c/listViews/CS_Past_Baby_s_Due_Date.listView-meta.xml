@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CS_Past_Baby_s_Due_Date</fullName>
+    <columns>NAME</columns>
+    <columns>Cord_Blood_Order__c</columns>
+    <columns>Baby_s_Due_Date_new__c</columns>
+    <columns>DCS__c</columns>
+    <columns>Relation_to_Baby__c</columns>
+    <columns>Relation_to_Baby_2__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>DCS__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>Baby_s_Due_Date_new__c</field>
+        <operation>lessThan</operation>
+        <value>N_DAYS_AGO:10</value>
+    </filters>
+    <filters>
+        <field>Is_Voided_LU__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>notContain</operation>
+        <value>ninatest</value>
+    </filters>
+    <label>CS - Past Baby&apos;s Due Date</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

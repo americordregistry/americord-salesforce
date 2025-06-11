@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Funnel_Readd_Date__c</fullName>
+    <description>This is the date the opportunity was fed back into the sales funnel. This field should be updated anytime we reset an opp from expired to new. If you dont use this field then the expired job will run and try to flip it back.</description>
+    <inlineHelpText>This is the date the opportunity was fed back into the sales funnel. This field should be updated anytime we reset an opp from expired to new. If you dont use this field then the expired job will run and try to flip it back.</inlineHelpText>
+    <label>Sales Funnel Readd Date</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

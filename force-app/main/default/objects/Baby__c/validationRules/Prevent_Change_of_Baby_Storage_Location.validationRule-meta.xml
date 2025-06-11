@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevent_Change_of_Baby_Storage_Location</fullName>
+    <active>true</active>
+    <description>This validation rule will prevent changing the storage location status once set.</description>
+    <errorConditionFormula>IF($UserRole.Name != &apos;Lab Manager&apos;,
+OR(
+	AND(
+		ISCHANGED(CT_Storage_Location__c),
+		NOT(ISBLANK(PRIORVALUE(CT_Storage_Location__c)))
+	),
+	AND(
+		ISCHANGED(CB_Storage_Location__c),
+		NOT(ISBLANK(PRIORVALUE(CB_Storage_Location__c)))
+	),
+	AND(
+		ISCHANGED(PT_20_Storage_Location__c),
+		NOT(ISBLANK(PRIORVALUE(PT_20_Storage_Location__c)))
+	),
+	AND(
+		ISCHANGED(PT_Storage_Location__c),
+		NOT(ISBLANK(PRIORVALUE(PT_Storage_Location__c)))
+	),
+	AND(
+		ISCHANGED(Exosome_Storage_Location__c),
+		NOT(ISBLANK(PRIORVALUE(Exosome_Storage_Location__c)))
+	)	
+),false)</errorConditionFormula>
+    <errorMessage>You cannot change the Storage Location of the sample once the value is set. If you wish to change this value please ask your Admin.</errorMessage>
+</ValidationRule>

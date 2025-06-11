@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>fw1__Exclude_in_Batch_Statement__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <label>Exclude in Batch Statement</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

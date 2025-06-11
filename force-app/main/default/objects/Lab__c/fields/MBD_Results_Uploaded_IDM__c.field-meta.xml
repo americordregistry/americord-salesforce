@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MBD_Results_Uploaded_IDM__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Indicates that the Maternal Blood Draw Infectious Disease Panel has been uploaded</inlineHelpText>
+    <label>MBD Results Uploaded (IDM)</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

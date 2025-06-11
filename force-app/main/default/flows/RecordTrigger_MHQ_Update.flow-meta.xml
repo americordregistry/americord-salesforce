@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>57.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Add the new record to the collection to add later.</description>
+        <name>Add_Link_Record_To_Collection</name>
+        <label>Add Link Record To Collection</label>
+        <locationX>440</locationX>
+        <locationY>1391</locationY>
+        <assignmentItems>
+            <assignToReference>varRecCollectionContentDocumentLink</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varRecContentDocumentLink</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Over_Content_Document_Links</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Assign the current document id to the collection.</description>
+        <name>Assign_document_id_to_the_collection</name>
+        <label>Assign document id to the collection</label>
+        <locationX>264</locationX>
+        <locationY>695</locationY>
+        <assignmentItems>
+            <assignToReference>varTCollectionOfContentDocumentIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_over_lab_content_document_link_Records.ContentDocumentId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_over_lab_content_document_link_Records</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Assign values to create new content document link record.</description>
+        <name>Assign_Values_to_Content_Document_Link_Record</name>
+        <label>Assign Values to Content Document Link Record</label>
+        <locationX>440</locationX>
+        <locationY>1271</locationY>
+        <assignmentItems>
+            <assignToReference>varRecContentDocumentLink.ContentDocumentId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Over_Content_Document_Links.ContentDocumentId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varRecContentDocumentLink.LinkedEntityId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varTLabId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varRecContentDocumentLink.ShareType</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Over_Content_Document_Links.ShareType</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varRecContentDocumentLink.Visibility</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Over_Content_Document_Links.Visibility</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_Link_Record_To_Collection</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Store the parent lab id.</description>
+        <name>Set_Parent_Lab_ID</name>
+        <label>Set Parent Lab ID</label>
+        <locationX>176</locationX>
+        <locationY>335</locationY>
+        <assignmentItems>
+            <assignToReference>varTLabId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Lab__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Lab_Content_Document_Links</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Check to see if the this content document is already linked to the lab.</description>
+        <name>Does_the_Content_Document_already_exist_linked</name>
+        <label>Does the Content Document already exist linked</label>
+        <locationX>352</locationX>
+        <locationY>1151</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Values_to_Content_Document_Link_Record</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not linked to the lab</defaultConnectorLabel>
+        <rules>
+            <name>Linked_to_the_lab</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varTCollectionOfContentDocumentIds</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference>Loop_Over_Content_Document_Links.ContentDocumentId</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Loop_Over_Content_Document_Links</targetReference>
+            </connector>
+            <label>Linked to the lab</label>
+        </rules>
+    </decisions>
+    <description>Flow that will run when the MHQ is updated from the docusign.</description>
+    <environments>Default</environments>
+    <interviewLabel>RecordTrigger MHQ Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RecordTrigger MHQ Update</label>
+    <loops>
+        <description>Loop over the content document link records</description>
+        <name>Loop_Over_Content_Document_Links</name>
+        <label>Loop Over Content Document Links</label>
+        <locationX>176</locationX>
+        <locationY>1031</locationY>
+        <collectionReference>Get_Content_Document_Link_Records</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Does_the_Content_Document_already_exist_linked</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Create_new_Content_Document_Links_from_Collection</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <description>Loop over the content document link records.</description>
+        <name>Loop_over_lab_content_document_link_Records</name>
+        <label>Loop over lab content document link Records</label>
+        <locationX>176</locationX>
+        <locationY>575</locationY>
+        <collectionReference>Get_Lab_Content_Document_Links</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_document_id_to_the_collection</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Get_Content_Document_Link_Records</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <description>Create the new links from collection.</description>
+        <name>Create_new_Content_Document_Links_from_Collection</name>
+        <label>Create new Content Document Links from Collection</label>
+        <locationX>176</locationX>
+        <locationY>1703</locationY>
+        <inputReference>varRecCollectionContentDocumentLink</inputReference>
+    </recordCreates>
+    <recordLookups>
+        <description>Get the Content Doc Link Records for the MHQ.</description>
+        <name>Get_Content_Document_Link_Records</name>
+        <label>Get Content Document Link Records</label>
+        <locationX>176</locationX>
+        <locationY>911</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_Over_Content_Document_Links</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>LinkedEntityId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>ContentDocumentLink</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get Content Document Link Records for Lab</description>
+        <name>Get_Lab_Content_Document_Links</name>
+        <label>Get Lab Content Document Links</label>
+        <locationX>176</locationX>
+        <locationY>455</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_over_lab_content_document_link_Records</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>LinkedEntityId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varTLabId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>ContentDocumentLink</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Set_Parent_Lab_ID</targetReference>
+        </connector>
+        <object>MHQ__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Collection of Content Document Link records.</description>
+        <name>varRecCollectionContentDocumentLink</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>ContentDocumentLink</objectType>
+    </variables>
+    <variables>
+        <description>Single content document link record.</description>
+        <name>varRecContentDocumentLink</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>ContentDocumentLink</objectType>
+    </variables>
+    <variables>
+        <description>This is the collection of Content Document Ids already linked to lab.</description>
+        <name>varTCollectionOfContentDocumentIds</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Lab Id for the MHQ.</description>
+        <name>varTLabId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

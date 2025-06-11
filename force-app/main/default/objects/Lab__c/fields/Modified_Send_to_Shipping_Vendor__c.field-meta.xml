@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Modified_Send_to_Shipping_Vendor__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>used to track changes to certain fields on the Lab, so we include the record in a daily report sent to Airspace with &apos;modified&apos; records: baby&apos;s due date, parent 1 or parent 2 contact or hospital info</description>
+    <label>Modified Send to Shipping Vendor</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

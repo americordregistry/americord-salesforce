@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>This action will call the send to slack message.</description>
+        <name>Send_Enroll_To_Slack</name>
+        <label>Send Enroll To Slack</label>
+        <locationX>550</locationX>
+        <locationY>1176</locationY>
+        <actionName>slackv2__invokePostMessage</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <elementReference>formTSlackMessageForEnrolledOpp</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>messageDestinationId</name>
+            <value>
+                <stringValue>a59Pl00000MyF9OIAV</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>varTextInvoiceId</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>slackv2__invokePostMessage</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Total each enrollment</description>
+        <name>Total_number_of_enrollments</name>
+        <label>Total number of enrollments</label>
+        <locationX>638</locationX>
+        <locationY>708</locationY>
+        <assignmentItems>
+            <assignToReference>varIntNumberOfEnrollments</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varCurrTotal</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_Over_Today_s_Enrollments.fw1__Total_Invoice_Amount__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTextInvoiceId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Over_Today_s_Enrollments.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Over_Today_s_Enrollments</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Count each upgrade</description>
+        <name>Total_number_of_upgrades</name>
+        <label>Total number of upgrades</label>
+        <locationX>902</locationX>
+        <locationY>816</locationY>
+        <assignmentItems>
+            <assignToReference>varNumUpgrades</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varCurrTotal</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_Over_Today_s_Enrollments.fw1__Total_Invoice_Amount__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTextInvoiceId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Over_Today_s_Enrollments.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Over_Today_s_Enrollments</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Determine if this is an enrollment.</description>
+        <name>Is_This_An_Enrollment</name>
+        <label>Is This An Enrollment?</label>
+        <locationX>836</locationX>
+        <locationY>600</locationY>
+        <defaultConnector>
+            <targetReference>Is_This_An_Upgrade</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>YES_Enroll</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_Over_Today_s_Enrollments.fw1__Opportunity__r.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Enrolled</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Total_number_of_enrollments</targetReference>
+            </connector>
+            <label>YES - Enroll</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determine if this is an upgrade.</description>
+        <name>Is_This_An_Upgrade</name>
+        <label>Is This An Upgrade?</label>
+        <locationX>1034</locationX>
+        <locationY>708</locationY>
+        <defaultConnector>
+            <targetReference>Loop_Over_Today_s_Enrollments</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>YES_Upgrade</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_Over_Today_s_Enrollments.Upgrade_Opportunity__r.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Upgraded</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Total_number_of_upgrades</targetReference>
+            </connector>
+            <label>YES - Upgrade</label>
+        </rules>
+    </decisions>
+    <description>This flow will run after opportunity update and focus on the enroll/upgrade flow (asynch).</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>Formula that will hold the date/time for today.</description>
+        <name>formDTTimeToday</name>
+        <dataType>DateTime</dataType>
+        <expression>DATETIMEVALUE(Today())</expression>
+    </formulas>
+    <formulas>
+        <description>Formula that will hold the datetime for tomorrow.</description>
+        <name>formDTTimeTomorrow</name>
+        <dataType>DateTime</dataType>
+        <expression>DATETIMEVALUE(Today()+1)</expression>
+    </formulas>
+    <formulas>
+        <description>Formula that will hold today&apos;s date.</description>
+        <name>formDTToday</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <description>This formula will hold the value for the slack message that will be sent on enrollment.</description>
+        <name>formTSlackMessageForEnrolledOpp</name>
+        <dataType>String</dataType>
+        <expression>&quot;An Opportunity has just &quot;+{!varTOppStageName}+&quot;.&quot;+BR()+&quot;CLIENT/OPP: &quot;+{!$Record.Name}+BR()+&quot;SALESPERSON: &quot;+{!Get_Enroller.Name}+BR()+&quot;=================&quot;+BR()+&quot;ENROLLMENTS TODAY: &quot;+TEXT({!varIntNumberOfEnrollments})+BR()+&quot;UPGRADES TODAY: &quot;+TEXT({!varNumUpgrades})+BR()+&quot;TOTAL AMOUNT: $&quot;+TEXT({!varCurrTotal})</expression>
+    </formulas>
+    <interviewLabel>RecordTrigger: Opportunity After Update - Enroll/Upgrade {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RecordTrigger: Opportunity After Update - Enroll/Upgrade</label>
+    <loops>
+        <description>Loop over enrollments</description>
+        <name>Loop_Over_Today_s_Enrollments</name>
+        <label>Loop Over Today&apos;s Enrollments</label>
+        <locationX>550</locationX>
+        <locationY>492</locationY>
+        <collectionReference>Get_Enroll_Invoices</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Is_This_An_Enrollment</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Send_Enroll_To_Slack</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Get the enrolled invoices for today.</description>
+        <name>Get_Enroll_Invoices</name>
+        <label>Get Enroll Invoices</label>
+        <locationX>550</locationX>
+        <locationY>276</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Enroller</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>CreatedDate</field>
+            <operator>GreaterThanOrEqualTo</operator>
+            <value>
+                <elementReference>formDTTimeToday</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>CreatedDate</field>
+            <operator>LessThanOrEqualTo</operator>
+            <value>
+                <elementReference>formDTTimeTomorrow</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>fw1__Invoice__c</object>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Asc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Enroller</name>
+        <label>Get Enroller</label>
+        <locationX>550</locationX>
+        <locationY>384</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_Over_Today_s_Enrollments</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.OwnerId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>User</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <filterLogic>(1 OR 3) AND 2</filterLogic>
+        <filters>
+            <field>StageName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Enrolled</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>StageName</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>StageName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Upgraded</stringValue>
+            </value>
+        </filters>
+        <object>Opportunity</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <scheduledPaths>
+            <connector>
+                <targetReference>Get_Enroll_Invoices</targetReference>
+            </connector>
+            <pathType>AsyncAfterCommit</pathType>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Obsolete</status>
+    <variables>
+        <description>Variable that will hold the enrolled opps.</description>
+        <name>varCollOppEnrolled</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <description>Variable that will hold the total value for sales.</description>
+        <name>varCurrTotal</name>
+        <dataType>Currency</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>2</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Variable that will hold the number of enrollments for today.</description>
+        <name>varIntNumberOfEnrollments</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <description>Variable that will hold the count of upgrades.</description>
+        <name>varNumUpgrades</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Variable that will hold the last invoice id.</description>
+        <name>varTextInvoiceId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Variable that will hold the last salesperson.</description>
+        <name>varTextLastSalesperson</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>The opportunity stage name.</description>
+        <name>varTOppStageName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <elementReference>$Record.StageName</elementReference>
+        </value>
+    </variables>
+</Flow>

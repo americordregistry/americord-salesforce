@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Field_Rep_Special_Commission__c</fullName>
+    <description>Used by Jean to manage special commission for ex Field Reps.</description>
+    <formula>HCP_Practice__r.Field_Rep_Special_Commission__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Field Rep Special Commission</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

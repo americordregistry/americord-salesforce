@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TNCx10_6_Pre_Processing_2nd_unit__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Used if cord blood is stored in two units.</inlineHelpText>
+    <label>TNCx10^6 Pre-Processing (2nd unit)</label>
+    <precision>6</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,73 @@
+<template>
+    <template if:true={showComponent}>
+        <div class="slds-box slds-theme_shade slds-var-m-top_small slds-var-m-horizontal_small">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                        <div class="slds-card__header slds-truncate" title="Hybrid">
+                            <span>Hybrid</span>
+                            <lightning-helptext content="Based on product and storage selection, no discount. Monthly Payments and First Payments are calculated after deposit."></lightning-helptext>
+                        </div>
+                    </h2>
+                </div>
+            </header>
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Plan">Plan</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Price">Price</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="1st Payment">1st Payment</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Monthly Payment">Monthly Payment</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Total Fees">Total Fees</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Plan">
+                            <div class="slds-truncate" title="HY-12">HY-12</div>
+                        </td>
+                        <td data-label="Price">
+                            $<lightning-formatted-number value={price12} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                        </td>
+                        <td data-label="1st Payment">
+                            $<lightning-formatted-number value={firstPayment12} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                        </td>
+                        <td data-label="Monthly Payment">
+                            $<lightning-formatted-number value={monthlyPayment12} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                        </td>
+                        <td data-label="Total Fees">
+                            $<lightning-formatted-number value={totalFees12} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-label="Plan">
+                            <div class="slds-truncate" title="HY-18">HY-18</div>
+                        </td>
+                        <td data-label="Price">
+                            $<lightning-formatted-number value={price18} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                        </td>
+                        <td data-label="1st Payment">
+                            $<lightning-formatted-number value={firstPayment18} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                        </td>
+                        <td data-label="Monthly Payment">
+                            $<lightning-formatted-number value={monthlyPayment18} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                        </td>
+                        <td data-label="Total Fees">
+                            $<lightning-formatted-number value={totalFees18} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </template>
+</template>

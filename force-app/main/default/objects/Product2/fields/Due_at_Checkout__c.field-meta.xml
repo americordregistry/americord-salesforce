@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Due_at_Checkout__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Some products are paid in full at checkout, such as Kit Fees, Shipping etc.</description>
+    <inlineHelpText>Some products are paid in full at checkout, such as Kit Fees, Shipping etc.</inlineHelpText>
+    <label>Due at Checkout</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

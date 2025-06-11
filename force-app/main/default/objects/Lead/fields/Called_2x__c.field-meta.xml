@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Called_2x__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Use this to indicate that the prospect was called a second time and a conversation took place or a message was left.</inlineHelpText>
+    <label>Called 2x</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

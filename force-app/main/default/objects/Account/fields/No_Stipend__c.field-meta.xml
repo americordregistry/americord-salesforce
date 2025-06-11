@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>No_Stipend__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Used to indicate when an HCP will not accept a Stipend. LSR will get commission for collections when HCP will not accept Stipend. This checkbox launchs a Process Builder that updates HCP Agreement to No Stipend.</description>
+    <label>No Stipend</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

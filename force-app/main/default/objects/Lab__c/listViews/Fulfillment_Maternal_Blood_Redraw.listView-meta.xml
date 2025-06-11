@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fulfillment_Maternal_Blood_Redraw</fullName>
+    <columns>NAME</columns>
+    <columns>Maternal_Blood_Redraw__c</columns>
+    <columns>Shipping_State__c</columns>
+    <columns>Kit_Type__c</columns>
+    <columns>Birth_Date_from_Courier__c</columns>
+    <columns>MBD_Required_Date_Time__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Maternal_Blood_Redraw__c</field>
+        <operation>equals</operation>
+        <value>MBD Required (Lab)</value>
+    </filters>
+    <filters>
+        <field>Is_Voided_LU__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Allied_Order_ID_MBD_Kit__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>Fulfillment - Maternal Blood Redraw</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+        <portalRole>AmericordFulfillmentPortalPartnerExecutive</portalRole>
+        <portalRole>AmericordFulfillmentPortalPartnerManager</portalRole>
+        <portalRole>AmericordFulfillmentPortalPartnerUser</portalRole>
+    </sharedTo>
+</ListView>

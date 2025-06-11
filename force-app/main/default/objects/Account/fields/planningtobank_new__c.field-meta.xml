@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>planningtobank_new__c</fullName>
+    <description>Used for WTE survey, data comes from Marketo, syncs to Lead and maps to Account and Opportunity. Replaces previous field, planningtobank.</description>
+    <label>Planning to bank</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Yes</fullName>
+                <default>false</default>
+                <label>Yes</label>
+            </value>
+            <value>
+                <fullName>No</fullName>
+                <default>false</default>
+                <label>No</label>
+            </value>
+            <value>
+                <fullName>not sure</fullName>
+                <default>false</default>
+                <label>not sure</label>
+            </value>
+            <value>
+                <fullName>plan to donate</fullName>
+                <default>false</default>
+                <label>plan to donate</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

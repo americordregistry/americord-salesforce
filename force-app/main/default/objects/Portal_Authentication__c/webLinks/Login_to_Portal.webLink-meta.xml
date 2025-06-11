@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Login_to_Portal</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Login to Portal (old)</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>window.open(&apos;https://my.americordblood.com/loginAsUser/{!Portal_Authentication__c.Id}?userId={!$User.Id}&amp;sessionId={!$Api.Session_ID}&amp;serverUrl={!API.Enterprise_Server_URL_370}&apos;,&apos;_blank&apos;);</url>
+</WebLink>

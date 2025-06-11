@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Amount_Due_at_Checkout__c</fullName>
+    <description>This field adds the fields on Opportunity that roll up the total amount of products due at checkout, and any partial amounts due at checkout.</description>
+    <formula>Product_Totals_Due_at_Checkout__c + Partial_Product_Totals_Due_at_Checkout__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Total Amount Due at Checkout</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

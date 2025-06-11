@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HCP__c</fullName>
+    <description>Used to flag Doctors, Midwives and RNs as &quot;HCP&quot; which is used in Flow for HCP Practice Agreements.</description>
+    <formula>If (
+OR (
+ispickval(Type__c, &quot;Doctor&quot;),
+ispickval(Type__c, &quot;Midwife&quot;),
+ispickval(Type__c, &quot;RN&quot;)),
+ true, false)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>HCP</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

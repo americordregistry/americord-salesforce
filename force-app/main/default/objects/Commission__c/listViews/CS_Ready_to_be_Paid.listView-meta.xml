@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CS_Ready_to_be_Paid</fullName>
+    <columns>NAME</columns>
+    <columns>Status__c</columns>
+    <columns>Commission_Amount__c</columns>
+    <columns>Order__c</columns>
+    <columns>Referee_Name__c</columns>
+    <columns>Referrer_Account__c</columns>
+    <columns>Referrer__c</columns>
+    <columns>Email__c</columns>
+    <columns>Commission_Paid__c</columns>
+    <columns>Gift_Card_ID__c</columns>
+    <columns>Referee_Account__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Enrolled</value>
+    </filters>
+    <filters>
+        <field>Products_Stored__c</field>
+        <operation>greaterThan</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Auto_BillPay__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>2. CS - Ready to be Paid</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

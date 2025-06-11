@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Call_Result_Simplified__c</fullName>
+    <description>This field will look at the CallDisposition field and determine what the true Disposition is.</description>
+    <externalId>false</externalId>
+    <formula>if(CONTAINS(CallDisposition, &apos;No Answer&apos;),&apos;No Answer&apos;,
+if(CONTAINS(UPPER(CallDisposition), &apos;LEFT VOICEMAIL&apos;),&apos;Left Voicemail&apos;,
+if(CONTAINS(CallDisposition, &apos;Correct Contact&apos;),&apos;Correct Contact&apos;,
+if(CONTAINS(CallDisposition, &apos;answered_call&apos;),&apos;Answered Call&apos;,
+if(CONTAINS(CallDisposition, &apos;Wrong Number&apos;),&apos;Wrong Number&apos;,
+if(CONTAINS(CallDisposition, &apos;Busy&apos;),&apos;Busy&apos;,
+if(CONTAINS(CallDisposition, &apos;Left Live message&apos;),&apos;Left Live message&apos;,
+if(CONTAINS(CallDisposition, &apos;Disconnected Number&apos;),&apos;Disconnected Number&apos;,
+if(CONTAINS(CallDisposition, &apos;unanswered&apos;),&apos;No Answer&apos;,
+CallDisposition)))))))))</formula>
+    <label>Call Result Simplified</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

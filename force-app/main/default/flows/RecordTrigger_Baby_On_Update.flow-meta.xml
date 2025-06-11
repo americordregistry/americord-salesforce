@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <constants>
+        <description>Constant that holds the subject of the email to Veritas/LetsGetChecked.</description>
+        <name>constGenomeOrderSubject</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>New Americord myNewborn Shipment</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <description>Constant that holds the labs email address.</description>
+        <name>constLabEmail</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>lab@americordblood.com, laboperations@americordblood.com</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <description>This is the constant value to compare for Sent to Veritas</description>
+        <name>constSentToVeritas</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Sent To Veritas</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <description>This is the list of emails to send the order/lab email to.</description>
+        <name>constVeritasLetsGetCheckedEmailList</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>rdurigan@letsgetchecked.com, sofia.quintana@veritasint.com, DBertelli@letsgetchecked.com, laboperations@americordblood.com</stringValue>
+        </value>
+    </constants>
+    <decisions>
+        <description>Check to see if we cryogenically stored exomsome.</description>
+        <name>Check_to_See_if_Exosome_Stored</name>
+        <label>Check to See if Exosome Stored</label>
+        <locationX>182</locationX>
+        <locationY>1847</locationY>
+        <defaultConnectorLabel>Exosome Storage Same or Not Stored</defaultConnectorLabel>
+        <rules>
+            <name>Exosome_Stored</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Exosomes_Cryogenically_Preserved__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.Exosomes_Cryogenically_Preserved__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Default_Exosome_Amount_Stored</targetReference>
+            </connector>
+            <label>Exosome Stored</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determine if the Genome order has been set to Completed.</description>
+        <name>Genome_Order_Completed</name>
+        <label>Genome Order Completed?</label>
+        <locationX>182</locationX>
+        <locationY>1547</locationY>
+        <defaultConnector>
+            <targetReference>Check_to_See_if_Exosome_Stored</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Genome Not Complete</defaultConnectorLabel>
+        <rules>
+            <name>Genome_Complete</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.My_Genome_Order_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Distributed</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.My_Newborn_Order_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Distributed</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Genome_Order_Complete_Date</targetReference>
+            </connector>
+            <label>Genome Complete</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determine if the collection/process datetime has been updated</description>
+        <name>Has_Collection_Datetime_or_Process_Datetime_Updated</name>
+        <label>Has Collection Datetime or Process Datetime Updated</label>
+        <locationX>182</locationX>
+        <locationY>1031</locationY>
+        <defaultConnector>
+            <targetReference>Genome_Order_Completed</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Datetimes NOT updated</defaultConnectorLabel>
+        <rules>
+            <name>Datetime_updated</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Collection_Datetime__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Process_Datetime__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Updated_Collection_Date</targetReference>
+            </connector>
+            <label>Datetime updated</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Check to determine if the consent has been completed for Genome.</description>
+        <name>Has_Genome_Consent_Been_Completed</name>
+        <label>Has Genome Consent Been Completed</label>
+        <locationX>182</locationX>
+        <locationY>731</locationY>
+        <defaultConnector>
+            <targetReference>Has_Collection_Datetime_or_Process_Datetime_Updated</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>NO - Consent Not Complete</defaultConnectorLabel>
+        <rules>
+            <name>YES_Completed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.My_Newborn_Order_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>New Order</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Consent_Complete</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>YES - Completed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Has the Genome order been sent</description>
+        <name>Has_Genome_Order_Been_Sent</name>
+        <label>Has Genome Order Been Sent</label>
+        <locationX>182</locationX>
+        <locationY>431</locationY>
+        <defaultConnector>
+            <targetReference>Has_Genome_Consent_Been_Completed</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Genome Order Not Sent</defaultConnectorLabel>
+        <rules>
+            <name>Genome_Order_has_been_sent</name>
+            <conditionLogic>(1 AND 2 and 5 ) or (3 AND 4 AND 6)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.My_Genome_Order_Status__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.My_Genome_Order_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Sent To Veritas</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.My_Newborn_Order_Status__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.My_Newborn_Order_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>constSentToVeritas</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.My_Genome_Consent_URL__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.My_Newborn_Consent_URL__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Genome_Customer_Email</targetReference>
+            </connector>
+            <label>Genome Order has been sent</label>
+        </rules>
+    </decisions>
+    <description>Main flow that runs when Baby record has been updated.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>The formula for the Collection Date from the Collection Datetime</description>
+        <name>formDTCollectionDate</name>
+        <dataType>Date</dataType>
+        <expression>DATEVALUE({!$Record.Collection_Datetime__c})</expression>
+    </formulas>
+    <formulas>
+        <description>This formula will stamp todays date on the Genome Complete Date for the baby.</description>
+        <name>formDTGenomeCompleteDate</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <description>The date from the Process Datetime field.</description>
+        <name>formDTProcessDate</name>
+        <dataType>Date</dataType>
+        <expression>DATEVALUE({!$Record.Process_Datetime__c})</expression>
+    </formulas>
+    <interviewLabel>RecordTrigger:Baby On Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RecordTrigger:Baby On Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Update the consent completed checkbox.</description>
+        <name>Update_Consent_Complete</name>
+        <label>Update Consent Complete</label>
+        <locationX>50</locationX>
+        <locationY>839</locationY>
+        <connector>
+            <targetReference>Has_Collection_Datetime_or_Process_Datetime_Updated</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Genome_Consent_Complete__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Update the Exosome Stored amount.</description>
+        <name>Update_Default_Exosome_Amount_Stored</name>
+        <label>Update Default Exosome Amount Stored</label>
+        <locationX>50</locationX>
+        <locationY>1955</locationY>
+        <inputAssignments>
+            <field>Exosome_Specimen_Final_Volume__c</field>
+            <value>
+                <stringValue>6mL</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>This update will set the Genome Order Complete Date.</description>
+        <name>Update_Genome_Order_Complete_Date</name>
+        <label>Update Genome Order Complete Date</label>
+        <locationX>50</locationX>
+        <locationY>1655</locationY>
+        <connector>
+            <targetReference>Check_to_See_if_Exosome_Stored</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Genome_Order_Complete_Date__c</field>
+            <value>
+                <elementReference>formDTGenomeCompleteDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Update the Lab Collection Date</description>
+        <name>Update_Lab_Collection_Date</name>
+        <label>Update Lab Collection Date</label>
+        <locationX>50</locationX>
+        <locationY>1355</locationY>
+        <connector>
+            <targetReference>Genome_Order_Completed</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Lab__c</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Collection_Date__c</field>
+            <value>
+                <elementReference>$Record.Collection_Date__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Lab__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Update the collection date field with Collection datetime value.</description>
+        <name>Updated_Collection_Date</name>
+        <label>Updated Collection Date</label>
+        <locationX>50</locationX>
+        <locationY>1139</locationY>
+        <connector>
+            <targetReference>Updated_Collection_Datetime</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Collection_Datetime__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Collection_Date__c</field>
+            <value>
+                <elementReference>formDTCollectionDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Update the collection date field with Collection datetime value.</description>
+        <name>Updated_Collection_Datetime</name>
+        <label>Updated Process Datetime</label>
+        <locationX>50</locationX>
+        <locationY>1247</locationY>
+        <connector>
+            <targetReference>Update_Lab_Collection_Date</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Process_Datetime__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Process_Date__c</field>
+            <value>
+                <elementReference>formDTProcessDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_for_lab_issues_on_baby_record</targetReference>
+        </connector>
+        <object>Baby__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <description>This subflow will look for lab issues on the baby record.</description>
+        <name>Check_for_lab_issues_on_baby_record</name>
+        <label>Check for lab issues on baby record</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <connector>
+            <targetReference>Has_Genome_Order_Been_Sent</targetReference>
+        </connector>
+        <flowName>Check_for_Lab_Issues_on_Baby_Record</flowName>
+        <inputAssignments>
+            <name>varBabyRecordID</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varBoolGetCTFromPlacentaCurrentValue</name>
+            <value>
+                <elementReference>$Record.Get_CT_from_Placenta__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varBoolGetCTFromPlacentaPriorValue</name>
+            <value>
+                <elementReference>$Record__Prior.Get_CT_from_Placenta__c</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
+        <description>This subflow will determine which email to send for My Genome or My Newborn.</description>
+        <name>Send_Genome_Customer_Email</name>
+        <label>Send Genome Customer Email</label>
+        <locationX>50</locationX>
+        <locationY>539</locationY>
+        <connector>
+            <targetReference>Has_Genome_Consent_Been_Completed</targetReference>
+        </connector>
+        <flowName>Genome_Send_Customer_Email</flowName>
+        <inputAssignments>
+            <name>recBabyRecordsToProcess</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <textTemplates>
+        <description>Template that can be used for notifying Veritas/LetsGetChecked team of order.</description>
+        <name>txtTempSampleAddedToMyNewborn</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;&lt;span style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 11pt;&quot;&gt;Hi Veritas/LetsGetChecked Team,&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 11pt;&quot;&gt;Please send a shipping label for:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 11pt;&quot;&gt;Patient ID: {!$Record.LPI_My_Newborn__c}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 11pt;&quot;&gt;Sample ID: {!$Record.ISBT_My_Newborn__c}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 11pt;&quot;&gt;Thank you!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 11pt;&quot;&gt;The Americord Lab Team&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</text>
+    </textTemplates>
+    <variables>
+        <description>This collection will hold the Baby Ids for Genome Processing.</description>
+        <name>varTGenomeBabyIds</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

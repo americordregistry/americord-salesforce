@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Invoice_Number__c</fullName>
+    <description>The number for the invoice that is associated with the donation.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The number for the invoice that is associated with the donation.</inlineHelpText>
+    <label>Invoice Number</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

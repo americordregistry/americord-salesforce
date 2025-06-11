@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HCP_Practice_Acct__c</fullName>
+    <description>Used to import Medical Professional Contact ID onto Lap, temp field, can be deleted.</description>
+    <externalId>false</externalId>
+    <formula>HCP_Practice__r.Account_Number__c</formula>
+    <label>HCP Practice Acct # old</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

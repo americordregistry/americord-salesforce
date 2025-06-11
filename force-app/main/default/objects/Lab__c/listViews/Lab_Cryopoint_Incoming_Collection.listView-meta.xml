@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lab_Cryopoint_Incoming_Collection</fullName>
+    <booleanFilter>1 AND (2 or 3 or 4) and 5 and 6</booleanFilter>
+    <columns>Mother_s_Last_Name__c</columns>
+    <columns>Cord_Blood_Collection_Completed__c</columns>
+    <columns>NAME</columns>
+    <columns>Hospital_Name__c</columns>
+    <columns>Hospital_State__c</columns>
+    <columns>Certificate_ID__c</columns>
+    <columns>Birth_Date_from_Courier__c</columns>
+    <columns>Birth_Time_from_Courier__c</columns>
+    <columns>Birth_Time_Zone_from_Courier__c</columns>
+    <columns>Baby_s_Due_Date_new__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Processing_Lab__c</field>
+        <operation>equals</operation>
+        <value>Cryopoint</value>
+    </filters>
+    <filters>
+        <field>Cord_Blood_Collection_Completed__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Baby_s_Due_Date_new__c</field>
+        <operation>equals</operation>
+        <value>LAST_N_DAYS:21</value>
+    </filters>
+    <filters>
+        <field>Baby_s_Due_Date_new__c</field>
+        <operation>equals</operation>
+        <value>NEXT_N_DAYS:60</value>
+    </filters>
+    <filters>
+        <field>DCS__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>Is_Voided_LU__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>Lab Cryopoint - Incoming Collection</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+        <portalRole>NewLabPartnerExecutive</portalRole>
+        <portalRole>NewLabPartnerManager</portalRole>
+        <portalRole>NewLabPartnerUser</portalRole>
+    </sharedTo>
+</ListView>

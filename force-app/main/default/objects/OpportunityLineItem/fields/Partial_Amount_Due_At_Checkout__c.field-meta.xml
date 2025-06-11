@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Partial_Amount_Due_At_Checkout__c</fullName>
+    <description>Contains the partial amount due at checkout for the Product on this line item. Maintained via a before-save flow.</description>
+    <label>Partial Amount Due At Checkout</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <type>Currency</type>
+</CustomField>

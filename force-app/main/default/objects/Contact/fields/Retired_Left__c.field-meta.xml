@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Retired_Left__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Used by Outreach Program to indicate when a Doctor is retired or an office staff has left the company.</description>
+    <label>Retired/Left</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

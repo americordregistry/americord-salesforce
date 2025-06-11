@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Ordered1__c</fullName>
+    <description>This field has been replaced with a new, non-formula field in order to accommodate a workflow for creating the new baby pages.</description>
+    <externalId>false</externalId>
+    <formula>Cord_Blood_Order__r.Product_Ordered1__r.Name</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Lookup on the Cord Blood Order</inlineHelpText>
+    <label>zProduct Ordered LU</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

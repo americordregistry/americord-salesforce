@@ -1,0 +1,12 @@
+<apex:page standardController="Lab__c"
+           sidebar="false"
+           showHeader="false"
+           showChat="false" lightningstylesheets="true">
+
+<apex:pageMessage summary="Client ordered Placenta 2.0 - AMNION." 
+                  severity="error" 
+                  strength="1"
+                  rendered="{!Lab__c.Cord_Blood_Collection_Completed__c = true && Lab__c.Placenta_2_0_Amnion_Ordered__c > 0 && Lab__c.Placenta_2_0_Amnion_Stored__c < 1 }"  />
+
+
+</apex:page>

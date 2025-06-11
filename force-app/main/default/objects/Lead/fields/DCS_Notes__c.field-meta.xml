@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DCS_Notes__c</fullName>
+    <inlineHelpText>These notes are sent directly to the client and must be client ready.</inlineHelpText>
+    <label>DCS Notes sent to Client</label>
+    <length>1000</length>
+    <trackHistory>false</trackHistory>
+    <type>LongTextArea</type>
+    <visibleLines>10</visibleLines>
+</CustomField>

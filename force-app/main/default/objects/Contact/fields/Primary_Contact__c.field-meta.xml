@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Primary_Contact__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Used to select the primary contact at Health Care Providers, used for Fax merge fields, when send from Accounts.</inlineHelpText>
+    <label>Primary Contact</label>
+    <trackHistory>true</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

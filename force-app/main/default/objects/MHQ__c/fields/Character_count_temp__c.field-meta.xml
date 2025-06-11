@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Character_count_temp__c</fullName>
+    <description>Used to identify problem with PDF version of MHQ, which cut off responses. PDF template was fixed 06 May 2021.</description>
+    <externalId>false</externalId>
+    <formula>LEN( outside_US_or_CAN_city_country_when__c )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Character count temp</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

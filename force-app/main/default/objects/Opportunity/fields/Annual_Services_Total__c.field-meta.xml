@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Annual_Services_Total__c</fullName>
+    <description>This is the total amount for annual services from the opportunity line items. This value will be used to compute the amount to change client each year.</description>
+    <inlineHelpText>This is the total amount for annual services from the opportunity line items. This value will be used to compute the amount to change client each year.</inlineHelpText>
+    <label>Annual Services Total</label>
+    <summarizedField>OpportunityLineItem.ListPrice</summarizedField>
+    <summaryFilterItems>
+        <field>OpportunityLineItem.Product_Code__c</field>
+        <operation>contains</operation>
+        <value>ASP</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>OpportunityLineItem.Product_Code__c</field>
+        <operation>notEqual</operation>
+        <value>ASP</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>OpportunityLineItem.Product_Code__c</field>
+        <operation>notEqual</operation>
+        <value>ASP2</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>OpportunityLineItem.Product_Code__c</field>
+        <operation>notEqual</operation>
+        <value>ASP3</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>OpportunityLineItem.Product_Code__c</field>
+        <operation>notEqual</operation>
+        <value>ASP4</value>
+    </summaryFilterItems>
+    <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

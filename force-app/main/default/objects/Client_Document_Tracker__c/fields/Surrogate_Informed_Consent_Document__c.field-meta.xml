@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Surrogate_Informed_Consent_Document__c</fullName>
+    <description>This is the document ID that represents the Surrogate Informed Consent document for the client.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This is the document ID that represents the Surrogate Informed Consent document for the client.</inlineHelpText>
+    <label>Surrogate Informed Consent Document</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

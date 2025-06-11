@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Maternal_Exosome_Sterility_Result__c</fullName>
+    <description>This field captures the sterility result. On 2024-08-09 we created additional fields that also capture this data but in more detail. We should remove this field from the layouts after a period of time 6mo - 1yr.</description>
+    <externalId>false</externalId>
+    <label>Maternal Exosome Sterility Result</label>
+    <length>50</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

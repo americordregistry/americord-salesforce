@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Ordered_for_Docusign__c</fullName>
+    <description>This process was updated to display &quot;Product Stored&quot; after birth for those orders that are &quot;New Process&quot;. For &quot;Old Process&quot; it displays Product Ordered.</description>
+    <externalId>false</externalId>
+    <formula>if( New_Process__c =true &amp;&amp;  isblank( Storage_Plan_Stored__c) ,
+if(Cord_Blood_2_0_Ordered__c &gt;= 1, &quot;Cord Blood 2.0,&quot;,&quot;&quot;)+&quot; &quot;+
+if( Cord_Tissue_Ordered__c  &gt;= 1, &quot;Cord Tissue,&quot;,&quot;&quot;)+&quot; &quot;+
+if( Placenta_2_0_Amnion_Ordered__c  &gt;= 1, &quot;Placenta 2.0,&quot;,&quot;&quot;)+&quot; &quot;+
+if ( Placenta_Tissue_Ordered__c &gt;=1, &quot;Placenta Tissue,&quot;,&quot;&quot;)+&quot; &quot;+
+ Storage_Plan_Ordered__c+&quot;,&quot;+&quot; &quot;+ Payment_Plan_Ordered__c+
+if(Number_of_Births__c&lt;&gt;&quot;Single&quot;,&quot;,&quot;+&quot; &quot;+Number_of_Births__c,&quot;&quot;),
+if( New_Process__c =true &amp;&amp;  NOT( isblank( Storage_Plan_Stored__c)),
+if(Cord_Blood_2_0_Stored__c &gt;= 1, &quot;Cord Blood 2.0,&quot;,&quot;&quot;)+&quot; &quot;+
+if( Cord_Tissue_Stored__c  &gt;= 1, &quot;Cord Tissue,&quot;,&quot;&quot;)+&quot; &quot;+
+if( Placenta_2_0_Amnion_Stored__c  &gt;= 1, &quot;Placenta 2.0,&quot;,&quot;&quot;)+&quot; &quot;+
+if ( Placenta_Tissue_Stored__c &gt;=1, &quot;Placenta Tissue,&quot;,&quot;&quot;)+&quot; &quot;+
+ Storage_Plan_Stored__c+&quot;,&quot;+&quot; &quot;+ Payment_Plan_Stored__c+
+if(Number_of_Births__c&lt;&gt;&quot;Single&quot;,&quot;,&quot;+&quot; &quot;+Number_of_Births__c,&quot;&quot;),
+ Product_Ordered__c))</formula>
+    <label>ZDeprecate Product Ordered (for Docusgn)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lab_Americord_Missing_CB_Data</fullName>
+    <booleanFilter>1 AND 2 AND (3 or 4)</booleanFilter>
+    <columns>Collection_Date__c</columns>
+    <columns>Folder_ID__c</columns>
+    <columns>Lab__c</columns>
+    <columns>NAME</columns>
+    <columns>Cord_Blood_Cryogenically_Preserved__c</columns>
+    <columns>CD34x10_6__c</columns>
+    <columns>CB_Sterility_Result_AST__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Processing_Lab__c</field>
+        <operation>equals</operation>
+        <value>Americord</value>
+    </filters>
+    <filters>
+        <field>Cord_Blood_Cryogenically_Preserved__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>CD34x10_6__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>CB_Sterility_Result_AST__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>Lab Americord - Missing CB Data</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+        <portalRole>VitalantLabPartnerExecutive</portalRole>
+        <portalRole>VitalantLabPartnerManager</portalRole>
+        <portalRole>VitalantLabPartnerUser</portalRole>
+    </sharedTo>
+</ListView>

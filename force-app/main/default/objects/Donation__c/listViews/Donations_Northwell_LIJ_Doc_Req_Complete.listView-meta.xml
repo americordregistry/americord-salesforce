@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Donations_Northwell_LIJ_Doc_Req_Complete</fullName>
+    <booleanFilter>1 AND 2</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Donation_Process_Status__c</columns>
+    <columns>Medical_Records_Received__c</columns>
+    <columns>Medical_Records_Request_Sent__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Hospital__c</field>
+        <operation>equals</operation>
+        <value>Northwell - Long Island Jewish</value>
+    </filters>
+    <filters>
+        <field>Medical_Records_Received__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Donations Northwell LIJ Doc Req Complete</label>
+</ListView>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CS_MBD_Positive_Results_Vitalant</fullName>
+    <columns>NAME</columns>
+    <columns>Processing_Lab__c</columns>
+    <columns>MBD_Results__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Processing_Lab__c</field>
+        <operation>equals</operation>
+        <value>Vitalant</value>
+    </filters>
+    <filters>
+        <field>MBD_Results__c</field>
+        <operation>equals</operation>
+        <value>Positive indication</value>
+    </filters>
+    <filters>
+        <field>MBD_Comments__c</field>
+        <operation>notContain</operation>
+        <value>CMV(Total)Positive</value>
+    </filters>
+    <label>CS - MBD Positive Results (Vitalant)</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <interviewLabel>Delete Leads from Live Chat {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Delete Leads from Live Chat</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordDeletes>
+        <name>Delete_Lead</name>
+        <label>Delete Lead</label>
+        <locationX>294</locationX>
+        <locationY>186</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varLeadID</elementReference>
+            </value>
+        </filters>
+        <object>Lead</object>
+    </recordDeletes>
+    <recordLookups>
+        <name>Lookup_Lead</name>
+        <label>Lookup Lead</label>
+        <locationX>290</locationX>
+        <locationY>53</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Delete_Lead</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varLeadID</elementReference>
+            </value>
+        </filters>
+        <object>Lead</object>
+    </recordLookups>
+    <startElementReference>Lookup_Lead</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>varLeadID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

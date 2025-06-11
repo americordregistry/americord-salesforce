@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description>This is the main flow that can be used for insert or update Opportunity logic.</description>
+    <formulas>
+        <description>Reformat phone field to E164 format.</description>
+        <name>formTContact2PhoneFormatE164</name>
+        <dataType>String</dataType>
+        <expression>if (
+    len(
+        SUBSTITUTE(
+            SUBSTITUTE(
+                SUBSTITUTE(
+                    SUBSTITUTE(
+                        SUBSTITUTE(
+                            SUBSTITUTE({!$Record.Contact2_Phone__c}, &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;), &quot;+&quot;, &quot;&quot;), &quot;.&quot;, &quot;&quot;)) = 10,
+    &quot;+1&quot; +
+    SUBSTITUTE(
+        SUBSTITUTE(
+            SUBSTITUTE(
+                SUBSTITUTE(
+                    SUBSTITUTE(
+                        SUBSTITUTE({!$Record.Contact2_Phone__c}, &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;), &quot;+&quot;, &quot;&quot;), &quot;.&quot;, &quot;&quot;), {!$Record.Contact2_Phone__c})</expression>
+    </formulas>
+    <formulas>
+        <description>Reformat the Phone field to the E164 format.</description>
+        <name>formTPhoneFormatE164</name>
+        <dataType>String</dataType>
+        <expression>if (
+    len(
+        SUBSTITUTE(
+            SUBSTITUTE(
+                SUBSTITUTE(
+                    SUBSTITUTE(
+                        SUBSTITUTE(
+                            SUBSTITUTE({!$Record.Phone__c}, &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;), &quot;+&quot;, &quot;&quot;), &quot;.&quot;, &quot;&quot;)) = 10,
+    &quot;+1&quot; +
+    SUBSTITUTE(
+        SUBSTITUTE(
+            SUBSTITUTE(
+                SUBSTITUTE(
+                    SUBSTITUTE(
+                        SUBSTITUTE({!$Record.Phone__c}, &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;), &quot;+&quot;, &quot;&quot;), &quot;.&quot;, &quot;&quot;), {!$Record.Phone__c})</expression>
+    </formulas>
+    <formulas>
+        <description>Reformat phone to the E164 format.</description>
+        <name>formTSurrogatePhoneFormatE164</name>
+        <dataType>String</dataType>
+        <expression>if (
+    len(
+        SUBSTITUTE(
+            SUBSTITUTE(
+                SUBSTITUTE(
+                    SUBSTITUTE(
+                        SUBSTITUTE(
+                            SUBSTITUTE({!$Record.Surrogate_Phone__c}, &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;), &quot;+&quot;, &quot;&quot;), &quot;.&quot;, &quot;&quot;)) = 10,
+    &quot;+1&quot; +
+    SUBSTITUTE(
+        SUBSTITUTE(
+            SUBSTITUTE(
+                SUBSTITUTE(
+                    SUBSTITUTE(
+                        SUBSTITUTE({!$Record.Surrogate_Phone__c}, &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;), &quot;+&quot;, &quot;&quot;), &quot;.&quot;, &quot;&quot;), {!$Record.Surrogate_Phone__c})</expression>
+    </formulas>
+    <interviewLabel>RecordTrigger:Opportunity Insert or Update Before Save {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RecordTrigger:Opportunity Insert or Update Before Save</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Update the opp phone fields to the E164 Format</description>
+        <name>Update_Opp_Phone_Fields_To_E164</name>
+        <label>Update Opp Phone Fields To E164</label>
+        <locationX>176</locationX>
+        <locationY>311</locationY>
+        <inputAssignments>
+            <field>Contact2_Phone__c</field>
+            <value>
+                <elementReference>formTContact2PhoneFormatE164</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Phone__c</field>
+            <value>
+                <elementReference>formTPhoneFormatE164</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Surrogate_Phone__c</field>
+            <value>
+                <elementReference>formTSurrogatePhoneFormatE164</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Opp_Phone_Fields_To_E164</targetReference>
+        </connector>
+        <object>Opportunity</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Opportunities_SAS</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>OPPORTUNITY.LEAD_SOURCE</columns>
+    <columns>Phone__c</columns>
+    <columns>Baby_s_Due_Date__c</columns>
+    <columns>Aircall_Dials__c</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <columns>OPPORTUNITY.LAST_UPDATE</columns>
+    <columns>Pricing_Calculator_Choices__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>notEqual</operation>
+        <value>Expired,Closed Lost,Enrolled,Upgraded</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.LAST_NAME</field>
+        <operation>contains</operation>
+        <value>Schnitzer</value>
+    </filters>
+    <filters>
+        <field>Sale_Type_Direct_or_Complex__c</field>
+        <operation>equals</operation>
+        <value>Direct</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.LEAD_SOURCE</field>
+        <operation>notContain</operation>
+        <value>BabyCenter,Glow,Test,unknown,Your Baby Club</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>notContain</operation>
+        <value>Duplicate,Expired,Closed Lost,Bad/Bot Lead</value>
+    </filters>
+    <label>All Opportunities-SAS</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>isdc_dialer_query_name__c</fullName>
+    <description>Collects the Seek Query that triggered the InsideSales dial.</description>
+    <externalId>false</externalId>
+    <label>Query Name</label>
+    <length>80</length>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

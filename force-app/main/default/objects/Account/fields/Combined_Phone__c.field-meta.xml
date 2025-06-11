@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Combined_Phone__c</fullName>
+    <description>Combined Contact and Contact 2 Phone from Opportunity. Used for Duplicate Check to dedupe Accounts based on Opportunity.</description>
+    <externalId>false</externalId>
+    <label>Combined Phone</label>
+    <length>45</length>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

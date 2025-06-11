@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Stored information regarding Number of Payments, Number of Fees and, for Hybrid, % of First Payment.</description>
+    <label>Payment Plan Info</label>
+    <pluralLabel>Payment Plan Info</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

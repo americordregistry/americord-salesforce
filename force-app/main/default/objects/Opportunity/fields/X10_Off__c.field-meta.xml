@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X10_Off__c</fullName>
+    <formula>if ( 
+AND (  Price_with_Sales_Discount__c &gt; 0,
+IsClosed = false, 
+Coupon_Code__c &lt;&gt; &quot;Ten off&quot;,
+ Sales_Discount__c &gt; 0,
+ Text(Storage_Plan__c) &lt;&gt; &quot;Annual Storage&quot; , 
+NOT(ISBLANK(Text(Storage_Plan__c)))), 
+Price_with_Sales_Discount__c  * 0.1, Null)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>10% Off</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

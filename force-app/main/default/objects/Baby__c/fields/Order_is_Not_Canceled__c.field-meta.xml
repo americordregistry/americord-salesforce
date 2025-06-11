@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Order_is_Not_Canceled__c</fullName>
+    <description>Used for Checklist to determine if client is ready for AC Cert.</description>
+    <formula>if ( Lab__r.Is_Voided_LU__c = false, true, false)</formula>
+    <label>Order is Not Canceled</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

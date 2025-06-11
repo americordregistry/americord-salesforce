@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Send_Email</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Send Email</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>/_ui/core/email/author/EmailAuthor?rtype=003&amp;p3_lkid={!Lab__c.Id}&amp;retURL=%2F{!Lab__c.Id}&amp;p24={!Lab__c.Mothers_Email__c}</url>
+</WebLink>

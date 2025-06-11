@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Allied_MBD_Shipping</fullName>
+    <columns>NAME</columns>
+    <columns>Birth_Date_from_Courier__c</columns>
+    <columns>Maternal_Blood_Redraw__c</columns>
+    <columns>MBD_Required_Date_Time__c</columns>
+    <columns>Allied_Order_ID_MBD_Kit__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Allied_Order_ID_MBD_Kit__c</field>
+        <operation>greaterOrEqual</operation>
+    </filters>
+    <filters>
+        <field>Maternal_Blood_Redraw__c</field>
+        <operation>contains</operation>
+        <value>Received by Allied</value>
+    </filters>
+    <filters>
+        <field>Birth_Date_from_Courier__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>1/1/2022</value>
+    </filters>
+    <label>Allied - MBD Shipped</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deposit</fullName>
+    <availability>online</availability>
+    <description>Used to charge the amount due at checkout.  Typically includes kit fee, shipping and any products that are paid up front.</description>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>true</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>960</height>
+    <isResizable>true</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>Deposit</masterLabel>
+    <openType>newWindow</openType>
+    <position>topLeft</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <url>/apex/fw1__Payment?amount={!TEXT( Opportunity.Total_Amount_Due_at_Checkout__c )}
+&amp;lookupField=Opportunity__c
+&amp;lookupId={!Opportunity.Id}
+&amp;reference={!Opportunity.Name}
+&amp;accountId={!Opportunity.AccountId}
+&amp;profile=new
+&amp;contactId={!Opportunity.ContactId__c}
+&amp;opportunity={!Opportunity.Id}
+&amp;paymentType=Charge
+&amp;doNotClearRetryInfo=true</url>
+    <width>800</width>
+</WebLink>

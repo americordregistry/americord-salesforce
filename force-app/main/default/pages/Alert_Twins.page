@@ -1,0 +1,12 @@
+<apex:page standardController="Lab__c"
+           sidebar="false"
+           showHeader="false"
+           showChat="false" lightningstylesheets="true">
+
+<apex:pageMessage summary="Client is having TWINS - send TWO Kits." 
+                  severity="error" 
+                  strength="1"
+                  rendered="{!Lab__c.Number_of_Births__c = "Twins" && Lab__c.Baby_B_Kit_ID__c  = NULL }"  />
+
+
+</apex:page>

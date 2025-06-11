@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Close_Date_is_Wrong__c</fullName>
+    <description>Used to trigger nightly flow to fix close date.</description>
+    <formula>IF ( 
+AND (
+ IsClosed = false,
+   OR (
+      AND(
+        ISBLANK( Baby_s_Due_Date__c ),
+        CloseDate !=  (DATEVALUE(CreatedDate)+280)),
+      CloseDate !=  Baby_s_Due_Date__c)), true, false)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Close Date is Wrong</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

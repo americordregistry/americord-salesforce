@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>std__c</fullName>
+    <inlineHelpText>In the past 12 months have you: Had sex with anyone who has or has tested positive for the HIV, HTLV, syphilis, hepatitis B or hepatitis C or another sexually transmitted disease?</inlineHelpText>
+    <label>24. std</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>MHQ</valueSetName>
+    </valueSet>
+</CustomField>

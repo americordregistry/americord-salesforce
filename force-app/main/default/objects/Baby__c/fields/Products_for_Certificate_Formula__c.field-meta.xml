@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Products_for_Certificate_Formula__c</fullName>
+    <externalId>false</externalId>
+    <formula>SUBSTITUTE(
+LEFT(
+if ( Cord_Blood_Cryogenically_Preserved__c, &quot;Cord Blood  &quot;, &quot;&quot;) &amp;
+if ( Cord_Tissue_Cryogenically_Preserved__c , &quot;Cord Tissue  &quot;, &quot;&quot;) &amp;
+if ( Placenta_Tissue_Cryogenically_Preserved__c, &quot;Placenta Tissue  &quot;, &quot;&quot;) &amp;
+if ( Placenta_2_0_Am_Cryogenically_Preserved__c, &quot;Placenta 2.0  &quot;,  &quot;&quot;) &amp;
+if ( Exosomes_Cryogenically_Preserved__c, &quot;Exosome  &quot;,&quot;&quot;) &amp;
+if ( Maternal_Exosome_Cryogenically_Preserved__c, &quot;Maternal Exosome  &quot;,&quot;&quot;)
+,LEN(
+if ( Cord_Blood_Cryogenically_Preserved__c, &quot;Cord Blood  &quot;, &quot;&quot;) &amp;
+if ( Cord_Tissue_Cryogenically_Preserved__c , &quot;Cord Tissue  &quot;, &quot;&quot;) &amp;
+if ( Placenta_Tissue_Cryogenically_Preserved__c, &quot;Placenta Tissue  &quot;, &quot;&quot;) &amp;
+if ( Placenta_2_0_Am_Cryogenically_Preserved__c, &quot;Placenta 2.0  &quot;,  &quot;&quot;) &amp;
+if ( Exosomes_Cryogenically_Preserved__c, &quot;Exosome  &quot;,&quot;&quot;) &amp;
+if ( Maternal_Exosome_Cryogenically_Preserved__c, &quot;Maternal Exosome  &quot;,&quot;&quot;)
+)-2)
+,&quot;  &quot;,&quot;,&quot;)</formula>
+    <inlineHelpText>This is a hidden field that is used for the Certificate of Storage. It is a formula based on the checkboxes used by Lab personnel.</inlineHelpText>
+    <label>Products for Certificate</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

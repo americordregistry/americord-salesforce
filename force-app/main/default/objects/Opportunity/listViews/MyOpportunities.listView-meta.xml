@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MyOpportunities</fullName>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <columns>Baby_s_Due_Date__c</columns>
+    <columns>Time_Zone__c</columns>
+    <columns>OPPORTUNITY.LEAD_SOURCE</columns>
+    <columns>Acquisition_Program__c</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>Phone__c</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Pre_enrollment_Comments__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>OPPORTUNITY.LEAD_SOURCE</field>
+        <operation>equals</operation>
+        <value>Ambassador,Consumer Affairs,Facebook,Facebook-Instagram,Google,Instagram</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.NAME</field>
+        <operation>contains</operation>
+        <value>8/</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>New,No Contact,Contacted,Presentation,Hot to Close</value>
+    </filters>
+    <label>My Opportunities</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Elapsed_Time_Computed__c</fullName>
+    <description>This is the computed elapsed time given the collection and processing date/time, timezones.</description>
+    <externalId>false</externalId>
+    <formula>FORMATDURATION(
+Process_Datetime__c-(if(ISPICKVAL(Process_Timezone__c,&apos;US - Central&apos;),1/24,if(ISPICKVAL(Process_Timezone__c,&apos;US - Mountain&apos;),2/24,if(ISPICKVAL(Process_Timezone__c,&apos;US - Pacific&apos;),3/24,0)))),
+Collection_Datetime__c-(if(ISPICKVAL(Collection_Timezone__c,&apos;US - Central&apos;),1/24,if(ISPICKVAL(Collection_Timezone__c,&apos;US - Mountain&apos;),2/24,if(ISPICKVAL(Collection_Timezone__c,&apos;US - Pacific&apos;),3/24,0))))
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Elapsed Time Computed</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

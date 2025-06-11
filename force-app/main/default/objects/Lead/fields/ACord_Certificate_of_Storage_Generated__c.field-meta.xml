@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ACord_Certificate_of_Storage_Generated__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Americord Certificate of Storage prepared, checked, and sent.</description>
+    <label>AC Cert</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

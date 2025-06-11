@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Appointment_Date_Time_ET__c</fullName>
+    <description>Populated by Process Builder when Appointment is set. Used to update stage when Appointment is missed.</description>
+    <label>Appointment Date &amp; Time (ET)</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

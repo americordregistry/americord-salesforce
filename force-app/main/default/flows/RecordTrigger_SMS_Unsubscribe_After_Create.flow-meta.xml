@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <description>Determine if the unsubscribe is an opt-out.</description>
+        <name>Unsubscribe_is_Opt_Out</name>
+        <label>Unsubscribe is Opt-Out?</label>
+        <locationX>336</locationX>
+        <locationY>323</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>YES_Opting_Out_Of_SMS</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.tdc_tsw__SMS_Opt_Out_In__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Opt-Out</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>What_Object_To_Update</targetReference>
+            </connector>
+            <label>YES - Opting Out Of SMS</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determine the object we need to update for opt-out.</description>
+        <name>What_Object_To_Update</name>
+        <label>What Object To Update?</label>
+        <locationX>182</locationX>
+        <locationY>431</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>OPP_Update_Opportunity_SMS_Opt_Out</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.tdc_tsw__Object__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Opportunity</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Opportunity_SMS_Opt_Out</targetReference>
+            </connector>
+            <label>OPP: Update Opportunity SMS Opt Out</label>
+        </rules>
+    </decisions>
+    <description>This is the flow that should be used for all SMS Unsubscribe After Create logic.</description>
+    <environments>Default</environments>
+    <interviewLabel>RecordTrigger: SMS Unsubscribe After Create {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RecordTrigger: SMS Unsubscribe After Create</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Update the opportunity flag for sms opt out.</description>
+        <name>Update_Opportunity_SMS_Opt_Out</name>
+        <label>Update Opportunity SMS Opt Out</label>
+        <locationX>50</locationX>
+        <locationY>539</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.tdc_tsw__Opportunity__c</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>tdc_tsw__SMS_Opt_out__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>Opportunity</object>
+    </recordUpdates>
+    <start>
+        <locationX>210</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Unsubscribe_is_Opt_Out</targetReference>
+        </connector>
+        <object>tdc_tsw__SMS_Unsubscribes__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

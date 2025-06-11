@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Trimester__c</fullName>
+    <description>Calculates trimester using Baby&apos;s Due Date minus Today, hence trimester updates automatically. Used for round robin lead assignments.</description>
+    <externalId>false</externalId>
+    <formula>if(Babys_Due_Date__c - Today()&gt;=180, &quot;T1&quot;, 
+if(Babys_Due_Date__c - Today()&gt;=90, &quot;T2&quot;,
+if(Babys_Due_Date__c - Today()&lt;90, &quot;T3&quot;,
+&quot;NDD&quot;)))</formula>
+    <inlineHelpText>Updates automatically, provides trimester based on today.</inlineHelpText>
+    <label>Trimester</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description>This is the main flow that runs when the Contact is inserted or updated before save.</description>
+    <formulas>
+        <description>Reformat phone to E164 format.</description>
+        <name>formOtherFormatE164</name>
+        <dataType>String</dataType>
+        <expression>if (
+    len(
+        SUBSTITUTE(
+            SUBSTITUTE(
+                SUBSTITUTE(
+                    SUBSTITUTE(
+                        SUBSTITUTE(
+                            SUBSTITUTE({!$Record.OtherPhone}, &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;), &quot;+&quot;, &quot;&quot;), &quot;.&quot;, &quot;&quot;)) = 10,
+    &quot;+1&quot; +
+    SUBSTITUTE(
+        SUBSTITUTE(
+            SUBSTITUTE(
+                SUBSTITUTE(
+                    SUBSTITUTE(
+                        SUBSTITUTE({!$Record.OtherPhone}, &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;), &quot;+&quot;, &quot;&quot;), &quot;.&quot;, &quot;&quot;), {!$Record.OtherPhone})</expression>
+    </formulas>
+    <formulas>
+        <description>Reformat phone to E164 format.</description>
+        <name>formTAltPhoneFormatE164</name>
+        <dataType>String</dataType>
+        <expression>if (
+    len(
+        SUBSTITUTE(
+            SUBSTITUTE(
+                SUBSTITUTE(
+                    SUBSTITUTE(
+                        SUBSTITUTE(
+                            SUBSTITUTE({!$Record.Alt_Phone__c}, &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;), &quot;+&quot;, &quot;&quot;), &quot;.&quot;, &quot;&quot;)) = 10,
+    &quot;+1&quot; +
+    SUBSTITUTE(
+        SUBSTITUTE(
+            SUBSTITUTE(
+                SUBSTITUTE(
+                    SUBSTITUTE(
+                        SUBSTITUTE({!$Record.Alt_Phone__c}, &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;), &quot;+&quot;, &quot;&quot;), &quot;.&quot;, &quot;&quot;), {!$Record.Alt_Phone__c})</expression>
+    </formulas>
+    <formulas>
+        <description>Reformat phone to E164 format.</description>
+        <name>formTHomeFormatE164</name>
+        <dataType>String</dataType>
+        <expression>if (
+    len(
+        SUBSTITUTE(
+            SUBSTITUTE(
+                SUBSTITUTE(
+                    SUBSTITUTE(
+                        SUBSTITUTE(
+                            SUBSTITUTE({!$Record.HomePhone}, &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;), &quot;+&quot;, &quot;&quot;), &quot;.&quot;, &quot;&quot;)) = 10,
+    &quot;+1&quot; +
+    SUBSTITUTE(
+        SUBSTITUTE(
+            SUBSTITUTE(
+                SUBSTITUTE(
+                    SUBSTITUTE(
+                        SUBSTITUTE({!$Record.HomePhone}, &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;), &quot;+&quot;, &quot;&quot;), &quot;.&quot;, &quot;&quot;), {!$Record.HomePhone})</expression>
+    </formulas>
+    <formulas>
+        <description>Reformat phone to E164 format.</description>
+        <name>formTMobileFormatE164</name>
+        <dataType>String</dataType>
+        <expression>if (
+    len(
+        SUBSTITUTE(
+            SUBSTITUTE(
+                SUBSTITUTE(
+                    SUBSTITUTE(
+                        SUBSTITUTE(
+                            SUBSTITUTE({!$Record.MobilePhone}, &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;), &quot;+&quot;, &quot;&quot;), &quot;.&quot;, &quot;&quot;)) = 10,
+    &quot;+1&quot; +
+    SUBSTITUTE(
+        SUBSTITUTE(
+            SUBSTITUTE(
+                SUBSTITUTE(
+                    SUBSTITUTE(
+                        SUBSTITUTE({!$Record.MobilePhone}, &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;), &quot;+&quot;, &quot;&quot;), &quot;.&quot;, &quot;&quot;), {!$Record.MobilePhone})</expression>
+    </formulas>
+    <formulas>
+        <description>Reformat of the phone to the E164 format.</description>
+        <name>formTPhoneFormatE164</name>
+        <dataType>String</dataType>
+        <expression>if (
+    len(
+        SUBSTITUTE(
+            SUBSTITUTE(
+                SUBSTITUTE(
+                    SUBSTITUTE(
+                        SUBSTITUTE(
+                            SUBSTITUTE({!$Record.Phone}, &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;), &quot;+&quot;, &quot;&quot;), &quot;.&quot;, &quot;&quot;)) = 10,
+    &quot;+1&quot; +
+    SUBSTITUTE(
+        SUBSTITUTE(
+            SUBSTITUTE(
+                SUBSTITUTE(
+                    SUBSTITUTE(
+                        SUBSTITUTE({!$Record.Phone}, &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;), &quot;+&quot;, &quot;&quot;), &quot;.&quot;, &quot;&quot;), {!$Record.Phone})</expression>
+    </formulas>
+    <interviewLabel>RecordTrigger:Contact Insert Before Save {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RecordTrigger:Contact Insert or Update Before Save</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>This update will reformat phone fields to the E.164 format.</description>
+        <name>Update_Phone_Fields_To_E_164_Format</name>
+        <label>Update Phone Fields To E.164 Format</label>
+        <locationX>176</locationX>
+        <locationY>311</locationY>
+        <inputAssignments>
+            <field>Alt_Phone__c</field>
+            <value>
+                <elementReference>formTAltPhoneFormatE164</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>HomePhone</field>
+            <value>
+                <elementReference>formTHomeFormatE164</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>MobilePhone</field>
+            <value>
+                <elementReference>formTMobileFormatE164</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OtherPhone</field>
+            <value>
+                <elementReference>formOtherFormatE164</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Phone</field>
+            <value>
+                <elementReference>formTPhoneFormatE164</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Phone_Fields_To_E_164_Format</targetReference>
+        </connector>
+        <object>Contact</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

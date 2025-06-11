@@ -1,0 +1,117 @@
+tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.ac-tr-no-border {
+    border: none;
+}
+
+.ac-shaded-row {
+    background-color: #F8F8F8;
+}
+
+.ac-data-row {
+    height: 2.5rem;
+}
+
+.ac-searchable-section {
+    max-height: 15rem;
+}
+
+.ac-input-border lightning-input {
+    --slds-c-input-color-border: #D5D5D5;
+}
+
+.ac-search-box {
+    align-self: center;
+}
+
+.ac-select-button-unselected {
+    --slds-c-icon-color-foreground:#0070D2; 
+    border-color: #D5D5D5;
+}
+
+.ac-flex {
+    display: flex;
+}
+
+.ac-center {
+    align-items: center;
+}
+
+.ac-select-button-selected .slds-button_icon-container.slds-is-selected, .slds-button_icon-border.slds-is-selected, .slds-button_icon-border-filled.slds-is-selected, .slds-button_icon-border-inverse.slds-is-selected, .slds-button:active .slds-button:focus-visible {
+    --slds-c-icon-color-foreground:white;
+	background-color: #C9C7C5;
+    border-color: transparent;
+}
+
+/* .THIS .lightning-primitive-icon .lightning-primitive-icon:active {
+    border-color:red !important;
+} */
+
+.ac-hidden {
+    display:none;
+}
+
+.ac-flex-auto {
+    flex: auto;
+    text-align:left;
+}
+
+.ac-accordion-header-background {
+    --slds-c-accordion-summary-color-background: #FDEAE7;
+}
+
+/* .slds-accordion__summary-action:hover, .slds-accordion__summary-action:focus {
+    color: black;
+    background-color: #CCCBCB;
+} */
+
+.ac-accordion-header-text-align {
+    text-align: center;
+}
+
+.ac-delete-icon:hover {
+    --slds-c-icon-color-foreground: #0070D2;
+}
+
+.ac-delete-icon {
+    --slds-c-icon-color-foreground: #747474;
+}
+
+.ac-large-icon-button:hover {
+    --slds-c-icon-color-foreground-default: #0070D2; 
+}
+
+.ac-large-icon-button {
+    cursor: pointer;
+}
+
+.ac-position-absolute {
+    position: absolute;
+}
+
+.ac-disabled-grey {
+    --slds-c-icon-color-foreground-default: #C9C7C5;
+}
+
+.ac-med-font {
+    font-size: medium;
+    display:flow;
+}
+
+/* .THIS lightning-icon.some-indicator > lightning-primitive-icon > svg > use{
+    fill: green;
+} */
+
+/* .ac-large-icon-button slds-icon slds-icon-text-default lightning-primitive-icon {
+    --slds-c-icon-color-foreground:#0070D2; 
+} */
+
+/* lightning-primitive-icon:hover {
+    --slds-c-icon-color-foreground:#0070D2; 
+} */
+
+/* .THIS lightning-icon.ac-large-icon-button > span:nth-child(1) > lightning-primitive-icon:nth-child(1) > use {
+    --slds-c-icon-color-foreground:#0070D2; 
+} */

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CA_Double_Dip__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This is for when the lead has already enrolled with a competitor/they already matched with a different cord blood bank with the CA matching tool. We&apos;re trying to determine if CA is selling the same leads to multiple vendors here</description>
+    <inlineHelpText>This is for when the lead has already enrolled with a competitor/they already matched with a different cord blood bank with the CA matching tool. We&apos;re trying to determine if CA is selling the same leads to multiple vendors here</inlineHelpText>
+    <label>CA Double-Dip</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

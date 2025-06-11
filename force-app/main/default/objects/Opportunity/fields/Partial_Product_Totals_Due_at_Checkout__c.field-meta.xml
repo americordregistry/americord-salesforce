@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Partial_Product_Totals_Due_at_Checkout__c</fullName>
+    <description>The total amount in the Partial_Amount_Due_At_Checkout__c field of all products.</description>
+    <label>Partial Product Totals Due at Checkout</label>
+    <summarizedField>OpportunityLineItem.Partial_Amount_Due_At_Checkout__c</summarizedField>
+    <summaryFilterItems>
+        <field>OpportunityLineItem.Partial_Amount_Due_At_Checkout__c</field>
+        <operation>notEqual</operation>
+        <value></value>
+    </summaryFilterItems>
+    <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

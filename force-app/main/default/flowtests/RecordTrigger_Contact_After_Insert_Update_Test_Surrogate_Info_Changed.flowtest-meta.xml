@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowTest xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Test when surrogate info changed and update lab</description>
+    <flowApiName>RecordTrigger_Contact_After_Insert_Update</flowApiName>
+    <label>RecordTrigger: Contact - Test Surrogate Info Changed</label>
+    <testPoints>
+        <elementApiName>Start</elementApiName>
+        <parameters>
+            <leftValueReference>$Record</leftValueReference>
+            <type>InputTriggeringRecordInitial</type>
+            <value>
+                <sobjectValue>{&quot;ACOG_List__c&quot;:false,&quot;Baby_is_born__c&quot;:false,&quot;Client_Portal__c&quot;:false,&quot;Create_New_Lead__c&quot;:false,&quot;Create_Portal_Access__c&quot;:false,&quot;Email&quot;:&quot;ssuro@someco.com&quot;,&quot;Email_Invalid__c&quot;:false,&quot;Enroller__c&quot;:false,&quot;Exclude_from_NYE_SMS__c&quot;:false,&quot;FedEx_Declared_Value__c&quot;:30,&quot;FedEx_Height__c&quot;:3,&quot;FedEx_Length__c&quot;:9,&quot;FedEx_Package_Type__c&quot;:&quot;YOUR_PACKAGING&quot;,&quot;FedEx_Quantity__c&quot;:1,&quot;FedEx_Reference__c&quot;:&quot;Outreach Program&quot;,&quot;FedEx_Shipping_Method__c&quot;:&quot;FEDEX_GROUND&quot;,&quot;FedEx_Shipping_Type__c&quot;:&quot;OUTBOUND&quot;,&quot;FedEx_Weight__c&quot;:2,&quot;FedEx_Width__c&quot;:4,&quot;FirstName&quot;:&quot;Susan&quot;,&quot;HasOptedOutOfEmail&quot;:false,&quot;Include_in_Addendum__c&quot;:false,&quot;LastName&quot;:&quot;Sugogati&quot;,&quot;Mailchimp_Activity__c&quot;:false,&quot;Master_Record__c&quot;:false,&quot;NPS_Score__c&quot;:0,&quot;Note_for_Cover_Letter__c&quot;:&quot;Thank you for your interest in partnering with Americord Registry. As we discussed, here is your Health Care Provider&apos;s Agreement. Please review, sign, and return at your earliest convenience. Feel free to call or email with any questions.&quot;,&quot;OwnerId&quot;:&quot;0058X00000FKwl3QAD&quot;,&quot;Primary_Contact__c&quot;:false,&quot;Referrer__c&quot;:false,&quot;Retired_Left__c&quot;:false,&quot;Sender_City__c&quot;:&quot;Warren&quot;,&quot;Sender_Name__c&quot;:&quot;Jennifer Dziedzic&quot;,&quot;Sender_State__c&quot;:&quot;OH&quot;,&quot;Sender_Street_Address__c&quot;:&quot;817 Comstock NW&quot;,&quot;Sender_Zip__c&quot;:&quot;44483&quot;,&quot;Shipping_Preference__c&quot;:&quot;ShipmatePreference-0002&quot;,&quot;Sync_with_Marketo__c&quot;:false,&quot;Type__c&quot;:&quot;Surrogate&quot;,&quot;VIP_Celebrity__c&quot;:false,&quot;donation_reconsider__c&quot;:false,&quot;fw1__Billing_Contact__c&quot;:false,&quot;fw1__Secondary_Billing_Contact__c&quot;:false,&quot;n2de__Is_distributed__c&quot;:false,&quot;n2de__Is_reassigned__c&quot;:false,&quot;qbdialer__Dials__c&quot;:0,&quot;tdc_tsw__SMS_Opt_out__c&quot;:false}</sobjectValue>
+            </value>
+        </parameters>
+        <parameters>
+            <leftValueReference>$Record</leftValueReference>
+            <type>InputTriggeringRecordUpdated</type>
+            <value>
+                <sobjectValue>{&quot;ACOG_List__c&quot;:false,&quot;Baby_is_born__c&quot;:false,&quot;Client_Portal__c&quot;:false,&quot;Create_New_Lead__c&quot;:false,&quot;Create_Portal_Access__c&quot;:false,&quot;Email&quot;:&quot;ssuro@someco.com&quot;,&quot;Email_Invalid__c&quot;:false,&quot;Enroller__c&quot;:false,&quot;Exclude_from_NYE_SMS__c&quot;:false,&quot;FedEx_Declared_Value__c&quot;:30,&quot;FedEx_Height__c&quot;:3,&quot;FedEx_Length__c&quot;:9,&quot;FedEx_Package_Type__c&quot;:&quot;YOUR_PACKAGING&quot;,&quot;FedEx_Quantity__c&quot;:1,&quot;FedEx_Reference__c&quot;:&quot;Outreach Program&quot;,&quot;FedEx_Shipping_Method__c&quot;:&quot;FEDEX_GROUND&quot;,&quot;FedEx_Shipping_Type__c&quot;:&quot;OUTBOUND&quot;,&quot;FedEx_Weight__c&quot;:2,&quot;FedEx_Width__c&quot;:4,&quot;FirstName&quot;:&quot;Sue&quot;,&quot;HasOptedOutOfEmail&quot;:false,&quot;Include_in_Addendum__c&quot;:false,&quot;LastName&quot;:&quot;Sugogati&quot;,&quot;Mailchimp_Activity__c&quot;:false,&quot;Master_Record__c&quot;:false,&quot;NPS_Score__c&quot;:0,&quot;Note_for_Cover_Letter__c&quot;:&quot;Thank you for your interest in partnering with Americord Registry. As we discussed, here is your Health Care Provider&apos;s Agreement. Please review, sign, and return at your earliest convenience. Feel free to call or email with any questions.&quot;,&quot;OwnerId&quot;:&quot;0058X00000FKwl3QAD&quot;,&quot;Primary_Contact__c&quot;:false,&quot;Referrer__c&quot;:false,&quot;Retired_Left__c&quot;:false,&quot;Sender_City__c&quot;:&quot;Warren&quot;,&quot;Sender_Name__c&quot;:&quot;Jennifer Dziedzic&quot;,&quot;Sender_State__c&quot;:&quot;OH&quot;,&quot;Sender_Street_Address__c&quot;:&quot;817 Comstock NW&quot;,&quot;Sender_Zip__c&quot;:&quot;44483&quot;,&quot;Shipping_Preference__c&quot;:&quot;ShipmatePreference-0002&quot;,&quot;Sync_with_Marketo__c&quot;:false,&quot;Type__c&quot;:&quot;Surrogate&quot;,&quot;VIP_Celebrity__c&quot;:false,&quot;donation_reconsider__c&quot;:false,&quot;fw1__Billing_Contact__c&quot;:false,&quot;fw1__Secondary_Billing_Contact__c&quot;:false,&quot;n2de__Is_distributed__c&quot;:false,&quot;n2de__Is_reassigned__c&quot;:false,&quot;qbdialer__Dials__c&quot;:0,&quot;tdc_tsw__SMS_Opt_out__c&quot;:false}</sobjectValue>
+            </value>
+        </parameters>
+    </testPoints>
+    <testPoints>
+        <assertions>
+            <conditions>
+                <leftValueReference>$Record.FirstName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Sue</stringValue>
+                </rightValue>
+            </conditions>
+        </assertions>
+        <elementApiName>Finish</elementApiName>
+    </testPoints>
+</FlowTest>

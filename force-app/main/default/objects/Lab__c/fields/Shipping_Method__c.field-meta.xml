@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Shipping_Method__c</fullName>
+    <description>This field is populated during enrollment process based on data entered on the lead.</description>
+    <label>Shipping Method</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Same Day (CS Team)</fullName>
+                <default>false</default>
+                <label>Same Day (CS Team)</label>
+            </value>
+            <value>
+                <fullName>FIPR</fullName>
+                <default>false</default>
+                <label>FEDEX INTL Priority</label>
+            </value>
+            <value>
+                <fullName>FX2D</fullName>
+                <default>false</default>
+                <label>FEDX 2nd Day 5:00PM</label>
+            </value>
+            <value>
+                <fullName>FXEX</fullName>
+                <default>false</default>
+                <label>FEDX Express Saver</label>
+            </value>
+            <value>
+                <fullName>FXGD</fullName>
+                <default>false</default>
+                <label>FEDX Ground</label>
+            </value>
+            <value>
+                <fullName>FXHM</fullName>
+                <default>false</default>
+                <label>FEDEX Ground Home Delivery</label>
+            </value>
+            <value>
+                <fullName>FXPO</fullName>
+                <default>false</default>
+                <label>FEDX Next Day 10:30AM</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

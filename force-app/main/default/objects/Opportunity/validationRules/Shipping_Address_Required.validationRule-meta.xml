@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Shipping_Address_Required</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND (
+ISPICKVAL(StageName, &quot;Enrolled&quot;), 
+ CloseDate &gt; DATE(2021, 01, 01),
+OR( 
+ ISBLANK(Shipping_City__c),
+ ISBLANK(Shipping_Street__c ),
+ ISBLANK(Shipping_City__c),
+ ISBLANK(text(Shipping_State_Province__c)),
+ ISBLANK( Shipping_Zip__c)))</errorConditionFormula>
+    <errorMessage>Please enter a shipping address. Street, City, State and Zip are required.</errorMessage>
+</ValidationRule>

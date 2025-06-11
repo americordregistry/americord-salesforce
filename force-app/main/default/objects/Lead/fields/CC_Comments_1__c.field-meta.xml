@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CC_Comments_1__c</fullName>
+    <inlineHelpText>This field is only for the call center. All notes should go here, with the newest notes at the top. be sure to enter the date, who entered it, and clear notes for follow up.</inlineHelpText>
+    <label>CC Comments 1</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>tdc_tvte__Verified_contacts</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>CONTACT.EMAIL</columns>
+    <columns>tdc_tvte__Email_Status__c</columns>
+    <columns>CONTACT.PHONE3</columns>
+    <columns>tdc_tvte__Number_Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>Verified Contacts</label>
+</ListView>

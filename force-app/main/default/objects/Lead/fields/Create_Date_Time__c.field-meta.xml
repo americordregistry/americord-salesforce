@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Create_Date_Time__c</fullName>
+    <description>Created for John Stieler for sales analysis</description>
+    <formula>CreatedDate</formula>
+    <inlineHelpText>Formula field to convert Create Date to Date &amp; Time</inlineHelpText>
+    <label>Create Date &amp; Time</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>DateTime</type>
+</CustomField>

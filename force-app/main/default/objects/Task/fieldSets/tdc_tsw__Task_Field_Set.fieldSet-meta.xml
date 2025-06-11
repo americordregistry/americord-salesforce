@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FieldSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>tdc_tsw__Task_Field_Set</fullName>
+    <description>It is used to add fields on Task</description>
+    <displayedFields>
+        <field>tdc_tsw__Email_To__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <displayedFields>
+        <field>tdc_tsw__Email_Cc__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <label>Task Field Set</label>
+</FieldSet>

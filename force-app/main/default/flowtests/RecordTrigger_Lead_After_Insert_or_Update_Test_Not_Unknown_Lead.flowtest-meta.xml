@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowTest xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Test for non-unknown lead flow.</description>
+    <flowApiName>RecordTrigger_Lead_After_Insert_or_Update</flowApiName>
+    <label>Test Not Unknown Lead</label>
+    <testPoints>
+        <elementApiName>Start</elementApiName>
+        <parameters>
+            <leftValueReference>$Record</leftValueReference>
+            <type>InputTriggeringRecordInitial</type>
+            <value>
+                <sobjectValue>{&quot;ACord_Certificate_of_Storage_Generated__c&quot;:false,&quot;Agreement_Escalation__c&quot;:false,&quot;BBB_Gift_Card__c&quot;:false,&quot;Bill_Surrogate_Company__c&quot;:false,&quot;Billing_Notes_Needs_Review__c&quot;:false,&quot;CC_Call_1__c&quot;:false,&quot;CC_Call_2__c&quot;:false,&quot;CC_Email_1__c&quot;:false,&quot;CC_Email_2__c&quot;:false,&quot;CM_BF_SMS__c&quot;:false,&quot;CalendlyCreated__c&quot;:false,&quot;Called_2x__c&quot;:false,&quot;Called_3x__c&quot;:false,&quot;Called_Prospect__c&quot;:false,&quot;Client_Billed__c&quot;:false,&quot;Client_Responded__c&quot;:false,&quot;Convert_to_Opportunity__c&quot;:false,&quot;Cord_Blood_2_0__c&quot;:0,&quot;Cord_Blood_Collection_Completed__c&quot;:false,&quot;Cord_Tissue_Substitution__c&quot;:false,&quot;Cord_Tissue__c&quot;:0,&quot;DCS_Uploaded__c&quot;:false,&quot;Discount__c&quot;:0,&quot;Doctor_s_Email__c&quot;:&quot;1@efaxsend.com&quot;,&quot;Ecomm_Dup_Created__c&quot;:false,&quot;Email&quot;:&quot;tt@someco.com&quot;,&quot;Email_1x__c&quot;:false,&quot;Email_Invalid__c&quot;:false,&quot;Enrollment_Forms_Completed__c&quot;:false,&quot;Faxed_Informed_Consent_to_Doctor__c&quot;:false,&quot;FirstName&quot;:&quot;Tammy2&quot;,&quot;GBT_Certificate_of_Storage__c&quot;:false,&quot;HasOptedOutOfEmail&quot;:false,&quot;I_would_like_to_speak_with_a_Specialist__c&quot;:false,&quot;Inbound_Call__c&quot;:false,&quot;IsUnreadByOwner&quot;:true,&quot;KISSM__c&quot;:false,&quot;LastName&quot;:&quot;Examplo&quot;,&quot;Maternal_Form__c&quot;:false,&quot;Mother_s_Day_Survey__c&quot;:false,&quot;NEED_NEW_CC__c&quot;:false,&quot;Not_Available_Weekends__c&quot;:false,&quot;Not_Available_Weeknights__c&quot;:false,&quot;Not_Available_weekdays__c&quot;:false,&quot;OwnerId&quot;:&quot;0058X00000FKwl3QAD&quot;,&quot;Placenta_Tissue__c&quot;:0,&quot;Returning_Client__c&quot;:false,&quot;Saturday_Delivery__c&quot;:false,&quot;Sent_Marketing_Email__c&quot;:false,&quot;SequenceDNA__c&quot;:false,&quot;Sheep_Sent__c&quot;:false,&quot;Ship_kit_to_Surrogate__c&quot;:false,&quot;Status&quot;:&quot;Open&quot;,&quot;Surrogate__c&quot;:false,&quot;Sync_with_Marketo__c&quot;:true,&quot;Testimonial__c&quot;:false,&quot;Trigger__c&quot;:false,&quot;Urgent_Order__c&quot;:false,&quot;Weekend_Call__c&quot;:false,&quot;donation_reconsider__c&quot;:false,&quot;n2de__Is_archived__c&quot;:false,&quot;n2de__Is_distributed__c&quot;:false,&quot;n2de__Is_reassigned__c&quot;:false,&quot;n2de__Is_rejected__c&quot;:false,&quot;n2de__Is_trigger_enabled__c&quot;:false,&quot;n2de__Is_triggered__c&quot;:false,&quot;paymentplanawareness__c&quot;:false,&quot;planningtobank__c&quot;:false,&quot;reconsider__c&quot;:false,&quot;tdc_tsw__SMS_Opt_out__c&quot;:false}</sobjectValue>
+            </value>
+        </parameters>
+    </testPoints>
+    <testPoints>
+        <assertions>
+            <conditions>
+                <leftValueReference>$Record.Email</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>unknown@example.com</stringValue>
+                </rightValue>
+            </conditions>
+        </assertions>
+        <elementApiName>Finish</elementApiName>
+    </testPoints>
+</FlowTest>

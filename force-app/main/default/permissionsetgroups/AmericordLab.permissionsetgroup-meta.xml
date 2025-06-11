@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Permission group for the Americord Lab persona.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>AmericordLab</label>
+    <permissionSets>Americord_Base</permissionSets>
+    <permissionSets>Americord_Lab</permissionSets>
+    <permissionSets>Americord_MFA_Enabled</permissionSets>
+    <permissionSets>ScanAnything__ScanAnything_Full_User</permissionSets>
+    <permissionSets>slackv2__Slack_Standard_User</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>

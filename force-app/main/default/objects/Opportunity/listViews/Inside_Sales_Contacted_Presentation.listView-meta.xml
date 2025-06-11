@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Inside_Sales_Contacted_Presentation</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>OPPORTUNITY.LEAD_SOURCE</columns>
+    <columns>Phone__c</columns>
+    <columns>Contact2_Phone__c</columns>
+    <columns>Time_Zone__c</columns>
+    <columns>Last_Call_Results__c</columns>
+    <columns>Email__c</columns>
+    <columns>Number_of_Births__c</columns>
+    <columns>Sale_Type_Direct_or_Complex__c</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>OPPORTUNITY.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>Contacted,Presentation</value>
+    </filters>
+    <label>Inside Sales - Contacted / Presentation</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

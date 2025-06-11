@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Maternal_Exo_Final_Prod_Conc_Exo_uL__c</fullName>
+    <externalId>false</externalId>
+    <label>Maternal Exo Final Prod Conc (Exo #/uL)</label>
+    <length>50</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

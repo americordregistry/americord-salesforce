@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Exosome_Specimen_Volume_Processed__c</fullName>
+    <label>Exosome Specimen Volume Processed</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>10ml</fullName>
+                <default>false</default>
+                <label>10ml</label>
+            </value>
+            <value>
+                <fullName>20ml</fullName>
+                <default>false</default>
+                <label>20ml</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

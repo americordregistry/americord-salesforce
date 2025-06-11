@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lead_Qualification_new__c</fullName>
+    <description>Used to establish lead qualification, used in Lead Type field, which is mapped to Opportunity. Used with Distribution Engine for lead assignments.</description>
+    <externalId>false</externalId>
+    <formula>if ( TEXT(Status)=&quot;Test&quot;, &quot;Test&quot;,
+      if ( Babys_Due_Date__c &lt; TODAY()+30, &quot;Hot&quot;,
+            if ( TEXT(LeadSource)= &quot;Returning Client&quot;, &quot;Hot&quot;,
+                  if ( ISNULL(Babys_Due_Date__c), &quot;Cool&quot;,
+                       if (CONTAINS(mkto71_Acquisition_Program__c, &quot;Birth Plan&quot;), &quot;Cold&quot;,
+                             IF (
+                                  OR(
+                                     CONTAINS(mkto71_Acquisition_Program__c, &quot;Pricing Calculator&quot;), ISBLANK(mkto71_Acquisition_Program__c),
+TEXT(LeadSource) = &quot;Client Referral&quot;,
+TEXT(LeadSource) = &quot;Consumer Affairs&quot;,
+TEXT(LeadSource) = &quot;Employee Referral&quot;,
+TEXT(LeadSource) = &quot;Live Chat&quot;,
+TEXT(LeadSource) = &quot;Surrogacy Group&quot;,
+TEXT(LeadSource) = &quot;Parents Guide&quot;,
+TEXT(LeadSource) = &quot;Ambassador&quot;,
+TEXT(LeadSource) = &quot;Google&quot;), &quot;Warm&quot;,
+&quot;Cool&quot;))))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Lead Qualification new</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

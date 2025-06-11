@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>45.0</apiVersion>
+    <availableInTouch>false</availableInTouch>
+    <confirmationTokenRequired>false</confirmationTokenRequired>
+    <description>Used for ready for autobill, past due, credit card expired and docusign status.</description>
+    <label>Alert - CBO</label>
+    <packageVersions>
+        <majorNumber>6</majorNumber>
+        <minorNumber>30</minorNumber>
+        <namespace>fw1</namespace>
+    </packageVersions>
+</ApexPage>

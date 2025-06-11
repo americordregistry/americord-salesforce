@@ -1,0 +1,46 @@
+<template>
+    <template if:true={showComponent}>
+        <div class="slds-box slds-theme_shade slds-var-m-top_small">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                        <div class="slds-card__header slds-truncate" title="One-time Payment">
+                            <span>One-time Payment</span>
+                            <lightning-helptext style="vertical-align: top !important;" content="Based on product selection, no discount."></lightning-helptext>
+                        </div>
+                    </h2>
+                </div>
+            </header>
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Plan">Plan</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Price">Price</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Plan">
+                            <div class="slds-truncate" title="20YPP">20YPP</div>
+                        </td>
+                        <td data-label="Price">
+                            $<lightning-formatted-number value={totalAmount20YPP} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-label="Plan">
+                            <div class="slds-truncate" title="Lifetime">Lifetime</div>
+                        </td>
+                        <td data-label="Price">
+                            $<lightning-formatted-number value={totalAmountLTS} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </template>
+</template>

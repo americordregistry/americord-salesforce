@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Annual_Price_for_Stem_Cell_Agreement__c</fullName>
+    <description>Used to display correct annual storage fee in stem cell storage agreement.</description>
+    <externalId>false</externalId>
+    <formula>if ( Cord_Blood_Order__r.Annual_Fee_Unit_Price__c = 150, &quot;1 Product, $150; 2 Products, $275; 3 Products $375.&quot;, &quot;1 Product, $&quot;&amp; Text(Cord_Blood_Order__r.Annual_Fee_Unit_Price__c) &amp;&quot; ; 2 Products, $&quot; &amp;Text(Cord_Blood_Order__r.Annual_Fee_Unit_Price__c*2) &amp; &quot; ; 3 Products $&quot; &amp; Text(Cord_Blood_Order__r.Annual_Fee_Unit_Price__c*3)&amp;&quot;.&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Annual Price for Stem Cell Agreement</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

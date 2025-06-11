@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Baby_s_Due_Date_is_Required</fullName>
+    <active>true</active>
+    <description>Validate rule that prevents stage being enrolled and either no due date set or due date is in the past.</description>
+    <errorConditionFormula>AND (
+	TEXT(StageName) = &quot;Enrolled&quot;,
+ 	$User.Department = &quot;Inside Sales&quot;,
+	or (
+		isnull( Baby_s_Due_Date__c ),
+		AND(
+			ISCHANGED(Baby_s_Due_Date__c),
+			Baby_s_Due_Date__c &lt; Today ()
+		)
+	)
+)</errorConditionFormula>
+    <errorMessage>Baby&apos;s Due Date is required and must be a date in the future (greater than today).</errorMessage>
+</ValidationRule>

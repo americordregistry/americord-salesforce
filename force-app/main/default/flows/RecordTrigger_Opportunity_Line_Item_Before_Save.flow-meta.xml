@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <environments>Default</environments>
+    <formulas>
+        <description>Formula to set the Due At Checkout value for the Opportunity Line Item.</description>
+        <name>formBOOLDueAtCheckout</name>
+        <dataType>Boolean</dataType>
+        <expression>IF({!$Record.Product2.Due_at_Checkout__c} == TRUE,TRUE,FALSE)</expression>
+    </formulas>
+    <interviewLabel>Opportunity Line Item - Before {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RecordTrigger:Opportunity Line Item Before Save</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Product2 does not support formula fields to bring in data to related records.  This keeps the Category field on OpportunityProducts up to date.</description>
+        <name>Get_Product_Family</name>
+        <label>Get Product Family</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <connector>
+            <targetReference>Update_Due_at_Checkout</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Category__c</field>
+            <value>
+                <elementReference>$Record.Product2.Family</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Gets the value from the Due_at_Checkout__c field on the Product for this line items (Opportunity Line Items do not support formula fields to bring in Product values)</description>
+        <name>Update_Due_at_Checkout</name>
+        <label>Update Due at Checkout</label>
+        <locationX>176</locationX>
+        <locationY>395</locationY>
+        <connector>
+            <targetReference>Update_Partial_Amount_Due_at_Checkout</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Due_at_Checkout__c</field>
+            <value>
+                <elementReference>formBOOLDueAtCheckout</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Gets the value from the Partial_Amount_Due_At_Checkout__c field on the Product for this line items (Opportunity Line Items do not support formula fields to bring in Product values)</description>
+        <name>Update_Partial_Amount_Due_at_Checkout</name>
+        <label>Update Partial Amount Due at Checkout</label>
+        <locationX>176</locationX>
+        <locationY>503</locationY>
+        <inputAssignments>
+            <field>Partial_Amount_Due_At_Checkout__c</field>
+            <value>
+                <elementReference>$Record.Product2.Partial_Amount_Due_At_Checkout__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Product_Family</targetReference>
+        </connector>
+        <object>OpportunityLineItem</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

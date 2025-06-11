@@ -1,0 +1,248 @@
+<template>
+    <template if:true={showSpinner}>
+        <lightning-spinner alternative-text="Loading"></lightning-spinner>
+    </template>
+    <template if:true={showComponent}>
+        <article class="slds-card slds-card_boundary slds-var-m-top_small">
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-var-p-top_large slds-var-p-bottom_large">
+                        <h2 class="slds-text-heading_small"><strong>{inputTitleText}</strong></h2>
+                    </div>
+                </header>
+            </div>
+            <div class="slds-card__body slds-card__body_inner">
+                <div class="slds-var-p-top_large slds-var-p-bottom_large">
+                    <h2><strong>Add BioBanking</strong></h2>
+                </div>
+                <div class="slds-grid slds-wrap slds-gutters slds-var-p-left_large">
+                    <!-- INPUT SECTION -->
+                    <div class="slds-col slds-align-top slds-grow-none">
+                        <div class="slds-grid slds-wrap slds-gutters">
+                            <div class="slds-col slds-align-top slds-grow-none">
+                                <div class="slds-var-p-around_small slds-text-align_left"># of Babies</div>
+                                <lightning-combobox label="# of Babies"
+                                                    name="birthCount"
+                                                    options={numberOfBabiesOptions}
+                                                    value={birthCount}
+                                                    required
+                                                    onchange={handleChange}
+                                                    disabled={isOrderStored}
+                                                    variant="label-hidden"></lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-align-top slds-grow-none ac-number-input-col">
+                                <lightning-input label="CB 2.0"
+                                                    name="cordBlood2Quantity" 
+                                                    type="number" 
+                                                    value={cordBlood2Quantity}
+                                                    step="1"
+                                                    required
+                                                    disabled={isOrderStored}
+                                                    onchange={handleChange}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-align-top slds-grow-none ac-number-input-col">
+                                <lightning-input label="CT"
+                                                    name="cordTissueQuantity" 
+                                                    type="number" 
+                                                    value={cordTissueQuantity}
+                                                    step="1"
+                                                    required
+                                                    disabled={isOrderStored}
+                                                    onchange={handleChange}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-align-top slds-grow-none ac-number-input-col">
+                                <lightning-input label="P2.0"
+                                                    name="placenta2Quantity" 
+                                                    type="number" 
+                                                    value={placenta2Quantity}
+                                                    step="1"
+                                                    required
+                                                    disabled={isOrderStored}
+                                                    onchange={handleChange}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-align-top slds-grow-none ac-number-input-col">
+                                <lightning-input label="Exosomes"
+                                                    name="exosomesQuantity" 
+                                                    type="number" 
+                                                    value={exosomesQuantity}
+                                                    step="1"
+                                                    required
+                                                    disabled={isOrderStored}
+                                                    onchange={handleChange}></lightning-input>
+                            </div>                          
+                            <div class="slds-col slds-align-top slds-grow-none">
+                                <div class="slds-var-p-around_small slds-align-top slds-text-align_left">Storage</div>
+                                <lightning-combobox label="Storage"
+                                                    name="storagePlan"
+                                                    options={storageOptions}
+                                                    value={storagePlan}
+                                                    required
+                                                    onchange={handleChange}
+                                                    variant="label-hidden"></lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-align-top slds-grow-none">
+                                <div class="slds-var-p-around_small slds-text-align_left">Payment</div>
+                                <lightning-combobox label="Payment"
+                                                    name="paymentPlan"
+                                                    options={paymentOptions}
+                                                    value={paymentPlan}
+                                                    required
+                                                    onchange={handleChange}
+                                                    variant="label-hidden"></lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-align-top slds-grow-none">
+                                <div class="slds-var-p-around_small slds-text-align_left">Shipping</div>
+                                <lightning-combobox label="Rush Shipping"
+                                                    name="shippingType"
+                                                    options={shippingOptions}
+                                                    value={shippingType}
+                                                    required
+                                                    onchange={handleChange}
+                                                    variant="label-hidden"></lightning-combobox>
+                            </div>
+                        </div>
+                    </div>                 
+                </div>    
+                <!-- Genomics -->                
+                <div class="slds-col slds-align-top slds-grow-none">
+                    <div class="slds-var-p-top_large slds-var-p-bottom_large">
+                        <h2><strong>Add Genomics</strong></h2>
+                    </div>       
+                    <div class="slds-col slds-grow-none slds-align-top">
+                        <lightning-input 
+                            type="checkbox" 
+                            label="Newborn Panel" 
+                            name="newbornPanel"
+                            data-id="newbornPanel"
+                            checked={newbornPanelChecked}
+                            onchange={handleChange}>
+                        </lightning-input>
+                    </div>
+                <!-- Genomics -->                    
+                <!-- Maternal Services-->                             
+                    <div class="slds-var-p-top_large slds-var-p-bottom_large">
+                        <h2><strong>Add Additional Services</strong></h2>
+                    </div>
+                    <div class="slds-col slds-grow-none slds-align-top">          
+                        <lightning-input 
+                            type="checkbox" 
+                            label="Maternal Exosomes" 
+                            name="maternalExosomes"
+                            data-id="maternalExosomes"
+                            checked={maternalExosomesChecked}
+                            onchange={handleChange}>
+                        </lightning-input>
+                    </div>            
+                </div>
+                <!-- Maternal Services-->                                   
+                <!-- PRICE SECTION -->
+                <div class="slds-var-p-top_large slds-var-p-bottom_large">
+                    <h2><strong>Total Price & Discount</strong></h2>
+                </div>
+                <div class="slds-grid slds-gutters slds-var-p-left_large">
+                    <!-- OUTPUT SECTION -->
+                    <div class="slds-col slds-align-top">
+                        <div class="slds-grid slds-gutters">
+                            <div class="slds-col slds-grow-none">
+                                <div class="slds-var-p-around_small slds-text-align_left">Total List Price</div>
+                                $<lightning-formatted-number value={price} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                            </div>
+                            <div class="slds-col slds-grow-none">
+                                <div class="slds-var-p-around_small slds-text-align_left">Add/Change Discount OR Code<lightning-helptext content="Enter any valid discount code here, OR a custom discount Amount."></lightning-helptext></div>
+                                <lightning-input label="Discount Code or Amount"
+                                                    data-id="discountCodeOrAmount"
+                                                    name="discountCodeOrAmount" 
+                                                    type="text"
+                                                    value={discountCodeOrAmount}
+                                                    onchange={handleChange}
+                                                    variant="label-hidden"></lightning-input>
+                            </div>
+                            <div class="slds-col slds-grow-none">
+                                <div class="slds-var-p-around_small slds-text-align_left">Coupon Code</div>
+                                <div class="slds-truncate" title="Discount Code">{discountCode}</div>
+                            </div>
+                            <div class="slds-col slds-grow-none">
+                                <div class="slds-var-p-around_small slds-text-align_left">Custom Discount Applied<lightning-helptext content="The custom sales discount entered, or the result of a discount code applied"></lightning-helptext></div>
+                                $<lightning-formatted-number value={salesDiscount} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                            </div>
+                            <div class="slds-col slds-grow-none">
+                                <div class="slds-var-p-around_small slds-text-align_left">Biobanking Multi-Product Discount<lightning-helptext content="If multiple Biobanking services are purchased, and they are NOT part of a defined bundle, multi-product discounting is applied."></lightning-helptext></div>
+                                $<lightning-formatted-number value={biobankingMultiProductDiscount} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                            </div>
+                            <div class="slds-col slds-grow-none">
+                                <div class="slds-var-p-around_small slds-text-align_left">Price after Discount</div>
+                                $<lightning-formatted-number value={withDiscount} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- PAYMENTS SECTION -->
+                <div class="slds-var-p-top_large slds-var-p-bottom_large">
+                    <h2><strong>Payments</strong></h2>
+                </div>
+                <div class="slds-grid slds-gutters slds-var-p-left_large slds-wrap">
+                    <!-- OUTPUT SECTION -->
+                    <div class="slds-col slds-align-top slds-size_1-of-1">
+                        <div class="slds-grid slds-gutters">
+                            <div class="slds-col slds-grow-none">
+                                <div class="slds-var-p-around_small slds-text-align_left">Kit</div>
+                                $<lightning-formatted-number value={depositAmount} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                            </div>
+                            <div class="slds-col slds-grow-none">
+                                <div class="slds-var-p-around_small slds-text-align_left">Genomics Upfront</div>
+                                $<lightning-formatted-number value={genomicsUpfront} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                            </div>
+                            <div class="slds-col slds-grow-none">
+                                <div class="slds-var-p-around_small slds-text-align_left">Shipping Cost</div>
+                                $<lightning-formatted-number value={shippingCost} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                            </div>
+                            <div class="slds-col slds-grow-none">
+                                <div class="vl"></div>
+                            </div>
+                            <div class="slds-col slds-grow-none">
+                                <div class="slds-var-p-around_small slds-text-align_left"><strong>Total Due at Checkout</strong></div>
+                                $<lightning-formatted-number value={paymentAtCheckout} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-align-top slds-size_1-of-1 slds-var-m-top_large">
+                        <div class="slds-grid slds-gutters">
+                            <div class="slds-col slds-grow-none">
+                                <div class="slds-var-p-around_small slds-text-align_left">1st Payment</div>
+                                $<lightning-formatted-number value={firstPayment} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                            </div>
+                            <div class="slds-col slds-grow-none">
+                                <div class="slds-var-p-around_small slds-text-align_left">Monthly</div>
+                                $<lightning-formatted-number value={monthly} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                            </div>
+                            <div class="slds-col slds-grow-none">
+                                <div class="vl"></div>
+                            </div>
+                            <div class="slds-col slds-grow-none">
+                                <div class="slds-var-p-around_small slds-text-align_left">
+                                    <strong>Total Remainder</strong>
+                                    <lightning-helptext content="The amount remaining after checkout. This will be the OTP amount, or it may be split into payments based on the selected payment plan."></lightning-helptext>
+                                </div>
+                                $<lightning-formatted-number value={withDeposit} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-no-flex slds-var-m-top_large">
+                    <template if:true={showCalculateAndSaveButton}>
+                        <button class="slds-button slds-button_brand slds-var-m-horizontal_xx-small" disabled={disableCalculateAndSaveButton} onclick={handleCalculateAndSaveButton} slot="actions">Calculate and Save</button>
+                    </template>
+                    <template if:true={showCalculateButton}>
+                        <button class="slds-button slds-button_neutral slds-var-m-horizontal_xx-small" disabled={disableCalculateButton} onclick={handleCalculateButton} slot="actions">Calculate</button>
+                    </template>
+                    <template if:true={showSaveButton}>
+                        <button class="slds-button slds-button_brand slds-var-m-horizontal_xx-small" disabled={disableSaveButton} onclick={handleSaveButton} slot="actions">Save</button>
+                    </template>
+                </div>
+
+
+            </div>
+        </article>
+    </template>
+</template>

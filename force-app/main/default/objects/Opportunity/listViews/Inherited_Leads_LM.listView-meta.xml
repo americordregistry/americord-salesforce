@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Inherited_Leads_LM</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>Baby_s_Due_Date__c</columns>
+    <columns>Phone__c</columns>
+    <columns>OPPORTUNITY.LEAD_SOURCE</columns>
+    <columns>Marketo_Lead_Scoring__c</columns>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <columns>Pre_enrollment_Comments__c</columns>
+    <columns>Time_Zone__c</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>OPPORTUNITY.LAST_ACTIVITY</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>Original_Owner__c</field>
+        <operation>equals</operation>
+        <value>Leslie</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>notEqual</operation>
+        <value>Expired,Closed Lost,Closed Won,Enrolled</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.LEAD_SOURCE</field>
+        <operation>notEqual</operation>
+        <value>Your Baby Club</value>
+    </filters>
+    <filters>
+        <field>Baby_s_Due_Date__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>YESTERDAY</value>
+    </filters>
+    <label>z!_Inherited Leads_LM</label>
+    <sharedTo>
+        <role>CEO</role>
+        <role>Sales</role>
+    </sharedTo>
+</ListView>

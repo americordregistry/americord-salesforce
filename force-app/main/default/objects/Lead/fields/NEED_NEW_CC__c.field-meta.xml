@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NEED_NEW_CC__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>If this is checked, we must obtain new credit card info from the client. This can only be unchecked once the card has successfully been billed.</description>
+    <label>NEED NEW CC</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

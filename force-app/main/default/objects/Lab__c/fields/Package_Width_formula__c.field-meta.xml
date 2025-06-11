@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Package_Width_formula__c</fullName>
+    <description>Calculates the width of the package, based on the number of kits.</description>
+    <externalId>false</externalId>
+    <formula>4 *  Number_of_Kits__c</formula>
+    <label>Package Width (formula)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

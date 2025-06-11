@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>planningtobank__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Used for WTE Survey, data comes from Marketo and is mapped to Account and Opportunity.</description>
+    <label>Planning to bank OLD</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

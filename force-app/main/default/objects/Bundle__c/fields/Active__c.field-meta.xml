@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Active__c</fullName>
+    <description>Returns true if we&apos;re in the Active window (or the active window is blank)</description>
+    <formula>IF(
+ AND(
+    OR( ISBLANK( Valid_From_Date__c ) ,Valid_From_Date__c&lt;= TODAY()) ,
+    OR( ISBLANK( Valid_To_Date__c  ) ,Valid_To_Date__c&gt;=TODAY()) ) , 
+ true, 
+ false)</formula>
+    <inlineHelpText>For a bundle to be active, either leave the valid dates blank, or make sure that today is within the active window.  To inactivate a bundle, enter a Valid To date that is before today.</inlineHelpText>
+    <label>Active</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

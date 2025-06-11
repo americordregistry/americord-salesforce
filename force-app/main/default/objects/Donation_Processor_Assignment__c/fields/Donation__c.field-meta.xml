@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Donation__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The associated donation record for this donation process assignment.</description>
+    <inlineHelpText>The associated donation record for this donation process assignment.</inlineHelpText>
+    <label>Donation</label>
+    <referenceTo>Donation__c</referenceTo>
+    <relationshipLabel>Donation Processor Assignment</relationshipLabel>
+    <relationshipName>Donation_Processor_Assignment</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

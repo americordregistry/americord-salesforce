@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pinnacle_Complete</fullName>
+    <columns>NAME</columns>
+    <columns>Invoice_Number__c</columns>
+    <columns>Tissue_Bank__c</columns>
+    <columns>Donation_Process_Status__c</columns>
+    <columns>Sent_To_Tissue_Bank_Date__c</columns>
+    <columns>Tissue_Eligibility_Status__c</columns>
+    <columns>Tissue_Denial_Reason__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Invoice_Date__c</columns>
+    <columns>Invoiced_Amount__c</columns>
+    <columns>Paid_Amount__c</columns>
+    <columns>Paid_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Donation_Process_Status__c</field>
+        <operation>equals</operation>
+        <value>Sent To Tissue Bank</value>
+    </filters>
+    <filters>
+        <field>Tissue_Bank__c</field>
+        <operation>equals</operation>
+        <value>Pinnacle</value>
+    </filters>
+    <label>Pinnacle Ready To Bill</label>
+    <sharedTo>
+        <group>Admins</group>
+        <role>CEO</role>
+        <role>Client_Services</role>
+        <role>Lab_Manager</role>
+    </sharedTo>
+</ListView>

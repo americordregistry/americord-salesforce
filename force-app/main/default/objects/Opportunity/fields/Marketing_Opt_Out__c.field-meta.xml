@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Marketing_Opt_Out__c</fullName>
+    <description>This field will be used by marketing to filter out leads when sending marketing emails/sms.</description>
+    <inlineHelpText>This field will be used by marketing to filter out leads when sending marketing emails/sms.</inlineHelpText>
+    <label>Marketing Opt-Out</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Placenta Tissue Donation</fullName>
+                <default>false</default>
+                <label>Placenta Tissue Donation</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Same_Day_Shipping</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+ Same_Day_Shipping_CS_Team__c = true,
+ Same_Day_request_on_5_Star_CS_Slack__c = false,
+text( StageName) = &quot;Enrolled&quot;)</errorConditionFormula>
+    <errorMessage>You must post your SAME DAY shipping request to the 5 Star Client Service Slack channel. Then, check that box.</errorMessage>
+</ValidationRule>

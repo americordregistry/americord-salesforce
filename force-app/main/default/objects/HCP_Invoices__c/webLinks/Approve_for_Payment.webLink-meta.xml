@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approve_for_Payment</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Approve for Payment</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>/apex/rsdoc__GenerateDocument?id={!HCP_Invoices__c.Id}&amp;templateId=GDT-000035&amp;attach=true&amp;output=pdf&amp;emailAction=Autosend&amp;emailTo=0034P00002ekVQD&amp;emailTemplate=00X4P000000LAVa&amp;emailToAdditional=&amp;emailCC=jean@americordblood.com&amp;emailBCC=&amp;fieldtoupdate1=Status__c&amp;fieldtoupdatevalue1=Approved</url>
+</WebLink>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lab_Lifeforce_Testing_In_Progress</fullName>
+    <columns>Mother_s_Last_Name__c</columns>
+    <columns>NAME</columns>
+    <columns>Certificate_ID__c</columns>
+    <columns>Birth_Date_from_Courier__c</columns>
+    <columns>DCS__c</columns>
+    <columns>Processing_Lab__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Lab_Testing_in_Progress__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Processing_Lab__c</field>
+        <operation>equals</operation>
+        <value>Lifeforce</value>
+    </filters>
+    <label>Lab Lifeforce - Testing In Progress</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+        <portalRole>LifeforceLabPartnerUser</portalRole>
+    </sharedTo>
+</ListView>

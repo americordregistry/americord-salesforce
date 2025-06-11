@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Products_validated_by_Lab__c</fullName>
+    <inlineHelpText>Select all items validated by the lab and being stored for the client. If Twins could not store cord blood for both, select &quot;Cord Blood&quot; not &quot;Cord Blood - Twins.&quot; Do not include items that are being discarded.</inlineHelpText>
+    <label>Products validated by Lab</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Cord Blood</fullName>
+                <default>false</default>
+                <label>Cord Blood</label>
+            </value>
+            <value>
+                <fullName>Cord Tissue</fullName>
+                <default>false</default>
+                <label>Cord Tissue</label>
+            </value>
+            <value>
+                <fullName>Placenta Tissue</fullName>
+                <default>false</default>
+                <label>Placenta Tissue</label>
+            </value>
+            <value>
+                <fullName>Twins - Cord Blood</fullName>
+                <default>false</default>
+                <label>Twins - Cord Blood</label>
+            </value>
+            <value>
+                <fullName>Twins - Cord Tissue</fullName>
+                <default>false</default>
+                <label>Twins - Cord Tissue</label>
+            </value>
+            <value>
+                <fullName>Twins - Placenta Tissue</fullName>
+                <default>false</default>
+                <label>Twins - Placenta Tissue</label>
+            </value>
+            <value>
+                <fullName>Triplets - Cord Blood</fullName>
+                <default>false</default>
+                <label>Triplets - Cord Blood</label>
+            </value>
+            <value>
+                <fullName>Triplets - Cord Tissue</fullName>
+                <default>false</default>
+                <label>Triplets - Cord Tissue</label>
+            </value>
+            <value>
+                <fullName>Triplets - Placenta Tissue</fullName>
+                <default>false</default>
+                <label>Triplets - Placenta Tissue</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>9</visibleLines>
+</CustomField>

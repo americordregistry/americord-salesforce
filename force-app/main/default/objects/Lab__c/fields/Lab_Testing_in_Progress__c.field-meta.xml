@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lab_Testing_in_Progress__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>This is checked if the lab is conducting tests for CB, CT or PT. If test status equals &quot;Required&quot;. This box is checked if one child from a multiple birth is being tested.</inlineHelpText>
+    <label>Lab Testing in Progress</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Outside_Sales</fullName>
+    <active>true</active>
+    <compactLayoutAssignment>Outside_Sales</compactLayoutAssignment>
+    <label>Outside Sales</label>
+    <picklistValues>
+        <picklist>Priority</picklist>
+        <values>
+            <fullName>High</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Low</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Normal</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status</picklist>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Declined donation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Progress</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Not Started</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Subject</picklist>
+        <values>
+            <fullName>Brochures Sent</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Office Visit</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>IN-PERSON%3A Consumer Education Program</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IN-PERSON%3A Dinner Ed%2E Event</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IN-PERSON%3A Ed%2E Breakfast</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IN-PERSON%3A Ed%2E Conversation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IN-PERSON%3A Ed%2E Lunch</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IN-PERSON%3A Ed%2E Snack</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OTHER%3A Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OTHER%3A Mailed Ed Material</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OTHER%3A Phone</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OTHER%3A Text</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OTHER%3A Virtual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OTHER%3A Virtual Consumer Event</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OTHER%3A Virtual Ed Lunch</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OTHER%3A Virtual Ed%2E Breakfast</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OTHER%3A Virtual Ed%2E Snack</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>aircall__Detailed_call_type__c</picklist>
+        <values>
+            <fullName>Inbound answered</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Missed call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Outbound answered</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Outbound unanswered</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Voicemail</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>aircall__Missed_Call_Reason__c</picklist>
+        <values>
+            <fullName>abandoned_in_classic</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>abandoned_in_ivr</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>agents_did_not_answer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>no_available_agent</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>out_of_opening_hours</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>short_abandoned</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>isdc_dialer_call_type__c</picklist>
+        <values>
+            <fullName>Click-to-Call</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Send email checklist reminder</description>
+        <name>Send_Mother_Email_Kit_Checklist_Reminder</name>
+        <label>Send Mother Email Kit Checklist Reminder</label>
+        <locationX>50</locationX>
+        <locationY>360</locationY>
+        <actionName>fw1__Invoice__c.Send_Mother_Kit_Checklist_when_Call_Reminder_Date_is_Today</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>fw1__Invoice__c.Send_Mother_Kit_Checklist_when_Call_Reminder_Date_is_Today</nameSegment>
+    </actionCalls>
+    <apiVersion>61.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <description>Determine if the reminder date is today.</description>
+        <name>Is_Checklist_Reminder_Today</name>
+        <label>Is Checklist Reminder Today?</label>
+        <locationX>182</locationX>
+        <locationY>252</locationY>
+        <defaultConnectorLabel>NO - Checklist Reminder Not Today</defaultConnectorLabel>
+        <rules>
+            <name>YES_Checklist_Reminder_Is_Today</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formDTReminderDate</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>formDTToday</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Mother_Email_Kit_Checklist_Reminder</targetReference>
+            </connector>
+            <label>YES - Checklist Reminder Is Today</label>
+        </rules>
+    </decisions>
+    <description>This scheduled flow can be used to inspect/update anything on the Invoice every day.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>This formula will take the reminder date/time on the invoice and convert it to a date.</description>
+        <name>formDTReminderDate</name>
+        <dataType>Date</dataType>
+        <expression>DATEVALUE({!$Record.Reminder_Call_Date__c})</expression>
+    </formulas>
+    <formulas>
+        <description>Formula that will hold today&apos;s date for use in logic</description>
+        <name>formDTToday</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <interviewLabel>Scheduled Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>ScheduledFlow: Cord Blood / Invoice Daily</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_Checklist_Reminder_Today</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </filters>
+        <object>fw1__Invoice__c</object>
+        <schedule>
+            <frequency>Daily</frequency>
+            <startDate>2024-06-29</startDate>
+            <startTime>07:00:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

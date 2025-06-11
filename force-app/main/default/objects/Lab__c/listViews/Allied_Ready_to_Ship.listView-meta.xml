@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Allied_Ready_to_Ship</fullName>
+    <columns>NAME</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Baby_s_Due_Date_new__c</columns>
+    <columns>Kit_Sent__c</columns>
+    <columns>Collection_Kit_Status__c</columns>
+    <columns>Shipping_Method__c</columns>
+    <columns>Shipping_Label_Special_Instructions__c</columns>
+    <columns>Saturday_Delivery__c</columns>
+    <columns>Same_Day_Shipping__c</columns>
+    <columns>Andwin_S_O__c</columns>
+    <columns>Sender_Name__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Collection_Kit_Status__c</field>
+        <operation>equals</operation>
+        <value>Ready to Ship</value>
+    </filters>
+    <label>Allied - Ready to Ship</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

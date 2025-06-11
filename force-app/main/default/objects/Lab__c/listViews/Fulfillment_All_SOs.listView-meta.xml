@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fulfillment_All_SOs</fullName>
+    <booleanFilter>(1 or 2) AND 3</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Certificate_ID__c</columns>
+    <columns>Andwin_S_O__c</columns>
+    <columns>Andwin_S_O_MBD__c</columns>
+    <columns>Maternal_Blood_Draw_Kit_ID__c</columns>
+    <columns>Number_of_Kits__c</columns>
+    <columns>Number_of_Kits_FedEx__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Andwin_S_O__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>Andwin_S_O_MBD__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>Is_Voided_LU__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>Fulfillment - All S/Os</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+        <portalRole>AmericordFulfillmentPortalPartnerExecutive</portalRole>
+        <portalRole>AmericordFulfillmentPortalPartnerManager</portalRole>
+        <portalRole>AmericordFulfillmentPortalPartnerUser</portalRole>
+    </sharedTo>
+</ListView>

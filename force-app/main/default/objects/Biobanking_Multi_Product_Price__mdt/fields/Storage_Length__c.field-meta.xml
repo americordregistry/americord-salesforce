@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Storage_Length__c</fullName>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Storage Length</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>20YPP</fullName>
+                <default>true</default>
+                <label>20YPP</label>
+            </value>
+            <value>
+                <fullName>LTS</fullName>
+                <default>false</default>
+                <label>LTS</label>
+            </value>
+            <value>
+                <fullName>ASP</fullName>
+                <default>false</default>
+                <label>Annual</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

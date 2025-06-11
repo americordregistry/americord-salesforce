@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CS_Kit_ID_Missing</fullName>
+    <columns>CREATED_DATE</columns>
+    <columns>Baby_s_Due_Date_new__c</columns>
+    <columns>Cord_Blood_Order__c</columns>
+    <columns>NAME</columns>
+    <columns>Hold_Shipment_Until__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Is_Voided_LU__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Certificate_ID__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>CS - Kit ID Missing</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

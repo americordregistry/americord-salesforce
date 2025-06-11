@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Survey__c</fullName>
+    <label>Survey:Any of the following?</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>An email from The Bump</fullName>
+                <default>false</default>
+                <label>An email from The Bump</label>
+            </value>
+            <value>
+                <fullName>A press release I saw online</fullName>
+                <default>false</default>
+                <label>A press release I saw online</label>
+            </value>
+            <value>
+                <fullName>A call I received from Americord</fullName>
+                <default>false</default>
+                <label>A call I received from Americord</label>
+            </value>
+            <value>
+                <fullName>An email I received from Americord</fullName>
+                <default>false</default>
+                <label>An email I received from Americord</label>
+            </value>
+            <value>
+                <fullName>The Americord website</fullName>
+                <default>false</default>
+                <label>The Americord website</label>
+            </value>
+            <value>
+                <fullName>The Americord blog</fullName>
+                <default>false</default>
+                <label>The Americord blog</label>
+            </value>
+            <value>
+                <fullName>Google (see next question)</fullName>
+                <default>false</default>
+                <label>Google (see next question)</label>
+            </value>
+            <value>
+                <fullName>Other (see next question)</fullName>
+                <default>false</default>
+                <label>Other (see next question)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>9</visibleLines>
+</CustomField>

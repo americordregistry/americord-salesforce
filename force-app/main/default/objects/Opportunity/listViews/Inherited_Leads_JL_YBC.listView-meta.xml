@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Inherited_Leads_JL_YBC</fullName>
+    <columns>Marketo_Lead_Scoring__c</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <columns>OPPORTUNITY.LEAD_SOURCE</columns>
+    <columns>Time_Zone__c</columns>
+    <columns>Phone__c</columns>
+    <columns>Pre_enrollment_Comments__c</columns>
+    <columns>Baby_s_Due_Date__c</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>OPPORTUNITY.LAST_ACTIVITY</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>Original_Owner__c</field>
+        <operation>equals</operation>
+        <value>Jennifer</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>notEqual</operation>
+        <value>Expired,Closed Lost,Closed Won,Enrolled</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.LEAD_SOURCE</field>
+        <operation>equals</operation>
+        <value>Your Baby Club</value>
+    </filters>
+    <label>z!_Inherited Leads_JL_YBC</label>
+    <sharedTo>
+        <role>CEO</role>
+        <role>Sales</role>
+    </sharedTo>
+</ListView>

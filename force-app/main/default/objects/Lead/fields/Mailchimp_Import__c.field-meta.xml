@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mailchimp_Import__c</fullName>
+    <description>Data imported from Mailchimp 03/08.</description>
+    <externalId>false</externalId>
+    <label>Mailchimp Import</label>
+    <length>10</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

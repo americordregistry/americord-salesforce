@@ -1,0 +1,1207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Go through scan and get first element of collection into a single text var.</description>
+        <name>Assign_Values_from_Scans</name>
+        <label>Assign Values from Scans</label>
+        <locationX>490</locationX>
+        <locationY>890</locationY>
+        <assignmentItems>
+            <assignToReference>varTScanCBBottle1</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_over_scan_CB1</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_over_scan_CB1</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Go through scan and get first element of collection into a single text var.</description>
+        <name>Assign_Values_from_Scans2</name>
+        <label>Assign Values from Scans2</label>
+        <locationX>490</locationX>
+        <locationY>1298</locationY>
+        <assignmentItems>
+            <assignToReference>varTScanCBBottle2</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_over_scan_CB2</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_over_scan_CB2</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Go through scan and get first element of collection into a single text var.</description>
+        <name>Assign_Values_from_Scans_CT1</name>
+        <label>Assign Values from Scans - CT1</label>
+        <locationX>842</locationX>
+        <locationY>998</locationY>
+        <assignmentItems>
+            <assignToReference>varTScanCTBottle1</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_over_scan_CT1</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_over_scan_CT1</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Go through scan and get first element of collection into a single text var.</description>
+        <name>Assign_Values_from_Scans_CT2</name>
+        <label>Assign Values from Scans - CT2</label>
+        <locationX>842</locationX>
+        <locationY>1406</locationY>
+        <assignmentItems>
+            <assignToReference>varTScanCTBottle2</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_over_scan_CT2</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_over_scan_CT2</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Go through scan and get first element of collection into a single text var.</description>
+        <name>Assign_Values_from_Scans_PT1</name>
+        <label>Assign Values from Scans - PT1</label>
+        <locationX>1194</locationX>
+        <locationY>1106</locationY>
+        <assignmentItems>
+            <assignToReference>varTScanPTBottle1</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_over_scan_PT1</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_over_scan_PT1</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Go through scan and get first element of collection into a single text var.</description>
+        <name>Assign_Values_from_Scans_PT2</name>
+        <label>Assign Values from Scans - PT2</label>
+        <locationX>1194</locationX>
+        <locationY>1514</locationY>
+        <assignmentItems>
+            <assignToReference>varTScanPTBottle2</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_over_scan_PT2</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_over_scan_PT2</targetReference>
+        </connector>
+    </assignments>
+    <choices>
+        <description>Sample Type CB.</description>
+        <name>choiceSampleTypeBooleanCB</name>
+        <choiceText>Cord Blood</choiceText>
+        <dataType>Boolean</dataType>
+        <value>
+            <booleanValue>true</booleanValue>
+        </value>
+    </choices>
+    <choices>
+        <description>Sample type CT</description>
+        <name>choiceSampleTypeBooleanCT</name>
+        <choiceText>Cord Tissue</choiceText>
+        <dataType>Boolean</dataType>
+        <value>
+            <booleanValue>true</booleanValue>
+        </value>
+    </choices>
+    <choices>
+        <description>Sample type PT</description>
+        <name>choiceSampleTypeBooleanPT</name>
+        <choiceText>Placenta Tissue</choiceText>
+        <dataType>Boolean</dataType>
+        <value>
+            <booleanValue>true</booleanValue>
+        </value>
+    </choices>
+    <choices>
+        <description>Sample Type CB.</description>
+        <name>choiceSampleTypeCB</name>
+        <choiceText>Cord Blood</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>CB</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <description>Sample type CT.</description>
+        <name>choiceSampleTypeCT</name>
+        <choiceText>Cord Tissue</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>CT</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <description>Sample type PT.</description>
+        <name>choiceSampleTypePT</name>
+        <choiceText>Placenta Tissue</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>PT</stringValue>
+        </value>
+    </choices>
+    <decisions>
+        <description>Check to see that we found a record.</description>
+        <name>Did_we_find_the_record</name>
+        <label>Did we find the record?</label>
+        <locationX>374</locationX>
+        <locationY>350</locationY>
+        <defaultConnector>
+            <targetReference>Sample_Type_Selection</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>YES - Found a record</defaultConnectorLabel>
+        <rules>
+            <name>NO_No_record_found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Baby_Family_Member_record.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>No_Record_Found</targetReference>
+            </connector>
+            <label>NO - No record found</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determine the sample type based on screen update.</description>
+        <name>Updating_CB_Sample</name>
+        <label>Updating CB Sample</label>
+        <locationX>699</locationX>
+        <locationY>566</locationY>
+        <defaultConnector>
+            <targetReference>Updating_CT_Sample</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>NO - Not CB</defaultConnectorLabel>
+        <rules>
+            <name>Updating_CB</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Lab_Sample_Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>CB</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Enter_Sample_Info_CB_Sterility</targetReference>
+            </connector>
+            <label>YES - Updating CB</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determine if updating CT sample</description>
+        <name>Updating_CT_Sample</name>
+        <label>Updating CT Sample</label>
+        <locationX>996</locationX>
+        <locationY>674</locationY>
+        <defaultConnector>
+            <targetReference>Updating_PT_Sample</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>NO - Not CT</defaultConnectorLabel>
+        <rules>
+            <name>YES_Updating_CT</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Lab_Sample_Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>CT</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Enter_Sample_Information_CT_Sterility</targetReference>
+            </connector>
+            <label>YES - Updating CT</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determine if updating PT sample</description>
+        <name>Updating_PT_Sample</name>
+        <label>Updating PT Sample</label>
+        <locationX>1238</locationX>
+        <locationY>782</locationY>
+        <defaultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Lab_Scan_Start</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>NO - Not PT</defaultConnectorLabel>
+        <rules>
+            <name>YES_Updating_PT</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Lab_Sample_Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>PT</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Enter_Sample_Information_PT_Sterility</targetReference>
+            </connector>
+            <label>YES - Updating PT</label>
+        </rules>
+    </decisions>
+    <description>This flow will capture the codes and results from scan.</description>
+    <dynamicChoiceSets>
+        <description>Picklist collection for the CB Sterility.</description>
+        <name>SterlityResultCB</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
+        <picklistField>CB_Sterility_Result_AST__c</picklistField>
+        <picklistObject>Baby__c</picklistObject>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <description>Picklist for CT Sterility</description>
+        <name>SterlityResultCT</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
+        <picklistField>CT_Sterility_Result_AST__c</picklistField>
+        <picklistObject>Baby__c</picklistObject>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <description>PT Sterility Result picklist</description>
+        <name>SterlityResultPT</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
+        <picklistField>PT_Sterility_Result_AST__c</picklistField>
+        <picklistObject>Baby__c</picklistObject>
+    </dynamicChoiceSets>
+    <environments>Default</environments>
+    <interviewLabel>Lab Scan For Samples {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Lab Scan For Samples</label>
+    <loops>
+        <description>Loop over scan1 collection for CB Sample</description>
+        <name>Loop_over_scan_CB1</name>
+        <label>Loop over scan - CB1</label>
+        <locationX>402</locationX>
+        <locationY>782</locationY>
+        <collectionReference>varTCollectionScan1</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Values_from_Scans</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Enter_Sample_Information_CB_Sterility2</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <description>Loop over scan 2 collection - CB</description>
+        <name>Loop_over_scan_CB2</name>
+        <label>Loop over scan - CB2</label>
+        <locationX>402</locationX>
+        <locationY>1190</locationY>
+        <collectionReference>varTCollectionScan2</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Values_from_Scans2</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Confirmation_Updated_Record_CB</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <description>Loop over scan1 collection for CT Sample</description>
+        <name>Loop_over_scan_CT1</name>
+        <label>Loop over scan - CT1</label>
+        <locationX>754</locationX>
+        <locationY>890</locationY>
+        <collectionReference>varTCollectionScan1</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Values_from_Scans_CT1</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Enter_Sample_Information_CT_Sterility2</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <description>Loop over scan 2 collection - CT</description>
+        <name>Loop_over_scan_CT2</name>
+        <label>Loop over scan - CT2</label>
+        <locationX>754</locationX>
+        <locationY>1298</locationY>
+        <collectionReference>varTCollectionScan2</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Values_from_Scans_CT2</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Confirmation_Updated_Record_CT</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <description>Loop over scan1 collection for PT Sample</description>
+        <name>Loop_over_scan_PT1</name>
+        <label>Loop over scan - PT1</label>
+        <locationX>1106</locationX>
+        <locationY>998</locationY>
+        <collectionReference>varTCollectionScan1</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Values_from_Scans_PT1</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Enter_Sample_Information_PT_Sterility2</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <description>Loop over scan 2 collection - PT</description>
+        <name>Loop_over_scan_PT2</name>
+        <label>Loop over scan - PT2</label>
+        <locationX>1106</locationX>
+        <locationY>1406</locationY>
+        <collectionReference>varTCollectionScan2</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Values_from_Scans_PT2</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Confirmation_Updating_Record_PT</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <description>Get the baby/family member record associated with the kit id.</description>
+        <name>Get_Baby_Family_Member_record</name>
+        <label>Get Baby/Family Member record</label>
+        <locationX>374</locationX>
+        <locationY>242</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Did_we_find_the_record</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Kit_ID__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Enter_Kit_ID</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Baby__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>Update the baby/family records using the scanned info - CB</description>
+        <name>Update_Baby_Family_Records_CB_Sample</name>
+        <label>Update Baby/Family Records CB Sample</label>
+        <locationX>402</locationX>
+        <locationY>1598</locationY>
+        <connector>
+            <targetReference>Updated_Record_CB</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Baby_Family_Member_record.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>CB_Sterility_Bottle_ID_AST__c</field>
+            <value>
+                <elementReference>varTScanCBBottle1</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>CB_Sterility_Bottle_ID_NST__c</field>
+            <value>
+                <elementReference>varTScanCBBottle2</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>CB_Sterility_Result_AST__c</field>
+            <value>
+                <elementReference>CB_Sterility_Result_AST</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>CB_Sterility_Result_NST__c</field>
+            <value>
+                <elementReference>CB_Sterility_Result_NST</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Baby__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Update the baby/family records using the scanned info - CT</description>
+        <name>Update_Baby_Family_Records_CT_Sample</name>
+        <label>Update Baby/Family Records CT Sample</label>
+        <locationX>754</locationX>
+        <locationY>1706</locationY>
+        <connector>
+            <targetReference>Updated_Record_CT</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Baby_Family_Member_record.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>CT_Sterility_Bottle_ID_AST__c</field>
+            <value>
+                <elementReference>varTScanCTBottle1</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>CT_Sterility_Bottle_ID_NST__c</field>
+            <value>
+                <elementReference>varTScanCTBottle2</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>CT_Sterility_Result_AST__c</field>
+            <value>
+                <elementReference>CT_Sterility_Result_AST</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>CT_Sterility_Result_NST__c</field>
+            <value>
+                <elementReference>CT_Sterility_Result_NST</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Baby__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Update the baby/family records using the scanned info - PT</description>
+        <name>Update_Baby_Family_Records_PT_Sample</name>
+        <label>Update Baby/Family Records PT Sample</label>
+        <locationX>1106</locationX>
+        <locationY>1814</locationY>
+        <connector>
+            <targetReference>Updated_Record_PT</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Baby_Family_Member_record.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>PT_Sterility_Bottle_ID_AST__c</field>
+            <value>
+                <elementReference>varTScanPTBottle1</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>PT_Sterility_Bottle_ID_NST__c</field>
+            <value>
+                <elementReference>varTScanPTBottle2</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>PT_Sterility_Result_AST__c</field>
+            <value>
+                <elementReference>PT_Sterility_Result_AST</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>PT_Sterility_Result_NST__c</field>
+            <value>
+                <elementReference>PT_Sterility_Result_NST</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Baby__c</object>
+    </recordUpdates>
+    <screens>
+        <description>Confirmation of CB sample update.</description>
+        <name>Confirmation_Updated_Record_CB</name>
+        <label>Confirmation Updated Record - CB</label>
+        <locationX>402</locationX>
+        <locationY>1490</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Update_Baby_Family_Records_CB_Sample</targetReference>
+        </connector>
+        <fields>
+            <name>ConfirmRecordUpdateMessageCB</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 14px;&quot;&gt;Confirmation&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;You are about to update the following:&lt;/p&gt;&lt;p&gt;Record for kit: {!Enter_Kit_ID}&lt;/p&gt;&lt;p&gt;CB Bottle ID AST: {!varTScanCBBottle1}&lt;/p&gt;&lt;p&gt;CB Result AST: {!CB_Sterility_Result_AST}&lt;/p&gt;&lt;p&gt;CB Bottle ID NST: {!varTScanCBBottle2}&lt;/p&gt;&lt;p&gt;CB Result NST: {!CB_Sterility_Result_NST}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Click Update to save information.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <nextOrFinishButtonLabel>Update</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>Confirm update confirm for the CT sample.</description>
+        <name>Confirmation_Updated_Record_CT</name>
+        <label>Confirmation Updated Record - CT</label>
+        <locationX>754</locationX>
+        <locationY>1598</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Update_Baby_Family_Records_CT_Sample</targetReference>
+        </connector>
+        <fields>
+            <name>ConfirmRecordUpdateMessageCT</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 14px;&quot;&gt;Confirmation&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;You are about to update the following:&lt;/p&gt;&lt;p&gt;Record for kit: {!Enter_Kit_ID}&lt;/p&gt;&lt;p&gt;CT Bottle ID AST: {!varTScanCTBottle1}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;CT Result AST: {!CT_Sterility_Result_AST}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;CT Bottle ID NST: {!varTScanCTBottle2}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;CT Result NST: {!CT_Sterility_Result_NST}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Click Update to save information.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <nextOrFinishButtonLabel>Update</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Confirmation_Updating_Record_PT</name>
+        <label>Confirmation Updating Record - PT</label>
+        <locationX>1106</locationX>
+        <locationY>1706</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Update_Baby_Family_Records_PT_Sample</targetReference>
+        </connector>
+        <fields>
+            <name>ConfirmRecordUpdateMessagePT</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 14px;&quot;&gt;Confirmation&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;You are about to update the following:&lt;/p&gt;&lt;p&gt;Record for kit: {!Enter_Kit_ID}&lt;/p&gt;&lt;p&gt;PT Bottle ID AST: {!varTScanPTBottle1}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;PT Result AST: {!PT_Sterility_Result_AST}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;PT Bottle ID NST: {!varTScanPTBottle2}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;PT Result NST: {!PT_Sterility_Result_NST}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Click Update to save information.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <nextOrFinishButtonLabel>Update</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>Enter information about the CB Sterility.</description>
+        <name>Enter_Sample_Info_CB_Sterility</name>
+        <label>Enter Sample Information - CB Sterility</label>
+        <locationX>402</locationX>
+        <locationY>674</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Loop_over_scan_CB1</targetReference>
+        </connector>
+        <fields>
+            <name>Enter_Sample_Information</name>
+            <fieldText>&lt;p&gt;Record found for kit: {!Enter_Kit_ID}&lt;/p&gt;&lt;p&gt;Enter the information about the samples.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Scan_For_CB_Sterility_AST</name>
+            <extensionName>ScanAnything:scan</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>scanningMode</name>
+                <value>
+                    <stringValue>multiple</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>singleButtonLabel</name>
+                <value>
+                    <stringValue>Scan Code AST</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>multipleButtonLabel</name>
+                <value>
+                    <stringValue>Scan Code AST</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>isValueVisible</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>ResetValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>varTCollectionScan1</assignToReference>
+                <name>values</name>
+            </outputParameters>
+        </fields>
+        <fields>
+            <name>CB_Sterility_Result_AST</name>
+            <choiceReferences>SterlityResultCB</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>CB Sterility Result AST</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>Enter information about the CB Sterility2.</description>
+        <name>Enter_Sample_Information_CB_Sterility2</name>
+        <label>Enter Sample Information - CB Sterility2</label>
+        <locationX>402</locationX>
+        <locationY>1082</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Loop_over_scan_CB2</targetReference>
+        </connector>
+        <fields>
+            <name>Copy_4_of_Enter_Sample_Information</name>
+            <fieldText>&lt;p&gt;Record found for kit: {!Enter_Kit_ID}&lt;/p&gt;&lt;p&gt;Enter the information about the samples.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Scan_For_CB_Sterility_NST</name>
+            <extensionName>ScanAnything:scan</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>scanningMode</name>
+                <value>
+                    <stringValue>multiple</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>multipleButtonLabel</name>
+                <value>
+                    <stringValue>Scan Code NST</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>isValueVisible</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>singleButtonLabel</name>
+                <value>
+                    <stringValue>Scan Code NST</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>ResetValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>varTCollectionScan2</assignToReference>
+                <name>values</name>
+            </outputParameters>
+        </fields>
+        <fields>
+            <name>CB_Sterility_Result_NST</name>
+            <choiceReferences>SterlityResultCB</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>CB Sterility Result NST</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>Enter information about the CT Sterility.</description>
+        <name>Enter_Sample_Information_CT_Sterility</name>
+        <label>Enter Sample Information - CT Sterility</label>
+        <locationX>754</locationX>
+        <locationY>782</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Loop_over_scan_CT1</targetReference>
+        </connector>
+        <fields>
+            <name>Copy_2_of_Enter_Sample_Information</name>
+            <fieldText>&lt;p&gt;Record found for kit: {!Enter_Kit_ID}&lt;/p&gt;&lt;p&gt;Enter the information about the samples.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Scan_For_TB_Sterility_AST</name>
+            <extensionName>ScanAnything:scan</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>scanningMode</name>
+                <value>
+                    <stringValue>multiple</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>multipleButtonLabel</name>
+                <value>
+                    <stringValue>Scan Code AST</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>isValueVisible</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>singleButtonLabel</name>
+                <value>
+                    <stringValue>Scan Code AST</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>ResetValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>varTCollectionScan1</assignToReference>
+                <name>values</name>
+            </outputParameters>
+        </fields>
+        <fields>
+            <name>CT_Sterility_Result_AST</name>
+            <choiceReferences>SterlityResultCT</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>CT Sterility Result AST</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>Enter information about the CT Sterility2.</description>
+        <name>Enter_Sample_Information_CT_Sterility2</name>
+        <label>Enter Sample Information - CT Sterility2</label>
+        <locationX>754</locationX>
+        <locationY>1190</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Loop_over_scan_CT2</targetReference>
+        </connector>
+        <fields>
+            <name>Enter_Sample_InformationCT2</name>
+            <fieldText>&lt;p&gt;Record found for kit: {!Enter_Kit_ID}&lt;/p&gt;&lt;p&gt;Enter the information about the samples.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>CT_Sterility_NST</name>
+            <extensionName>ScanAnything:scan</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>scanningMode</name>
+                <value>
+                    <stringValue>multiple</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>multipleButtonLabel</name>
+                <value>
+                    <stringValue>Scan Code NST</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>isValueVisible</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>ResetValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>varTCollectionScan2</assignToReference>
+                <name>values</name>
+            </outputParameters>
+        </fields>
+        <fields>
+            <name>CT_Sterility_Result_NST</name>
+            <choiceReferences>SterlityResultCT</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>CT Sterility Result NST</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>Enter information about the PT Sterility.</description>
+        <name>Enter_Sample_Information_PT_Sterility</name>
+        <label>Enter Sample Information - PT Sterility</label>
+        <locationX>1106</locationX>
+        <locationY>890</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Loop_over_scan_PT1</targetReference>
+        </connector>
+        <fields>
+            <name>Copy_1_of_Enter_Sample_Information</name>
+            <fieldText>&lt;p&gt;Record found for kit: {!Enter_Kit_ID}&lt;/p&gt;&lt;p&gt;Enter the information about the samples.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Scan_For_PT_Sterility_AST</name>
+            <extensionName>ScanAnything:scan</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>scanningMode</name>
+                <value>
+                    <stringValue>multiple</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>multipleButtonLabel</name>
+                <value>
+                    <stringValue>Scan Code AST</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>isValueVisible</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>singleButtonLabel</name>
+                <value>
+                    <stringValue>Scan Code AST</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>ResetValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>varTCollectionScan1</assignToReference>
+                <name>values</name>
+            </outputParameters>
+        </fields>
+        <fields>
+            <name>PT_Sterility_Result_AST</name>
+            <choiceReferences>SterlityResultPT</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>PT Sterility Result AST</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>Enter information about the PT Sterility2.</description>
+        <name>Enter_Sample_Information_PT_Sterility2</name>
+        <label>Enter Sample Information - PT Sterility2</label>
+        <locationX>1106</locationX>
+        <locationY>1298</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Loop_over_scan_PT2</targetReference>
+        </connector>
+        <fields>
+            <name>Enter_Sample_Information2</name>
+            <fieldText>&lt;p&gt;Record found for kit: {!Enter_Kit_ID}&lt;/p&gt;&lt;p&gt;Enter the information about the samples.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Scan_For_PT_Sterility_NST</name>
+            <extensionName>ScanAnything:scan</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>scanningMode</name>
+                <value>
+                    <stringValue>multiple</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>multipleButtonLabel</name>
+                <value>
+                    <stringValue>Scan Code NST</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>isValueVisible</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>singleButtonLabel</name>
+                <value>
+                    <stringValue>Scan Code NST</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>ResetValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>varTCollectionScan2</assignToReference>
+                <name>values</name>
+            </outputParameters>
+        </fields>
+        <fields>
+            <name>PT_Sterility_Result_NST</name>
+            <choiceReferences>SterlityResultPT</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>PT Sterility Result NST</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>First screen allowing the capture of the kit id.</description>
+        <name>Lab_Scan_Start</name>
+        <label>Lab Scan Start</label>
+        <locationX>374</locationX>
+        <locationY>134</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Get_Baby_Family_Member_record</targetReference>
+        </connector>
+        <fields>
+            <name>Scan_Description1</name>
+            <fieldText>&lt;p&gt;This process will update a SF record using the Kit ID.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Enter_Kit_ID</name>
+            <dataType>String</dataType>
+            <fieldText>Enter Kit ID</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>We did not find the record for the kit ID.</description>
+        <name>No_Record_Found</name>
+        <label>No Record Found</label>
+        <locationX>50</locationX>
+        <locationY>458</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Lab_Scan_Start</targetReference>
+        </connector>
+        <fields>
+            <name>No_record_found_for_kit</name>
+            <fieldText>&lt;p&gt;We did not find the record for the kit ID. Try again.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>Pick the Sample Type.</description>
+        <name>Sample_Type_Selection</name>
+        <label>Sample Type Selection</label>
+        <locationX>699</locationX>
+        <locationY>458</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Updating_CB_Sample</targetReference>
+        </connector>
+        <fields>
+            <name>Copy_3_of_Enter_Sample_Information</name>
+            <fieldText>&lt;p&gt;Record found for kit: {!Enter_Kit_ID}&lt;/p&gt;&lt;p&gt;Enter the information about the samples.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Lab_Sample_Type</name>
+            <choiceReferences>choiceSampleTypeCB</choiceReferences>
+            <choiceReferences>choiceSampleTypeCT</choiceReferences>
+            <choiceReferences>choiceSampleTypePT</choiceReferences>
+            <dataType>String</dataType>
+            <defaultSelectedChoiceReference>choiceSampleTypeCB</defaultSelectedChoiceReference>
+            <fieldText>Lab Sample Type</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>Confirmation of CB sample update.</description>
+        <name>Updated_Record_CB</name>
+        <label>Updated Record - CB</label>
+        <locationX>402</locationX>
+        <locationY>1706</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Lab_Scan_Start</targetReference>
+        </connector>
+        <fields>
+            <name>RecordUpdateMessage_CBUpdate</name>
+            <fieldText>&lt;p&gt;Record for kit: {!Enter_Kit_ID}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Has been updated with the following:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;CB Bottle ID AST: {!varTScanCBBottle1}&lt;/p&gt;&lt;p&gt;CB Result AST: {!CB_Sterility_Result_AST}&lt;/p&gt;&lt;p&gt;CB Bottle ID NST: {!varTScanCBBottle2}&lt;/p&gt;&lt;p&gt;CB Result NST: {!CB_Sterility_Result_NST}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(68, 68, 68); background-color: rgb(255, 255, 255);&quot;&gt;Click Add Another or Cancel above to Exit.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <nextOrFinishButtonLabel>Add Another</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>Update confirm for the CT sample.</description>
+        <name>Updated_Record_CT</name>
+        <label>Updated Record - CT</label>
+        <locationX>754</locationX>
+        <locationY>1814</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Lab_Scan_Start</targetReference>
+        </connector>
+        <fields>
+            <name>RecordUpdateMessage_CT</name>
+            <fieldText>&lt;p&gt;Record for kit: {!Enter_Kit_ID}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Has been updated with the following:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;CT Bottle ID AST: {!varTScanCTBottle1}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(68, 68, 68); background-color: rgb(255, 255, 255);&quot;&gt;CT Result AST: {!CT_Sterility_Result_AST}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;CT Bottle ID NST: {!varTScanCTBottle2}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(68, 68, 68); background-color: rgb(255, 255, 255);&quot;&gt;CT Result NST: {!CT_Sterility_Result_NST}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(68, 68, 68); background-color: rgb(255, 255, 255);&quot;&gt;Click Add Another or Cancel above to Exit.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <nextOrFinishButtonLabel>Add Another</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Updated_Record_PT</name>
+        <label>Updated Record - PT</label>
+        <locationX>1106</locationX>
+        <locationY>1922</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Lab_Scan_Start</targetReference>
+        </connector>
+        <fields>
+            <name>RecordUpdateMessagePT</name>
+            <fieldText>&lt;p&gt;Record for kit: {!Enter_Kit_ID}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Has been updated with the following:&lt;/p&gt;&lt;p&gt;PT Bottle ID AST: {!varTScanPTBottle1}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(68, 68, 68); background-color: rgb(255, 255, 255);&quot;&gt;PT Result AST: {!PT_Sterility_Result_AST}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;PT Bottle ID NST: {!varTScanPTBottle2}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(68, 68, 68); background-color: rgb(255, 255, 255);&quot;&gt;PT Result NST: {!PT_Sterility_Result_NST}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(68, 68, 68); background-color: rgb(255, 255, 255);&quot;&gt;Click Add Another or Cancel above to Exit.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <nextOrFinishButtonLabel>Add Another</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>248</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Lab_Scan_Start</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>This is a collection from scan 1.</description>
+        <name>varTCollectionScan1</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Collection of values for scan2</description>
+        <name>varTCollectionScan2</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>CB Bottle 1 ID.</description>
+        <name>varTScanCBBottle1</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>CB Bottle 2 Id.</description>
+        <name>varTScanCBBottle2</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Scanned value for CT Bottle 1</description>
+        <name>varTScanCTBottle1</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Scanned code for bottle 2.</description>
+        <name>varTScanCTBottle2</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Scanned code for PT bottle 1</description>
+        <name>varTScanPTBottle1</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Scanned code for bottle 2</description>
+        <name>varTScanPTBottle2</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

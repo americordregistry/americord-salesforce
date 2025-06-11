@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MBD_not_one_month_after_birth</fullName>
+    <active>true</active>
+    <description>A maternal blood redraw cannot be requested over one month after birth.</description>
+    <errorConditionFormula>AND( ISPICKVAL(Maternal_Blood_Redraw__c, &quot;MBD Required (Lab)&quot;),
+ Birth_Date_from_Courier__c &lt; Today()-30 )</errorConditionFormula>
+    <errorMessage>You cannot order a Maternal Blood Redraw more than 30 days after baby&apos;s birth.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MBD_Reason_Required</fullName>
+    <active>true</active>
+    <description>If MBD is requested an MBD is required.</description>
+    <errorConditionFormula>AND(ISPICKVAL(Maternal_Blood_Redraw__c,&quot;MBD Required (LAB)&quot;), ISBLANK(TEXT( MBD_Reason__c)))</errorConditionFormula>
+    <errorDisplayField>MBD_Reason__c</errorDisplayField>
+    <errorMessage>MBD Reason is required when you request a redraw.</errorMessage>
+</ValidationRule>

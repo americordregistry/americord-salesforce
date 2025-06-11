@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Invoiced_Must_Have_Prior_Sent_To_Bank</fullName>
+    <active>true</active>
+    <description>If setting something to invoiced the prior value for status must be sent to tissue bank and the bank must be set.</description>
+    <errorConditionFormula>AND(
+ISCHANGED(Donation_Process_Status__c), 
+IF(TEXT(PRIORVALUE(Donation_Process_Status__c)) = &apos;Sent To Tissue Bank&apos;,FALSE,TRUE),
+ISPICKVAL(Donation_Process_Status__c,&apos;Invoiced&apos;),
+NOT($Setup.Americord_Settings__c.Bypass_Validation_Rule__c)
+)</errorConditionFormula>
+    <errorDisplayField>Donation_Process_Status__c</errorDisplayField>
+    <errorMessage>The Prior Value of the Donation Status must be Sent To Tissue Bank when setting status to Invoiced.</errorMessage>
+</ValidationRule>

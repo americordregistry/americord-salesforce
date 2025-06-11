@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This permissionset will be used to enable MFA for all non-integration users.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Americord MFA Enabled</label>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ForceTwoFactor</name>
+    </userPermissions>
+</PermissionSet>

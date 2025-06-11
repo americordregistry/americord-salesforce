@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tissue_Bank_Set_When_Sent_To_Bank</fullName>
+    <active>true</active>
+    <description>When Sent To Tissue Bank is set for status the value of Tissue Bank cannot be blank.</description>
+    <errorConditionFormula>AND(
+ISPICKVAL(Donation_Process_Status__c,&apos;Sent To Tissue Bank&apos;),
+ISPICKVAL(Tissue_Bank__c,&apos;&apos;),
+NOT($Setup.Americord_Settings__c.Bypass_Validation_Rule__c)
+)</errorConditionFormula>
+    <errorDisplayField>Tissue_Bank__c</errorDisplayField>
+    <errorMessage>When status is Sent To Tissue Bank then the value of Tissue Bank cannot be blank.</errorMessage>
+</ValidationRule>

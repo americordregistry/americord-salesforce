@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Inside_Sales_Direct_2nd_Trimester</fullName>
+    <columns>OPPORTUNITY.LEAD_SOURCE</columns>
+    <columns>Acquisition_Program__c</columns>
+    <columns>Time_Zone__c</columns>
+    <columns>Last_Call_Results__c</columns>
+    <columns>Email__c</columns>
+    <columns>Number_of_Births__c</columns>
+    <columns>Sale_Type_Direct_or_Complex__c</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>Phone__c</columns>
+    <columns>Pre_enrollment_Comments__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>OPPORTUNITY.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Trimester__c</field>
+        <operation>equals</operation>
+        <value>2nd trimester</value>
+    </filters>
+    <filters>
+        <field>Sale_Type_Direct_or_Complex__c</field>
+        <operation>equals</operation>
+        <value>Direct</value>
+    </filters>
+    <filters>
+        <field>DCW__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>No Contact</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.NAME</field>
+        <operation>contains</operation>
+    </filters>
+    <label>Inside Sales - Direct 2nd Trimester</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

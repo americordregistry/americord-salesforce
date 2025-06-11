@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevent_Invoice_Date_Overwrite</fullName>
+    <active>true</active>
+    <description>This validation rule will check to see if the invoice date has already been set for a donation record and prevent overwriting the value.</description>
+    <errorConditionFormula>AND(
+ISCHANGED(Donation_Process_Status__c),
+ISPICKVAL( Donation_Process_Status__c,&apos;Invoiced&apos;),
+NOT(ISNULL( Invoice_Date__c )),
+NOT($Setup.Americord_Settings__c.Bypass_Validation_Rule__c)
+)</errorConditionFormula>
+    <errorDisplayField>Donation_Process_Status__c</errorDisplayField>
+    <errorMessage>Invoice Date has already been set for this record. Contact the system admin in order to overwrite the Invoiced Date value.</errorMessage>
+</ValidationRule>

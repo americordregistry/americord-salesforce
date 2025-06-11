@@ -1,0 +1,5 @@
+<apex:component access="global" controller="ControllerFormattedDatetime">{!FormattedDatetime}
+<apex:attribute assignTo="{!date_time}" description="The DateTime value to be rendered" name="date_time_value" type="DateTime"></apex:attribute>
+<apex:attribute assignTo="{!defined_format}" description="The optional format to use for the DateTime value to be rendered" name="date_time_format" type="String"></apex:attribute>
+<apex:attribute assignTo="{!selected_timezone}" description="The specified name of the TZ ex. EST, CST, MST" name="date_time_zone" type="String"></apex:attribute>
+</apex:component>

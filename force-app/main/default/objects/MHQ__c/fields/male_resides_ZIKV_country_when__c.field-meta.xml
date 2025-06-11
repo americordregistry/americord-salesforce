@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>male_resides_ZIKV_country_when__c</fullName>
+    <description>Had sex with a male who resided in, or traveled to, an area with active ZIKV transmission in the 6 months prior to the sexual contact? Provide country and when (month/year).</description>
+    <externalId>false</externalId>
+    <label>08.1 male resides ZIKV country when</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

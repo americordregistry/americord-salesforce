@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>60.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Assigns the current string to the variable.</description>
+        <name>Assign_Current_String</name>
+        <label>Assign Current Strings</label>
+        <locationX>182</locationX>
+        <locationY>134</locationY>
+        <assignmentItems>
+            <assignToReference>varTextCurrentString</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varTextInputIdString</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>String_To_Process</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>assign the current string value</description>
+        <name>Assign_Current_String2</name>
+        <label>Assign Current String</label>
+        <locationX>50</locationX>
+        <locationY>458</locationY>
+        <assignmentItems>
+            <assignToReference>varTextCurrentString</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>formTextComputeCurrentString</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>String_To_Process</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Assigns the values for strings and counts.</description>
+        <name>Assign_String_Variables</name>
+        <label>Assign String Variables</label>
+        <locationX>50</locationX>
+        <locationY>350</locationY>
+        <assignmentItems>
+            <assignToReference>varCollTextStringOutput</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>formTextStringFound</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varNumberOfElementsOutput</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Assign_Current_String2</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Determine if there is still string to process.</description>
+        <name>String_To_Process</name>
+        <label>String To Process</label>
+        <locationX>182</locationX>
+        <locationY>242</locationY>
+        <defaultConnectorLabel>NO Not Processing</defaultConnectorLabel>
+        <rules>
+            <name>YES_Still_Processing</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formNumberLengthOfRemaingString</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_String_Variables</targetReference>
+            </connector>
+            <label>YES Still Processing</label>
+        </rules>
+    </decisions>
+    <description>This flow will take a string of values and split them into a list of values.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>formula that will compute the length of the remaining string</description>
+        <name>formNumberLengthOfRemaingString</name>
+        <dataType>Number</dataType>
+        <expression>LEN({!varTextCurrentString})</expression>
+        <scale>0</scale>
+    </formulas>
+    <formulas>
+        <description>Formula for setting the current working string</description>
+        <name>formTextComputeCurrentString</name>
+        <dataType>String</dataType>
+        <expression>IF(FIND(&quot;;&quot;,{!varTextCurrentString})==0,&apos;&apos;,RIGHT({!varTextCurrentString}, LEN({!varTextCurrentString})-FIND(&quot;;&quot;,{!varTextCurrentString})))</expression>
+    </formulas>
+    <formulas>
+        <description>Formula that will find the string within the string.</description>
+        <name>formTextStringFound</name>
+        <dataType>String</dataType>
+        <expression>IF(FIND(&quot;;&quot;,{!varTextCurrentString})==0,{!varTextCurrentString},LEFT({!varTextCurrentString},FIND(&quot;;&quot;,{!varTextCurrentString})-1))</expression>
+    </formulas>
+    <interviewLabel>Utility:ParsingMultiSelectValues {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Utility:ParsingMultiSelectValues</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Assign_Current_String</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Collection holding the strings found in the input string using the delimiter.</description>
+        <name>varCollTextStringOutput</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>Variable that will hold the number of elements in the list.</description>
+        <name>varNumberOfElementsOutput</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Variable will hold the current value of the string being parsed.</description>
+        <name>varTextCurrentString</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>This is the string of delimited ids we will process.</description>
+        <name>varTextInputIdString</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

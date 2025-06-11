@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Review_for_Approval</fullName>
+    <columns>NAME</columns>
+    <columns>Rep__c</columns>
+    <columns>Health_Care_Practice__c</columns>
+    <columns>Invoice_Date__c</columns>
+    <columns>Amount_Due__c</columns>
+    <columns>Agreement_Status__c</columns>
+    <columns>Agreement_Start_Date__c</columns>
+    <columns>Street_Address__c</columns>
+    <columns>W_9__c</columns>
+    <columns>Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Open</value>
+    </filters>
+    <filters>
+        <field>Review_Completed__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>1. Review for Approval</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

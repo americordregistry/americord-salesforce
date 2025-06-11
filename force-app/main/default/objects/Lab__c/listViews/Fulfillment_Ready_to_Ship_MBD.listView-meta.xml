@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fulfillment_Ready_to_Ship_MBD</fullName>
+    <columns>Maternal_Blood_Redraw__c</columns>
+    <columns>NAME</columns>
+    <columns>Andwin_S_O_MBD__c</columns>
+    <columns>Shipping_State__c</columns>
+    <columns>MBD_Required_Date_Time__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Andwin_S_O_MBD__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>Maternal_Blood_Redraw__c</field>
+        <operation>notEqual</operation>
+        <value>MBD Shipped (Andwin),MBD Received (Lab)</value>
+    </filters>
+    <filters>
+        <field>Is_Voided_LU__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>Fulfillment - Ready to Ship MBD</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+        <portalRole>AmericordFulfillmentPortalPartnerExecutive</portalRole>
+        <portalRole>AmericordFulfillmentPortalPartnerManager</portalRole>
+        <portalRole>AmericordFulfillmentPortalPartnerUser</portalRole>
+    </sharedTo>
+</ListView>

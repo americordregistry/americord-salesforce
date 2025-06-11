@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Missing_email_address</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND ( ISBLANK( Email__c ),
+ TEXT(Status__c) = &quot;Stored&quot;)</errorConditionFormula>
+    <errorMessage>There is no email address for referrer.</errorMessage>
+</ValidationRule>

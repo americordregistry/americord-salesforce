@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Permission group for the Americord Client Service persona.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>AmericordClientService</label>
+    <permissionSets>Americord_Base</permissionSets>
+    <permissionSets>Americord_MFA_Enabled</permissionSets>
+    <permissionSets>Americord_Service</permissionSets>
+    <permissionSets>SDOC__SDocs_User</permissionSets>
+    <permissionSets>dfsle__DocuSign_Administrator</permissionSets>
+    <permissionSets>dfsle__DocuSign_Sender</permissionSets>
+    <permissionSets>dfsle__DocuSign_User</permissionSets>
+    <permissionSets>dsfs__DocuSign_Administrator</permissionSets>
+    <permissionSets>dsfs__DocuSign_Sender</permissionSets>
+    <permissionSets>dsfs__DocuSign_User</permissionSets>
+    <permissionSets>slackv2__Slack_Standard_User</permissionSets>
+    <permissionSets>tdc_tsw__SMS_App_Permission_Set</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>

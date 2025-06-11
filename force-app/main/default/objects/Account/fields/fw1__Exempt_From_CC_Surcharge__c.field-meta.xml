@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>fw1__Exempt_From_CC_Surcharge__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <label>Exempt From Credit Card Surcharge</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

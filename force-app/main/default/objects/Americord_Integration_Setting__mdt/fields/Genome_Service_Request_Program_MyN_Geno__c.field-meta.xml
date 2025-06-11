@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Genome_Service_Request_Program_MyN_Geno__c</fullName>
+    <description>This is the product code for the My Newborn Genome product.</description>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText>This is the product code for the My Newborn Genome product.</inlineHelpText>
+    <label>Genome Service Request Program MyN Geno</label>
+    <length>50</length>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

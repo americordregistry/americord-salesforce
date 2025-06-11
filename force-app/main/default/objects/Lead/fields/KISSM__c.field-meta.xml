@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>KISSM__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Checked (True) = the lead was repeatedly engaging with our emails and website and is therefore a lead that should be followed up with. This data should be imported periodically from KISSMetrics.</description>
+    <inlineHelpText>Checked (True) = the lead was repeatedly engaging with our emails and website and is therefore a lead that should be followed up with. This data should be imported periodically from KISSMetrics.</inlineHelpText>
+    <label>KISSM</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

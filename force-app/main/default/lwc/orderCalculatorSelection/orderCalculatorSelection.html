@@ -1,0 +1,123 @@
+<template>
+    <template if:true={showSpinner}>
+        <lightning-spinner alternative-text="Loading"></lightning-spinner>
+    </template>
+    <template if:true={showComponent}>
+        <div class="slds-box slds-theme_shade slds-var-m-top_small">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                        <div class="slds-card__header slds-truncate" title={selectionTitleText}>
+                            <span>{selectionTitleText}</span>
+                        </div>
+                    </h2>
+                </div>
+            </header>
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Babies"># of Babies</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="CB">CB 2.0</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="CT">CT</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="PT">P2.0</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="EX">Exosomes</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Additional Svcs/Products">Additional Svcs/Products</div>
+                        </th>                        
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Storage">Storage</div>
+                        </th> 
+			            <th class="" scope="col">
+                            <div class="slds-truncate" title="Payment">Payment</div>
+                        </th>   
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Babies">
+                            <div class="slds-truncate" title="Birth Count">{birthCountString}</div>
+                        </td>
+                        <td data-label="CB">
+                            <div class="slds-truncate" title="CB">{cordBlood2Quantity}</div>
+                        </td>
+                        <td data-label="CT">
+                            <div class="slds-truncate" title="CT">{cordTissueQuantity}</div>
+                        </td>
+                        <td data-label="PT">
+                            <div class="slds-truncate" title="PT">{placenta2Quantity}</div>
+                        </td>
+                        <td data-label="EX">
+                            <div class="slds-truncate" title="EX">{exosomesQuantity}</div>
+                        </td>
+                        <td data-label="AddServices">
+                            <div class="slds-truncate" title="Additional Svcs/Products">{myNewbornSelection} {maternalExSelection}</div>
+                        </td>                        
+                        <td data-label="Storage">
+                            <div class="slds-truncate" title="Storage">{storagePlan}</div>
+                        </td>
+                        <td data-label="Payment">
+                            <div class="slds-truncate" title="Payment">{paymentPlan}</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Price">Total List Price</div>
+                        </th>  
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Discount">Discount</div>
+                        </th>  
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="With Discount">w/Discount</div>
+                        </th>  
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="With Deposit">after/Kit + Shipping</div>
+                        </th>  
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="1stPayment">1st Payment</div>
+                        </th>  
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Monthly">Monthly</div>
+                        </th>  
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Price">
+                            $<lightning-formatted-number value={price} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                        </td>
+                        <td data-label="Discount">
+                            $<lightning-formatted-number value={salesDiscount} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                        </td>
+                        <td data-label="With Discount">
+                            $<lightning-formatted-number value={withDiscount} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                        </td>
+                        <td data-label="With Deposit">
+                            $<lightning-formatted-number value={withDeposit} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                        </td>
+                        <td data-label="1stPayment">
+                            $<lightning-formatted-number value={firstPayment} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                        </td>
+                        <td data-label="Monthly">
+                            $<lightning-formatted-number value={monthly} format-style="decimal" maximum-fraction-digits="0"></lightning-formatted-number>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </template>
+</template>

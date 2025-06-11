@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Position__c</fullName>
+    <label>Position</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Consultant</fullName>
+                <default>false</default>
+                <label>Consultant</label>
+            </value>
+            <value>
+                <fullName>Coordinator</fullName>
+                <default>false</default>
+                <label>Coordinator</label>
+            </value>
+            <value>
+                <fullName>Director</fullName>
+                <default>false</default>
+                <label>Director</label>
+            </value>
+            <value>
+                <fullName>Doctor</fullName>
+                <default>false</default>
+                <label>Doctor</label>
+            </value>
+            <value>
+                <fullName>Doula</fullName>
+                <default>false</default>
+                <label>Doula</label>
+            </value>
+            <value>
+                <fullName>Family Practitioner</fullName>
+                <default>false</default>
+                <label>Family Practitioner</label>
+            </value>
+            <value>
+                <fullName>Founder_CEO</fullName>
+                <default>false</default>
+                <label>Founder CEO</label>
+            </value>
+            <value>
+                <fullName>General Practitioner</fullName>
+                <default>false</default>
+                <label>General Practitioner</label>
+            </value>
+            <value>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+                <label>Marketing</label>
+            </value>
+            <value>
+                <fullName>Medical Assistant</fullName>
+                <default>false</default>
+                <label>Medical Assistant</label>
+            </value>
+            <value>
+                <fullName>Midwife</fullName>
+                <default>false</default>
+                <label>Midwife</label>
+            </value>
+            <value>
+                <fullName>Office Manager</fullName>
+                <default>false</default>
+                <label>Office Manager</label>
+            </value>
+            <value>
+                <fullName>Operations</fullName>
+                <default>false</default>
+                <label>Operations</label>
+            </value>
+            <value>
+                <fullName>Physician Assistant</fullName>
+                <default>false</default>
+                <label>Physician Assistant</label>
+            </value>
+            <value>
+                <fullName>Pregnancy Coordinator</fullName>
+                <default>false</default>
+                <label>Pregnancy Coordinator</label>
+            </value>
+            <value>
+                <fullName>Receptionist</fullName>
+                <default>false</default>
+                <label>Receptionist</label>
+            </value>
+            <value>
+                <fullName>RN</fullName>
+                <default>false</default>
+                <label>RN</label>
+            </value>
+            <value>
+                <fullName>Surrogate</fullName>
+                <default>false</default>
+                <label>Surrogate</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

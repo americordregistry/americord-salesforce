@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Child_s_Birth_Day_in_Current_Month</fullName>
+    <columns>NAME</columns>
+    <columns>Collection_Date__c</columns>
+    <columns>Migrated_to_Baby_records__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Migrated_to_Baby_records__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Child_s_Birth_Date_in_Current_Month__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Is_Voided_LU__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>Child&apos;s Birth Day in Current Month</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

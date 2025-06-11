@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Expected_Shipping_Date__c</fullName>
+    <description>Used to determine expected ship date for kits. Used in Report to identify problems with shipping.</description>
+    <formula>IF ( NOT(ISBLANK(Hold_Shipment_Until__c)), Hold_Shipment_Until__c,
+IF ( WEEKDAY(DATEVALUE(CreatedDate))= 1,  DATEVALUE(CreatedDate)+1,
+IF ( WEEKDAY(DATEVALUE(CreatedDate))= 7,  DATEVALUE(CreatedDate)+2,
+IF ( AND(
+WEEKDAY(DATEVALUE(CreatedDate))= 6,
+OR( HOUR(TIMEVALUE( CreatedDate )) &lt; 5,
+HOUR(TIMEVALUE( CreatedDate )) &gt; 18)),  DATEVALUE(CreatedDate)+3,
+IF ( 
+OR( HOUR(TIMEVALUE( CreatedDate )) &lt; 5,
+HOUR(TIMEVALUE( CreatedDate )) &gt; 18),  DATEVALUE(CreatedDate)+1, DATEVALUE(CreatedDate))))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Expected Shipping Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

@@ -1,0 +1,11 @@
+<apex:page standardController="Lab__c"
+           sidebar="false"
+           showHeader="false"
+           showChat="false" lightningstylesheets="true">
+
+<apex:pageMessage summary="Welcome Packet is not Complete." 
+                  severity="info" 
+                  strength="1"
+                  rendered="{!Lab__c.DocuSign_Status__c != "Completed" && Lab__c.Is_Voided_LU__c = false}"  />
+
+</apex:page>

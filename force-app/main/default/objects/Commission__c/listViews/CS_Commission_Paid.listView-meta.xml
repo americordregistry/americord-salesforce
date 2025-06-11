@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CS_Commission_Paid</fullName>
+    <columns>NAME</columns>
+    <columns>Claim_Code_Email_Sent_Date__c</columns>
+    <columns>Gift_Card_ID__c</columns>
+    <columns>Referrer__c</columns>
+    <columns>Referee_Name__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Paid</value>
+    </filters>
+    <filters>
+        <field>Commission_ID_Amb__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>4. CS - Commission Paid</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

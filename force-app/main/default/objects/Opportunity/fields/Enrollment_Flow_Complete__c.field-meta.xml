@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Enrollment_Flow_Complete__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Checked when the Enrollment Screenflow has been completed.  This will ensure that required fields are entered and the values needed for enrollment are present. Automatically checked by the Enrollment Flow and unchecked if the Stage is changed from Enrolled.</description>
+    <label>Enrollment Flow Complete</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mother__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Birth Mother</label>
+    <lookupFilter>
+        <active>false</active>
+        <errorMessage>The doctor on the lab must match the doctor on the stipend.</errorMessage>
+        <filterItems>
+            <field>Lab__c.Medical_Professional__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.HCP__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Lab__c</referenceTo>
+    <relationshipLabel>HCP Stipends</relationshipLabel>
+    <relationshipName>HCP_Stipends</relationshipName>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

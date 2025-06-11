@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>One_click_DocuSign</fullName>
+    <availability>online</availability>
+    <description>Button allows the pre-select of docusign templates to send the clients.
+Templates are:
+6659b0c6-7998-4967-a8ca-988d6c860d35 = Gen Svcs
+301381c6-8cd4-4fdd-8e77-b3eac3592aa1 = Informed Consent
+96d53f78-36c5-4784-8e37-b75222ae76d1 = BioServices
+d777f83c-9770-4784-ae2b-05556a0477ed = Healthcare Team
+69c08822-56cc-4e8e-9ba2-1cbef2abc440 = MHQ</description>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>One-click DocuSign</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>{!URLFOR(&apos;/apex/dsfs__Docusign_CreateEnvelope&apos;, null, [SourceID=Lab__c.Id])}&amp;DST=6659b0c6-7998-4967-a8ca-988d6c860d35,301381c6-8cd4-4fdd-8e77-b3eac3592aa1,96d53f78-36c5-4784-8e37-b75222ae76d1,d777f83c-9770-4784-ae2b-05556a0477ed,69c08822-56cc-4e8e-9ba2-1cbef2abc440&amp;CRL=Email~{!Lab__c.Mothers_Email__c};FirstName~{!Lab__c.Mother_s_First_Name__c};LastName~{!Lab__c.Mother_s_Last_Name__c};RoutingOrder~1;Role~R1&amp;CCRM=R1~Signer 1</url>
+</WebLink>

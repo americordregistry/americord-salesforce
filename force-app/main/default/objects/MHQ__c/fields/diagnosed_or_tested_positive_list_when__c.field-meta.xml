@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>diagnosed_or_tested_positive_list_when__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Have you EVER: Been diagnosed with or tested positive for human immunodeficiency virus (HIV) or AIDS, human T-cell leukemia virus (HTLV), syphilis, yellow fever, hepatitis A, B, or C? List diagnosis or positive test result and when (month/year).</inlineHelpText>
+    <label>44.1 diagnosed tested positive list when</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

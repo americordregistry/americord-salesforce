@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Baby_is_born__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When &apos;Baby is born&apos; is checked, Opportunity is updated. This was created for 3/2020 email to &apos;enrolled but not born yet&apos; re: coronavirus.</description>
+    <label>Baby is born</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

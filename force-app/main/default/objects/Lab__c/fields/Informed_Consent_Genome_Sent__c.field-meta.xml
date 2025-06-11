@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Informed_Consent_Genome_Sent__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indicator that the Informed Consent document has been sent for Genome.</description>
+    <inlineHelpText>Indicator that the Informed Consent document has been sent for Genome.</inlineHelpText>
+    <label>Informed Consent Genome Sent</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

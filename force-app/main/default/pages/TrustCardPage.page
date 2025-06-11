@@ -1,0 +1,80 @@
+<apex:page showHeader="false" standardStylesheets="false"
+    sidebar="false" docType="html-5.0" controller="TrustCardController"
+    applyBodyTag="False" applyHtmlTag="False">
+    <script>
+        var lineHeight = 0;
+        const observer = new ResizeObserver(entries => {
+            for (let entry of entries) {
+                if(entry.target.scrollHeight > parseInt(lineHeight) * 3) {
+                    entry.target.classList['add']('truncated');
+                }
+            }
+        });
+        document.addEventListener("DOMContentLoaded", function(){
+            const entries = document.querySelectorAll('.item-description');
+            if (entries.length > 0) {
+                var object = document.defaultView.getComputedStyle(entries[0], null).getPropertyValue("line-height");
+                lineHeight = parseInt(object.substring(0, object.length - 2));
+            }
+            entries.forEach(entry => {
+                observer.observe(entry);
+            });
+        });
+        function showMoreOrLess(e, label, itemTitle) {
+            if (label.className === 'see-more-text slds-button') {
+                label.className = 'see-less-text slds-button';
+                label.innerHTML = 'See less';
+                label.setAttribute('aria-label', 'See less: ' + itemTitle);
+            } else {
+                label.className = 'see-more-text slds-button';
+                label.innerHTML = 'See more';
+                label.setAttribute('aria-label', 'See more: ' + itemTitle);
+            }
+            var checkbox = document.getElementById(label.getAttribute("name"));
+            checkbox.checked = !checkbox.checked;
+        }
+
+		var isLocationBlank = '{!isLocationBlank}';
+		if(isLocationBlank === 'true'){
+            console.log('The location parameter is empty, please pass in location parameter.');
+        }
+    </script>
+
+	<apex:pageBlock rendered="{!AND(NOT(isLocationBlank),hasItems)}">
+		<head>
+			<title></title>
+			<apex:slds />
+			<apex:stylesheet value="{!layout}"/>
+		</head>
+	
+		<body class="slds-scope">
+			<div class="slds-align_absolute-center">
+				<ul class="slds-p-right--small slds-p-top--medium slds-grid slds-wrap trust-card-container">
+				    <h1 class="slds-assistive-text">Trust Card</h1>
+					<apex:variable value="0" var="num"/>
+					<apex:repeat var="item" value="{!items}" id="trustItems" >
+						<li class="slds-media slds-media_top slds-m-bottom--large slds-p-left--small slds-col item-container" >
+							<div class="slds-media__figure item-icon">
+								<apex:image value="{!item.IconUrl}"  alt="" />
+							</div>
+							<div class="slds-media__body">
+								<h2 class="item-title">
+									{!item.Title}
+								</h2>
+								<input class="trust-card-see-more" type="checkbox" tabindex="-1" id="expanded_{!num}"/>
+								<div class="item-description">
+									{!item.Description}
+								</div>
+								 <button class="see-more-text slds-button" name="expanded_{!num}"
+								     onclick="showMoreOrLess(event, this,'{!item.Title}')" aria-label="See more: {!item.Title}">
+                                     See more
+                                 </button>
+							</div>
+						</li>
+						<apex:variable var="num" value="{!VALUE(num) + 1}"/>
+					</apex:repeat>
+				</ul>
+			</div>
+		</body>
+	</apex:pageBlock>
+</apex:page>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bundle_Savings_new__c</fullName>
+    <businessStatus>DeprecateCandidate</businessStatus>
+    <formula>IF ( No_Bundle_Savings__c = true, 0,
+IF ( Category__c  = &quot;Product&quot; &amp;&amp; Opportunity.Numeric_Births__c = 1, 
+CASE ( Opportunity.Number_of_Products__c , 
+2, 350, 
+3, 500, 
+4, 500,
+0), 
+IF ( Category__c = &quot;Product&quot; &amp;&amp; Opportunity.Numeric_Births__c = 2, 
+CASE ( Opportunity.Number_of_Products__c , 
+3, 233.33 * Quantity ,  
+4, 350 * Quantity, 
+5, 440 * Quantity, 
+6, 1000, 
+0), 
+IF ( Category__c = &quot;Product&quot; &amp;&amp; Opportunity.Numeric_Births__c = 3, 
+CASE ( Opportunity.Number_of_Products__c , 
+6, 2100/3, 
+9, 4500/3, 
+0),
+IF ( Product_Code__c = &quot;20YPP&quot; &amp;&amp; Opportunity.Numeric_Births__c = 1, 
+CASE ( Opportunity.Number_of_Products__c , 
+2, 300, 
+3, 1000, 
+4, 1000,
+0), 
+IF ( Product_Code__c = &quot;20YPP&quot; &amp;&amp; Opportunity.Numeric_Births__c = 2, 
+CASE ( Opportunity.Number_of_Products__c , 
+3, 300, 
+4, 600, 
+5, 1300, 
+6, 2000, 
+0), 
+IF ( Product_Code__c = &quot;20YPP&quot; &amp;&amp; Opportunity.Numeric_Births__c = 3, 
+CASE ( Opportunity.Number_of_Products__c , 
+6, 900, 
+9, 3000, 
+0), 
+IF ( Product_Code__c = &quot;ASP&quot; &amp;&amp; Opportunity.Numeric_Births__c = 1, 
+CASE ( Opportunity.Number_of_Products__c , 
+2, 25, 
+3, 75, 
+0), 
+IF ( Product_Code__c = &quot;ASP&quot; &amp;&amp; Opportunity.Numeric_Births__c = 2, 
+CASE ( Opportunity.Number_of_Products__c , 
+3, 25, 
+4, 50, 
+5, 100, 
+6, 150, 
+0), 
+IF ( Product_Code__c = &quot;ASP&quot; &amp;&amp; Opportunity.Numeric_Births__c = 2, 
+CASE ( Opportunity.Number_of_Products__c , 
+6, 75, 
+9, 225, 
+0), 
+0))))))))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>ZDeprecateBundle Savings OLD</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <type>Currency</type>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>tdc_tma__Send_MMS</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <height>600</height>
+    <linkType>page</linkType>
+    <masterLabel>Send MMS</masterLabel>
+    <openType>noSidebar</openType>
+    <page>tdc_tma__MMSToCampaign</page>
+    <protected>false</protected>
+</WebLink>

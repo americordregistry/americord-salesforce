@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LCC_Send_AC_Certificatelex</fullName>
+    <availability>online</availability>
+    <description>Created from Lightning Experience Configuration Converter.</description>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>true</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>600</height>
+    <isResizable>true</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>Send AC Certificate</masterLabel>
+    <openType>newWindow</openType>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <url>/email/author/emailauthor.jsp?retURL=/{!Lab__c.Id}&amp;p24={!Lab__c.Mothers_Email__c}&amp;template_id=00X0B00000120Kp&amp;p3_lkid={!Lab__c.Id}&amp;p3={!Lab__c.Name}&amp;p26=clients@americordblood.com</url>
+</WebLink>

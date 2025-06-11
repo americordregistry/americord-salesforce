@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Open_Oppty_s_Reassigns</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>OPPORTUNITY.LEAD_SOURCE</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Contact__c</columns>
+    <columns>Call_Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>New,No Contact,Contacted,Presentation,Hot to Close</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.FIRST_NAME</field>
+        <operation>contains</operation>
+        <value>Americord,Martin,Marketo</value>
+    </filters>
+    <label>All Open Oppty&apos;s - Reassigns</label>
+    <sharedTo>
+        <role>CEO</role>
+    </sharedTo>
+</ListView>

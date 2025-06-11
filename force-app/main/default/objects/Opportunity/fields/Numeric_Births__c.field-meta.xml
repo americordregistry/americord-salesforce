@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Numeric_Births__c</fullName>
+    <externalId>false</externalId>
+    <formula>if (ISPICKVAL(Number_of_Births__c, &quot;Single&quot;), 1,
+if (ISPICKVAL(Number_of_Births__c, &quot;Twins&quot;), 2, 
+if (ISPICKVAL(Number_of_Births__c, &quot;Triplets&quot;), 3,
+0)))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Used to create numeric value for number of births, used in Flow/Process Builder.</inlineHelpText>
+    <label>Numeric Births</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

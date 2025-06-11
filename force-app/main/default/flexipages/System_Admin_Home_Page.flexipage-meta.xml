@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>dashboardName</name>
+                    <value>YaWUWJrPNdbIIKUibvtBDIBMUJFjFI</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>hideOnError</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentName>desktopDashboards:embeddedDashboard</componentName>
+                <identifier>desktopDashboards_embeddedDashboard</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>top</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;&lt;strong&gt;Quick Links&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;/lightning/setup/ManageUsers/home&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Users&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;/lightning/setup/EnhancedProfiles/home&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Profiles&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;/lightning/setup/PermSets/home&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;PermissionSets&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;/lightning/setup/ImportedPackage/home&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Installed Packages&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;/lightning/setup/NavigationMenus/home&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;App Manager&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;/lightning/setup/CompanyProfileInfo/home&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Company Info&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>left</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <name>middle</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <name>right</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>System Admin Home Page</masterLabel>
+    <template>
+        <name>home:desktopTemplateHeaderThreeColumns</name>
+    </template>
+    <type>HomePage</type>
+</FlexiPage>

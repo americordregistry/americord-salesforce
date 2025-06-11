@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Start_Date_old__c</fullName>
+    <description>Used to track price changes</description>
+    <label>Start Date old</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Mar 4, 2019</fullName>
+                <default>false</default>
+                <label>Mar 4, 2019</label>
+            </value>
+            <value>
+                <fullName>Apr 15, 2018</fullName>
+                <default>false</default>
+                <label>Apr 15, 2018</label>
+            </value>
+            <value>
+                <fullName>Dec 19, 2017</fullName>
+                <default>false</default>
+                <label>Dec 19, 2017</label>
+            </value>
+            <value>
+                <fullName>Nov 1, 2017</fullName>
+                <default>false</default>
+                <label>Nov 1, 2017</label>
+            </value>
+            <value>
+                <fullName>Aug 21, 2017</fullName>
+                <default>false</default>
+                <label>Aug 21, 2017</label>
+            </value>
+            <value>
+                <fullName>Apr 3, 2017</fullName>
+                <default>false</default>
+                <label>Apr 3, 2017</label>
+            </value>
+            <value>
+                <fullName>2015</fullName>
+                <default>false</default>
+                <label>2015</label>
+            </value>
+            <value>
+                <fullName>July 3, 2020</fullName>
+                <default>false</default>
+                <label>July 3, 2020</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

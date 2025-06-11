@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Called_Prospect__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Check this box to indicate that the prospect was called and a message was left or that a conversation took place.</inlineHelpText>
+    <label>Called 1x</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

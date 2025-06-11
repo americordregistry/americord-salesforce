@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Monthly_Fee__c</fullName>
+    <formula>IF ( CONTAINS(TEXT(Payment_Plans__c) , &quot;48&quot;),
+if (ISPICKVAL(Number_of_Births__c, &quot;Single&quot;),
+CASE (Number_of_Products__c,
+1, 26.10, 
+2,44.04, 
+3,62.39, 
+0),
+if (ISPICKVAL(Number_of_Births__c, &quot;Twins&quot;),
+CASE (Number_of_Products__c,
+2,52.20, 
+3,70.14, 
+4,88.08,
+5,106.43,
+6,124.78,
+0),
+if (ISPICKVAL(Number_of_Births__c, &quot;Triplets&quot;),
+CASE (Number_of_Products__c,
+3,78.30, 
+6,132.12, 
+9,187.17,
+0),
+0))), 
+if (ISPICKVAL(Number_of_Births__c, &quot;Single&quot;),
+CASE (Number_of_Products__c,
+1,19.21, 
+2,30.08, 
+3,41.79, 
+0),
+if (ISPICKVAL(Number_of_Births__c, &quot;Twins&quot;),
+CASE (Number_of_Products__c,
+2,38.42, 
+3,49.29, 
+4,60.16,
+5,71.87,
+6,83.58,
+0),
+if (ISPICKVAL(Number_of_Births__c, &quot;Triplets&quot;),
+CASE (Number_of_Products__c,
+3,57.63, 
+6,90.24, 
+9,125.37,
+0),
+0))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Based on the number of products ordered.</inlineHelpText>
+    <label>Monthly Fee hidden OLD</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

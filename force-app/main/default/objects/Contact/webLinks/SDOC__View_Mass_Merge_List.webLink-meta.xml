@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SDOC__View_Mass_Merge_List</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <height>600</height>
+    <linkType>page</linkType>
+    <masterLabel>View Mass Merge List</masterLabel>
+    <openType>sidebar</openType>
+    <page>SDOC__SDJobContact</page>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+</WebLink>

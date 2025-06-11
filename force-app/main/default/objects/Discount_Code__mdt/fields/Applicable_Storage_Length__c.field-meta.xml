@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Applicable_Storage_Length__c</fullName>
+    <description>If populated, restricts this discount code to the storage length specified.</description>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Applicable Storage Length</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>20YPP</fullName>
+                <default>false</default>
+                <label>20YPP</label>
+            </value>
+            <value>
+                <fullName>Lifetime</fullName>
+                <default>false</default>
+                <label>Lifetime</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

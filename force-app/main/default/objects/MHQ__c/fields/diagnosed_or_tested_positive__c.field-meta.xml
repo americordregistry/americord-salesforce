@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>diagnosed_or_tested_positive__c</fullName>
+    <inlineHelpText>Have you EVER: Been deferred as a blood donor for a reason other than anemia or being underweight?</inlineHelpText>
+    <label>44. diagnosed or tested positive</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>MHQ</valueSetName>
+    </valueSet>
+</CustomField>

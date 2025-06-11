@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>hepatitis_type__c</fullName>
+    <inlineHelpText>In the past 12 months have you: Lived with, or had close contact, including sexual contact, with a person who has hepatitis? If Yes: Type A, Type B, Type C</inlineHelpText>
+    <label>13.1 hepatitis type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Type A</fullName>
+                <default>false</default>
+                <label>Type A</label>
+            </value>
+            <value>
+                <fullName>Type B</fullName>
+                <default>false</default>
+                <label>Type B</label>
+            </value>
+            <value>
+                <fullName>Type C</fullName>
+                <default>false</default>
+                <label>Type C</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

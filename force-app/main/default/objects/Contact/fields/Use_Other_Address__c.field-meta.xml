@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Use_Other_Address__c</fullName>
+    <description>Uesd to flag whether Other Address is populated and hence should be used for HCP Invoices and 1099. This field is used by A5 Doc for conditional merge section.</description>
+    <formula>if (
+And (
+NOT(ISBLANK( OtherCity)),
+NOT(ISBLANK( OtherState)),
+NOT(ISBLANK( OtherStreet)),
+NOT(ISBLANK( OtherPostalCode))), true, false)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Use Other Address</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

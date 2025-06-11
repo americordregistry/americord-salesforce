@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mktg_Ambassadors_not_enrolled</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>FULL_NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Type__c</field>
+        <operation>equals</operation>
+        <value>Ambassador</value>
+    </filters>
+    <label>Mktg: Ambassadors (not enrolled)</label>
+    <sharedTo>
+        <role>CEO</role>
+    </sharedTo>
+</ListView>

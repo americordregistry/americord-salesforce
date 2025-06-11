@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>hepatitis_type_2__c</fullName>
+    <inlineHelpText>In the past 12 months have you: Lived with, or had close contact, including sexual contact, with a person who has hepatitis? If Yes: Viral or Non-viral</inlineHelpText>
+    <label>13.2 hepatitis type 2</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Viral</fullName>
+                <default>false</default>
+                <label>Viral</label>
+            </value>
+            <value>
+                <fullName>Non-viral</fullName>
+                <default>false</default>
+                <label>Non-viral</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

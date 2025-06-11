@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Audit_Same_Day_Shipping</fullName>
+    <columns>NAME</columns>
+    <columns>Certificate_ID__c</columns>
+    <columns>Collection_Date__c</columns>
+    <columns>Cord_Blood_Order__c</columns>
+    <columns>Product_Stored1__c</columns>
+    <columns>Sender_Name__c</columns>
+    <columns>Same_Day_Shipping__c</columns>
+    <columns>Same_Day_Shipping_Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Collection_Date__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>Same_Day_Shipping__c</field>
+        <operation>equals</operation>
+        <value>Uber,FedEx Same Day,Other</value>
+    </filters>
+    <filters>
+        <field>Baby_s_Due_Date_new__c</field>
+        <operation>greaterThan</operation>
+        <value>4/1/2017</value>
+    </filters>
+    <filters>
+        <field>Sender_Name__c</field>
+        <operation>equals</operation>
+        <value>Client Service Dept (NYC),Client Service Dept (CA)</value>
+    </filters>
+    <label>Audit - Same Day Shipping</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

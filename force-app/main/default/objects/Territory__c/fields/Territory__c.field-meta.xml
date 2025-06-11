@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Territory__c</fullName>
+    <label>Territory</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Orange County</fullName>
+                <default>false</default>
+                <label>Orange County</label>
+            </value>
+            <value>
+                <fullName>Los Angeles</fullName>
+                <default>false</default>
+                <label>Los Angeles</label>
+            </value>
+            <value>
+                <fullName>Manhattan North</fullName>
+                <default>false</default>
+                <label>Manhattan North</label>
+            </value>
+            <value>
+                <fullName>Manhattan South</fullName>
+                <default>false</default>
+                <label>Manhattan South</label>
+            </value>
+            <value>
+                <fullName>Atlanta</fullName>
+                <default>false</default>
+                <label>Atlanta</label>
+            </value>
+            <value>
+                <fullName>South Florida</fullName>
+                <default>false</default>
+                <label>South Florida</label>
+            </value>
+            <value>
+                <fullName>Central Florida</fullName>
+                <default>false</default>
+                <label>Central Florida</label>
+            </value>
+            <value>
+                <fullName>New Jersey</fullName>
+                <default>false</default>
+                <label>New Jersey</label>
+            </value>
+            <value>
+                <fullName>Bay Area</fullName>
+                <default>false</default>
+                <label>Bay Area</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

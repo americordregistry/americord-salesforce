@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SMS_Opt_Out_LU__c</fullName>
+    <description>SMS Opt Out LU from the Cord Blood Order object</description>
+    <formula>Cord_Blood_Order__r.SMS_Opt_Out__c</formula>
+    <label>SMS Opt Out LU</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
