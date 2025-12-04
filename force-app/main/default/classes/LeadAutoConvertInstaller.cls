@@ -7,7 +7,7 @@ public class LeadAutoConvertInstaller {
         0,5,10,15,20,25,30,35,40,45,50,55
     };
 
-    // Call from Execute Anonymous: LeadAutoConvertInstaller.install(true);
+    // Call from Execute Anonymous: LeadAutoConvertInstaller.install(true); 
     @TestVisible
     public static void install(Boolean replaceExisting) {
         if (replaceExisting) {

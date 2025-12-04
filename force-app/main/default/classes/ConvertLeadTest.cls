@@ -7,7 +7,7 @@ private class ConvertLeadTest {
         ConvertLead.LIMIT_N = 10;
         ConvertLead.OWNER_ID = UserInfo.getUserId();
 
-        Id me = UserInfo.getUserId();
+        Id me = UserInfo.getUserId();  
 
         Lead goodLead = new Lead(
             LastName = 'Convertable',

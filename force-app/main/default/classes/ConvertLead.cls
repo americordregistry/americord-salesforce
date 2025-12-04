@@ -246,7 +246,7 @@ public class ConvertLead {
                 );
                 directOpps.add(opp);
 
-                // Mark Lead as converted (exclude next run)
+                // Mark Lead as converted (exclude next run) 
                 l.Status = convStatus;
                 leadsToMarkConverted.add(l);
             } else {
