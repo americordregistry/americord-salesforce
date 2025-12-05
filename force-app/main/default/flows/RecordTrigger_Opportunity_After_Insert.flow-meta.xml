@@ -11,7 +11,7 @@
         <defaultConnectorLabel>NO - Not Service or Info</defaultConnectorLabel>
         <rules>
             <name>YES_Service_Or_Info_Owner</name>
-            <conditionLogic>or</conditionLogic>
+            <conditionLogic>(1 OR 2) AND 3</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.Owner.Username</leftValueReference>
                 <operator>StartsWith</operator>
@@ -24,6 +24,13 @@
                 <operator>StartsWith</operator>
                 <rightValue>
                     <stringValue>services@americordblood.com</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Has_Been_Distributed__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>No</stringValue>
                 </rightValue>
             </conditions>
             <connector>
