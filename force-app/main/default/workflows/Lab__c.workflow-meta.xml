@@ -179,10 +179,6 @@
             <field>Contact__c</field>
             <type>contactLookup</type>
         </recipients>
-        <recipients>
-            <recipient>clients@americordblood.com</recipient>
-            <type>user</type>
-        </recipients>
         <senderAddress>clients@americordblood.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>Automated_Emails/Email_Client_Kit_Shipped</template>
