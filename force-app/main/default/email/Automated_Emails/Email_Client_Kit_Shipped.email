@@ -264,26 +264,29 @@
       </td>
    </tr>
    
-    <!-- FedEx + Address section (stacked layout) -->
+    <!-- FedEx + Address section (stacked and boxed) -->
     <tr>
       <td style="padding: 20px 45px 10px 45px; text-align: left; font-family:'Source Sans Pro','Trebuchet MS',Verdana,sans-serif; color:#465576; font-size:18px; line-height:26px;">
     
-        <!-- FedEx Tracking -->
+        <!-- FedEx Tracking Box -->
         <apex:outputPanel rendered="{!RelatedTo.Kit_Tracking_Number__c != ''}">
-          <div style="margin-bottom:16px;">
-            <span style="display:block; font-weight:600; font-size:18px; margin-bottom:4px;">
-              FedEx Tracking #
-            </span>
-            <a href="https://www.fedex.com/apps/fedextrack/?action=track&tracknumbers={!RelatedTo.Kit_Tracking_Number__c}" 
-               style="color:#F0533F; font-weight:700; font-size:20px; text-decoration:none;">
-              {!RelatedTo.Kit_Tracking_Number__c}
-            </a>
-          </div>
+          <table cellpadding="0" cellspacing="0" border="0" 
+                 style="width:100%; background:#ffffff; border:1px solid #E2E4E8; border-radius:6px; margin-bottom:14px;">
+            <tr>
+              <td style="padding:14px 18px; font-size:16px; line-height:22px;">
+                <div style="font-weight:600; margin-bottom:6px;">FedEx Tracking #</div>
+                <a href="https://www.fedex.com/apps/fedextrack/?action=track&tracknumbers={!RelatedTo.Kit_Tracking_Number__c}" 
+                   style="color:#F0533F; font-weight:700; font-size:18px; text-decoration:none;">
+                  {!RelatedTo.Kit_Tracking_Number__c}
+                </a>
+              </td>
+            </tr>
+          </table>
         </apex:outputPanel>
     
-        <!-- Shipping Address -->
+        <!-- Shipping Address Box -->
         <table cellpadding="0" cellspacing="0" border="0" 
-               style="width:100%; background:#ffffff; border:1px solid #E2E4E8; border-radius:6px; margin-top:8px;">
+               style="width:100%; background:#ffffff; border:1px solid #E2E4E8; border-radius:6px;">
           <tr>
             <td style="padding:14px 18px; font-size:16px; line-height:22px;">
               <div style="font-weight:600; margin-bottom:6px;">Shipping Address</div>
@@ -301,6 +304,7 @@
     
       </td>
     </tr>
+    
     
     
     
