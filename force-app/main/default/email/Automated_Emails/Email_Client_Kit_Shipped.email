@@ -1,0 +1,410 @@
+<messaging:emailTemplate subject="Kit Shipped" recipientType="Contact" relatedToType="Lab__c">
+<messaging:htmlEmailBody >
+<html>
+<head>
+   <meta charset="utf-8"/>
+   <!-- utf-8 works for most cases -->
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <!-- Forcing initial-scale shouldn't be necessary -->
+   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+   <!-- Use the latest (edge) version of IE rendering engine -->
+   <title>Forgot Password</title>
+
+   <!-- CSS Reset -->
+   <style type="text/css">
+       /* What it does: Remove spaces around the email design added by some email clients. */
+       /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+       html,  body {
+           margin: 0 !important;
+           padding: 0 !important;
+           height: 100% !important;
+           width: 100% !important;
+       }
+       /* What it does: Stops email clients resizing small text. */
+       * {
+           -ms-text-size-adjust: 100%;
+           -webkit-text-size-adjust: 100%;
+       }
+       /* What it does: Forces Outlook.com to display emails full width. */
+       .ExternalClass {
+           width: 100%;
+       }
+       /* What is does: Centers email on Android 4.4 */
+       div[style*="margin: 16px 0"] {
+           margin: 0 !important;
+       }
+       /* What it does: Stops Outlook from adding extra spacing to tables. */
+       table,  td {
+           mso-table-lspace: 0pt !important;
+           mso-table-rspace: 0pt !important;
+       }
+       /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+       table {
+           border-spacing: 0 !important;
+           border-collapse: collapse !important;
+           table-layout: fixed !important;
+           margin: 0 auto !important;
+       }
+       table table table {
+           table-layout: auto;
+       }
+       /* What it does: Uses a better rendering method when resizing images in IE. */
+       img {
+           -ms-interpolation-mode: bicubic;
+       }
+       /* What it does: Overrides styles added when Yahoo's auto-senses a link. */
+       .yshortcuts a {
+           border-bottom: none !important;
+       }
+       /* What it does: Another work-around for iOS meddling in triggered links. */
+       a[x-apple-data-detectors] {
+           color: inherit !important;
+       }
+   </style>
+
+   <!-- Progressive Enhancements -->
+   <style type="text/css">
+
+       /* What it does: Hover styles for buttons */
+       .button-a,
+       .button-b{
+           transition: all 100ms ease-in;
+       }
+       .button-a:hover {
+           background: #465576 !important;
+           border-color: #465576 !important;
+       }
+       .button-b:hover {
+           background: #F0533F !important;
+           border-color: #F0533F !important;
+       }
+
+       /* Media Queries */
+       @media screen and (max-width: 700px) {
+
+           .email-container {
+               width: 100% !important;
+           }
+           .hide {
+               display:none;
+           }
+
+           /* What it does: Forces elements to resize to the full width of their container. Useful for resizing images beyond their max-width. */
+           .fluid,
+           .fluid-centered {
+               max-width: 100% !important;
+               height: auto !important;
+               margin-left: auto !important;
+               margin-right: auto !important;
+           }
+           /* And center justify these ones. */
+           .fluid-centered {
+               margin-left: auto !important;
+               margin-right: auto !important;
+           }
+
+           /* What it does: Forces table cells into full-width rows. */
+           .stack-column,
+           .stack-column-center {
+               display: block !important;
+               width: 100% !important;
+               max-width: 100% !important;
+               direction: ltr !important;
+           }
+           /* And center justify these ones. */
+           .stack-column-center {
+               text-align: center !important;
+           }
+
+           /* What it does: Generic utility class for centering. Useful for images, buttons, and nested tables. */
+           .center-on-narrow {
+               text-align: center !important;
+               display: block !important;
+               margin-left: auto !important;
+               margin-right: auto !important;
+               float: none !important;
+           }
+           table.center-on-narrow {
+               display: inline-block !important;
+           }
+
+       }
+
+   </style>
+</head>
+<body bgcolor="#F2F4F6" width="100%" style="margin: 0;" yahoo="yahoo">
+<table bgcolor="#F2F4F6" cellpadding="0" cellspacing="0" border="0" height="100%" width="100%" style="border-collapse:collapse;">
+   <tr>
+      <td><center style="width: 100%;">
+
+            <!-- Visually Hidden Preheader Text : BEGIN -->
+            <div style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family: 'Source Sans Pro', 'Trebuchet MS', Verdana, sans-serif;"> Your Americord 4-in-1 Collection Kit is in transit!</div>
+            <!-- Visually Hidden Preheader Text : END -->
+
+<!-- Email Header : BEGIN -->
+
+<table align="center" width="700" class="email-container">
+   <tr>
+      <td bgcolor="#465576" style="text-align: center" width="46%" class="stack-column-center">
+         
+         <table align="center"  border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+            <tr>
+               <td>
+                  <br/><br/><br/>
+                  <a href="https://americordblood.com"><img src="https://assets.americordblood.com/email/americord-logo-email.png" width="212" height="53" alt="Americord Logo" border="0"/></a>
+               </td>
+            </tr>
+            <tr>
+               <td style="padding:12px 25px">
+                  <h1 style="color: #FFFFFF; font-family: 'Source Sans Pro', 'Trebuchet MS', Verdana, sans-serif; font-size: 36px;"><span style="text-align: center"></span>Your Kit is On The Way</h1>
+                  <p style="font-family: 'Source Sans Pro', 'Trebuchet MS', Verdana, sans-serif; color: #FFFFFF; font-size: 16px;">The wait is nearly over! Your collection kit will arrive soon!</p>
+               </td>
+            </tr>
+            <tr>
+               <td>
+                   <!-- Conditional rendering of track button if tracking number not avail -->
+                  <apex:outputPanel rendered="{!RelatedTo.Kit_Tracking_Number__c !=''}">
+                     <table cellspacing="0" cellpadding="0" border="0" align="center" style="margin: auto">
+                        <tr>
+                           <td> 
+                               <a href="https://www.fedex.com/apps/fedextrack/?action=track&action=track&tracknumbers={!RelatedTo.Kit_Tracking_Number__c}" class="button-b" target="_blank" style="font-family: 'Source Sans Pro', 'Trebuchet MS', Verdana, sans-serif;font-weight: 600; font-size: 18px; mso-height-rule: exactly; line-height: 24px;color: #FFFFFF; background-color: #F0533F; display: inline-block; text-decoration: none; letter-spacing: 0.5 px; border-radius: 8px; -webkit-text-size-adjust: none; box-sizing: border-box; border-color: #F0533F; border-style: solid; border-width: 16px 40px;"><!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]-->Track My Kit<!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]--> </a>
+                           </td>
+                        </tr>
+                     </table>
+                   </apex:outputPanel>
+               </td>
+            </tr>
+            </tbody>
+         </table><br/><br/>
+      </td>
+      <td bgcolor="#465576" class="stack-column-center hide" valign="top" width="" style="padding: 0 0 25px;">
+         <img src="https://assets.americordblood.com/email/fedex-header.png" width="375" height="360" class="hide" alt=""/>
+      </td>
+   </tr>
+</table>
+<!-- Email Header : END -->
+
+<!-- Email Body : BEGIN -->
+<table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#ffffff" width="700" class="email-container">
+   
+
+  
+   <tr>
+      <td bgcolor="#F8F9F9" style="padding: 45px 85px 0; text-align: center;">
+         
+         <!-- Steps : Begin -->
+         
+         <table cellspacing="0" cellpadding="0" border="0" align="center" style="width:100%;margin: auto">
+            <tr>
+               <td style="width:50px;text-align:center;font-family: 'Source Sans Pro', 'Trebuchet MS', Verdana, sans-serif; font-size: 16px; mso-height-rule: exactly; line-height: 24px; color: #465576;" class="stack-column-center">
+                  <img src="https://assets.americordblood.com/email/email-circle-checkmark.png" width="50" height="50" alt=""/>
+               </td>
+               <td>
+                  <hr style="border-width: 0;background: #A1D0D9; color: #A1D0D9; width:100%;height:4px"/>
+               </td>
+               <td style="width:50px;text-align:center;font-family: 'Source Sans Pro', 'Trebuchet MS', Verdana, sans-serif; font-size: 16px; mso-height-rule: exactly; line-height: 24px; color: #465576;" class="stack-column-center">
+                  <img src="https://assets.americordblood.com/email/email-circle-checkmark.png" width="50" height="50" alt=""/>
+               </td>
+               <td>
+                  <hr style="border-width: 0;background: #A1D0D9; color: #A1D0D9; width:100%;height:4px"/>
+               </td>
+               <td style="width:50px;text-align:center;font-family: 'Source Sans Pro', 'Trebuchet MS', Verdana, sans-serif; font-size: 16px; mso-height-rule: exactly; line-height: 24px; color: #465576;" class="stack-column-center">
+                  <img src="https://assets.americordblood.com/email/email-circle.png" width="50" height="50" alt=""/>
+               </td>
+               <td>
+                  <hr style="border-width: 0;background: #A1D0D9; color: #A1D0D9; width:100%;height:4px"/>
+               </td>
+               <td style="width:50px;text-align:center;font-family: 'Source Sans Pro', 'Trebuchet MS', Verdana, sans-serif; font-size: 16px; mso-height-rule: exactly; line-height: 24px; color: #465576;" class="stack-column-center">
+                  <img src="https://assets.americordblood.com/email/email-circle.png" width="50" height="50" alt=""/>
+               </td>
+            
+            </tr>
+         </table>
+         
+         <!-- Steps : END -->
+      </td>
+   </tr>
+   <tr>
+      <td bgcolor="#F8F9F9" style="padding: 0 25px 25px; text-align: center;">
+         
+         <!-- Steps : Begin -->
+         
+         <table cellspacing="0" cellpadding="0" border="0" align="center" style="width:100%;margin: auto">
+            <tr>
+               <td style="width:25%;padding:0 24px;text-align:center;font-family: 'Source Sans Pro', 'Trebuchet MS', Verdana, sans-serif; font-size: 16px; mso-height-rule: exactly; line-height: 24px; color: #465576;" class="stack-column-center">
+                  <strong>Ordered</strong>
+               </td>
+               <td style="width:25%;padding:0 24px;text-align:center;font-family: 'Source Sans Pro', 'Trebuchet MS', Verdana, sans-serif; font-size: 16px; mso-height-rule: exactly; line-height: 24px; color: #465576;" class="stack-column-center">
+                  <strong>Shipped</strong>
+               </td>
+               <td style="width:25%;padding:0 24px;text-align:center;font-family: 'Source Sans Pro', 'Trebuchet MS', Verdana, sans-serif; font-size: 16px; mso-height-rule: exactly; line-height: 24px; color: #465576;" class="stack-column-center">
+                  <strong>Delivered</strong>
+               </td>
+               <td style="width:25%;padding:0 24px;text-align:center;font-family: 'Source Sans Pro', 'Trebuchet MS', Verdana, sans-serif; font-size: 16px; mso-height-rule: exactly; line-height: 24px; color: #465576;" class="stack-column-center">
+                  <strong>Lab Received</strong>
+               </td>
+            
+            </tr>
+         </table>
+         
+         <!-- Steps : END -->
+      </td>
+   </tr>
+   
+   <tr>
+      <td style="padding: 25px 45px; text-align: left;font-family: 'Source Sans Pro', 'Trebuchet MS', Verdana, sans-serif; font-size: 18px; mso-height-rule: exactly; line-height: 24px; color: #465576;">
+         <p>Hi {!RelatedTo.Mother_s_First_Name__c},</p>
+         
+         <p>Congratulations on your growing family!</p>
+         
+         <p>We appreciate the trust you place in us and are committed to doing everything possible to ensure the best possible results in the collection, processing, and storage of your stem cells.</p>
+         
+         <p>Your Americord 4-in-1 Collection Kit is in transit!</p>
+      </td>
+   </tr>
+   
+    <!-- FedEx + Address section (stacked and boxed) -->
+    <tr>
+      <td style="padding: 20px 45px 10px 45px; text-align: left; font-family:'Source Sans Pro','Trebuchet MS',Verdana,sans-serif; color:#465576; font-size:18px; line-height:26px;">
+    
+        <!-- FedEx Tracking Box -->
+        <apex:outputPanel rendered="{!RelatedTo.Kit_Tracking_Number__c != ''}">
+          <table cellpadding="0" cellspacing="0" border="0" 
+                 style="width:100%; background:#ffffff; border:1px solid #E2E4E8; border-radius:6px; margin-bottom:14px;">
+            <tr>
+              <td style="padding:14px 18px; font-size:16px; line-height:22px;">
+                <div style="font-weight:600; margin-bottom:6px;">FedEx Tracking #</div>
+                <a href="https://www.fedex.com/apps/fedextrack/?action=track&tracknumbers={!RelatedTo.Kit_Tracking_Number__c}" 
+                   style="color:#F0533F; font-weight:700; font-size:18px; text-decoration:none;">
+                  {!RelatedTo.Kit_Tracking_Number__c}
+                </a>
+              </td>
+            </tr>
+          </table>
+        </apex:outputPanel>
+    
+        <!-- Shipping Address Box -->
+        <table cellpadding="0" cellspacing="0" border="0" 
+               style="width:100%; background:#ffffff; border:1px solid #E2E4E8; border-radius:6px;">
+          <tr>
+            <td style="padding:14px 18px; font-size:16px; line-height:22px;">
+              <div style="font-weight:600; margin-bottom:6px;">Shipping Address</div>
+              <div>
+                <apex:outputText value="{!Relatedto.Contact__r.Name}"/><br/>
+                <apex:outputText value="{!Relatedto.Shipping_Street__c}"/><br/>
+                <apex:outputText value="{!Relatedto.Shipping_City__c}"/>, 
+                <apex:outputText value="{!Relatedto.Shipping_State_new__c}"/> 
+                <apex:outputText value="{!Relatedto.Shipping_Zip__c}"/><br/>
+                <apex:outputText value="{!Relatedto.Shipping_Country_new__c}"/>
+              </div>
+            </td>
+          </tr>
+        </table>
+    
+      </td>
+    </tr>
+    
+    
+    
+    
+    <!-- Follow-up paragraph -->
+    <tr>
+      <td style="padding: 20px 45px 0 45px; text-align: left; font-family:'Source Sans Pro','Trebuchet MS',Verdana,sans-serif; font-size:18px; line-height:26px; color:#465576;">
+        <p style="margin:0 0 12px 0;">
+          With your kit on the way, if you haven't already done so, please complete the FDA required forms that were sent via DocuSign.
+        </p>
+        <p style="margin:0 0 12px 0;">
+          If you have any questions or concerns, please don't hesitate to call or email us.
+        </p>
+        <p style="margin:0 0 12px 0;">To a Healthier Future!</p>
+        <p style="margin:0 0 4px 0;">The Americord Team</p>
+        <p style="margin:0 0 4px 0;"><a href="tel:+1866-503-6005,2" style="color:#465576; text-decoration:none;">866-503-6005 ext. 2</a></p>
+        <p style="margin:0;"><a href="mailto:clients@americordblood.com" style="color:#465576; text-decoration:none;">clients@americordblood.com</a></p>
+      </td>
+    </tr>
+    
+   
+
+   
+   <tr>
+      <td style="padding: 0 0 45px; text-align: center;">
+         
+         <!-- Button : Begin -->
+         
+         <table cellspacing="0" cellpadding="0" border="0" align="center" style="margin: auto">
+            
+            <tr>
+               <td style="padding:45px 0 0;">
+               </td></tr>
+         </table>
+         
+         <!-- Button : END -->
+      
+      
+      
+      </td>
+   </tr>
+
+
+
+
+</table>
+
+            <!-- Email Footer : BEGIN -->
+            <table align="center" width="700" class="email-container">
+               <tr>
+                  <td bgcolor="#465576" style="padding: 45px 37px;width: 100%;font-size: 10px; font-family: sans-serif; mso-height-rule: exactly; line-height:14px; text-align: center; color: #ffffff;">
+
+                     <img src="https://assets.americordblood.com/email/americord-logo-small-email.png" alt="Americord Logo" />
+                     <p style="font-size: 12px; line-height: 14px; text-align: center; color: #eaeaea; margin: 2em 0 1.1875em; font-family: 'Source Sans Pro', 'Trebuchet MS', Verdana, sans-serif;" align="center">
+                        The ultimate use of stem cells derived from newborn umbilical cord blood, perinatal tissues, or exosomes will be determined by the clinical researcher or treating physician, who will consider, among other things, whether they are applicable for the condition and whether they should come from the patient or a suitable donor. There is no guarantee that treatments being studied in the laboratory, clinical trials, or regenerative medicine will be available in the future. Americord acknowledges that exosomes are not FDA-approved for use in treatments or products. Americord does not claim exosomes have any therapeutic benefit. The client understands that they bank their child's exosomes for use in clinical trials and research. Copyright © 2008 - 2023 Americord Registry LLC. All rights reserved.
+                        <br /><br />
+                        <span style="font-weight: bold">{!$Organization.Name}</span><br />
+                        {!$Organization.Street} {!$Organization.City}, {!$Organization.State} {!$Organization.PostalCode}<br/>
+                        {!$Organization.Phone}<br/><br />
+                        <a href="https://americordblood.com/privacy-policy" style="text-decoration: underline;color:#ffffff">Privacy Policy</a>
+                     </p>
+                  </td>
+               </tr>
+            </table>
+            <!-- Email Footer : END -->
+
+         </center></td>
+   </tr>
+</table>
+</body>
+</html>
+</messaging:htmlEmailBody>
+<messaging:plainTextEmailBody >
+Hi {!RelatedTo.Mother_s_First_Name__c},
+
+Congratulations on your growing family!
+
+We appreciate the trust you place in us and are committed to doing everything possible to ensure the best possible results in the collection, processing, and storage of your stem cells.
+
+Your Americord 4-in-1 Collection Kit is in transit!
+
+FedEx Tracking #:
+Tracking ID
+
+Shipping Address
+{!Relatedto.Contact__r.Name}
+{!Relatedto.Shipping_Street__c}
+{!Relatedto.Shipping_City__c}
+{!Relatedto.Shipping_State_new__c}
+{!Relatedto.Shipping_Zip__c}
+{!Relatedto.Shipping_Country_new__c}
+
+With your kit on the way, if you haven't already done so, please complete the FDA required forms that were sent through Docusign.
+
+
+If you have any questions or concerns, please don't hesitate to call or email us.
+
+To a Healthier Future!
+
+The Americord Team
+866-503-6005 ext. 2
+clients@americordblood.com
+</messaging:plainTextEmailBody>
+</messaging:emailTemplate>
