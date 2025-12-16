@@ -160,6 +160,9 @@
         <assignmentItems>
             <assignToReference>varRecOppProduct.Partial_Amount_Due_At_Checkout__c</assignToReference>
             <operator>Assign</operator>
+            <value>
+                <elementReference>formCurrUpgradeDeposit</elementReference>
+            </value>
         </assignmentItems>
         <connector>
             <targetReference>Assign_Single_Record_to_Collection_of_Opp_Products</targetReference>
