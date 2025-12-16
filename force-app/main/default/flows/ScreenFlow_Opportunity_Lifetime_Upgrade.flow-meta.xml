@@ -157,6 +157,13 @@
                 <elementReference>Loop_over_PBE.UnitPrice</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varRecOppProduct.Partial_Amount_Due_At_Checkout__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>formCurrUpgradeDeposit</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Assign_Single_Record_to_Collection_of_Opp_Products</targetReference>
         </connector>
@@ -312,6 +319,13 @@
         <name>formCurrencyOppLineItemTotalPrice</name>
         <dataType>Currency</dataType>
         <expression>IF({!varNumberCurrentOppProductCount}!= {!Call_Parsing_Subflow_For_Checklist_Values.varNumberOfElementsOutput},ROUND({!Upgrade_Price}/{!Call_Parsing_Subflow_For_Checklist_Values.varNumberOfElementsOutput},2),ABS(ROUND({!Upgrade_Price}/{!Call_Parsing_Subflow_For_Checklist_Values.varNumberOfElementsOutput},2)-({!Upgrade_Price}-{!varCurrencyRunningOppProductTotal}+{!Upgrade_Price}/{!Call_Parsing_Subflow_For_Checklist_Values.varNumberOfElementsOutput})))</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <description>Formula that will set the deposit for the opportunity product</description>
+        <name>formCurrUpgradeDeposit</name>
+        <dataType>Currency</dataType>
+        <expression>IF({!varNumberCurrentOppProductCount} == 1, {!Upgrade_Deposit}, null)</expression>
         <scale>2</scale>
     </formulas>
     <formulas>
@@ -891,6 +905,15 @@
                 <errorMessage>&lt;p&gt;You must enter an Upgrade Price value.&lt;/p&gt;</errorMessage>
                 <formulaExpression>{!formBooleanUpgradeAmountValidation}</formulaExpression>
             </validationRule>
+        </fields>
+        <fields>
+            <name>Upgrade_Deposit</name>
+            <dataType>Currency</dataType>
+            <fieldText>Upgrade Deposit</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <scale>0</scale>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
