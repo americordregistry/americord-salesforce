@@ -322,7 +322,7 @@
         <description>Formula that will set the deposit for the opportunity product</description>
         <name>formCurrUpgradeDeposit</name>
         <dataType>Currency</dataType>
-        <expression>IF({!varNumberCurrentOppProductCount}=1, {!Upgrade_Deposit}, null)</expression>
+        <expression>IF({!varNumberCurrentOppProductCount} == 0, {!Upgrade_Deposit}, null)</expression>
         <scale>2</scale>
     </formulas>
     <formulas>
