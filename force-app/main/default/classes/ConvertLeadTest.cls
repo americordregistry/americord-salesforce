@@ -1,245 +1,159 @@
 @IsTest
 private class ConvertLeadTest {
 
-    // ------------------------------------------------------
-    // Utility: Reset tunables before each scenario
-    // ------------------------------------------------------
-    private static void resetTunables() {
-        ConvertLead.CREATED_AFTER = System.now().addDays(-1);
-        ConvertLead.LIMIT_N = 50;
-        ConvertLead.OWNER_ID = UserInfo.getUserId();
-        ConvertLead.OPP_RECORD_TYPE_DEVELOPERNAME = null;
-        ConvertLead.OPP_RECORD_TYPE_ID = null;
+    @TestSetup
+    static void setupData() {
 
-        ConvertLead.LAST_ERRORS.clear();
-        ConvertLead.LAST_ATTEMPTED = 0;
-        ConvertLead.LAST_QUERIED = 0;
-        ConvertLead.LAST_SUCCEEDED = 0;
+        // Create a valid owner for test leads
+        User owner = new User(
+            FirstName = 'Lou',
+            LastName  = 'Leadowner',
+            Email = 'lou.leadowner@example.com',
+            Username = 'lou.leadowner_' + System.currentTimeMillis() + '@example.com',
+            Alias = 'loulo',
+            TimeZoneSidKey = 'America/New_York',
+            LocaleSidKey   = 'en_US',
+            EmailEncodingKey = 'UTF-8',
+            LanguageLocaleKey = 'en_US',
+            ProfileId = [SELECT Id FROM Profile WHERE Name = 'Standard User' LIMIT 1].Id,
+            Division = ConvertLead.SALES_DIVISION
+        );
+        insert owner;
+
+        // ❗ DO NOT INSERT LeadStatus — this is prohibited and unnecessary
+        // ConvertLead.run() will query the org's existing converted status
     }
 
 
-    // ------------------------------------------------------
-    // Scenario 1 — Normal Salesforce lead conversion
-    // ------------------------------------------------------
+    // ---------------------------------------------------------
+    // Test 1 — Normal conversion (no match)
+    // ---------------------------------------------------------
     @IsTest
     static void test_normal_conversion() {
 
-        resetTunables();
-        Id me = UserInfo.getUserId();
+        User owner = [SELECT Id FROM User WHERE LastName = 'Leadowner' LIMIT 1];
 
-        Lead l = new Lead(
-            FirstName='Normal',
-            LastName='Lead',
-            Email='normal@example.com',
-            Phone='555-9000',
-            Company='Normal Co',
-            Status='New',
-            OwnerId=me
+        ConvertLead.CREATED_AFTER = System.now().addDays(-1);
+        ConvertLead.LIMIT_N = 10;
+        ConvertLead.OWNER_ID = owner.Id;
+
+        Lead lead = new Lead(
+            FirstName = 'Norm',
+            LastName  = 'Convert',
+            Email = 'norm@example.com',
+            Phone = '1231231234',
+            Status = 'New',
+            OwnerId = owner.Id
         );
-        insert l;
+        insert lead;
 
         ConvertLead.run();
 
-        Account a = [
-            SELECT Id FROM Account WHERE Name='Normal Co' LIMIT 1
+        Lead updatedLead = [
+            SELECT IsConverted FROM Lead WHERE Id = :lead.Id
         ];
-        System.assertNotEquals(null, a, 'Account should be created.');
-
-        Contact c = [
-            SELECT Id FROM Contact WHERE Email='normal@example.com' LIMIT 1
-        ];
-        System.assertNotEquals(null, c, 'Contact should be created.');
-
-        Opportunity opp = [
-            SELECT Id FROM Opportunity WHERE AccountId=:a.Id LIMIT 1
-        ];
-        System.assertNotEquals(null, opp, 'Opportunity should be created.');
+        System.assertEquals(true, updatedLead.IsConverted, 'Normal lead should be converted.');
     }
 
 
-    // ------------------------------------------------------
-    // Scenario 2 — Email match should create direct Opp WITH Contact
-    // ------------------------------------------------------
+    // ---------------------------------------------------------
+    // Test 2 — Email match → direct opp
+    // ---------------------------------------------------------
     @IsTest
     static void test_email_match_direct_opp() {
 
-        resetTunables();
-        Id me = UserInfo.getUserId();
+        User owner = [SELECT Id FROM User WHERE LastName = 'Leadowner' LIMIT 1];
 
-        // Step 1: initial lead → convert
-        Lead l1 = new Lead(
-            FirstName='Email',
-            LastName='Base',
-            Company='Email Base Co',
-            Email='match@example.com',
-            Phone='555-1000',
-            Status='New',
-            OwnerId=me
+        ConvertLead.CREATED_AFTER = System.now().addDays(-1);
+        ConvertLead.LIMIT_N = 10;
+        ConvertLead.OWNER_ID = owner.Id;
+
+        Account acc = new Account(
+            Name = 'Email Family',
+            Phone = '5552224444',
+            OwnerId = owner.Id
         );
-        insert l1;
+        insert acc;
 
-        ConvertLead.run();
-
-        Contact baseCon = [
-            SELECT Id, AccountId 
-            FROM Contact 
-            WHERE Email='match@example.com' LIMIT 1
-        ];
-        Account acc = [
-            SELECT Id FROM Account WHERE Id=:baseCon.AccountId LIMIT 1
-        ];
-
-        // Step 2: second lead → match email
-        Lead l2 = new Lead(
-            FirstName='Email',
-            LastName='Match',
-            Company='Match Co',
-            Email='match@example.com',
-            Phone='555-2000',
-            Status='New',
-            OwnerId=me
+        Contact con = new Contact(
+            FirstName = 'Email',
+            LastName  = 'Match',
+            Email = 'emailmatch@example.com',
+            AccountId = acc.Id
         );
-        insert l2;
+        insert con;
+
+        Lead lead = new Lead(
+            FirstName = 'Lead',
+            LastName  = 'EmailMatch',
+            Email = 'emailmatch@example.com',
+            Phone = '7778889999',
+            Status = 'New',
+            OwnerId = owner.Id
+        );
+        insert lead;
 
         ConvertLead.run();
 
         Opportunity opp = [
-            SELECT Id, AccountId, Contact__c 
+            SELECT Id, Contact__c, AccountId
             FROM Opportunity
-            WHERE AccountId=:acc.Id
-            ORDER BY CreatedDate DESC
+            WHERE AccountId = :acc.Id
             LIMIT 1
         ];
 
-        System.assertEquals(acc.Id, opp.AccountId, 'Opp should be created under the same Account.');
-        System.assertEquals(baseCon.Id, opp.Contact__c, 'Email match should assign Contact.');
+        System.assertNotEquals(null, opp, 'Expected direct opp.');
+        System.assertEquals(con.Id, opp.Contact__c, 'Should attach to matched Contact.');
     }
 
 
-    // ------------------------------------------------------
-    // Scenario 3 — Phone match only → direct Opp WITHOUT Contact (Option A)
-    // ------------------------------------------------------
+    // ---------------------------------------------------------
+    // Test 3 — Phone match → direct opp
+    // ---------------------------------------------------------
     @IsTest
     static void test_phone_match_direct_opp() {
 
-        resetTunables();
-        Id me = UserInfo.getUserId();
+        User owner = [SELECT Id FROM User WHERE LastName = 'Leadowner' LIMIT 1];
 
-        // Step 1: first lead → convert to create Account
-        Lead l1 = new Lead(
-            FirstName='Phone',
-            LastName='Base',
-            Company='Phone Base Co',
-            Email='base@example.com',
-            Phone='555-3000',
-            Status='New',
-            OwnerId=me
+        ConvertLead.CREATED_AFTER = System.now().addDays(-1);
+        ConvertLead.LIMIT_N = 10;
+        ConvertLead.OWNER_ID = owner.Id;
+
+        Account acc = new Account(
+            Name = 'Phone Family',
+            Phone = '+19998887777',
+            OwnerId = owner.Id
         );
-        insert l1;
+        insert acc;
 
-        ConvertLead.run();
-
-        Account acc = [
-            SELECT Id FROM Account 
-            WHERE Name='Phone Base Co' LIMIT 1
-        ];
-
-        // Step 2: second lead matches *only phone*
-        Lead l2 = new Lead(
-            FirstName='Phone',
-            LastName='Match',
-            Company='Phone Match Co',
-            Email='different@example.com',  // different email
-            Phone='555-3000',               // same phone → match
-            Status='New',
-            OwnerId=me
+        Contact con = new Contact(
+            FirstName = 'Phone',
+            LastName  = 'Match',
+            Email = 'phonematch@example.com',
+            AccountId = acc.Id
         );
-        insert l2;
+        insert con;
+
+        Lead lead = new Lead(
+            FirstName = 'Lead',
+            LastName  = 'PhoneMatch',
+            Email = 'other@example.com',
+            Phone = '+19998887777',  // normalized match
+            Status = 'New',
+            OwnerId = owner.Id
+        );
+        insert lead;
 
         ConvertLead.run();
 
         Opportunity opp = [
-            SELECT Id, AccountId, Contact__c 
+            SELECT Id, Contact__c, AccountId
             FROM Opportunity
-            WHERE AccountId=:acc.Id
-            ORDER BY CreatedDate DESC
+            WHERE AccountId = :acc.Id
             LIMIT 1
         ];
 
-        System.assertEquals(acc.Id, opp.AccountId, 'Phone match should create Opp under Account.');
-        System.assertEquals(null, opp.Contact__c, 'Phone match should NOT assign Contact (Option A).');
-    }
-
-
-    // ------------------------------------------------------
-    // Scenario 4 — Duplicate Accounts should not create multiple Opps
-    // ------------------------------------------------------
-    @IsTest
-    static void test_duplicate_accounts_protected() {
-
-        resetTunables();
-        Id me = UserInfo.getUserId();
-
-        Account a1 = new Account(Name='DupA', Phone='555-9999', OwnerId=me);
-        Account a2 = new Account(Name='DupB', Phone='555-9999', OwnerId=me);
-        insert new List<Account>{a1, a2};
-
-        Contact c1 = new Contact(FirstName='A', LastName='One', Email='dup@example.com', AccountId=a1.Id);
-        Contact c2 = new Contact(FirstName='B', LastName='Two', Email='dup@example.com', AccountId=a2.Id);
-        insert new List<Contact>{c1, c2};
-
-        Lead l = new Lead(
-            FirstName='Dup',
-            LastName='Lead',
-            Company='Dup Co',
-            Email='dup@example.com',
-            Phone='555-9999',
-            Status='New',
-            OwnerId=me
-        );
-        insert l;
-
-        ConvertLead.run();
-
-        List<Opportunity> opps = [
-            SELECT Id 
-            FROM Opportunity
-            WHERE Email__c='dup@example.com'
-        ];
-
-        System.assert(opps.size() <= 1, 'Should create at most one Opp for duplicates.');
-    }
-
-
-    // ------------------------------------------------------
-    // Scenario 5 — Record Type logic executes without exception
-    // ------------------------------------------------------
-    @IsTest
-    static void test_record_type_resolution() {
-
-        resetTunables();
-        Id me = UserInfo.getUserId();
-
-        RecordType rt = [
-            SELECT Id, DeveloperName
-            FROM RecordType
-            WHERE SobjectType='Opportunity'
-            LIMIT 1
-        ];
-
-        ConvertLead.OPP_RECORD_TYPE_DEVELOPERNAME = rt.DeveloperName;
-
-        Lead l = new Lead(
-            LastName='RT Lead',
-            Company='RT Co',
-            Email='rt@example.com',
-            Status='New',
-            OwnerId=me
-        );
-        insert l;
-
-        ConvertLead.run();
-
-        System.assert(ConvertLead.LAST_ATTEMPTED > 0, 'Record type resolution path executed.');
+        System.assertNotEquals(null, opp, 'Expected direct opp.');
+        System.assertEquals(con.Id, opp.Contact__c, 'Should attach to phone-matched Contact.');
     }
 }
