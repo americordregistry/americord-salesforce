@@ -174,7 +174,7 @@ public class ConvertLead {
                         Datetime.newInstance(
                             l.Babys_Due_Date__c,
                             Time.newInstance(0,0,0,0)
-                        ).format('MM/dd/yyyy');
+                        ).format('M/d/yyyy');
                 }
 
                 Opportunity opp = new Opportunity(
