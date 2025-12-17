@@ -231,12 +231,12 @@ public class ConvertLead {
             if (matchedAcc != null) {
 
                 String oppName = l.Name;
+
                 if (l.Babys_Due_Date__c != null) {
-                    oppName += ' - ' + Datetime.newInstance(
-                        l.Babys_Due_Date__c,
-                        Time.newInstance(0,0,0,0)
-                    ).format('MM/dd/yyyy');
+                    Date d = l.Babys_Due_Date__c;
+                    oppName += ' - ' + d.month() + '/' + d.day() + '/' + d.year();
                 }
+
 
                 Opportunity opp = new Opportunity(
                     Name = oppName,
