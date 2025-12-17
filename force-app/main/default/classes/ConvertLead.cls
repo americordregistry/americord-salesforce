@@ -133,7 +133,7 @@ public class ConvertLead {
         // ------------------------------------------------
         if (!leadPhones10.isEmpty()) {
             for (Contact c : [
-                SELECT Id, AccountId, Phone
+                SELECT Id, AccountId, Phone, Email
                 FROM Contact
                 WHERE AccountId != null
                 AND Phone != null
