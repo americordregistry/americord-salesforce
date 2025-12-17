@@ -182,9 +182,17 @@ public class ConvertLead {
                 }
             }
 
-            if (foundMatch && matchedAcc != null) {
-                // Create Opp under Account with Account Owner
-                String base = String.isBlank(l.Company) ? l.LastName : l.Company;
+            // C) Direct opportunity path
+            if (matchedAcc != null) {
+
+                String oppName = l.Name;
+
+                if (l.Babys_Due_Date__c != null) {
+                    Date d = l.Babys_Due_Date__c;
+                    oppName += ' - ' + d.month() + '/' + d.day() + '/' + d.year();
+                }
+
+
                 Opportunity opp = new Opportunity(
                     Name = l.Name + (
                         l.Babys_Due_Date__c != null
