@@ -9,9 +9,6 @@ public class ConvertLead {
     @TestVisible static String   SALES_DIVISION = 'Inside Sales';
     @TestVisible static String   SERVICE_DIVISION = 'Client Services';
 
-    @TestVisible static Id       OPP_RECORD_TYPE_ID = null;
-    @TestVisible static String   OPP_RECORD_TYPE_DEVELOPERNAME = null;
-
     // ---- Instrumentation ----
     @TestVisible static Integer LAST_QUERIED   = 0;
     @TestVisible static Integer LAST_ATTEMPTED = 0;
@@ -52,7 +49,7 @@ public class ConvertLead {
         }
 
         // ------------------------------------------------
-        // 2) Query eligible leads (SOQL syntax compatible)
+        // 2) Query eligible leads
         // ------------------------------------------------
         List<Lead> leads = [
             SELECT Id, Name, LeadSource, Email, Company, FirstName, LastName, Phone,
@@ -61,9 +58,9 @@ public class ConvertLead {
             WHERE IsConverted = FALSE
               AND Status IN ('New','Open','Working')
               AND CreatedDate > :CREATED_AFTER
-              AND ( NOT Company LIKE 'QA %')
-              AND ( NOT Company LIKE '%test%')
-              AND ( NOT Company LIKE '%Unknown%')
+              AND (NOT Company LIKE 'QA %')
+              AND (NOT Company LIKE '%test%')
+              AND (NOT Company LIKE '%Unknown%')
               AND Email != 'unknown@example.com'
               AND OwnerId IN :eligibleOwnerIds
             LIMIT :LIMIT_N
@@ -73,21 +70,20 @@ public class ConvertLead {
         if (leads.isEmpty()) return;
 
         // ------------------------------------------------
-        // 3) Converted status label
+        // 3) Converted Lead Status
         // ------------------------------------------------
-        LeadStatus ls = [
+        String convertedStatus = [
             SELECT MasterLabel
             FROM LeadStatus
             WHERE IsConverted = TRUE
             LIMIT 1
-        ];
-        String convertedStatus = ls.MasterLabel;
+        ].MasterLabel;
 
         // ------------------------------------------------
-        // 4) Gather lead identifiers (normalized)
+        // 4) Collect normalized identifiers from Leads
         // ------------------------------------------------
         Set<String> leadEmailsLower = new Set<String>();
-        Set<String> leadPhones10 = new Set<String>();
+        Set<String> leadPhones10   = new Set<String>();
 
         for (Lead l : leads) {
             if (!String.isBlank(l.Email)) {
@@ -98,151 +94,112 @@ public class ConvertLead {
         }
 
         // ------------------------------------------------
-        // 5) Load candidate Accounts + Contacts WITHOUT semi-join OR
+        // 5) Query ONLY Contacts that could match
         // ------------------------------------------------
-        Map<Id, Account> acctById = new Map<Id, Account>();
+        Map<Id, List<Contact>> contactsByAccountId = new Map<Id, List<Contact>>();
 
-        // 5a) Accounts with a phone (we'll normalize + compare in Apex)
-        for (Account a : [
-            SELECT Id, OwnerId, Phone, (SELECT Id, Email, Phone FROM Contacts)
-            FROM Account
-            WHERE Phone != null
-        ]) {
-            acctById.put(a.Id, a);
-        }
-
-        // 5b) Accounts that have Contacts with Email (semi-join only, no OR)
-        if (!leadEmailsLower.isEmpty()) {
-            Set<Id> acctIdsFromEmailContacts = new Set<Id>();
+        if (!leadEmailsLower.isEmpty() || !leadPhones10.isEmpty()) {
             for (Contact c : [
-                SELECT AccountId, Email
+                SELECT Id, AccountId, Email, Phone
                 FROM Contact
                 WHERE AccountId != null
-                  AND Email != null
+                AND (
+                    Email IN :leadEmailsLower
+                    OR Phone != null
+                )
             ]) {
-                if (c.Email != null && leadEmailsLower.contains(c.Email.trim().toLowerCase())) {
-                    acctIdsFromEmailContacts.add(c.AccountId);
-                }
-            }
+                Boolean emailMatch =
+                    c.Email != null &&
+                    leadEmailsLower.contains(c.Email.trim().toLowerCase());
 
-            if (!acctIdsFromEmailContacts.isEmpty()) {
-                for (Account a : [
-                    SELECT Id, OwnerId, Phone, (SELECT Id, Email, Phone FROM Contacts)
-                    FROM Account
-                    WHERE Id IN :acctIdsFromEmailContacts
-                ]) {
-                    acctById.put(a.Id, a);
+                Boolean phoneMatch = false;
+                if (c.Phone != null) {
+                    String c10 = normalizePhone10(c.Phone);
+                    phoneMatch = (c10 != null && leadPhones10.contains(c10));
+                }
+
+                if (emailMatch || phoneMatch) {
+                    if (!contactsByAccountId.containsKey(c.AccountId)) {
+                        contactsByAccountId.put(c.AccountId, new List<Contact>());
+                    }
+                    contactsByAccountId.get(c.AccountId).add(c);
                 }
             }
         }
-
-        // 5c) Accounts that have Contacts with Phone (semi-join only, no OR)
-        if (!leadPhones10.isEmpty()) {
-            Set<Id> acctIdsFromPhoneContacts = new Set<Id>();
-            for (Contact c : [
-                SELECT AccountId, Phone
-                FROM Contact
-                WHERE AccountId != null
-                  AND Phone != null
-            ]) {
-                String c10 = normalizePhone10(c.Phone);
-                if (c10 != null && leadPhones10.contains(c10)) {
-                    acctIdsFromPhoneContacts.add(c.AccountId);
-                }
-            }
-
-            if (!acctIdsFromPhoneContacts.isEmpty()) {
-                for (Account a : [
-                    SELECT Id, OwnerId, Phone, (SELECT Id, Email, Phone FROM Contacts)
-                    FROM Account
-                    WHERE Id IN :acctIdsFromPhoneContacts
-                ]) {
-                    acctById.put(a.Id, a);
-                }
-            }
-        }
-
-        List<Account> candidateAccounts = acctById.values();
 
         // ------------------------------------------------
-        // 6) Prepare work lists
+        // 6) Load only matching Accounts
+        // ------------------------------------------------
+        Map<Id, Account> accountsById = new Map<Id, Account>();
+
+        if (!contactsByAccountId.isEmpty()) {
+            accountsById = new Map<Id, Account>([
+                SELECT Id, OwnerId
+                FROM Account
+                WHERE Id IN :contactsByAccountId.keySet()
+            ]);
+        }
+
+        // ------------------------------------------------
+        // 7) Process Leads
         // ------------------------------------------------
         List<Database.LeadConvert> conversions = new List<Database.LeadConvert>();
         List<Opportunity> directOpps = new List<Opportunity>();
         List<Lead> leadsToMarkConverted = new List<Lead>();
 
-        // ------------------------------------------------
-        // 7) Process each lead: PHONE match OR EMAIL match
-        // ------------------------------------------------
         for (Lead l : leads) {
 
             String leadEmail = l.Email != null ? l.Email.trim().toLowerCase() : null;
             String leadPhone10 = normalizePhone10(l.Phone);
 
-            Account matchedAcc = null;
-            Contact matchedCon = null;
+            Account matchedAcc;
+            Contact matchedCon;
 
-            // A) PHONE match (Account.Phone OR Contact.Phone)
-            if (leadPhone10 != null) {
-                for (Account a : candidateAccounts) {
-                    if (normalizePhone10(a.Phone) == leadPhone10) {
+            for (Id acctId : contactsByAccountId.keySet()) {
+                Account a = accountsById.get(acctId);
+                if (a == null) continue;
+
+                for (Contact c : contactsByAccountId.get(acctId)) {
+
+                    Boolean emailMatch =
+                        leadEmail != null &&
+                        c.Email != null &&
+                        c.Email.trim().toLowerCase() == leadEmail;
+
+                    Boolean phoneMatch =
+                        leadPhone10 != null &&
+                        normalizePhone10(c.Phone) == leadPhone10;
+
+                    if (emailMatch || phoneMatch) {
                         matchedAcc = a;
-
-                        // optional: find best matching contact on phone
-                        for (Contact c : a.Contacts) {
-                            if (normalizePhone10(c.Phone) == leadPhone10) {
-                                matchedCon = c;
-                                break;
-                            }
-                        }
+                        matchedCon = c;
                         break;
                     }
-
-                    // If account phone didn't match, try contacts phone
-                    if (matchedAcc == null && a.Contacts != null) {
-                        for (Contact c : a.Contacts) {
-                            if (normalizePhone10(c.Phone) == leadPhone10) {
-                                matchedAcc = a;
-                                matchedCon = c;
-                                break;
-                            }
-                        }
-                        if (matchedAcc != null) break;
-                    }
                 }
+                if (matchedAcc != null) break;
             }
 
-            // B) EMAIL match (Contact.Email)
-            if (matchedAcc == null && leadEmail != null) {
-                for (Account a : candidateAccounts) {
-                    if (a.Contacts == null) continue;
-                    for (Contact c : a.Contacts) {
-                        if (c.Email != null && c.Email.trim().toLowerCase() == leadEmail) {
-                            matchedAcc = a;
-                            matchedCon = c;
-                            break;
-                        }
-                    }
-                    if (matchedAcc != null) break;
-                }
-            }
-
-            // C) Direct opportunity path
+            // ------------------------------------------------
+            // A) Direct Opportunity path
+            // ------------------------------------------------
             if (matchedAcc != null) {
 
                 String oppName = l.Name;
-
                 if (l.Babys_Due_Date__c != null) {
-                    Date d = l.Babys_Due_Date__c;
-                    oppName += ' - ' + d.month() + '/' + d.day() + '/' + d.year();
+                    oppName += ' - ' +
+                        Datetime.newInstance(
+                            l.Babys_Due_Date__c,
+                            Time.newInstance(0,0,0,0)
+                        ).format('M/d/yyyy'); // no leading zeros
                 }
-
 
                 Opportunity opp = new Opportunity(
                     Name = oppName,
                     AccountId = matchedAcc.Id,
                     StageName = 'New',
-                    CloseDate = (l.Babys_Due_Date__c != null ? l.Babys_Due_Date__c : Date.today().addDays(270)),
+                    CloseDate = (l.Babys_Due_Date__c != null
+                        ? l.Babys_Due_Date__c
+                        : Date.today().addDays(270)),
                     Baby_s_Due_Date__c = l.Babys_Due_Date__c,
                     Contact__c = (matchedCon != null ? matchedCon.Id : null),
                     LeadSource = l.LeadSource,
@@ -255,13 +212,14 @@ public class ConvertLead {
 
                 directOpps.add(opp);
 
-                // Prevent reprocessing
                 l.Status = convertedStatus;
                 leadsToMarkConverted.add(l);
                 continue;
             }
 
-            // D) Normal conversion path
+            // ------------------------------------------------
+            // B) Normal Lead Conversion
+            // ------------------------------------------------
             Database.LeadConvert lc = new Database.LeadConvert();
             lc.setLeadId(l.Id);
             lc.setConvertedStatus(convertedStatus);
@@ -269,6 +227,7 @@ public class ConvertLead {
             lc.setOpportunityName(
                 (String.isBlank(l.Company) ? l.LastName : l.Company) + ' - New'
             );
+
             conversions.add(lc);
         }
 
@@ -292,35 +251,13 @@ public class ConvertLead {
     }
 
     // ------------------------------------------------
-    // Phone normalization: return last 10 digits
-    // Works with "+19998887777", "(999) 888-7777", etc.
+    // Phone normalization: last 10 digits
     // ------------------------------------------------
     @TestVisible
     private static String normalizePhone10(String raw) {
         if (String.isBlank(raw)) return null;
-
         String digits = raw.replaceAll('[^0-9]', '');
-        if (String.isBlank(digits)) return null;
-
-        if (digits.length() > 10) {
-            return digits.substring(digits.length() - 10);
-        }
-        return digits;
-    }
-
-    private static Id resolveOppRecordTypeId() {
-        if (OPP_RECORD_TYPE_ID != null) return OPP_RECORD_TYPE_ID;
-
-        if (!String.isBlank(OPP_RECORD_TYPE_DEVELOPERNAME)) {
-            List<RecordType> rts = [
-                SELECT Id
-                FROM RecordType
-                WHERE SobjectType = 'Opportunity'
-                  AND DeveloperName = :OPP_RECORD_TYPE_DEVELOPERNAME
-                LIMIT 1
-            ];
-            if (!rts.isEmpty()) return rts[0].Id;
-        }
-        return null;
+        if (digits.length() < 10) return null;
+        return digits.substring(digits.length() - 10);
     }
 }
