@@ -131,6 +131,62 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>formBoolAuthorizedPayment</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>formBoolBabyDueDate</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>formBoolEmailAddressForMother</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>formBoolSaturdayDelivery</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>formBoolRelationToBabyCheck1</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>formBoolSameDayShipping</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>formBoolShippingAddressRequired</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>formBoolSurrogateShippingAddressCheck</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>SCR_Validation_Error</targetReference>
             </connector>
@@ -248,6 +304,39 @@
     <description>This is the flow that runs when the Enroll button is clicked on the opportunity.</description>
     <environments>Default</environments>
     <formulas>
+        <description>Validate the payment has been authorized.</description>
+        <name>formBoolAuthorizedPayment</name>
+        <dataType>Boolean</dataType>
+        <expression>AND (
+NOT({!$Setup.Americord_Settings__c.Bypass_Validation_Rule__c}),
+{!recordId.Authorized_Payment__c} = false
+)</expression>
+    </formulas>
+    <formulas>
+        <description>Validate the baby due date is set</description>
+        <name>formBoolBabyDueDate</name>
+        <dataType>Boolean</dataType>
+        <expression>or (
+isnull( {!recordId.Baby_s_Due_Date__c} ),
+{!recordId.Baby_s_Due_Date__c} &lt; Today ()
+)</expression>
+    </formulas>
+    <formulas>
+        <description>Formula to check if the mother email address has been entered.</description>
+        <name>formBoolEmailAddressForMother</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+NOT({!$Setup.Americord_Settings__c.Bypass_Validation_Rule__c}),
+or (
+AND (text({!recordId.Contact2_Relation_to_Baby__c}) = &quot;Mother&quot; &amp;&amp; IsBlank( {!recordId.Contact2_Email__c} ),
+text({!recordId.Relation_to_Baby__c}) &lt;&gt; &quot;Mother&quot;),
+AND(
+text({!recordId.Relation_to_Baby__c}) = &quot;Mother&quot; &amp;&amp; IsBlank( {!recordId.Email__c} ) ,
+text({!recordId.Contact2_Relation_to_Baby__c}) &lt;&gt; &quot;Mother&quot;),
+text( {!recordId.Contact2_Relation_to_Baby__c}) &lt;&gt; &quot;Mother&quot; &amp;&amp; text({!recordId.Relation_to_Baby__c}) &lt;&gt; &quot;Mother&quot; &amp;&amp; IsBlank( {!recordId.Email__c} )
+))</expression>
+    </formulas>
+    <formulas>
         <description>Formula that will check to make sure the primary contact has been set.</description>
         <name>formBoolPrimaryContactMotherFather</name>
         <dataType>Boolean</dataType>
@@ -284,12 +373,75 @@ ISBLANK ({!recordId.Referred_by_email_address__c})
 )</expression>
     </formulas>
     <formulas>
+        <description>This formula will check that the relation to baby is set.</description>
+        <name>formBoolRelationToBabyCheck1</name>
+        <dataType>Boolean</dataType>
+        <expression>AND (
+ISBLANK (Text({!recordId.Relation_to_Baby__c}) )
+)</expression>
+    </formulas>
+    <formulas>
+        <description>Formula to determine if the same day shipping steps have been followed.</description>
+        <name>formBoolSameDayShipping</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+{!recordId.Same_Day_Shipping_CS_Team__c} = true,
+{!recordId.Same_Day_request_on_5_Star_CS_Slack__c} = false
+)</expression>
+    </formulas>
+    <formulas>
+        <description>Validate the Saturday delivery steps have been met.</description>
+        <name>formBoolSaturdayDelivery</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+NOT({!$Setup.Americord_Settings__c.Bypass_Validation_Rule__c}),
+{!$Profile.Name} != &apos;System Administrator&apos;,
+{!$Profile.Name} != &apos;payments Profile&apos;,
+{!recordId.Saturday_Delivery__c} = true,
+OR (
+AND (
+WEEKDAY(today()) = 6,
+HOUR(TIMENOW()) &gt;= 19),
+WEEKDAY(TODAY()) = 1,
+WEEKDAY(TODAY())= 7
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <description>Formula to validate the shipping address as been fully entered.</description>
+        <name>formBoolShippingAddressRequired</name>
+        <dataType>Boolean</dataType>
+        <expression>AND (
+{!recordId.CloseDate} &gt; DATE(2021, 01, 01),
+OR(
+ISBLANK({!recordId.Shipping_City__c}),
+ISBLANK({!recordId.Shipping_Street__c} ),
+ISBLANK({!recordId.Shipping_City__c}),
+ISBLANK(text({!recordId.Shipping_State_Province__c})),
+ISBLANK( {!recordId.Shipping_Zip__c})))</expression>
+    </formulas>
+    <formulas>
         <description>Check for special shipping label instructions.</description>
         <name>formBoolShippingLabelInstructionsCheck</name>
         <dataType>Boolean</dataType>
         <expression>AND (
 NOT(ISBLANK({!recordId.Shipping_Label_Special_Instructions__c})),
 {!recordId.Confirm_info_is_appropriate_for_LABEL__c} = false)</expression>
+    </formulas>
+    <formulas>
+        <description>Formula to determine if the shipping address for the surrogate is properly entered.</description>
+        <name>formBoolSurrogateShippingAddressCheck</name>
+        <dataType>Boolean</dataType>
+        <expression>AND (
+NOT({!$Setup.Americord_Settings__c.Bypass_Validation_Rule__c}),
+{!recordId.Ship_Kit_to_Surrogate__c} = true,
+OR (
+ISBLANK({!recordId.Surrogate_FirstName__c}),
+ISBLANK({!recordId.Surrogate_LastName__c}),
+ISBLANK({!recordId.Surrogate_City__c}),
+ISBLANK({!recordId.Surrogate_Postal_Code__c}),
+ISBLANK(TEXT({!recordId.Surrogate_State_Province__c})),
+ISBLANK({!recordId.Surrogate_Street_Address__c})))</expression>
     </formulas>
     <formulas>
         <description>Formula to determine the contact2 details are set correctly.</description>
@@ -653,6 +805,126 @@ Always routes users back to fix inputs</description>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
                     <leftValueReference>formBoolPrimaryContactMotherFather</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>DT_AuthorizedPaymentError</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 14px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;Credit Card required to enroll. Please use the &quot;Authorize&quot; button to validate the client&apos;s create card to proceed with Enrollment.&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>formBoolAuthorizedPayment</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>DT_BabyDueDateError</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 14px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;Baby&apos;s Due Date is required and must be a date in the future (greater than today).&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>formBoolBabyDueDate</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>DT_MotherEmailRequired</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 14px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;Valid email address is required for the Mother or, if two Fathers, the first Father.&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>formBoolEmailAddressForMother</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>DT_SaturdayDeliveryCheck</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 14px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;Saturday Delivery is only available on Friday before 3 PM. If you need special shipping, please contact Five Star Service for rush delivery.&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>formBoolSaturdayDelivery</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>DT_RelationToBaby1</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 14px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;Please indicate Contact Relationship to Baby, either Mother, Father, Grandparent or Other.&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>formBoolRelationToBabyCheck1</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>DT_SameDayShippingError</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 14px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;You must post your SAME DAY shipping request to the 5 Star Client Service Slack channel. Then, check that box.&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>formBoolSameDayShipping</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>DT_ShippingRequiredError</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 14px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;Please enter a shipping address. Street, City, State and Zip are required.&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>formBoolShippingAddressRequired</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>DT_SurrogateShippingReqError</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 14px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;When shipping kit to Surrogate, you must include Surrogate&apos;s first name, last name, shipping street, city, state and zip.&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>formBoolSurrogateShippingAddressCheck</leftValueReference>
                     <operator>EqualTo</operator>
                     <rightValue>
                         <booleanValue>true</booleanValue>
