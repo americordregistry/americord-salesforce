@@ -456,25 +456,13 @@ ISBLANK (TEXT( {!recordId.Contact2_Relation_to_Baby__c}))
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <fields>
-            <name>ErrorIcon</name>
+            <name>exception_flow_error_icon</name>
             <extensionName>flowruntime:image</extensionName>
             <fieldType>ComponentInstance</fieldType>
             <inputParameters>
                 <name>imageName</name>
                 <value>
-                    <stringValue>ErrorIcon</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>horizontalAlignment</name>
-                <value>
-                    <stringValue>center</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>imageAlt</name>
-                <value>
-                    <stringValue>Error Icon</stringValue>
+                    <stringValue>flow_error_icon</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -487,6 +475,12 @@ ISBLANK (TEXT( {!recordId.Contact2_Relation_to_Baby__c}))
                 <name>imageWidth</name>
                 <value>
                     <stringValue>50px</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>horizontalAlignment</name>
+                <value>
+                    <stringValue>Center</stringValue>
                 </value>
             </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -504,11 +498,19 @@ ISBLANK (TEXT( {!recordId.Contact2_Relation_to_Baby__c}))
                     <fieldText>&lt;pre class=&quot;ql-syntax&quot; spellcheck=&quot;false&quot;&gt;There was an error saving this record. 
 See the message below and make required updates, 
 or reach out to support and include this error message:
-{!$Flow.FaultMessage}
-
-
 
 &lt;/pre&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>TXT_ErrorMessage</name>
+                    <fieldText>&lt;pre class=&quot;ql-syntax&quot; spellcheck=&quot;false&quot;&gt;&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;﻿{!$Flow.FaultMessage}
+&lt;/pre&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>TXT_ScrollMessage</name>
+                    <fieldText>&lt;h2&gt;You may need to scroll right to see full message.&lt;/h2&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
                 </fields>
                 <inputParameters>
