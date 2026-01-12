@@ -167,8 +167,6 @@ public class Invoice {
             lab.Mother_s_Phone__c = contact_1.Phone;
             lab.Mothers_Email__c = contact_1.Email;
             lab.Relation_to_Baby__c = contact_1.Type__c;
-            lab.Ship_to_First_Name__c = contact_1.FirstName;
-            lab.Ship_to_Last_Name__c  = contact_1.LastName;
             lab.Name = contact_1.FirstName + ' ' + contact_1.LastName + ' Lab' ;
         }
         
@@ -193,6 +191,8 @@ public class Invoice {
         }
         
         if (!oppty.Surrogate__c  && !oppty.Ship_Kit_to_Surrogate__c ){
+            lab.Ship_to_First_Name__c = contact_1.FirstName;
+            lab.Ship_to_Last_Name__c  = contact_1.LastName;
             lab.Ship_kit_to_Surrogate__c = oppty.Ship_Kit_to_Surrogate__c;        
             lab.Shipping_City__c = oppty.Shipping_City__c;
             lab.Shipping_Country_new__c = oppty.Shipping_Country__c;
@@ -201,6 +201,8 @@ public class Invoice {
             lab.Shipping_Zip__c = oppty.Shipping_Zip__c; 
         }
         else {
+            lab.Ship_To_First_Name__c = oppty.Surrogate_FirstName__c;
+            lab.Ship_To_Last_Name__c  = oppty.Surrogate_LastName__c;
             lab.Ship_kit_to_Surrogate__c = oppty.Ship_Kit_to_Surrogate__c;        
             lab.Shipping_City__c = oppty.Surrogate_City__c;
             lab.Shipping_State_new__c = oppty.Surrogate_State_Province__c;

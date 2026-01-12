@@ -1592,12 +1592,15 @@ public class OrderBuilderControllerTest {
                 Shipping_Street__c,
                 Shipping_City__c,
                 Shipping_State_new__c,
-                Shipping_Zip__c
+                Shipping_Zip__c,
+                Ship_To_First_Name__c,
+                Ship_To_Last_Name__c
             FROM Lab__c
             WHERE Opportunity__c = :opp.Id
             LIMIT 1
         ];
-
+        System.assertEquals('Sarah', lab.Ship_To_First_Name__c);
+        System.assertEquals('Surrogate', lab.Ship_To_Last_Name__c);
         System.assertEquals(true, lab.Ship_kit_to_Surrogate__c, 'Lab should be marked as shipping to surrogate.');
         System.assertEquals('999 Surrogate Lane', lab.Shipping_Street__c, 'Surrogate street should map to Lab.');
         System.assertEquals('Austin', lab.Shipping_City__c);
