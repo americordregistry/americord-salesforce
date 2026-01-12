@@ -1069,6 +1069,7 @@ public class OrderBuilderControllerTest {
         update opp;
 
         fw1__Invoice__c invoice = [SELECT Id FROM fw1__Invoice__c WHERE fw1__Opportunity__c = :opp.Id LIMIT 1];
+        invoice.fw2__Opportunity__c = opp.Id;
         System.debug('invoice: '+invoice);
         return invoice;
     }
@@ -1502,4 +1503,109 @@ public class OrderBuilderControllerTest {
         }
         
     }
+
+    @isTest
+    static void surrogateShippingInvoiceTest() {
+
+        User oppOwner = AmericordTestDataFactory.getCurrentSalesRep();
+
+        Account a = new Account(
+            Name = 'Surrogate Shipping Account'
+        );
+        insert a;
+
+        Contact mother = new Contact(
+            FirstName = 'SurrogateMother',
+            LastName = 'Test',
+            Email = 'sur.mother@test.com',
+            AccountId = a.Id,
+            Type__c = 'Mother'
+        );
+        insert mother;
+
+        Contact surrogate = new Contact(
+            FirstName = 'Sarah',
+            LastName = 'Surrogate',
+            Email = 'surrogate@test.com',
+            AccountId = a.Id,
+            Type__c = 'Mother'
+        );
+        insert surrogate;
+
+        Opportunity opp = new Opportunity(
+            OwnerId = oppOwner.Id,
+            AccountId = a.Id,
+            Name = 'Surrogate Opp',
+            StageName = 'New',
+            CloseDate = Date.today(),
+
+            Contact__c = mother.Id,
+            Contact2__c = surrogate.Id,
+            Relation_to_Baby__c = 'Mother',
+            Contact2_Relation_to_Baby__c = 'Mother',
+
+            Surrogate__c = true,
+            Ship_Kit_to_Surrogate__c = true,
+
+            // Required shipping fields (validation)
+            Shipping_Street__c = '111 Required St',
+            Shipping_City__c = 'Required City',
+            Shipping_State_Province__c = 'NY',
+            Shipping_Zip__c = '10001',
+            Shipping_Country__c = 'US',
+
+            // Required surrogate identity + address fields
+            Surrogate_FirstName__c = 'Sarah',
+            Surrogate_LastName__c = 'Surrogate',
+            Surrogate_Street_Address__c = '999 Surrogate Lane',
+            Surrogate_City__c = 'Austin',
+            Surrogate_State_Province__c = 'TX',
+            Surrogate_Postal_Code__c = '73301'
+        );
+        insert opp;
+
+        //
+        // 🔥 REQUIRED STEP — this fires all triggers and creates the fw1__Invoice__c
+        //
+        fw1__Invoice__c invoice = enrollOpportunity(opp);
+
+        System.assertNotEquals(null, invoice, 'Invoice was not created during enrollment.');
+        System.assertNotEquals(null, invoice.Id, 'Invoice record must have been inserted.');
+
+        //
+        // Now run the main Invoice logic we are testing
+        //
+        Test.startTest();
+        Invoice invLogic = new Invoice();
+        invLogic.addOpportunityInfo(
+            new Set<Id>{ opp.Id },
+            new List<fw1__Invoice__c>{ invoice }
+        );
+        Test.stopTest();
+
+        //
+        // Validate the Lab record was created and surrogate address was used
+        //
+        Lab__c lab = [
+            SELECT Id,
+                Ship_kit_to_Surrogate__c,
+                Shipping_Street__c,
+                Shipping_City__c,
+                Shipping_State_new__c,
+                Shipping_Zip__c,
+                Ship_To_First_Name__c,
+                Ship_To_Last_Name__c
+            FROM Lab__c
+            WHERE Opportunity__c = :opp.Id
+            LIMIT 1
+        ];
+        System.assertEquals('Sarah', lab.Ship_To_First_Name__c);
+        System.assertEquals('Surrogate', lab.Ship_To_Last_Name__c);
+        System.assertEquals(true, lab.Ship_kit_to_Surrogate__c, 'Lab should be marked as shipping to surrogate.');
+        System.assertEquals('999 Surrogate Lane', lab.Shipping_Street__c, 'Surrogate street should map to Lab.');
+        System.assertEquals('Austin', lab.Shipping_City__c);
+        System.assertEquals('TX', lab.Shipping_State_new__c);
+        System.assertEquals('73301', lab.Shipping_Zip__c);
+    }
+
 }
