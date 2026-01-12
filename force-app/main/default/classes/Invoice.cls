@@ -109,7 +109,7 @@ public class Invoice {
                 inv.Closing_Rep__c = 'Ecomm';
             } 
 
-            inv.Closing_Rep__c = oppty.Owner.Alias;
+            inv.Closing_Rep__c = oppty.Owner.CommunityNickname;
             inv.Contact_2__c = oppty.Contact2__c;
             inv.Enroll_Date__c = Date.today();
             inv.Number_of_Births__c = oppty.Number_of_Births__c;
@@ -192,12 +192,22 @@ public class Invoice {
             lab.Collection_Kit_Status__c = 'On Hold';
         }
         
-        lab.Ship_kit_to_Surrogate__c = oppty.Ship_Kit_to_Surrogate__c;        
-        lab.Shipping_City__c = oppty.Shipping_City__c;
-        lab.Shipping_Country_new__c = oppty.Shipping_Country__c;
-        lab.Shipping_State_new__c = oppty.Shipping_State_Province__c;
-        lab.Shipping_Street__c = oppty.Shipping_Street__c;
-        lab.Shipping_Zip__c = oppty.Shipping_Zip__c;        
+        if (!oppty.Surrogate__c  && !oppty.Ship_Kit_to_Surrogate__c ){
+            lab.Ship_kit_to_Surrogate__c = oppty.Ship_Kit_to_Surrogate__c;        
+            lab.Shipping_City__c = oppty.Shipping_City__c;
+            lab.Shipping_Country_new__c = oppty.Shipping_Country__c;
+            lab.Shipping_State_new__c = oppty.Shipping_State_Province__c;
+            lab.Shipping_Street__c = oppty.Shipping_Street__c;
+            lab.Shipping_Zip__c = oppty.Shipping_Zip__c; 
+        }
+        else {
+            lab.Ship_kit_to_Surrogate__c = oppty.Ship_Kit_to_Surrogate__c;        
+            lab.Shipping_City__c = oppty.Surrogate_City__c;
+            lab.Shipping_State_new__c = oppty.Surrogate_State_Province__c;
+            lab.Shipping_Street__c = oppty.Surrogate_Street_Address__c;
+            lab.Shipping_Zip__c = oppty.Surrogate_Postal_Code__c;             
+        }
+       
         lab.Shipping_Label_Special_Instructions__c = oppty.Shipping_Label_Special_Instructions__c;        
         //lab.Shipping_Notes__c = oppty.Shipping_Notes__c;        
         lab.Sperm_Donor_Status__c = oppty.Sperm_Donor_Status__c;        
