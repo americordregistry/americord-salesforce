@@ -161,7 +161,7 @@
         <name>Send_Email_To_Allied_For_Saturday_Delivery</name>
         <label>Send Email To Allied For Saturday Delivery</label>
         <locationX>314</locationX>
-        <locationY>8364</locationY>
+        <locationY>8064</locationY>
         <actionName>Lab__c.Allied_Saturday_Delivery</actionName>
         <actionType>emailAlert</actionType>
         <connector>
@@ -203,7 +203,7 @@
         <name>Send_Second_Signer_Agreement</name>
         <label>Send Second Signer Agreement</label>
         <locationX>314</locationX>
-        <locationY>8664</locationY>
+        <locationY>8364</locationY>
         <actionName>Lab__c.Second_Signer_for_Stem_Cell_Agreement</actionName>
         <actionType>emailAlert</actionType>
         <connector>
@@ -1081,7 +1081,7 @@
         <name>Is_Contact_First_Name_Set_And_Ship_First_Name_is_Null</name>
         <label>Is Contact First Name Set And Ship First Name is Null</label>
         <locationX>701</locationX>
-        <locationY>10098</locationY>
+        <locationY>9798</locationY>
         <defaultConnectorLabel>Dont Update Ship Firstname Lastname</defaultConnectorLabel>
         <rules>
             <name>First_Name_Set_and_Ship_First_Name_Not</name>
@@ -1252,54 +1252,6 @@
         </rules>
     </decisions>
     <decisions>
-        <description>Check to see if same day ship.</description>
-        <name>Is_Kit_Already_Shipped</name>
-        <label>Is Kit Already Shipped</label>
-        <locationX>446</locationX>
-        <locationY>7956</locationY>
-        <defaultConnector>
-            <targetReference>Is_This_A_Saturday_Delivery</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>NO - Kit Not Shipped</defaultConnectorLabel>
-        <rules>
-            <name>YES_Kit_Already_Shipped</name>
-            <conditionLogic>(1 or 2) and 3 and 4</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Kit_Sent__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.Certificate_ID__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.Allied_Order_ID_Collection_Kit__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.CreatedDate</leftValueReference>
-                <operator>GreaterThan</operator>
-                <rightValue>
-                    <dateTimeValue>2020-01-01T05:00:00.000Z</dateTimeValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Update_Lab_Collection_Kit_Status</targetReference>
-            </connector>
-            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
-            <label>YES - Kit Already Shipped</label>
-        </rules>
-    </decisions>
-    <decisions>
         <description>Check to see if kit sent from NYC lab.</description>
         <name>Is_Kit_Sent_From_NYC_Lab</name>
         <label>Is Kit Sent From NYC Lab</label>
@@ -1394,7 +1346,7 @@
         <locationX>446</locationX>
         <locationY>7656</locationY>
         <defaultConnector>
-            <targetReference>Is_Kit_Already_Shipped</targetReference>
+            <targetReference>Is_This_A_Saturday_Delivery</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>NO - Same Day Not Picked Up</defaultConnectorLabel>
         <rules>
@@ -1419,7 +1371,7 @@
         <name>Is_Second_Signer_Packet_Complete</name>
         <label>Is Second Signer Packet Complete</label>
         <locationX>949</locationX>
-        <locationY>9072</locationY>
+        <locationY>8772</locationY>
         <defaultConnector>
             <targetReference>Is_WP_Incomplete</targetReference>
         </defaultConnector>
@@ -1489,7 +1441,7 @@
         <name>Is_Second_Signer_Selected</name>
         <label>Is Second Signer Selected</label>
         <locationX>446</locationX>
-        <locationY>8556</locationY>
+        <locationY>8256</locationY>
         <defaultConnector>
             <targetReference>Is_Welcome_Pack_Complete_Surrogate</targetReference>
         </defaultConnector>
@@ -1537,7 +1489,7 @@
         <name>Is_Second_Signer_WP_Incomplete</name>
         <label>Is Second Signer WP Incomplete</label>
         <locationX>1378</locationX>
-        <locationY>9288</locationY>
+        <locationY>8988</locationY>
         <defaultConnector>
             <targetReference>Is_Your_Healthcare_Team_Completed</targetReference>
         </defaultConnector>
@@ -1655,7 +1607,7 @@
         <name>Is_This_A_Saturday_Delivery</name>
         <label>Is This A Saturday Delivery?</label>
         <locationX>446</locationX>
-        <locationY>8256</locationY>
+        <locationY>7956</locationY>
         <defaultConnector>
             <targetReference>Is_Second_Signer_Selected</targetReference>
         </defaultConnector>
@@ -1703,7 +1655,7 @@
         <name>Is_Welcome_Pack_Complete</name>
         <label>Is Welcome Pack Complete</label>
         <locationX>701</locationX>
-        <locationY>8964</locationY>
+        <locationY>8664</locationY>
         <defaultConnector>
             <targetReference>Is_Second_Signer_Packet_Complete</targetReference>
         </defaultConnector>
@@ -1758,7 +1710,7 @@
         <name>Is_Welcome_Pack_Complete_Surrogate</name>
         <label>Is Welcome Pack Complete - Surrogate</label>
         <locationX>446</locationX>
-        <locationY>8856</locationY>
+        <locationY>8556</locationY>
         <defaultConnector>
             <targetReference>Is_Welcome_Pack_Complete</targetReference>
         </defaultConnector>
@@ -1807,7 +1759,7 @@
         <name>Is_WP_Incomplete</name>
         <label>Is WP Incomplete</label>
         <locationX>1180</locationX>
-        <locationY>9180</locationY>
+        <locationY>8880</locationY>
         <defaultConnector>
             <targetReference>Is_Second_Signer_WP_Incomplete</targetReference>
         </defaultConnector>
@@ -1869,7 +1821,7 @@
         <name>Is_Your_Healthcare_Team_Completed</name>
         <label>Is Your Healthcare Team Completed</label>
         <locationX>701</locationX>
-        <locationY>9798</locationY>
+        <locationY>9498</locationY>
         <defaultConnector>
             <targetReference>Is_Contact_First_Name_Set_And_Ship_First_Name_is_Null</targetReference>
         </defaultConnector>
@@ -2192,7 +2144,7 @@
         <name>Update_CBO_For_WP_Incomplete</name>
         <label>Update CBO For WP Incomplete</label>
         <locationX>982</locationX>
-        <locationY>9396</locationY>
+        <locationY>9096</locationY>
         <connector>
             <targetReference>Is_Your_Healthcare_Team_Completed</targetReference>
         </connector>
@@ -2251,7 +2203,7 @@
         <name>Update_Cord_Blood_for_Welcome_Pack_Complete</name>
         <label>Update Cord Blood for Welcome Pack Complete</label>
         <locationX>454</locationX>
-        <locationY>9180</locationY>
+        <locationY>8880</locationY>
         <connector>
             <targetReference>Is_Your_Healthcare_Team_Completed</targetReference>
         </connector>
@@ -2346,29 +2298,6 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
-        <description>Update the lab collection kit status for already sent.</description>
-        <name>Update_Lab_Collection_Kit_Status</name>
-        <label>Update Lab Collection Kit Status</label>
-        <locationX>314</locationX>
-        <locationY>8064</locationY>
-        <connector>
-            <targetReference>Is_This_A_Saturday_Delivery</targetReference>
-        </connector>
-        <inputAssignments>
-            <field>Collection_Kit_Status__c</field>
-            <value>
-                <stringValue>Same Day (CS Team)</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Shipping_Method__c</field>
-            <value>
-                <stringValue>Same Day (CS Team)</stringValue>
-            </value>
-        </inputAssignments>
-        <inputReference>$Record</inputReference>
-    </recordUpdates>
-    <recordUpdates>
         <description>Update the triggering lab record for email sent.</description>
         <name>Update_Lab_for_Collection_Email_Sent</name>
         <label>Update Lab for Collection Email Sent</label>
@@ -2390,7 +2319,7 @@
         <name>Update_Lab_For_Completed_Welcome_Pack</name>
         <label>Update Lab For Completed Welcome Pack</label>
         <locationX>454</locationX>
-        <locationY>9072</locationY>
+        <locationY>8772</locationY>
         <connector>
             <targetReference>Update_Cord_Blood_for_Welcome_Pack_Complete</targetReference>
         </connector>
@@ -2449,7 +2378,7 @@
         <locationX>314</locationX>
         <locationY>7764</locationY>
         <connector>
-            <targetReference>Is_Kit_Already_Shipped</targetReference>
+            <targetReference>Is_This_A_Saturday_Delivery</targetReference>
         </connector>
         <inputAssignments>
             <field>Kit_Sent__c</field>
@@ -2593,7 +2522,7 @@
         <name>Update_Ship_First_Name_and_Last_Name</name>
         <label>Update Ship First Name and Last Name</label>
         <locationX>569</locationX>
-        <locationY>10206</locationY>
+        <locationY>9906</locationY>
         <inputAssignments>
             <field>Ship_to_First_Name__c</field>
             <value>
@@ -2704,7 +2633,7 @@
         <name>Update_WP_Status_To_Incomplete</name>
         <label>Update WP Status To Incomplete</label>
         <locationX>982</locationX>
-        <locationY>9288</locationY>
+        <locationY>8988</locationY>
         <connector>
             <targetReference>Update_CBO_For_WP_Incomplete</targetReference>
         </connector>
@@ -2811,7 +2740,7 @@
         <name>Create_HCP_and_Hospital_Accounts</name>
         <label>Create HCP and Hospital Accounts</label>
         <locationX>569</locationX>
-        <locationY>9906</locationY>
+        <locationY>9606</locationY>
         <connector>
             <targetReference>Is_Contact_First_Name_Set_And_Ship_First_Name_is_Null</targetReference>
         </connector>
