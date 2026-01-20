@@ -5,8 +5,8 @@
     <assignments>
         <name>Set_Opportunity_Fields</name>
         <label>Set Opportunity Fields</label>
-        <locationX>50</locationX>
-        <locationY>674</locationY>
+        <locationX>314</locationX>
+        <locationY>782</locationY>
         <assignmentItems>
             <assignToReference>recordId.StageName</assignToReference>
             <operator>Assign</operator>
@@ -61,8 +61,8 @@
         <description>Checks if the Authorized_Payment__c box has been checked.</description>
         <name>CreditCardPresent</name>
         <label>CreditCardPresent</label>
-        <locationX>842</locationX>
-        <locationY>242</locationY>
+        <locationX>1436</locationX>
+        <locationY>350</locationY>
         <defaultConnector>
             <targetReference>Process_Payment_Before_Enrolling</targetReference>
         </defaultConnector>
@@ -84,11 +84,148 @@
         </rules>
     </decisions>
     <decisions>
+        <description>This decision will check several different validations to make sure the enrollment process stops before we get any validation errors further.</description>
+        <name>DEC_Enrollment_Field_Validation_Checks</name>
+        <label>DEC Enrollment Field Validation Checks</label>
+        <locationX>924</locationX>
+        <locationY>134</locationY>
+        <defaultConnector>
+            <targetReference>Payment_Plan_Selected</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No field-level issues</defaultConnectorLabel>
+        <rules>
+            <name>Enrollment_Field_Validation_Failed</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>formBoolValidateMotherOrSurrogate</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>formBoolValidateContact2Details</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>formBoolShippingLabelInstructionsCheck</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>formBoolPrimaryContactMotherFather</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>formBoolReferrerDetailsCheck</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>formBoolAuthorizedPayment</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>formBoolBabyDueDate</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>formBoolEmailAddressForMother</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>formBoolSaturdayDelivery</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>formBoolRelationToBabyCheck1</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>formBoolSameDayShipping</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>formBoolShippingAddressRequired</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>formBoolSurrogateShippingAddressCheck</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>SCR_Validation_Error</targetReference>
+            </connector>
+            <label>Enrollment Field Validation Failed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determine if the primary contact email is set to the new value. If not update.</description>
+        <name>Does_primary_contact_email_exist</name>
+        <label>Does primary contact email exist?</label>
+        <locationX>1370</locationX>
+        <locationY>674</locationY>
+        <defaultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>IsEmailPresent</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>YES_Update_Primary_Contact_Email</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>recordId.Contact__r.Email</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Primary_Contact_Email</targetReference>
+            </connector>
+            <label>YES - Update Primary Contact Email</label>
+        </rules>
+    </decisions>
+    <decisions>
         <description>Checks for an Email Address</description>
         <name>IsEmailPresent</name>
         <label>IsEmailPresent</label>
-        <locationX>578</locationX>
-        <locationY>350</locationY>
+        <locationX>974</locationX>
+        <locationY>458</locationY>
         <defaultConnector>
             <targetReference>Provide_Email</targetReference>
         </defaultConnector>
@@ -110,8 +247,8 @@
         <description>Checks that a payment plan has been selected in the builder.</description>
         <name>Payment_Plan_Selected</name>
         <label>Payment Plan Selected</label>
-        <locationX>1106</locationX>
-        <locationY>134</locationY>
+        <locationX>1799</locationX>
+        <locationY>242</locationY>
         <defaultConnector>
             <targetReference>Select_Payment_Plan_Before_Enrolling</targetReference>
         </defaultConnector>
@@ -133,8 +270,8 @@
         <description>Checks for required shipping Fields</description>
         <name>Shipping_Fields_Present_Check</name>
         <label>Shipping Fields Present Check</label>
-        <locationX>314</locationX>
-        <locationY>458</locationY>
+        <locationX>578</locationX>
+        <locationY>566</locationY>
         <defaultConnector>
             <targetReference>Complete_Address_Before_Enrolling</targetReference>
         </defaultConnector>
@@ -164,7 +301,172 @@
             <label>Shipping Fields Present</label>
         </rules>
     </decisions>
+    <description>This is the flow that runs when the Enroll button is clicked on the opportunity.</description>
     <environments>Default</environments>
+    <formulas>
+        <description>Validate the payment has been authorized.</description>
+        <name>formBoolAuthorizedPayment</name>
+        <dataType>Boolean</dataType>
+        <expression>AND (
+NOT({!$Setup.Americord_Settings__c.Bypass_Validation_Rule__c}),
+{!recordId.Authorized_Payment__c} = false
+)</expression>
+    </formulas>
+    <formulas>
+        <description>Validate the baby due date is set</description>
+        <name>formBoolBabyDueDate</name>
+        <dataType>Boolean</dataType>
+        <expression>or (
+isnull( {!recordId.Baby_s_Due_Date__c} ),
+{!recordId.Baby_s_Due_Date__c} &lt; Today ()
+)</expression>
+    </formulas>
+    <formulas>
+        <description>Formula to check if the mother email address has been entered.</description>
+        <name>formBoolEmailAddressForMother</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+NOT({!$Setup.Americord_Settings__c.Bypass_Validation_Rule__c}),
+or (
+AND (text({!recordId.Contact2_Relation_to_Baby__c}) = &quot;Mother&quot; &amp;&amp; IsBlank( {!recordId.Contact2_Email__c} ),
+text({!recordId.Relation_to_Baby__c}) &lt;&gt; &quot;Mother&quot;),
+AND(
+text({!recordId.Relation_to_Baby__c}) = &quot;Mother&quot; &amp;&amp; IsBlank( {!recordId.Email__c} ) ,
+text({!recordId.Contact2_Relation_to_Baby__c}) &lt;&gt; &quot;Mother&quot;),
+text( {!recordId.Contact2_Relation_to_Baby__c}) &lt;&gt; &quot;Mother&quot; &amp;&amp; text({!recordId.Relation_to_Baby__c}) &lt;&gt; &quot;Mother&quot; &amp;&amp; IsBlank( {!recordId.Email__c} )
+))</expression>
+    </formulas>
+    <formulas>
+        <description>Formula that will check to make sure the primary contact has been set.</description>
+        <name>formBoolPrimaryContactMotherFather</name>
+        <dataType>Boolean</dataType>
+        <expression>AND (
+OR(
+AND(
+ISBLANK({!recordId.Contact__r.Id}),
+ISPICKVAL({!recordId.Relation_to_Baby__c}, &apos;Mother&apos;)
+),
+AND(
+ISBLANK({!recordId.Contact2__r.Id}),
+ISPICKVAL({!recordId.Contact2_Relation_to_Baby__c}, &apos;Mother&apos;)
+),
+AND(
+ISBLANK({!recordId.Contact__r.Id}),
+ISPICKVAL({!recordId.Relation_to_Baby__c}, &apos;Father&apos;),
+ISPICKVAL({!recordId.Contact2_Relation_to_Baby__c}, &apos;Father&apos;)
+)
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <description>Formula to check the referrer details are entered correctly.</description>
+        <name>formBoolReferrerDetailsCheck</name>
+        <dataType>Boolean</dataType>
+        <expression>AND (
+NOT({!$Setup.Americord_Settings__c.Bypass_Validation_Rule__c}),
+NOT(ISBLANK({!recordId.Referred_by_email_address__c})) ||
+NOT(ISBLANK({!recordId.Referred_by_First_Name__c})) ||
+NOT(ISBLANK( {!recordId.Referred_by_Last_Name__c})),
+ISBLANK ({!recordId.Referred_by_First_Name__c}) ||
+ISBLANK ({!recordId.Referred_by_Last_Name__c}) ||
+ISBLANK ({!recordId.Referred_by_email_address__c})
+)</expression>
+    </formulas>
+    <formulas>
+        <description>This formula will check that the relation to baby is set.</description>
+        <name>formBoolRelationToBabyCheck1</name>
+        <dataType>Boolean</dataType>
+        <expression>AND (
+ISBLANK (Text({!recordId.Relation_to_Baby__c}) )
+)</expression>
+    </formulas>
+    <formulas>
+        <description>Formula to determine if the same day shipping steps have been followed.</description>
+        <name>formBoolSameDayShipping</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+{!recordId.Same_Day_Shipping_CS_Team__c} = true,
+{!recordId.Same_Day_request_on_5_Star_CS_Slack__c} = false
+)</expression>
+    </formulas>
+    <formulas>
+        <description>Validate the Saturday delivery steps have been met.</description>
+        <name>formBoolSaturdayDelivery</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+NOT({!$Setup.Americord_Settings__c.Bypass_Validation_Rule__c}),
+{!$Profile.Name} != &apos;System Administrator&apos;,
+{!$Profile.Name} != &apos;payments Profile&apos;,
+{!recordId.Saturday_Delivery__c} = true,
+OR (
+AND (
+WEEKDAY(today()) = 6,
+HOUR(TIMENOW()) &gt;= 19),
+WEEKDAY(TODAY()) = 1,
+WEEKDAY(TODAY())= 7
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <description>Formula to validate the shipping address as been fully entered.</description>
+        <name>formBoolShippingAddressRequired</name>
+        <dataType>Boolean</dataType>
+        <expression>AND (
+{!recordId.CloseDate} &gt; DATE(2021, 01, 01),
+OR(
+ISBLANK({!recordId.Shipping_City__c}),
+ISBLANK({!recordId.Shipping_Street__c} ),
+ISBLANK({!recordId.Shipping_City__c}),
+ISBLANK(text({!recordId.Shipping_State_Province__c})),
+ISBLANK( {!recordId.Shipping_Zip__c})))</expression>
+    </formulas>
+    <formulas>
+        <description>Check for special shipping label instructions.</description>
+        <name>formBoolShippingLabelInstructionsCheck</name>
+        <dataType>Boolean</dataType>
+        <expression>AND (
+NOT(ISBLANK({!recordId.Shipping_Label_Special_Instructions__c})),
+{!recordId.Confirm_info_is_appropriate_for_LABEL__c} = false)</expression>
+    </formulas>
+    <formulas>
+        <description>Formula to determine if the shipping address for the surrogate is properly entered.</description>
+        <name>formBoolSurrogateShippingAddressCheck</name>
+        <dataType>Boolean</dataType>
+        <expression>AND (
+NOT({!$Setup.Americord_Settings__c.Bypass_Validation_Rule__c}),
+{!recordId.Ship_Kit_to_Surrogate__c} = true,
+OR (
+ISBLANK({!recordId.Surrogate_FirstName__c}),
+ISBLANK({!recordId.Surrogate_LastName__c}),
+ISBLANK({!recordId.Surrogate_City__c}),
+ISBLANK({!recordId.Surrogate_Postal_Code__c}),
+ISBLANK(TEXT({!recordId.Surrogate_State_Province__c})),
+ISBLANK({!recordId.Surrogate_Street_Address__c})))</expression>
+    </formulas>
+    <formulas>
+        <description>Formula to determine the contact2 details are set correctly.</description>
+        <name>formBoolValidateContact2Details</name>
+        <dataType>Boolean</dataType>
+        <expression>AND (
+NOT({!$Setup.Americord_Settings__c.Bypass_Validation_Rule__c}),
+NOT (ISBLANK ( {!recordId.Contact2_FirstName__c})) ||
+NOT (ISBLANK ( {!recordId.Contact2_LastName__c})) ||
+NOT (ISBLANK (TEXT( {!recordId.Contact2_Relation_to_Baby__c}))),
+ISBLANK ( {!recordId.Contact2_FirstName__c}) ||
+ISBLANK ( {!recordId.Contact2_LastName__c}) ||
+ISBLANK (TEXT( {!recordId.Contact2_Relation_to_Baby__c}))
+)</expression>
+    </formulas>
+    <formulas>
+        <description>Formula that checks if configured for mother or surrogate - must be one of them.</description>
+        <name>formBoolValidateMotherOrSurrogate</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+  NOT(ISPICKVAL( {!recordId.Relation_to_Baby__c}, &apos;Mother&apos;)),
+  NOT(ISPICKVAL( {!recordId.Contact2_Relation_to_Baby__c}, &apos;Mother&apos;)),
+   {!recordId.Surrogate__c} = false
+)</expression>
+    </formulas>
     <interviewLabel>Enrollment Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Enrollment Flow</label>
     <processMetadataValues>
@@ -189,18 +491,48 @@
     <recordUpdates>
         <name>Update_Opportunity</name>
         <label>Update Opportunity</label>
-        <locationX>50</locationX>
-        <locationY>782</locationY>
+        <locationX>314</locationX>
+        <locationY>890</locationY>
         <faultConnector>
             <targetReference>Exception</targetReference>
         </faultConnector>
         <inputReference>recordId</inputReference>
     </recordUpdates>
+    <recordUpdates>
+        <description>Update</description>
+        <name>Update_Primary_Contact_Email</name>
+        <label>Update Primary Contact Email</label>
+        <locationX>1106</locationX>
+        <locationY>782</locationY>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>IsEmailPresent</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Exception</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId.Contact__c</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Email</field>
+            <value>
+                <elementReference>recordId.Email__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Contact</object>
+    </recordUpdates>
     <screens>
         <name>Complete_Address_Before_Enrolling</name>
         <label>Complete Address Before Enrolling</label>
-        <locationX>578</locationX>
-        <locationY>566</locationY>
+        <locationX>842</locationX>
+        <locationY>674</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -243,8 +575,8 @@
     <screens>
         <name>Enroll_Opportunity</name>
         <label>Enroll Opportunity</label>
-        <locationX>50</locationX>
-        <locationY>566</locationY>
+        <locationX>314</locationX>
+        <locationY>674</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -270,31 +602,19 @@
         <description>Shows Exception</description>
         <name>Exception</name>
         <label>Exception</label>
-        <locationX>314</locationX>
-        <locationY>890</locationY>
+        <locationX>578</locationX>
+        <locationY>998</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <fields>
-            <name>ErrorIcon</name>
+            <name>exception_flow_error_icon</name>
             <extensionName>flowruntime:image</extensionName>
             <fieldType>ComponentInstance</fieldType>
             <inputParameters>
                 <name>imageName</name>
                 <value>
-                    <stringValue>ErrorIcon</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>horizontalAlignment</name>
-                <value>
-                    <stringValue>center</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>imageAlt</name>
-                <value>
-                    <stringValue>Error Icon</stringValue>
+                    <stringValue>flow_error_icon</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -307,6 +627,12 @@
                 <name>imageWidth</name>
                 <value>
                     <stringValue>50px</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>horizontalAlignment</name>
+                <value>
+                    <stringValue>Center</stringValue>
                 </value>
             </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -324,11 +650,19 @@
                     <fieldText>&lt;pre class=&quot;ql-syntax&quot; spellcheck=&quot;false&quot;&gt;There was an error saving this record. 
 See the message below and make required updates, 
 or reach out to support and include this error message:
-{!$Flow.FaultMessage}
-
-
 
 &lt;/pre&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>TXT_ErrorMessage</name>
+                    <fieldText>&lt;pre class=&quot;ql-syntax&quot; spellcheck=&quot;false&quot;&gt;&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;﻿{!$Flow.FaultMessage}
+&lt;/pre&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>TXT_ScrollMessage</name>
+                    <fieldText>&lt;h2&gt;You may need to scroll right to see full message.&lt;/h2&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
                 </fields>
                 <inputParameters>
@@ -348,8 +682,8 @@ or reach out to support and include this error message:
     <screens>
         <name>Process_Payment_Before_Enrolling</name>
         <label>Process Payment Before Enrolling</label>
-        <locationX>1106</locationX>
-        <locationY>350</locationY>
+        <locationX>1898</locationX>
+        <locationY>458</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -365,14 +699,13 @@ or reach out to support and include this error message:
     <screens>
         <name>Provide_Email</name>
         <label>Provide Email</label>
-        <locationX>842</locationX>
-        <locationY>458</locationY>
+        <locationX>1370</locationX>
+        <locationY>566</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <isGoTo>true</isGoTo>
-            <targetReference>IsEmailPresent</targetReference>
+            <targetReference>Does_primary_contact_email_exist</targetReference>
         </connector>
         <fields>
             <fieldType>ObjectProvided</fieldType>
@@ -385,10 +718,228 @@ or reach out to support and include this error message:
         <showHeader>true</showHeader>
     </screens>
     <screens>
+        <description>Shown when one or more Flow-level validation checks fail
+Always routes users back to fix inputs</description>
+        <name>SCR_Validation_Error</name>
+        <label>SCR Validation Error</label>
+        <locationX>50</locationX>
+        <locationY>242</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>DT_Error_Header</name>
+            <fieldText>&lt;p&gt;⚠️ &lt;strong style=&quot;font-size: 16px;&quot;&gt;Enrollment can’t continue yet&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>DT_Error_Intro</name>
+            <fieldText>&lt;p&gt;Some required information on this Opportunity must be updated before enrollment can proceed.&lt;/p&gt;&lt;p&gt;Please review the items below and make the necessary changes.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>DT_MotherSurrogateCheck</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 14px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;You must include at least one Mother or select the Surrogate checkbox.&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>formBoolValidateMotherOrSurrogate</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>DT_Contact2Info</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 14px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;For Contact2 please provide a First Name, Last Name and Relationship to Baby.&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>formBoolValidateContact2Details</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>DT_ShippingLabelConfirm</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 14px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;Please confirm that the information you provided is appropriate for a Shipping Label, and check the box &quot;Confirmed info is appropriate for Label&quot;.&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>formBoolShippingLabelInstructionsCheck</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>DT_ReferrerDetails</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 14px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;Referrer First Name, Last Name and Email Address are required.&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>formBoolReferrerDetailsCheck</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>DT_PrimaryContactMotherFather</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 14px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;You must link a primary contact to this opportunity who is either the mother or the father.&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>formBoolPrimaryContactMotherFather</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>DT_AuthorizedPaymentError</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 14px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;Credit Card required to enroll. Please use the &quot;Authorize&quot; button to validate the client&apos;s create card to proceed with Enrollment.&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>formBoolAuthorizedPayment</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>DT_BabyDueDateError</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 14px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;Baby&apos;s Due Date is required and must be a date in the future (greater than today).&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>formBoolBabyDueDate</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>DT_MotherEmailRequired</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 14px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;Valid email address is required for the Mother or, if two Fathers, the first Father.&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>formBoolEmailAddressForMother</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>DT_SaturdayDeliveryCheck</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 14px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;Saturday Delivery is only available on Friday before 3 PM. If you need special shipping, please contact Five Star Service for rush delivery.&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>formBoolSaturdayDelivery</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>DT_RelationToBaby1</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 14px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;Please indicate Contact Relationship to Baby, either Mother, Father, Grandparent or Other.&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>formBoolRelationToBabyCheck1</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>DT_SameDayShippingError</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 14px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;You must post your SAME DAY shipping request to the 5 Star Client Service Slack channel. Then, check that box.&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>formBoolSameDayShipping</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>DT_ShippingRequiredError</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 14px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;Please enter a shipping address. Street, City, State and Zip are required.&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>formBoolShippingAddressRequired</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>DT_SurrogateShippingReqError</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 14px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;When shipping kit to Surrogate, you must include Surrogate&apos;s first name, last name, shipping street, city, state and zip.&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>formBoolSurrogateShippingAddressCheck</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
         <name>Select_Payment_Plan_Before_Enrolling</name>
         <label>Select Payment Plan Before Enrolling</label>
-        <locationX>1370</locationX>
-        <locationY>242</locationY>
+        <locationX>2162</locationX>
+        <locationY>350</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -402,10 +953,10 @@ or reach out to support and include this error message:
         <showHeader>true</showHeader>
     </screens>
     <start>
-        <locationX>980</locationX>
+        <locationX>798</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Payment_Plan_Selected</targetReference>
+            <targetReference>DEC_Enrollment_Field_Validation_Checks</targetReference>
         </connector>
     </start>
     <status>Active</status>
@@ -424,5 +975,13 @@ or reach out to support and include this error message:
         <isInput>true</isInput>
         <isOutput>false</isOutput>
         <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <description>Error message variable for displaying in common/shared screen component.</description>
+        <name>VAR_Error_Messages</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
 </Flow>

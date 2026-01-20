@@ -1,113 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
-        <description>Call the apex method for track shipment.</description>
-        <name>Call_Track_Shipment_Apex</name>
-        <label>Call Track Shipment Apex</label>
-        <locationX>314</locationX>
-        <locationY>6456</locationY>
-        <actionName>zkfedex__InvocableTracking</actionName>
-        <actionType>apex</actionType>
-        <connector>
-            <targetReference>Has_Kit_Tracking_Info_Been_Entered</targetReference>
-        </connector>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>createShipmentIfNotFound</name>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>customAddressId</name>
-            <value>
-                <stringValue>a050B00000bfBgK</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>preferenceId</name>
-            <value>
-                <stringValue>a260B000000F2AL</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>recordId</name>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>shipDate</name>
-            <value>
-                <elementReference>$Record.MBD_Kit_Shipping_Date__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>trackingNumber</name>
-            <value>
-                <elementReference>$Record.MBD_Kit_Tracking_Number__c</elementReference>
-            </value>
-        </inputParameters>
-        <nameSegment>zkfedex__InvocableTracking</nameSegment>
-        <offset>0</offset>
-    </actionCalls>
-    <actionCalls>
-        <description>Call track shipment apex for the kit tracking.</description>
-        <name>Call_Track_Shipment_Apex_Kit</name>
-        <label>Call Track Shipment Apex - Kit</label>
-        <locationX>314</locationX>
-        <locationY>6756</locationY>
-        <actionName>zkfedex__InvocableTracking</actionName>
-        <actionType>apex</actionType>
-        <connector>
-            <targetReference>Is_Contact1_Populated</targetReference>
-        </connector>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>createShipmentIfNotFound</name>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>customAddressId</name>
-            <value>
-                <stringValue>a050B00000bfAZm</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>preferenceId</name>
-            <value>
-                <stringValue>a260B000000F2AL</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>recordId</name>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>shipDate</name>
-            <value>
-                <elementReference>$Record.Kit_Shipping_Date__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>trackingNumber</name>
-            <value>
-                <elementReference>$Record.Kit_Tracking_Number__c</elementReference>
-            </value>
-        </inputParameters>
-        <nameSegment>zkfedex__InvocableTracking</nameSegment>
-        <offset>0</offset>
-    </actionCalls>
-    <actionCalls>
         <description>Send email using the email to fax.</description>
         <name>Fax_Informed_Consent</name>
         <label>Fax Informed Consent</label>
         <locationX>292</locationX>
-        <locationY>4524</locationY>
+        <locationY>4932</locationY>
         <actionName>Lab__c.Fax_Informed_Consent_to_OBGYN</actionName>
         <actionType>emailAlert</actionType>
         <connector>
@@ -124,11 +22,71 @@
         <offset>0</offset>
     </actionCalls>
     <actionCalls>
+        <description>Create a task for the email sent to client when kit shipped.</description>
+        <name>Log_Task_to_Lab_for_Shipped_Email</name>
+        <label>Log Task to Lab for Shipped Email</label>
+        <locationX>314</locationX>
+        <locationY>4332</locationY>
+        <actionName>NewTask</actionName>
+        <actionType>quickAction</actionType>
+        <connector>
+            <targetReference>Is_Docusign_Completed_for_Fax</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>contextId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Subject</name>
+            <value>
+                <stringValue>Email Sent To Client For Kit Shipped</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>OwnerId</name>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Status</name>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>NewTask</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <description>Call email alert and send email to client when kit shipped.</description>
+        <name>Send_Client_Email_When_Shipped</name>
+        <label>Send Client Email When Shipped</label>
+        <locationX>314</locationX>
+        <locationY>4224</locationY>
+        <actionName>Lab__c.Send_Client_Email_When_Kit_Shipped</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Log_Task_to_Lab_for_Shipped_Email</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Lab__c.Send_Client_Email_When_Kit_Shipped</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
         <description>Send email alert to cs team notifying about due date in 3 days.</description>
         <name>Send_CS_Email_About_Due_Date_In_3_Days</name>
         <label>Send CS Email About Due Date In 3 Days</label>
         <locationX>314</locationX>
-        <locationY>7356</locationY>
+        <locationY>7164</locationY>
         <actionName>Lab__c.Due_Date_in_Less_than_3_Days</actionName>
         <actionType>emailAlert</actionType>
         <connector>
@@ -203,7 +161,7 @@
         <name>Send_Email_To_Allied_For_Saturday_Delivery</name>
         <label>Send Email To Allied For Saturday Delivery</label>
         <locationX>314</locationX>
-        <locationY>8556</locationY>
+        <locationY>8064</locationY>
         <actionName>Lab__c.Allied_Saturday_Delivery</actionName>
         <actionType>emailAlert</actionType>
         <connector>
@@ -245,7 +203,7 @@
         <name>Send_Second_Signer_Agreement</name>
         <label>Send Second Signer Agreement</label>
         <locationX>314</locationX>
-        <locationY>8856</locationY>
+        <locationY>8364</locationY>
         <actionName>Lab__c.Second_Signer_for_Stem_Cell_Agreement</actionName>
         <actionType>emailAlert</actionType>
         <connector>
@@ -705,7 +663,7 @@
         <name>Has_Contact1_Values_Changed</name>
         <label>Has Contact1 Values Changed</label>
         <locationX>446</locationX>
-        <locationY>5532</locationY>
+        <locationY>5940</locationY>
         <defaultConnector>
             <targetReference>Has_Lab_Contact_2_Changed</targetReference>
         </defaultConnector>
@@ -755,43 +713,37 @@
         </rules>
     </decisions>
     <decisions>
-        <description>Check to see if kit tracking has been entered.</description>
-        <name>Has_Kit_Tracking_Info_Been_Entered</name>
-        <label>Has Kit Tracking Info Been Entered</label>
+        <description>Determine if the kit has shipped.</description>
+        <name>Has_Kit_Shipped</name>
+        <label>Has Kit Shipped</label>
         <locationX>446</locationX>
-        <locationY>6648</locationY>
+        <locationY>4116</locationY>
         <defaultConnector>
-            <targetReference>Is_Contact1_Populated</targetReference>
+            <targetReference>Is_Docusign_Completed_for_Fax</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>NO - Kit Tracking Not Entered</defaultConnectorLabel>
+        <defaultConnectorLabel>No - Kit not shipped</defaultConnectorLabel>
         <rules>
-            <name>YES_Kit_Tracking_Entered</name>
+            <name>YES_Kit_has_shipped</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>$Record.Kit_Tracking_Number__c</leftValueReference>
-                <operator>IsNull</operator>
+                <leftValueReference>$Record.Collection_Kit_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
                 <rightValue>
-                    <booleanValue>false</booleanValue>
+                    <stringValue>SHIPPED</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
                 <leftValueReference>$Record.Kit_Tracking_Number__c</leftValueReference>
-                <operator>IsChanged</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.Kit_Shipping_Date__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Call_Track_Shipment_Apex_Kit</targetReference>
+                <targetReference>Send_Client_Email_When_Shipped</targetReference>
             </connector>
-            <label>YES - Kit Tracking Entered</label>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>YES - Kit has shipped</label>
         </rules>
     </decisions>
     <decisions>
@@ -799,9 +751,9 @@
         <name>Has_Lab_Contact_2_Changed</name>
         <label>Has Lab Contact 2 Changed</label>
         <locationX>446</locationX>
-        <locationY>5940</locationY>
+        <locationY>6348</locationY>
         <defaultConnector>
-            <targetReference>Is_Tracking_Information_Entered</targetReference>
+            <targetReference>Is_Contact1_Populated</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>NO - Contact2 Unchanged</defaultConnectorLabel>
         <rules>
@@ -894,7 +846,7 @@
         <name>Is_Baby_Due_In_3_Days</name>
         <label>Is Baby Due In 3 Days</label>
         <locationX>446</locationX>
-        <locationY>7248</locationY>
+        <locationY>7056</locationY>
         <defaultConnector>
             <targetReference>Is_Maternal_Blood_Draw_Required</targetReference>
         </defaultConnector>
@@ -942,7 +894,7 @@
         <name>Is_Birth_Date_Entered</name>
         <label>Is Birth Date Entered</label>
         <locationX>446</locationX>
-        <locationY>4824</locationY>
+        <locationY>5232</locationY>
         <defaultConnector>
             <targetReference>Is_Collection_At_Lab</targetReference>
         </defaultConnector>
@@ -969,7 +921,7 @@
         <name>Is_Collection_At_Lab</name>
         <label>Is Collection At Lab</label>
         <locationX>446</locationX>
-        <locationY>5232</locationY>
+        <locationY>5640</locationY>
         <defaultConnector>
             <targetReference>Has_Contact1_Values_Changed</targetReference>
         </defaultConnector>
@@ -1102,7 +1054,7 @@
         <name>Is_Contact1_Populated</name>
         <label>Is Contact1 Populated</label>
         <locationX>446</locationX>
-        <locationY>6948</locationY>
+        <locationY>6756</locationY>
         <defaultConnector>
             <targetReference>Is_Baby_Due_In_3_Days</targetReference>
         </defaultConnector>
@@ -1129,7 +1081,7 @@
         <name>Is_Contact_First_Name_Set_And_Ship_First_Name_is_Null</name>
         <label>Is Contact First Name Set And Ship First Name is Null</label>
         <locationX>701</locationX>
-        <locationY>10290</locationY>
+        <locationY>9798</locationY>
         <defaultConnectorLabel>Dont Update Ship Firstname Lastname</defaultConnectorLabel>
         <rules>
             <name>First_Name_Set_and_Ship_First_Name_Not</name>
@@ -1249,7 +1201,7 @@
         <name>Is_Docusign_Completed_for_Fax</name>
         <label>Is Docusign Completed for Fax</label>
         <locationX>446</locationX>
-        <locationY>4116</locationY>
+        <locationY>4524</locationY>
         <defaultConnector>
             <targetReference>Is_Birth_Date_Entered</targetReference>
         </defaultConnector>
@@ -1300,61 +1252,13 @@
         </rules>
     </decisions>
     <decisions>
-        <description>Check to see if same day ship.</description>
-        <name>Is_Kit_Already_Shipped</name>
-        <label>Is Kit Already Shipped</label>
-        <locationX>446</locationX>
-        <locationY>8148</locationY>
-        <defaultConnector>
-            <targetReference>Is_This_A_Saturday_Delivery</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>NO - Kit Not Shipped</defaultConnectorLabel>
-        <rules>
-            <name>YES_Kit_Already_Shipped</name>
-            <conditionLogic>(1 or 2) and 3 and 4</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Kit_Sent__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.Certificate_ID__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.Allied_Order_ID_Collection_Kit__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.CreatedDate</leftValueReference>
-                <operator>GreaterThan</operator>
-                <rightValue>
-                    <dateTimeValue>2020-01-01T05:00:00.000Z</dateTimeValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Update_Lab_Collection_Kit_Status</targetReference>
-            </connector>
-            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
-            <label>YES - Kit Already Shipped</label>
-        </rules>
-    </decisions>
-    <decisions>
         <description>Check to see if kit sent from NYC lab.</description>
         <name>Is_Kit_Sent_From_NYC_Lab</name>
         <label>Is Kit Sent From NYC Lab</label>
         <locationX>446</locationX>
         <locationY>3816</locationY>
         <defaultConnector>
-            <targetReference>Is_Docusign_Completed_for_Fax</targetReference>
+            <targetReference>Has_Kit_Shipped</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>NO - Kit Not Sent</defaultConnectorLabel>
         <rules>
@@ -1386,7 +1290,7 @@
         <name>Is_Maternal_Blood_Draw_Required</name>
         <label>Is Maternal Blood Draw Required</label>
         <locationX>446</locationX>
-        <locationY>7548</locationY>
+        <locationY>7356</locationY>
         <defaultConnector>
             <targetReference>Is_Same_Day_Status_Picked_Up</targetReference>
         </defaultConnector>
@@ -1440,9 +1344,9 @@
         <name>Is_Same_Day_Status_Picked_Up</name>
         <label>Is Same Day Status Picked Up</label>
         <locationX>446</locationX>
-        <locationY>7848</locationY>
+        <locationY>7656</locationY>
         <defaultConnector>
-            <targetReference>Is_Kit_Already_Shipped</targetReference>
+            <targetReference>Is_This_A_Saturday_Delivery</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>NO - Same Day Not Picked Up</defaultConnectorLabel>
         <rules>
@@ -1467,7 +1371,7 @@
         <name>Is_Second_Signer_Packet_Complete</name>
         <label>Is Second Signer Packet Complete</label>
         <locationX>949</locationX>
-        <locationY>9264</locationY>
+        <locationY>8772</locationY>
         <defaultConnector>
             <targetReference>Is_WP_Incomplete</targetReference>
         </defaultConnector>
@@ -1537,7 +1441,7 @@
         <name>Is_Second_Signer_Selected</name>
         <label>Is Second Signer Selected</label>
         <locationX>446</locationX>
-        <locationY>8748</locationY>
+        <locationY>8256</locationY>
         <defaultConnector>
             <targetReference>Is_Welcome_Pack_Complete_Surrogate</targetReference>
         </defaultConnector>
@@ -1585,7 +1489,7 @@
         <name>Is_Second_Signer_WP_Incomplete</name>
         <label>Is Second Signer WP Incomplete</label>
         <locationX>1378</locationX>
-        <locationY>9480</locationY>
+        <locationY>8988</locationY>
         <defaultConnector>
             <targetReference>Is_Your_Healthcare_Team_Completed</targetReference>
         </defaultConnector>
@@ -1703,7 +1607,7 @@
         <name>Is_This_A_Saturday_Delivery</name>
         <label>Is This A Saturday Delivery?</label>
         <locationX>446</locationX>
-        <locationY>8448</locationY>
+        <locationY>7956</locationY>
         <defaultConnector>
             <targetReference>Is_Second_Signer_Selected</targetReference>
         </defaultConnector>
@@ -1747,51 +1651,11 @@
         </rules>
     </decisions>
     <decisions>
-        <description>Check to see if tracking information has been entered.</description>
-        <name>Is_Tracking_Information_Entered</name>
-        <label>Is Tracking Information Entered</label>
-        <locationX>446</locationX>
-        <locationY>6348</locationY>
-        <defaultConnector>
-            <targetReference>Has_Kit_Tracking_Info_Been_Entered</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>NO - No Tracking Info Changes</defaultConnectorLabel>
-        <rules>
-            <name>YES_Tracking_Info_Entered</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.MBD_Kit_Tracking_Number__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.MBD_Kit_Tracking_Number__c</leftValueReference>
-                <operator>IsChanged</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.MBD_Kit_Shipping_Date__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Call_Track_Shipment_Apex</targetReference>
-            </connector>
-            <label>YES - Tracking Info Entered.</label>
-        </rules>
-    </decisions>
-    <decisions>
         <description>Check if welcome pack values are complete.</description>
         <name>Is_Welcome_Pack_Complete</name>
         <label>Is Welcome Pack Complete</label>
         <locationX>701</locationX>
-        <locationY>9156</locationY>
+        <locationY>8664</locationY>
         <defaultConnector>
             <targetReference>Is_Second_Signer_Packet_Complete</targetReference>
         </defaultConnector>
@@ -1846,7 +1710,7 @@
         <name>Is_Welcome_Pack_Complete_Surrogate</name>
         <label>Is Welcome Pack Complete - Surrogate</label>
         <locationX>446</locationX>
-        <locationY>9048</locationY>
+        <locationY>8556</locationY>
         <defaultConnector>
             <targetReference>Is_Welcome_Pack_Complete</targetReference>
         </defaultConnector>
@@ -1895,7 +1759,7 @@
         <name>Is_WP_Incomplete</name>
         <label>Is WP Incomplete</label>
         <locationX>1180</locationX>
-        <locationY>9372</locationY>
+        <locationY>8880</locationY>
         <defaultConnector>
             <targetReference>Is_Second_Signer_WP_Incomplete</targetReference>
         </defaultConnector>
@@ -1957,7 +1821,7 @@
         <name>Is_Your_Healthcare_Team_Completed</name>
         <label>Is Your Healthcare Team Completed</label>
         <locationX>701</locationX>
-        <locationY>9990</locationY>
+        <locationY>9498</locationY>
         <defaultConnector>
             <targetReference>Is_Contact_First_Name_Set_And_Ship_First_Name_is_Null</targetReference>
         </defaultConnector>
@@ -1984,7 +1848,7 @@
         <name>Using_Fax_or_Email</name>
         <label>Using Fax or Email</label>
         <locationX>292</locationX>
-        <locationY>4224</locationY>
+        <locationY>4632</locationY>
         <defaultConnector>
             <targetReference>Fax_Informed_Consent</targetReference>
         </defaultConnector>
@@ -2178,7 +2042,7 @@
         <name>Set_Faxed_Consent_True</name>
         <label>Set Faxed Consent True</label>
         <locationX>292</locationX>
-        <locationY>4632</locationY>
+        <locationY>5040</locationY>
         <connector>
             <targetReference>Is_Birth_Date_Entered</targetReference>
         </connector>
@@ -2195,7 +2059,7 @@
         <name>Update_Account_Combined_Phone_and_Email_Fields_Contact_1</name>
         <label>Update Account Combined Phone and Email Fields - Contact 1</label>
         <locationX>314</locationX>
-        <locationY>5748</locationY>
+        <locationY>6156</locationY>
         <connector>
             <targetReference>Has_Lab_Contact_2_Changed</targetReference>
         </connector>
@@ -2226,9 +2090,9 @@
         <name>Update_Account_Combined_Phone_and_Email_Fields_Contact_2</name>
         <label>Update Account Combined Phone and Email Fields - Contact 2</label>
         <locationX>314</locationX>
-        <locationY>6156</locationY>
+        <locationY>6564</locationY>
         <connector>
-            <targetReference>Is_Tracking_Information_Entered</targetReference>
+            <targetReference>Is_Contact1_Populated</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -2280,7 +2144,7 @@
         <name>Update_CBO_For_WP_Incomplete</name>
         <label>Update CBO For WP Incomplete</label>
         <locationX>982</locationX>
-        <locationY>9588</locationY>
+        <locationY>9096</locationY>
         <connector>
             <targetReference>Is_Your_Healthcare_Team_Completed</targetReference>
         </connector>
@@ -2305,7 +2169,7 @@
         <name>Update_Collection_At_Lab</name>
         <label>Update Collection At Lab</label>
         <locationX>314</locationX>
-        <locationY>5340</locationY>
+        <locationY>5748</locationY>
         <connector>
             <targetReference>Has_Contact1_Values_Changed</targetReference>
         </connector>
@@ -2339,7 +2203,7 @@
         <name>Update_Cord_Blood_for_Welcome_Pack_Complete</name>
         <label>Update Cord Blood for Welcome Pack Complete</label>
         <locationX>454</locationX>
-        <locationY>9372</locationY>
+        <locationY>8880</locationY>
         <connector>
             <targetReference>Is_Your_Healthcare_Team_Completed</targetReference>
         </connector>
@@ -2387,7 +2251,7 @@
         <name>Update_Email_for_Fax</name>
         <label>Update Email for Fax</label>
         <locationX>160</locationX>
-        <locationY>4332</locationY>
+        <locationY>4740</locationY>
         <connector>
             <targetReference>Fax_Informed_Consent</targetReference>
         </connector>
@@ -2406,7 +2270,7 @@
         <locationX>314</locationX>
         <locationY>3924</locationY>
         <connector>
-            <targetReference>Is_Docusign_Completed_for_Fax</targetReference>
+            <targetReference>Has_Kit_Shipped</targetReference>
         </connector>
         <inputAssignments>
             <field>Kit_Sent__c</field>
@@ -2434,29 +2298,6 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
-        <description>Update the lab collection kit status for already sent.</description>
-        <name>Update_Lab_Collection_Kit_Status</name>
-        <label>Update Lab Collection Kit Status</label>
-        <locationX>314</locationX>
-        <locationY>8256</locationY>
-        <connector>
-            <targetReference>Is_This_A_Saturday_Delivery</targetReference>
-        </connector>
-        <inputAssignments>
-            <field>Collection_Kit_Status__c</field>
-            <value>
-                <stringValue>Same Day (CS Team)</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Shipping_Method__c</field>
-            <value>
-                <stringValue>Same Day (CS Team)</stringValue>
-            </value>
-        </inputAssignments>
-        <inputReference>$Record</inputReference>
-    </recordUpdates>
-    <recordUpdates>
         <description>Update the triggering lab record for email sent.</description>
         <name>Update_Lab_for_Collection_Email_Sent</name>
         <label>Update Lab for Collection Email Sent</label>
@@ -2478,7 +2319,7 @@
         <name>Update_Lab_For_Completed_Welcome_Pack</name>
         <label>Update Lab For Completed Welcome Pack</label>
         <locationX>454</locationX>
-        <locationY>9264</locationY>
+        <locationY>8772</locationY>
         <connector>
             <targetReference>Update_Cord_Blood_for_Welcome_Pack_Complete</targetReference>
         </connector>
@@ -2518,7 +2359,7 @@
         <name>Update_Lab_For_MBD_Request_Datetime</name>
         <label>Update Lab For MBD Request Datetime</label>
         <locationX>314</locationX>
-        <locationY>7656</locationY>
+        <locationY>7464</locationY>
         <connector>
             <targetReference>Is_Same_Day_Status_Picked_Up</targetReference>
         </connector>
@@ -2535,9 +2376,9 @@
         <name>Update_Lab_Kit_Sent_To_True</name>
         <label>Update Lab Kit Sent To True</label>
         <locationX>314</locationX>
-        <locationY>7956</locationY>
+        <locationY>7764</locationY>
         <connector>
-            <targetReference>Is_Kit_Already_Shipped</targetReference>
+            <targetReference>Is_This_A_Saturday_Delivery</targetReference>
         </connector>
         <inputAssignments>
             <field>Kit_Sent__c</field>
@@ -2586,7 +2427,7 @@
         <name>Update_Lab_With_Birthdate_Time</name>
         <label>Update Lab With Birthdate/Time</label>
         <locationX>314</locationX>
-        <locationY>4932</locationY>
+        <locationY>5340</locationY>
         <connector>
             <targetReference>Update_Opportunity_Birth_Date</targetReference>
         </connector>
@@ -2637,7 +2478,7 @@
         <name>Update_Opportunity_Birth_Date</name>
         <label>Update Opportunity Birth Date</label>
         <locationX>314</locationX>
-        <locationY>5040</locationY>
+        <locationY>5448</locationY>
         <connector>
             <targetReference>Is_Collection_At_Lab</targetReference>
         </connector>
@@ -2681,7 +2522,7 @@
         <name>Update_Ship_First_Name_and_Last_Name</name>
         <label>Update Ship First Name and Last Name</label>
         <locationX>569</locationX>
-        <locationY>10398</locationY>
+        <locationY>9906</locationY>
         <inputAssignments>
             <field>Ship_to_First_Name__c</field>
             <value>
@@ -2792,7 +2633,7 @@
         <name>Update_WP_Status_To_Incomplete</name>
         <label>Update WP Status To Incomplete</label>
         <locationX>982</locationX>
-        <locationY>9480</locationY>
+        <locationY>8988</locationY>
         <connector>
             <targetReference>Update_CBO_For_WP_Incomplete</targetReference>
         </connector>
@@ -2881,7 +2722,7 @@
         <name>Call_Subflow_Update_Contact1_Values</name>
         <label>Call Subflow - Update Contact1 Values</label>
         <locationX>314</locationX>
-        <locationY>5640</locationY>
+        <locationY>6048</locationY>
         <connector>
             <targetReference>Update_Account_Combined_Phone_and_Email_Fields_Contact_1</targetReference>
         </connector>
@@ -2899,7 +2740,7 @@
         <name>Create_HCP_and_Hospital_Accounts</name>
         <label>Create HCP and Hospital Accounts</label>
         <locationX>569</locationX>
-        <locationY>10098</locationY>
+        <locationY>9606</locationY>
         <connector>
             <targetReference>Is_Contact_First_Name_Set_And_Ship_First_Name_is_Null</targetReference>
         </connector>
@@ -2917,7 +2758,7 @@
         <name>Create_Port_Authentication_for_Contact_using_Subflow</name>
         <label>Create Port Authentication for Contact using Subflow</label>
         <locationX>314</locationX>
-        <locationY>7056</locationY>
+        <locationY>6864</locationY>
         <connector>
             <targetReference>Is_Baby_Due_In_3_Days</targetReference>
         </connector>
@@ -2952,7 +2793,7 @@
         <name>Update_Contact2</name>
         <label>Update Contact2</label>
         <locationX>314</locationX>
-        <locationY>6048</locationY>
+        <locationY>6456</locationY>
         <connector>
             <targetReference>Update_Account_Combined_Phone_and_Email_Fields_Contact_2</targetReference>
         </connector>
