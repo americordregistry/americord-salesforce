@@ -5,11 +5,49 @@
     <externalId>false</externalId>
     <formula>IF(
 OR(
-CONTAINS(Acquisition_Program__c, &quot;Birth Plan&quot;),
-CONTAINS(Acquisition_Program__c, &quot;Sweepstakes&quot;),
-CONTAINS(Acquisition_Program__c, &quot;WTE_DEALS&quot;),
-CONTAINS(Acquisition_Program__c, &quot;Your Baby Club API&quot;)), &quot;Complex&quot;,
-  &quot;Direct&quot;)</formula>
+ISPICKVAL(LeadSource, &apos;Ambassador&apos;),
+ISPICKVAL(LeadSource, &apos;Bennie&apos;),
+ISPICKVAL(LeadSource, &apos;Bing&apos;),
+ISPICKVAL(LeadSource, &apos;Bing SEO&apos;),
+ISPICKVAL(LeadSource, &apos;Bing PPC&apos;),
+ISPICKVAL(LeadSource, &apos;Calendly&apos;),
+ISPICKVAL(LeadSource, &apos;ChatGPT&apos;),
+ISPICKVAL(LeadSource, &apos;Circle Surrogacy&apos;),
+ISPICKVAL(LeadSource, &apos;Claude&apos;),
+ISPICKVAL(LeadSource, &apos;Client Referral&apos;),
+ISPICKVAL(LeadSource, &apos;Coastal Paternity&apos;),
+ISPICKVAL(LeadSource, &apos;Consumer Affairs&apos;),
+ISPICKVAL(LeadSource, &apos;CoPilot&apos;),
+ISPICKVAL(LeadSource, &apos;Direct&apos;),
+ISPICKVAL(LeadSource, &apos;Doctor Referral&apos;),
+ISPICKVAL(LeadSource, &apos;eComm (Americord)&apos;),
+ISPICKVAL(LeadSource, &apos;Employee Referral&apos;),
+ISPICKVAL(LeadSource, &apos;External Referral&apos;),
+ISPICKVAL(LeadSource, &apos;Family Member&apos;),
+ISPICKVAL(LeadSource, &apos;Gemini&apos;),
+ISPICKVAL(LeadSource, &apos;Genesis Group&apos;),
+ISPICKVAL(LeadSource, &apos;Google&apos;),
+ISPICKVAL(LeadSource, &apos;Google: SEO&apos;),
+ISPICKVAL(LeadSource, &apos;Google PPC&apos;),
+ISPICKVAL(LeadSource, &apos;Grok&apos;),
+ISPICKVAL(LeadSource, &apos;Hospital Donation Program&apos;),
+ISPICKVAL(LeadSource, &apos;Impact&apos;),
+ISPICKVAL(LeadSource, &apos;Lifetime Upgrade EC&apos;),
+ISPICKVAL(LeadSource, &apos;Lifetime Upgrade LP&apos;),
+ISPICKVAL(LeadSource, &apos;Lifetime Upgrade OS&apos;),
+ISPICKVAL(LeadSource, &apos;Live Chat&apos;),
+ISPICKVAL(LeadSource, &apos;OOH&apos;),
+ISPICKVAL(LeadSource, &apos;Ovia&apos;),
+ISPICKVAL(LeadSource, &apos;Perplexity&apos;),
+ISPICKVAL(LeadSource, &apos;Reddit&apos;),
+ISPICKVAL(LeadSource, &apos;Returning Client&apos;),
+ISPICKVAL(LeadSource, &apos;Tinyhood&apos;),
+ISPICKVAL(LeadSource, &apos;Townsquare - Display&apos;),
+ISPICKVAL(LeadSource, &apos;VeryWellHealth&apos;),
+ISPICKVAL(LeadSource, &apos;Yahoo&apos;)
+)
+, &quot;Direct&quot;,
+  &quot;Complex&quot;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Sale Type: Direct or Complex</label>
     <required>false</required>

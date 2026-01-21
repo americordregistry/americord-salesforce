@@ -54,16 +54,8 @@
                 <field>AC_Hardcopy_Sent__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Magnet_Sent__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Parents_First_Names__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Send_Birthday_Card__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -129,10 +121,6 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Elapse_Time__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Today_s_Birthday__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>

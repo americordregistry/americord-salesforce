@@ -4,7 +4,7 @@
     <description>Count Mothers &amp; Fathers using Roll-up Helper. Used to identify accounts that have been incorrectly merged. Field is populated by rollup/DLRS - Account_Count_Mothers_Fathers</description>
     <externalId>false</externalId>
     <label>Count Mothers &amp; Fathers</label>
-    <precision>1</precision>
+    <precision>5</precision>
     <required>false</required>
     <scale>0</scale>
     <trackHistory>false</trackHistory>

@@ -58,6 +58,36 @@
         </rules>
     </decisions>
     <decisions>
+        <description>Determine if the client has lifetime is set on the account</description>
+        <name>Is_Account_Lifetime_Set</name>
+        <label>Is Account Lifetime Set</label>
+        <locationX>336</locationX>
+        <locationY>2795</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>NO_Set_Lifetime_Flag</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.fw1__Account__r.Client_Has_Lifetime__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Storage_Plan_Stored__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>LTS</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Client_Has_LIfetime_On_Account</targetReference>
+            </connector>
+            <label>NO - Set Lifetime Flag</label>
+        </rules>
+    </decisions>
+    <decisions>
         <description>Determine if auto billpay and new process</description>
         <name>Is_Auto_Billpay_Check_and_New_Process</name>
         <label>Is Auto Billpay Check and New Process</label>
@@ -336,6 +366,20 @@ DATEVALUE({!$Record.Reminder_Call_Date__c}) = Today()
         <object>fw1__Invoice__c</object>
     </recordUpdates>
     <recordUpdates>
+        <description>Updates the related account to set the lifetime flag.</description>
+        <name>Update_Client_Has_LIfetime_On_Account</name>
+        <label>Update Client Has LIfetime On Account</label>
+        <locationX>204</locationX>
+        <locationY>2903</locationY>
+        <inputAssignments>
+            <field>Client_Has_Lifetime__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.fw1__Account__r</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <description>Update the triggering record for cancellation.</description>
         <name>Update_Invoice_Order_For_Cancellation</name>
         <label>Update Invoice/Order For Cancellation</label>
@@ -471,6 +515,9 @@ DATEVALUE({!$Record.Reminder_Call_Date__c}) = Today()
         <label>Update Parent Phone For SMS</label>
         <locationX>336</locationX>
         <locationY>2687</locationY>
+        <connector>
+            <targetReference>Is_Account_Lifetime_Set</targetReference>
+        </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>fw1__Contact__c</field>

@@ -11,29 +11,14 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>On Hold</fullName>
-                <default>false</default>
-                <label>On Hold</label>
-            </value>
-            <value>
                 <fullName>Ready to Ship</fullName>
                 <default>false</default>
                 <label>Ready to Ship</label>
             </value>
             <value>
-                <fullName>Sent to Allied</fullName>
+                <fullName>On Hold</fullName>
                 <default>false</default>
-                <label>Sent to Allied</label>
-            </value>
-            <value>
-                <fullName>Allied Error</fullName>
-                <default>false</default>
-                <label>Allied Error</label>
-            </value>
-            <value>
-                <fullName>Received by Allied</fullName>
-                <default>false</default>
-                <label>Received by Allied</label>
+                <label>On Hold</label>
             </value>
             <value>
                 <fullName>SHIPPED</fullName>
@@ -41,14 +26,32 @@
                 <label>SHIPPED</label>
             </value>
             <value>
+                <fullName>Same Day (CS Team)</fullName>
+                <default>false</default>
+                <label>Same Day (CS Team)</label>
+            </value>
+            <value>
                 <fullName>Order Canceled</fullName>
                 <default>false</default>
                 <label>Order Canceled</label>
             </value>
             <value>
-                <fullName>Same Day (CS Team)</fullName>
+                <fullName>Allied Error</fullName>
                 <default>false</default>
-                <label>Same Day (CS Team)</label>
+                <isActive>false</isActive>
+                <label>Allied Error</label>
+            </value>
+            <value>
+                <fullName>Received by Allied</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Received by Allied</label>
+            </value>
+            <value>
+                <fullName>Sent to Allied</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Sent to Allied</label>
             </value>
         </valueSetDefinition>
     </valueSet>

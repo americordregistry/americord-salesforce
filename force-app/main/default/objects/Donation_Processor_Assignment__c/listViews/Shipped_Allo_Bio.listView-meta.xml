@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Shipped_Allo_Bio</fullName>
+    <columns>Donation__c</columns>
     <columns>NAME</columns>
-    <columns>Assignment_Context__c</columns>
     <columns>Donation_Component__c</columns>
     <columns>Donation_Processor__c</columns>
-    <columns>Donation_Processor_Status__c</columns>
     <columns>Donation_Status__c</columns>
+    <columns>Shipped_Date__c</columns>
     <columns>Invoice_Number__c</columns>
     <columns>Invoiced_Amount__c</columns>
     <columns>Invoiced_Date__c</columns>
-    <columns>Lab__c</columns>
     <columns>Paid_Date__c</columns>
-    <columns>Shipped_Date__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>Donation_Processor__c</field>

@@ -712,11 +712,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Shipping_Country_new__c</field>
+                <field>Shipping_Zip__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Shipping_Zip__c</field>
+                <field>Shipping_Country_new__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -1400,11 +1400,6 @@
             <actionType>CustomButton</actionType>
             <sortOrder>8</sortOrder>
         </platformActionListItems>
-        <platformActionListItems>
-            <actionName>One_click_DS_Donate</actionName>
-            <actionType>CustomButton</actionType>
-            <sortOrder>9</sortOrder>
-        </platformActionListItems>
     </platformActionList>
     <relatedLists>
         <fields>NAME</fields>
@@ -1429,29 +1424,6 @@
         <fields>dsfs__Hrs_Sent_to_Sign__c</fields>
         <fields>dsfs__Sent_Date_Time__c</fields>
         <relatedList>dsfs__DocuSign_Status__c.Lab__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>MassChangeOwner</excludeButtons>
-        <fields>NAME</fields>
-        <fields>zkfedex__ShipDate__c</fields>
-        <fields>zkfedex__DeliveryDate__c</fields>
-        <fields>zkfedex__ActualDeliveryDate__c</fields>
-        <fields>zkfedex__Delivered__c</fields>
-        <fields>zkfedex__MasterTrackingId__c</fields>
-        <fields>zkfedex__SenderName__c</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>zkfedex__Shipment__c.Lab__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>zkfedex__ShipDate__c</fields>
-        <fields>zkfedex__Delivered__c</fields>
-        <fields>zkfedex__DeliveryDate__c</fields>
-        <fields>zkfedex__ActualDeliveryDate__c</fields>
-        <fields>zkfedex__MasterTrackingId__c</fields>
-        <fields>zkfedex__SenderName__c</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>zkfedex__Shipment__c.Lab_MBD__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>

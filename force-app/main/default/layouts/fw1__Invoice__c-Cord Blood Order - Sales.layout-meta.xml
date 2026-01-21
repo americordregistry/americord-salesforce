@@ -291,11 +291,15 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Subtotal__c</field>
+                <field>Price_before_discounts__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Bundle_Savings_Total__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Subtotal__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>

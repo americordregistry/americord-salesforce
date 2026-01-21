@@ -12,17 +12,13 @@
     <filterScope>Everything</filterScope>
     <filters>
         <field>OPPORTUNITY.CREATED_DATE</field>
-        <operation>greaterThan</operation>
+        <operation>equals</operation>
+        <value>THIS_WEEK</value>
     </filters>
     <filters>
         <field>OPPORTUNITY.NAME</field>
         <operation>notContain</operation>
         <value>(test)</value>
-    </filters>
-    <filters>
-        <field>OPPORTUNITY.LEAD_SOURCE</field>
-        <operation>contains</operation>
-        <value>Ambassador,Calendly,Client Referral,Consumer Affairs,Doctor Referral,Facebook,Facebook-Instagram,Google,Instagram,Live Chat,Returning Client</value>
     </filters>
     <label>New This Week</label>
 </ListView>

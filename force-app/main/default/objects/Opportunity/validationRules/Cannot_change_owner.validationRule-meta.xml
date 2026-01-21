@@ -2,27 +2,15 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Cannot_change_owner</fullName>
     <active>true</active>
-    <description>Sales Rep cannot change Opportunity Owner
-Exception:
-Kristina &quot;0054P000008rAOb&quot;,
-Jas &quot;005U0000003VUYV&quot;
-Michael &quot;0054P00000BNJvn&quot;
-Annia &quot;0056f00000A0pqg&quot;
-Casey &quot;0056f00000B8C1C&quot;
-Services &quot;005U0000005v9Yq&quot;
-Sysadmin Profile
-
-USE 15 DIGIT IDS</description>
-    <errorConditionFormula>AND (
-ISCHANGED( OwnerId ),
-$User.Id &lt;&gt; &quot;0054P000008rAOb&quot;,
-$User.Id &lt;&gt; &quot;005U0000003VUYV&quot;,
-$User.Id &lt;&gt; &quot;0054P00000BNJvn&quot;,
-$User.Id &lt;&gt; &quot;0056f00000A0pqg&quot;,
-$User.Id &lt;&gt; &quot;005U0000005v9Yq&quot;,
-$User.Id &lt;&gt; &quot;0056f00000B8C1C&quot;,
-$User.Id &lt;&gt; &quot;005U0000005v9Yq&quot;,
-$Profile.Id &lt;&gt; &quot;00eU0000000UzWu&quot;
+    <description>Sales Rep cannot change Opportunity Owner</description>
+    <errorConditionFormula>AND(
+    ISCHANGED(OwnerId),
+    NOT(
+        OR(
+            $Profile.Name = &quot;System Administrator&quot;,
+            $User.Division = &quot;Inside Sales&quot;
+        )
+    )
 )</errorConditionFormula>
     <errorMessage>You do not have authority to change the owner of an Opportunity. Please ask your manager for assistance.</errorMessage>
 </ValidationRule>

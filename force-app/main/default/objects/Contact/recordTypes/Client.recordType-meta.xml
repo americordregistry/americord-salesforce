@@ -197,6 +197,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Baby Sparks</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>BabyCenter</fullName>
             <default>false</default>
         </values>
@@ -229,11 +233,23 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>ChatGPT</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Circle Surrogacy</fullName>
             <default>false</default>
         </values>
         <values>
+            <fullName>Claude</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Client Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CoPilot</fullName>
             <default>false</default>
         </values>
         <values>
@@ -321,6 +337,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Gemini</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Genesis Group</fullName>
             <default>false</default>
         </values>
@@ -342,6 +362,10 @@
         </values>
         <values>
             <fullName>Google%3A SEO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Grok</fullName>
             <default>false</default>
         </values>
         <values>
@@ -381,11 +405,19 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>MightyMama</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>OOH</fullName>
             <default>false</default>
         </values>
         <values>
             <fullName>Parents Guide</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Perplexity</fullName>
             <default>false</default>
         </values>
         <values>
@@ -429,6 +461,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Upgrade LP</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>VeryWellHealth</fullName>
             <default>false</default>
         </values>
@@ -438,6 +474,10 @@
         </values>
         <values>
             <fullName>Yahoo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>YouTube Paid</fullName>
             <default>false</default>
         </values>
         <values>
@@ -659,32 +699,6 @@
     </picklistValues>
     <picklistValues>
         <picklist>tdc_tsw__Phone_Verification_Status__c</picklist>
-        <values>
-            <fullName>Invalid</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Valid</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
-        <picklist>tdc_tvte__Level__c</picklist>
-        <values>
-            <fullName>Primary</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Secondary</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Tertiary</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
-        <picklist>tdc_tvte__Phone_Verification_Status__c</picklist>
         <values>
             <fullName>Invalid</fullName>
             <default>false</default>

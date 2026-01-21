@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Shipped_Amnion_LLC</fullName>
+    <columns>NAME</columns>
+    <columns>Donation_Component__c</columns>
+    <columns>Donation_Processor__c</columns>
+    <columns>Donation_Status__c</columns>
+    <columns>Invoice_Number__c</columns>
+    <columns>Invoiced_Amount__c</columns>
+    <columns>Invoiced_Date__c</columns>
+    <columns>Paid_Date__c</columns>
+    <columns>Shipped_Date__c</columns>
+    <columns>ISBT__c</columns>
+    <columns>Donation__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Donation_Processor__c</field>
+        <operation>equals</operation>
+        <value>Amnion LLC</value>
+    </filters>
+    <filters>
+        <field>Donation_Status__c</field>
+        <operation>equals</operation>
+        <value>Shipped</value>
+    </filters>
+    <label>Shipped - Amnion LLC</label>
+</ListView>

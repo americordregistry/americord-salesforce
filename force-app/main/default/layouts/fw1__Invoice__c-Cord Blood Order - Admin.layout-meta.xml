@@ -262,10 +262,6 @@
                 <behavior>Readonly</behavior>
                 <field>fw1__Age__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Annual_Storage_Yearly__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -484,10 +480,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Sum_of_Past_Due_Amount__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Annual_Storage_Fee_Alt_Price__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -725,6 +717,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
+                <field>Annual_Storage_Yearly__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>Annual_Storage_Due_Today__c</field>
             </layoutItems>
         </layoutColumns>
@@ -732,6 +728,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Annual_Fee_Unit_Price__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Annual_Storage_Fee_Alt_Price__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -1034,6 +1034,11 @@
             <actionName>fw1__Invoice__c.Send_Revised_Invoice_Email</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>9</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>fw1__Invoice__c.Send_Client_Portal_Email</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>10</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <relatedLists>

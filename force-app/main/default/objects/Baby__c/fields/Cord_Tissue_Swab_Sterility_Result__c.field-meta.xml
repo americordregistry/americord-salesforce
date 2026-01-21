@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cord_Tissue_Swab_Sterility_Result__c</fullName>
+    <description>Cord Tissue sterility result via swab.</description>
+    <label>Cord Tissue  Swab Sterility Result</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Sterility_Results</valueSetName>
+    </valueSet>
+</CustomField>

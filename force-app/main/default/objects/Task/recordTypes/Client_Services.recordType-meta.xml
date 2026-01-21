@@ -4,6 +4,37 @@
     <active>true</active>
     <label>Client Services</label>
     <picklistValues>
+        <picklist>Call_Grade__c</picklist>
+        <values>
+            <fullName>Challenging</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Excellent</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fair</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Good</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Outstanding</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Poor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unproductive</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Priority</picklist>
         <values>
             <fullName>High</fullName>

@@ -17,6 +17,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
+                <field>Cord_Blood_Donation_Process_Status__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>First_Name__c</field>
             </layoutItems>
             <layoutItems>

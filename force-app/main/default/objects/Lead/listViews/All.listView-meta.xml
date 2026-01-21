@@ -12,6 +12,21 @@
     <columns>LEAD.UNREAD</columns>
     <columns>LEAD.PHONE</columns>
     <filterScope>Everything</filterScope>
+    <filters>
+        <field>LEAD.EMAIL</field>
+        <operation>notContain</operation>
+        <value>testuser</value>
+    </filters>
+    <filters>
+        <field>LEAD.COMPANY</field>
+        <operation>notEqual</operation>
+        <value>Unknown company</value>
+    </filters>
+    <filters>
+        <field>FULL_NAME</field>
+        <operation>notContain</operation>
+        <value>Test</value>
+    </filters>
     <label>All</label>
     <sharedTo>
         <allInternalUsers></allInternalUsers>

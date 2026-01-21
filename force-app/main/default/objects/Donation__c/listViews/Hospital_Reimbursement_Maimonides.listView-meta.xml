@@ -4,27 +4,23 @@
     <columns>NAME</columns>
     <columns>Hospital__c</columns>
     <columns>Tissue_Eligibility_Status__c</columns>
-    <columns>Sent_To_Tissue_Bank_Date__c</columns>
     <columns>Donation_Process_Status__c</columns>
     <columns>Last_Name__c</columns>
     <columns>First_Name__c</columns>
-    <columns>Paid_Amount__c</columns>
     <columns>Paid_Date__c</columns>
     <columns>Tissue_Bank__c</columns>
-    <columns>Hospital_Reimbursed__c</columns>
-    <columns>Invoiced_Amount__c</columns>
-    <columns>Invoice_Number__c</columns>
     <columns>Invoice_Date__c</columns>
+    <columns>Hospital_Reimbursed__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>Paid_Date__c</field>
         <operation>greaterOrEqual</operation>
-        <value>1/1/2025</value>
+        <value>10/1/2025</value>
     </filters>
     <filters>
         <field>Paid_Date__c</field>
         <operation>lessOrEqual</operation>
-        <value>3/31/2025</value>
+        <value>12/31/2025</value>
     </filters>
     <filters>
         <field>Tissue_Eligibility_Status__c</field>

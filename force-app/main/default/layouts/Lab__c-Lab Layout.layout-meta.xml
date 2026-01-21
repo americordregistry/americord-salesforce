@@ -1295,29 +1295,6 @@
         <relatedList>dsfs__DocuSign_Status__c.Lab__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <excludeButtons>MassChangeOwner</excludeButtons>
-        <fields>NAME</fields>
-        <fields>zkfedex__ShipDate__c</fields>
-        <fields>zkfedex__DeliveryDate__c</fields>
-        <fields>zkfedex__ActualDeliveryDate__c</fields>
-        <fields>zkfedex__Delivered__c</fields>
-        <fields>zkfedex__MasterTrackingId__c</fields>
-        <fields>zkfedex__SenderName__c</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>zkfedex__Shipment__c.Lab__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>zkfedex__ShipDate__c</fields>
-        <fields>zkfedex__Delivered__c</fields>
-        <fields>zkfedex__DeliveryDate__c</fields>
-        <fields>zkfedex__ActualDeliveryDate__c</fields>
-        <fields>zkfedex__MasterTrackingId__c</fields>
-        <fields>zkfedex__SenderName__c</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>zkfedex__Shipment__c.Lab_MBD__c</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>NAME</fields>
         <fields>Donation_Processor__c</fields>
         <fields>Donation_Processor_Status__c</fields>

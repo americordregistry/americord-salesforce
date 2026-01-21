@@ -282,6 +282,71 @@
                 <label>VI</label>
             </value>
             <value>
+                <fullName>AB</fullName>
+                <default>false</default>
+                <label>AB</label>
+            </value>
+            <value>
+                <fullName>BC</fullName>
+                <default>false</default>
+                <label>BC</label>
+            </value>
+            <value>
+                <fullName>MB</fullName>
+                <default>false</default>
+                <label>MB</label>
+            </value>
+            <value>
+                <fullName>NB</fullName>
+                <default>false</default>
+                <label>NB</label>
+            </value>
+            <value>
+                <fullName>NL</fullName>
+                <default>false</default>
+                <label>NL</label>
+            </value>
+            <value>
+                <fullName>NT</fullName>
+                <default>false</default>
+                <label>NT</label>
+            </value>
+            <value>
+                <fullName>NS</fullName>
+                <default>false</default>
+                <label>NS</label>
+            </value>
+            <value>
+                <fullName>NU</fullName>
+                <default>false</default>
+                <label>NU</label>
+            </value>
+            <value>
+                <fullName>ON</fullName>
+                <default>false</default>
+                <label>ON</label>
+            </value>
+            <value>
+                <fullName>PE</fullName>
+                <default>false</default>
+                <label>PE</label>
+            </value>
+            <value>
+                <fullName>QC</fullName>
+                <default>false</default>
+                <label>QC</label>
+            </value>
+            <value>
+                <fullName>SK</fullName>
+                <default>false</default>
+                <label>SK</label>
+            </value>
+            <value>
+                <fullName>YT</fullName>
+                <default>false</default>
+                <label>YT</label>
+            </value>
+            <value>
                 <fullName>CANADA</fullName>
                 <default>false</default>
                 <isActive>false</isActive>

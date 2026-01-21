@@ -437,14 +437,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Sales_Storage_Confirm_Date__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Sales_Storage_Confirm_Result__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Reminder_Call_Date__c</field>
             </layoutItems>
             <layoutItems>
@@ -584,14 +576,18 @@
                 <field>Annual_Fee_Unit_Price__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Annual_Storage_Fee_Alt_Price__c</field>
+                <behavior>Readonly</behavior>
+                <field>Annual_Storage_Yearly__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Stop_Annual_Storage__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Annual_Storage_Fee_Alt_Price__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -653,6 +649,11 @@
             <actionName>fw1__Invoice__c.Send_Revised_Invoice_Email</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>4</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>fw1__Invoice__c.Send_Client_Portal_Email</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>5</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <relatedLists>

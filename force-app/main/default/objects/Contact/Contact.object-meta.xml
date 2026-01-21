@@ -337,8 +337,6 @@
         <excludedStandardButtons>MassCreateCallList</excludedStandardButtons>
         <listViewButtons>tdc_tsw__Send_SMS_List</listViewButtons>
         <listViewButtons>SDOC__Add_to_Mass_Merge_List</listViewButtons>
-        <listViewButtons>tdc_tvte__VerifyTheEmail</listViewButtons>
-        <listViewButtons>tdc_tvte__Verify_The_Phone</listViewButtons>
         <lookupDialogsAdditionalFields>FULL_NAME</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACCOUNT.NAME</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACCOUNT.SITE</lookupDialogsAdditionalFields>
@@ -346,6 +344,7 @@
         <lookupPhoneDialogsAdditionalFields>ACCOUNT.NAME</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>ACCOUNT.SITE</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>CONTACT.PHONE1</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CONTACT.PHONE2</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>CONTACT.PHONE3</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>CONTACT.PHONE4</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>CONTACT.PHONE5</lookupPhoneDialogsAdditionalFields>
@@ -353,7 +352,7 @@
         <lookupPhoneDialogsAdditionalFields>Alt_Phone__c</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>tdc_tsw__Last_Sender_Number__c</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>ACCOUNT.PHONE1</lookupPhoneDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>Account.CRMG_Map__Auto_Convert_Phone__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACCOUNT.PHONE2</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>Account.tdc_tsw__Last_Sender_Number__c</lookupPhoneDialogsAdditionalFields>
         <searchResultsAdditionalFields>FULL_NAME</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ACCOUNT.NAME</searchResultsAdditionalFields>

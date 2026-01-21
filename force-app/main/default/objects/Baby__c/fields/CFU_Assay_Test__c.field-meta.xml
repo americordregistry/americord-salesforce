@@ -3,7 +3,7 @@
     <fullName>CFU_Assay_Test__c</fullName>
     <label>CFU Assay Test</label>
     <required>false</required>
-    <trackHistory>true</trackHistory>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>

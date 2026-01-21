@@ -7,7 +7,7 @@
         <name>Assign_User_Ids</name>
         <label>Assign User Ids</label>
         <locationX>314</locationX>
-        <locationY>695</locationY>
+        <locationY>647</locationY>
         <assignmentItems>
             <assignToReference>varTInfoUserId</assignToReference>
             <operator>Assign</operator>
@@ -38,7 +38,7 @@
         <name>Is_Unknown_Example_Email</name>
         <label>Is Unknown Example Email</label>
         <locationX>182</locationX>
-        <locationY>335</locationY>
+        <locationY>323</locationY>
         <defaultConnector>
             <targetReference>Get_Info_User</targetReference>
         </defaultConnector>
@@ -115,7 +115,7 @@
         <name>Delete_Lead</name>
         <label>Delete Lead</label>
         <locationX>50</locationX>
-        <locationY>455</locationY>
+        <locationY>431</locationY>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -131,7 +131,7 @@
         <name>Get_Info_User</name>
         <label>Get Info User</label>
         <locationX>314</locationX>
-        <locationY>455</locationY>
+        <locationY>431</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Services_User</targetReference>
@@ -153,7 +153,7 @@
         <name>Get_Services_User</name>
         <label>Get Services User</label>
         <locationX>314</locationX>
-        <locationY>575</locationY>
+        <locationY>539</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Assign_User_Ids</targetReference>
@@ -175,7 +175,7 @@
         <name>Update_Lead</name>
         <label>Update Lead</label>
         <locationX>314</locationX>
-        <locationY>815</locationY>
+        <locationY>755</locationY>
         <inputAssignments>
             <field>Company</field>
             <value>

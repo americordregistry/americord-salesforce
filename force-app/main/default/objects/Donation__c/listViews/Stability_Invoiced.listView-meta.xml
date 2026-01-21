@@ -3,17 +3,17 @@
     <fullName>Stability_Invoiced</fullName>
     <columns>Invoice_Number__c</columns>
     <columns>NAME</columns>
-    <columns>Donation_Process_Status__c</columns>
-    <columns>Sent_To_Tissue_Bank_Date__c</columns>
     <columns>Tissue_Bank__c</columns>
-    <columns>Paid_Amount__c</columns>
-    <columns>Paid_Date__c</columns>
     <columns>Invoiced_Amount__c</columns>
     <columns>Invoice_Date__c</columns>
     <columns>Credit_Amount__c</columns>
-    <columns>Tissue_Eligibility_Status__c</columns>
     <columns>Tissue_Denial_Reason__c</columns>
+    <columns>Paid_Amount__c</columns>
+    <columns>Paid_Date__c</columns>
     <columns>Tissue_Denial_Date__c</columns>
+    <columns>Sent_To_Tissue_Bank_Date__c</columns>
+    <columns>Tissue_Eligibility_Status__c</columns>
+    <columns>Donation_Process_Status__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>Donation_Process_Status__c</field>

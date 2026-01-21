@@ -6,5 +6,6 @@
     <inlineHelpText>Today&apos;s date. This can be used in the email sends.</inlineHelpText>
     <label>Today&apos;s Date</label>
     <required>false</required>
+    <trackHistory>false</trackHistory>
     <type>Date</type>
 </CustomField>

@@ -12,6 +12,16 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
+                <fullName>Amnion LLC</fullName>
+                <default>false</default>
+                <label>Amnion LLC</label>
+            </value>
+            <value>
+                <fullName>Berkeley Biologics</fullName>
+                <default>false</default>
+                <label>Berkeley Biologics</label>
+            </value>
+            <value>
                 <fullName>Pinnacle</fullName>
                 <default>false</default>
                 <label>Pinnacle</label>
@@ -20,6 +30,11 @@
                 <fullName>Stability Biologics</fullName>
                 <default>false</default>
                 <label>Stability Biologics</label>
+            </value>
+            <value>
+                <fullName>Surgenex</fullName>
+                <default>false</default>
+                <label>Surgenex</label>
             </value>
         </valueSetDefinition>
     </valueSet>

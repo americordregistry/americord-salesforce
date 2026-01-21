@@ -6,5 +6,6 @@
     <inlineHelpText>If checked, user has logged and is not available to receive distributions from the Distribution Engine</inlineHelpText>
     <label>Is logged out</label>
     <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
     <type>Checkbox</type>
 </CustomField>
