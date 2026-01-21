@@ -287,11 +287,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Shipping_Country_new__c</field>
+                <field>Shipping_Zip__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Shipping_Zip__c</field>
+                <field>Shipping_Country_new__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

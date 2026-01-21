@@ -18,7 +18,12 @@
     <filters>
         <field>OPPORTUNITY.LEAD_SOURCE</field>
         <operation>equals</operation>
-        <value>Ambassador,Bing,Bing: SEO,Bing PPC,Calendly,Client Referral,Consumer Affairs,Direct,Doctor Referral,Facebook,Facebook-Instagram,Family Member,Google,Google: SEO,Google PPC,Lifetime Upgrade LP,Live Chat,Returning Client</value>
+        <value>Ambassador,Bing,Bing: SEO,Bing PPC,Calendly,Client Referral,Consumer Affairs,Direct,Doctor Referral,Facebook,Facebook-Instagram,Family Member,Google,Google: SEO,Google PPC,Lifetime Upgrade LP,Live Chat,Returning Client,Lifetime Upgrade EC</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>notEqual</operation>
+        <value>Enrolled,Duplicate,Bad/Bot Lead,Expired,Closed Lost</value>
     </filters>
     <label>Open</label>
     <sharedTo>

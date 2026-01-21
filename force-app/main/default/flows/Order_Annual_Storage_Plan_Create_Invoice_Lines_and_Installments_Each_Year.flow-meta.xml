@@ -710,14 +710,14 @@
         <description>This is formula will compute the unit price for the invoice line of the annual order.</description>
         <name>forCurrInvoiceLineUnitPrice</name>
         <dataType>Currency</dataType>
-        <expression>{!Loop_New_Orders.Parent_Order__r.Annual_Services_Total__c}-{!varNumberAnnualDiscount}</expression>
+        <expression>{!Loop_New_Orders.Parent_Order__r.Annual_Storage_Yearly__c}-{!varNumberAnnualDiscount}</expression>
         <scale>2</scale>
     </formulas>
     <formulas>
         <description>This formula will compute the unit price for the invoice lines.</description>
         <name>forCurrUnitPriceForOBInvLine</name>
         <dataType>Currency</dataType>
-        <expression>{!Loop_New_Orders.Parent_Order__r.Annual_Services_Total__c}-{!varNumberAnnualDiscount}</expression>
+        <expression>{!Loop_New_Orders.Parent_Order__r.Annual_Storage_Yearly__c}-{!varNumberAnnualDiscount}</expression>
         <scale>2</scale>
     </formulas>
     <formulas>
@@ -761,14 +761,14 @@ CASE ({!rvarSingleOrder4Loop.Number_of_Products__c},
     <formulas>
         <name>formInstallmentAmount</name>
         <dataType>Currency</dataType>
-        <expression>({!Loop_New_Invoice_Lines.fw1__Quantity__c}*{!Loop_New_Invoice_Lines.fw1__Unit_Price__c})-{!Loop_New_Invoice_Lines.fw1__Discount_Amount__c}</expression>
+        <expression>{!Loop_New_Invoice_Lines.fw1__Invoice__r.Parent_Order__r.Annual_Storage_Yearly__c}-{!Loop_New_Invoice_Lines.fw1__Discount_Amount__c}</expression>
         <scale>2</scale>
     </formulas>
     <formulas>
         <description>This formula will compute the installment amount for the Annual OB orders.</description>
         <name>formInstallmentAmountOB</name>
         <dataType>Currency</dataType>
-        <expression>IF({!varNumberAnnualDiscount}&gt;0,{!Loop_New_Invoice_Lines.fw1__Invoice__r.Parent_Order__r.Annual_Services_Total__c} - {!varNumberAnnualDiscount},{!Loop_New_Invoice_Lines.fw1__Invoice__r.Parent_Order__r.Annual_Services_Total__c})</expression>
+        <expression>{!Loop_New_Invoice_Lines.fw1__Invoice__r.Parent_Order__r.Annual_Storage_Yearly__c}-{!varNumberAnnualDiscount}</expression>
         <scale>2</scale>
     </formulas>
     <formulas>
@@ -1028,7 +1028,7 @@ CASE ({!rvarSingleOrder4Loop.Number_of_Products__c},
         <object>fw1__Invoice__c</object>
         <schedule>
             <frequency>Daily</frequency>
-            <startDate>2024-03-16</startDate>
+            <startDate>2025-10-22</startDate>
             <startTime>00:05:00.000Z</startTime>
         </schedule>
         <triggerType>Scheduled</triggerType>

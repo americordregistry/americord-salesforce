@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Discussed_Storage_Length_Options__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This field identifies when the task deals with a client that discussed Storage Length Options.</description>
+    <label>Storage Length Options</label>
+    <type>Checkbox</type>
+</CustomField>

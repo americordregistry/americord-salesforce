@@ -20,7 +20,7 @@
     <filters>
         <field>Baby_s_Due_Date__c</field>
         <operation>greaterThan</operation>
-        <value>6/24/2025</value>
+        <value>12/12/2025</value>
     </filters>
     <filters>
         <field>OPPORTUNITY.STAGE_NAME</field>
@@ -35,7 +35,7 @@
     <filters>
         <field>OPPORTUNITY.LEAD_SOURCE</field>
         <operation>equals</operation>
-        <value>Ambassador,Bing,Bing: SEO,Bing PPC,Calendly,Client Referral,Consumer Affairs,Direct,Doctor Referral,eComm (Americord),Employee Referral,Facebook,Genesis Group,Google,Google: SEO,Google PPC,Live Chat,Returning Client,unknown,WTE</value>
+        <value>Ambassador,Bing,Bing PPC,Calendly,Client Referral,Consumer Affairs,Direct,Doctor Referral,eComm (Americord),Employee Referral,Facebook,Genesis Group,Google,Google: SEO,Google PPC,Live Chat,Returning Client,unknown,WTE,Lifetime Upgrade EC</value>
     </filters>
     <label>All Opportunities - KY</label>
     <sharedTo>

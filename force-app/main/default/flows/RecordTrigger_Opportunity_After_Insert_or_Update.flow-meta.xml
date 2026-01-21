@@ -352,7 +352,7 @@
         <name>Did_Promo_Winner_Change</name>
         <label>Did Promo Winner Change</label>
         <locationX>842</locationX>
-        <locationY>6048</locationY>
+        <locationY>6156</locationY>
         <defaultConnectorLabel>NO - Winner Not Changed</defaultConnectorLabel>
         <rules>
             <name>YES_Winner_Changed</name>
@@ -428,7 +428,7 @@
         <name>Does_Opp_Prefer_Email</name>
         <label>Does Opp Prefer Email?</label>
         <locationX>644</locationX>
-        <locationY>4524</locationY>
+        <locationY>4632</locationY>
         <defaultConnector>
             <targetReference>Is_Authorization_ID_Set</targetReference>
         </defaultConnector>
@@ -455,7 +455,7 @@
         <name>Is_Authorization_ID_Set</name>
         <label>Is Authorization ID Set?</label>
         <locationX>644</locationX>
-        <locationY>4824</locationY>
+        <locationY>4932</locationY>
         <defaultConnector>
             <targetReference>Is_Ecomm_Status_Enrolled</targetReference>
         </defaultConnector>
@@ -482,7 +482,7 @@
         <name>Is_Change_Owner_Americord_Set</name>
         <label>Is Change Owner Americord Set</label>
         <locationX>842</locationX>
-        <locationY>5640</locationY>
+        <locationY>5748</locationY>
         <defaultConnector>
             <targetReference>Did_Promo_Winner_Change</targetReference>
         </defaultConnector>
@@ -596,7 +596,7 @@
         <name>Is_Ecomm_Status_Enrolled</name>
         <label>Is Ecomm Status Enrolled</label>
         <locationX>644</locationX>
-        <locationY>5232</locationY>
+        <locationY>5340</locationY>
         <defaultConnector>
             <targetReference>Is_Opp_Delete_Set</targetReference>
         </defaultConnector>
@@ -718,7 +718,7 @@
         <name>Is_Opp_Delete_Set</name>
         <label>Is Opp Delete Set?</label>
         <locationX>644</locationX>
-        <locationY>5532</locationY>
+        <locationY>5640</locationY>
         <defaultConnector>
             <targetReference>Is_Change_Owner_Americord_Set</targetReference>
         </defaultConnector>
@@ -991,7 +991,7 @@
         <name>Get_Americord_Services_User</name>
         <label>Get Americord Services User</label>
         <locationX>710</locationX>
-        <locationY>5748</locationY>
+        <locationY>5856</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_Ownerid_Americord</targetReference>
@@ -1013,7 +1013,7 @@
         <name>Set_Call_Status_Prefer_Email</name>
         <label>Set Call Status - Prefer Email</label>
         <locationX>512</locationX>
-        <locationY>4632</locationY>
+        <locationY>4740</locationY>
         <connector>
             <targetReference>Is_Authorization_ID_Set</targetReference>
         </connector>
@@ -1123,6 +1123,23 @@
             </value>
         </inputAssignments>
         <object>Account</object>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Update the related account owner.</description>
+        <name>Update_Account_Owner</name>
+        <label>Update Account Owner</label>
+        <locationX>512</locationX>
+        <locationY>4440</locationY>
+        <connector>
+            <targetReference>Does_Opp_Prefer_Email</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>$Record.Owner.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.Account</inputReference>
     </recordUpdates>
     <recordUpdates>
         <description>Update the related account with combined phone and email values.</description>
@@ -1339,7 +1356,7 @@
         <locationX>512</locationX>
         <locationY>4332</locationY>
         <connector>
-            <targetReference>Does_Opp_Prefer_Email</targetReference>
+            <targetReference>Update_Account_Owner</targetReference>
         </connector>
         <inputAssignments>
             <field>OwnerId</field>
@@ -1540,7 +1557,7 @@
         <name>Update_Ownerid_Americord</name>
         <label>Update Ownerid Americord</label>
         <locationX>710</locationX>
-        <locationY>5856</locationY>
+        <locationY>5964</locationY>
         <connector>
             <targetReference>Did_Promo_Winner_Change</targetReference>
         </connector>
@@ -1557,7 +1574,7 @@
         <name>Update_Promo_Winner_Checked</name>
         <label>Update Promo Winner Checked</label>
         <locationX>710</locationX>
-        <locationY>6156</locationY>
+        <locationY>6264</locationY>
         <inputAssignments>
             <field>Promo_Winner_Checked__c</field>
             <value>
@@ -1571,7 +1588,7 @@
         <name>Update_Stage_To_Enrolled</name>
         <label>Update Stage To Enrolled</label>
         <locationX>512</locationX>
-        <locationY>5340</locationY>
+        <locationY>5448</locationY>
         <connector>
             <targetReference>Is_Opp_Delete_Set</targetReference>
         </connector>
@@ -1610,7 +1627,7 @@
         <name>Attach_Payment_Profile_To_Account_Contact</name>
         <label>Attach Payment Profile To Account/Contact</label>
         <locationX>512</locationX>
-        <locationY>5040</locationY>
+        <locationY>5148</locationY>
         <connector>
             <targetReference>Is_Ecomm_Status_Enrolled</targetReference>
         </connector>
@@ -1628,7 +1645,7 @@
         <name>Attach_Payment_Record_to_Opp</name>
         <label>Attach Payment Record to Opp</label>
         <locationX>512</locationX>
-        <locationY>4932</locationY>
+        <locationY>5040</locationY>
         <connector>
             <targetReference>Attach_Payment_Profile_To_Account_Contact</targetReference>
         </connector>
@@ -1814,7 +1831,7 @@
         <name>Delete_Bad_Leads</name>
         <label>Delete Bad Leads</label>
         <locationX>446</locationX>
-        <locationY>5640</locationY>
+        <locationY>5748</locationY>
         <flowName>Opportunity_Delete_Bad_Leads_and_Accounts_and_Contacts</flowName>
         <inputAssignments>
             <name>varAccountID</name>

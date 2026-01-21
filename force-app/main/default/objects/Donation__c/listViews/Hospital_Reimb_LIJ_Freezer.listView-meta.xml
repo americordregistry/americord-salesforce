@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hospital_Reimb_LIJ_Freezer</fullName>
+    <columns>NAME</columns>
+    <columns>Hospital__c</columns>
+    <columns>Tissue_Eligibility_Status__c</columns>
+    <columns>Tissue_Bank__c</columns>
+    <columns>Donation_Process_Status__c</columns>
+    <columns>Paid_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Hospital__c</field>
+        <operation>equals</operation>
+        <value>Northwell - Long Island Jewish</value>
+    </filters>
+    <filters>
+        <field>Donation_Process_Status__c</field>
+        <operation>notEqual</operation>
+        <value>Discarded,Pathology</value>
+    </filters>
+    <filters>
+        <field>Donation_Process_Status__c</field>
+        <operation>equals</operation>
+        <value>Freezer Reimburse</value>
+    </filters>
+    <filters>
+        <field>Hospital_Reimbursed__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>Hospital Reimbursement - LIJ - Freezer</label>
+</ListView>

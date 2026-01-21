@@ -3,7 +3,7 @@
     <fullName>CT_Sterility_Result_AST__c</fullName>
     <label>CT Sterility Result AST</label>
     <required>false</required>
-    <trackHistory>false</trackHistory>
+    <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>

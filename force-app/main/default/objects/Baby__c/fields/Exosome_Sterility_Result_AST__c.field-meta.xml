@@ -4,7 +4,7 @@
     <description>This is the sterility result AST for Exosome.</description>
     <label>Exosome Sterility Result AST</label>
     <required>false</required>
-    <trackHistory>false</trackHistory>
+    <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>

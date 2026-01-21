@@ -17,6 +17,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Cord_Blood_Donation_Process_Status__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>First_Name__c</field>
             </layoutItems>
             <layoutItems>
@@ -120,6 +124,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Hospital_Reimbursed__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Hospital_Reimbursed_Cord_Blood__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

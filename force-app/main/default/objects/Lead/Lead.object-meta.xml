@@ -274,8 +274,6 @@
         <excludedStandardButtons>SendListEmailAction</excludedStandardButtons>
         <excludedStandardButtons>PrintableListView</excludedStandardButtons>
         <excludedStandardButtons>IsotopeSubscription</excludedStandardButtons>
-        <listViewButtons>tdc_tvte__VerifyTheEmail</listViewButtons>
-        <listViewButtons>tdc_tvte__VerifyThePhone</listViewButtons>
         <lookupDialogsAdditionalFields>FULL_NAME</lookupDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>FULL_NAME</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>LEAD.PHONE</lookupPhoneDialogsAdditionalFields>

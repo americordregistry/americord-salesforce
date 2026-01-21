@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Prevent_Invoice_Date_Overwrite</fullName>
-    <active>true</active>
+    <active>false</active>
     <description>This validation rule will check to see if the invoice date has already been set for a donation record and prevent overwriting the value.</description>
     <errorConditionFormula>AND(
 ISCHANGED(Donation_Process_Status__c),

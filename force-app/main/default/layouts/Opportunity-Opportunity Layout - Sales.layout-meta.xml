@@ -559,6 +559,10 @@
                 <behavior>Edit</behavior>
                 <field>Shipping_Zip__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Shipping_Country__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

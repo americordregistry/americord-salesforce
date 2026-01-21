@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hospital_Reimburse_CB_ALL</fullName>
+    <columns>NAME</columns>
+    <columns>Hospital__c</columns>
+    <columns>Tissue_Eligibility_Status__c</columns>
+    <columns>Donation_Process_Status__c</columns>
+    <columns>Last_Name__c</columns>
+    <columns>First_Name__c</columns>
+    <columns>Paid_Date__c</columns>
+    <columns>Tissue_Bank__c</columns>
+    <columns>Invoice_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Paid_Date__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>7/1/2025</value>
+    </filters>
+    <filters>
+        <field>Tissue_Eligibility_Status__c</field>
+        <operation>equals</operation>
+        <value>Eligible</value>
+    </filters>
+    <filters>
+        <field>Cord_Blood_Received__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Hospital Reimburse - CB - ALL</label>
+    <sharedTo>
+        <group>Admins</group>
+    </sharedTo>
+</ListView>

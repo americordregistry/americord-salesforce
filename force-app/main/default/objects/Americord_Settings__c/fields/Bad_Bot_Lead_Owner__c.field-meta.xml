@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bad_Bot_Lead_Owner__c</fullName>
+    <description>This is the ID of the owner for bad/bot leads.</description>
+    <externalId>false</externalId>
+    <label>Bad/Bot Lead Owner</label>
+    <length>100</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

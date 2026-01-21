@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Discussed_Payment_Plans__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This field identifies when the task deals with a client that discussed Payment Plans.</description>
+    <label>Payment Plans</label>
+    <type>Checkbox</type>
+</CustomField>

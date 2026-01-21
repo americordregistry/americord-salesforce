@@ -17,6 +17,11 @@
                 <default>false</default>
                 <label>Axolotl Biologix</label>
             </value>
+            <value>
+                <fullName>Surgenex</fullName>
+                <default>false</default>
+                <label>Surgenex</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

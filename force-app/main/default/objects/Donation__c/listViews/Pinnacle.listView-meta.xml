@@ -11,7 +11,14 @@
     <columns>Paid_Date__c</columns>
     <columns>Tissue_Denial_Reason__c</columns>
     <columns>Tissue_Denial_Date__c</columns>
+    <columns>Sent_To_Tissue_Bank_Date__c</columns>
+    <columns>Tissue_Eligibility_Status__c</columns>
     <filterScope>Everything</filterScope>
+    <filters>
+        <field>Invoice_Number__c</field>
+        <operation>equals</operation>
+        <value>1041</value>
+    </filters>
     <label>Pinnacle</label>
     <sharedTo>
         <role>Lab_Manager</role>

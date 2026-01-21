@@ -15,11 +15,27 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>ChatGPT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Claude</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CoPilot</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Direct</fullName>
             <default>false</default>
         </values>
         <values>
             <fullName>DuckDuckGo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gemini</fullName>
             <default>false</default>
         </values>
         <values>
@@ -36,6 +52,10 @@
         </values>
         <values>
             <fullName>Google%3A SEO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Grok</fullName>
             <default>false</default>
         </values>
         <values>
@@ -56,6 +76,10 @@
         </values>
         <values>
             <fullName>LinkedIn</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Perplexity</fullName>
             <default>false</default>
         </values>
         <values>
@@ -473,15 +497,7 @@
     <picklistValues>
         <picklist>Rep_Follow_up__c</picklist>
         <values>
-            <fullName>Angela</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Annia</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>April</fullName>
             <default>false</default>
         </values>
         <values>
@@ -497,19 +513,11 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Jas</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Jeff</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Judit</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Kenneth</fullName>
+            <fullName>Kristin Hess</fullName>
             <default>false</default>
         </values>
         <values>
@@ -521,11 +529,7 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Nicolas</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Nicole</fullName>
+            <fullName>Michael Hagelin</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -597,17 +601,6 @@
         </values>
         <values>
             <fullName>Phone</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
-        <picklist>tdc_tvte__Active__c</picklist>
-        <values>
-            <fullName>No</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Yes</fullName>
             <default>false</default>
         </values>
     </picklistValues>

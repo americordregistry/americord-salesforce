@@ -3,10 +3,33 @@
     <apiVersion>57.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <decisions>
+        <description>Determine if the portal auth record for the surrogate already exists.</description>
+        <name>Does_Surrgate_Portal_Auth_already_exist</name>
+        <label>Does Surrgate Portal Auth already exist?</label>
+        <locationX>182</locationX>
+        <locationY>539</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>NO_Doesnt_Exist</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Portal_Auth_for_Surrogate.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Portal_Authentication_For_Surrogate</targetReference>
+            </connector>
+            <label>NO - Doesnt Exist</label>
+        </rules>
+    </decisions>
+    <decisions>
         <description>Determine if the contact is a surrogate type.</description>
         <name>Is_Surrogate_Contact</name>
         <label>Is Surrogate Contact</label>
-        <locationX>182</locationX>
+        <locationX>336</locationX>
         <locationY>323</locationY>
         <defaultConnectorLabel>NO - Not Surrogate</defaultConnectorLabel>
         <rules>
@@ -27,7 +50,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Create_Portal_Authentication_For_Surrogate</targetReference>
+                <targetReference>Get_Portal_Auth_for_Surrogate</targetReference>
             </connector>
             <label>YES - Is Surrogate</label>
         </rules>
@@ -55,8 +78,30 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Get the portal Auth using the surrogate email</description>
+        <name>Get_Portal_Auth_for_Surrogate</name>
+        <label>Get Portal Auth for Surrogate</label>
+        <locationX>182</locationX>
+        <locationY>431</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Does_Surrgate_Portal_Auth_already_exist</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Username__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Email</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Portal_Authentication__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <start>
-        <locationX>56</locationX>
+        <locationX>210</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Is_Surrogate_Contact</targetReference>
@@ -65,13 +110,13 @@
         <recordTriggerType>Create</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <subflows>
         <description>Call subflow to create the PA for the surrogate.</description>
         <name>Create_Portal_Authentication_For_Surrogate</name>
         <label>Create Portal Authentication For Surrogate</label>
         <locationX>50</locationX>
-        <locationY>431</locationY>
+        <locationY>647</locationY>
         <flowName>Create_PA_for_Surrogate</flowName>
         <inputAssignments>
             <name>ContactEmail</name>

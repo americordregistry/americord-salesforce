@@ -563,10 +563,6 @@
                 <behavior>Edit</behavior>
                 <field>Shipment_Type__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Andwin_S_O__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -618,11 +614,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Shipping_Country_new__c</field>
+                <field>Shipping_Zip__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Shipping_Zip__c</field>
+                <field>Shipping_Country_new__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -636,10 +632,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Collection_Kit_Status__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Allied_Order_ID_Collection_Kit__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -662,10 +654,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Hold_Shipment_Until__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Allied_Error_Message__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -784,10 +772,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Informed_Consent_Signature_Text__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Informed_Consent_Genome_Sent__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -991,39 +975,8 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Maternal Health Question</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Mother_s_Profession__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Mothers_Date_Of_Birth__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Father_s_Profession__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Fathers_Date_of_Birth__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <style>TwoColumnsLeftToRight</style>
-    </layoutSections>
-    <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>true</editHeading>
         <label>MBD Redraw</label>
         <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Allied_Order_ID_MBD_Kit__c</field>
-            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>MBD_Kit_Shipping_Date__c</field>
@@ -1036,14 +989,6 @@
                 <behavior>Edit</behavior>
                 <field>MBD_Kit_Tracking_Number__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>MBD_Kit_Expiration_Date__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>MBD_Kit_Lot_Number__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -1053,14 +998,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>LPI_M2__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>MBD_Kit_Expiration_Date_2__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>MBD_Kit_Lot_Number_2__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -1115,11 +1052,6 @@
             <actionType>CustomButton</actionType>
             <sortOrder>3</sortOrder>
         </platformActionListItems>
-        <platformActionListItems>
-            <actionName>One_click_DS_Donate</actionName>
-            <actionType>CustomButton</actionType>
-            <sortOrder>4</sortOrder>
-        </platformActionListItems>
     </platformActionList>
     <relatedLists>
         <fields>NAME</fields>
@@ -1147,29 +1079,6 @@
         <fields>dsfs__Hrs_Sent_to_Sign__c</fields>
         <fields>dsfs__Sent_Date_Time__c</fields>
         <relatedList>dsfs__DocuSign_Status__c.Lab__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>MassChangeOwner</excludeButtons>
-        <fields>NAME</fields>
-        <fields>zkfedex__ShipDate__c</fields>
-        <fields>zkfedex__DeliveryDate__c</fields>
-        <fields>zkfedex__ActualDeliveryDate__c</fields>
-        <fields>zkfedex__Delivered__c</fields>
-        <fields>zkfedex__MasterTrackingId__c</fields>
-        <fields>zkfedex__SenderName__c</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>zkfedex__Shipment__c.Lab__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>zkfedex__ShipDate__c</fields>
-        <fields>zkfedex__Delivered__c</fields>
-        <fields>zkfedex__DeliveryDate__c</fields>
-        <fields>zkfedex__ActualDeliveryDate__c</fields>
-        <fields>zkfedex__MasterTrackingId__c</fields>
-        <fields>zkfedex__SenderName__c</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>zkfedex__Shipment__c.Lab_MBD__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>

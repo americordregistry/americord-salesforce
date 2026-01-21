@@ -5,7 +5,8 @@
 AND (
  month(Collection_Date__c) = month (today()), 
  day (Collection_Date__c) = day (today()),
- year (Collection_Date__c)  &lt;&gt; year (today())), true, false)</formula>
+ year (Collection_Date__c)  &lt;&gt; year (today()),
+ Lab__r.Cord_Blood_Order__r.fw1__Is_Voided__c = false), true, false)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Today&apos;s Birthday</label>
     <trackHistory>false</trackHistory>

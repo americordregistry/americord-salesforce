@@ -6,6 +6,7 @@
     <columns>Donation_Component__c</columns>
     <columns>Donation_Processor__c</columns>
     <columns>Donation_Status__c</columns>
+    <columns>Shipped_Date__c</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>
 </ListView>

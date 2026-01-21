@@ -443,6 +443,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Baby Sparks</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>BabyCenter</fullName>
             <default>false</default>
         </values>
@@ -471,11 +475,23 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>ChatGPT</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Circle Surrogacy</fullName>
             <default>false</default>
         </values>
         <values>
+            <fullName>Claude</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Client Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CoPilot</fullName>
             <default>false</default>
         </values>
         <values>
@@ -555,6 +571,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Gemini</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Genesis Group</fullName>
             <default>false</default>
         </values>
@@ -576,6 +596,10 @@
         </values>
         <values>
             <fullName>Google%3A SEO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Grok</fullName>
             <default>false</default>
         </values>
         <values>
@@ -615,7 +639,15 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>MightyMama</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Parents Guide</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Perplexity</fullName>
             <default>false</default>
         </values>
         <values>
@@ -663,6 +695,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Upgrade LP</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>VeryWellHealth</fullName>
             <default>false</default>
         </values>
@@ -672,6 +708,10 @@
         </values>
         <values>
             <fullName>Yahoo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>YouTube Paid</fullName>
             <default>false</default>
         </values>
         <values>
@@ -957,15 +997,7 @@
     <picklistValues>
         <picklist>Sales_Rep_2__c</picklist>
         <values>
-            <fullName>Angela</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Annia</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>April</fullName>
             <default>false</default>
         </values>
         <values>
@@ -985,10 +1017,6 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Jas</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Jeff</fullName>
             <default>false</default>
         </values>
@@ -997,11 +1025,7 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Judit</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Kenneth</fullName>
+            <fullName>Kristin Hess</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1021,11 +1045,7 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Nicolas</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Nicole</fullName>
+            <fullName>Michael Hagelin</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -1306,6 +1326,10 @@
     <picklistValues>
         <picklist>Surrogate_State_Province__c</picklist>
         <values>
+            <fullName>AB</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>AK</fullName>
             <default>false</default>
         </values>
@@ -1319,6 +1343,10 @@
         </values>
         <values>
             <fullName>AZ</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BC</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1390,6 +1418,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>MB</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>MD</fullName>
             <default>false</default>
         </values>
@@ -1418,6 +1450,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>NB</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>NC</fullName>
             <default>false</default>
         </values>
@@ -1438,7 +1474,23 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>NL</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>NM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NU</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1458,6 +1510,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>ON</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>OR</fullName>
             <default>false</default>
         </values>
@@ -1466,7 +1522,15 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>PE</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>PR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>QC</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1479,6 +1543,10 @@
         </values>
         <values>
             <fullName>SD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SK</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1519,6 +1587,10 @@
         </values>
         <values>
             <fullName>WY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>YT</fullName>
             <default>false</default>
         </values>
     </picklistValues>

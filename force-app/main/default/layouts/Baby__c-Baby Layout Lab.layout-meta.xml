@@ -245,19 +245,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>CB_Sterility_Result_AST__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>CB_Sterility_Bottle_ID_AST__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>CB_Sterility_Result_NST__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>CB_Sterility_Bottle_ID_NST__c</field>
+                <field>Cord_Blood_Swab_Sterility_Result__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -304,27 +292,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>CT_Sterility_Result_AST__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>CT_Sterility_Bottle_ID_AST__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>CT_Sterility_Result_NST__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>CT_Sterility_Bottle_ID_NST__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Get_CT_from_Placenta__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Get_CT_From_Placenta_Resolution__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Cord_Tissue_Swab_Sterility_Result__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns/>
@@ -350,19 +326,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>PT_Sterility_Result_AST__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>PT_Sterility_Bottle_ID_AST__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>PT_Sterility_Result_NST__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>PT_Sterility_Bottle_ID_NST__c</field>
+                <field>Placenta_Tissue_Swab_Sterility_Result__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns/>
@@ -433,22 +397,6 @@
                 <behavior>Edit</behavior>
                 <field>Exosome_Storage_Location__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Exosome_Sterility_Bottle_ID_AST__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Exosome_Sterility_Result_AST__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Exosome_Sterility_Result_NST__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Exosome_Sterility_Bottle_ID_NST__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -492,22 +440,6 @@
                 <behavior>Edit</behavior>
                 <field>Maternal_Exosome_Storage_Location__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Maternal_Exo_Sterility_Bottle_ID_AST__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Maternal_Exosome_Sterility_Result_AST__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Maternal_Exo_Sterility_Bottle_ID_NST__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Maternal_Exosome_Sterility_Result_NST__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -548,6 +480,65 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>My_Newborn_Order_Id__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <style>TwoColumnsLeftToRight</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>Legacy BACT Results</label>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CB_Sterility_Bottle_ID_AST__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CB_Sterility_Result_AST__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CB_Sterility_Bottle_ID_NST__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CB_Sterility_Result_NST__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CT_Sterility_Bottle_ID_AST__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CT_Sterility_Result_AST__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CT_Sterility_Bottle_ID_NST__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CT_Sterility_Result_NST__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>PT_Sterility_Bottle_ID_AST__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>PT_Sterility_Result_AST__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>PT_Sterility_Bottle_ID_NST__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>PT_Sterility_Result_NST__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

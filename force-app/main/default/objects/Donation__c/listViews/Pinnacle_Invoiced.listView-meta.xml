@@ -14,6 +14,7 @@
     <columns>Tissue_Eligibility_Status__c</columns>
     <columns>Tissue_Denial_Reason__c</columns>
     <columns>Tissue_Denial_Date__c</columns>
+    <columns>ISBT__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>Tissue_Bank__c</field>

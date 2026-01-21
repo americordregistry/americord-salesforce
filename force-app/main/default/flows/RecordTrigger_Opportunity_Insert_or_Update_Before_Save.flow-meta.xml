@@ -2,7 +2,42 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>56.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <description>Determine if the opportunity is being enrolled and is an ecomm opp</description>
+        <name>Is_Enrolled_and_Ecomm</name>
+        <label>Is Enrolled and Ecomm?</label>
+        <locationX>182</locationX>
+        <locationY>395</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>YES_Enrolled_Ecomm</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Ecomm_Status__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Enrolled</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Ecomm_Status__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Enrolled</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Ecomm_Status_To_Enrolled</targetReference>
+            </connector>
+            <label>YES - Enrolled/Ecomm</label>
+        </rules>
+    </decisions>
     <description>This is the main flow that can be used for insert or update Opportunity logic.</description>
+    <environments>Default</environments>
     <formulas>
         <description>Reformat phone field to E164 format.</description>
         <name>formTContact2PhoneFormatE164</name>
@@ -85,11 +120,28 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordUpdates>
+        <description>This will update the ecomm status to enrolled when the opportunity is enrolled.</description>
+        <name>Update_Ecomm_Status_To_Enrolled</name>
+        <label>Update Ecomm Status To Enrolled</label>
+        <locationX>50</locationX>
+        <locationY>503</locationY>
+        <inputAssignments>
+            <field>Ecomm_Status__c</field>
+            <value>
+                <stringValue>Enrolled</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <description>Update the opp phone fields to the E164 Format</description>
         <name>Update_Opp_Phone_Fields_To_E164</name>
         <label>Update Opp Phone Fields To E164</label>
-        <locationX>176</locationX>
-        <locationY>311</locationY>
+        <locationX>182</locationX>
+        <locationY>287</locationY>
+        <connector>
+            <targetReference>Is_Enrolled_and_Ecomm</targetReference>
+        </connector>
         <inputAssignments>
             <field>Contact2_Phone__c</field>
             <value>
@@ -111,7 +163,7 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>50</locationX>
+        <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Update_Opp_Phone_Fields_To_E164</targetReference>

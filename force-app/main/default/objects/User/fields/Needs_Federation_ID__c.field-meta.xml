@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Needs_Federation_ID__c</fullName>
+    <description>Formula that checks to see if we need a Federation ID for the user.</description>
+    <formula>if(
+and(
+FederationIdentifier =&apos;&apos;,
+IsActive = true,  
+Profile.Name != &apos;Incoming sms Profile&apos;,
+Profile.Name != &apos;Sales Insights Integration User&apos;,
+Profile.Name != &apos;Analytics Cloud Security User&apos;,
+Profile.Name != &apos;Analytics Cloud Integration User&apos;,
+Profile.Name != &apos;Americord Local Partner&apos;,
+Profile.Name != &apos;SalesforceIQ Integration User&apos;,
+Profile.Name != &apos;payments Profile&apos;,
+ProfileId != null, 
+NOT(CONTAINS( Username , &apos;svc&apos;)),
+NOT(CONTAINS( Username , &apos;automatedcase&apos;)),
+NOT(CONTAINS( Username , &apos;automatedclean&apos;)),
+NOT(CONTAINS( Username , &apos;cloud@&apos;)),
+NOT(CONTAINS( Username , &apos;autoproc@&apos;))
+),true,false)</formula>
+    <inlineHelpText>Formula that checks to see if we need a Federation ID for the user.</inlineHelpText>
+    <label>Needs Federation ID</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

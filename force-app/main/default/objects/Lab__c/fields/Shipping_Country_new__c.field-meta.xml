@@ -20,9 +20,9 @@
                 <label>BM</label>
             </value>
             <value>
-                <fullName>CA</fullName>
+                <fullName>Canada</fullName>
                 <default>false</default>
-                <label>CA</label>
+                <label>Canada</label>
             </value>
         </valueSetDefinition>
     </valueSet>

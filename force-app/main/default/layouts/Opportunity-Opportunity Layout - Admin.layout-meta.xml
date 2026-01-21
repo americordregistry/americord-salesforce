@@ -1093,6 +1093,12 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>fw1__Account__c</fields>
+        <fields>fw1__Contact__c</fields>
+        <relatedList>fw1__PaymentProfile__c.Opportunity__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
         <fields>Product_Stored1__c</fields>
         <fields>Products_Stored__c</fields>
         <fields>Cord_Blood_2_0_Stored__c</fields>

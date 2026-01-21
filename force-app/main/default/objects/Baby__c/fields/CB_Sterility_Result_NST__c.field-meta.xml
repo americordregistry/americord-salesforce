@@ -3,7 +3,7 @@
     <fullName>CB_Sterility_Result_NST__c</fullName>
     <label>CB Sterility Result NST</label>
     <required>false</required>
-    <trackHistory>false</trackHistory>
+    <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>

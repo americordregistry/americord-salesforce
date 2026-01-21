@@ -12,6 +12,8 @@
     <columns>Invoiced_Amount__c</columns>
     <columns>Paid_Amount__c</columns>
     <columns>Paid_Date__c</columns>
+    <columns>Sent_To_Tissue_Bank_Date__c</columns>
+    <columns>Invoice_Number__c</columns>
     <filterScope>Everything</filterScope>
     <label>All Donations</label>
 </ListView>

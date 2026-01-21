@@ -11,6 +11,16 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
+                <fullName>2ml</fullName>
+                <default>false</default>
+                <label>2ml</label>
+            </value>
+            <value>
+                <fullName>3ml</fullName>
+                <default>false</default>
+                <label>3ml</label>
+            </value>
+            <value>
                 <fullName>10ml</fullName>
                 <default>false</default>
                 <label>10ml</label>
@@ -18,6 +28,7 @@
             <value>
                 <fullName>20ml</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
                 <label>20ml</label>
             </value>
         </valueSetDefinition>

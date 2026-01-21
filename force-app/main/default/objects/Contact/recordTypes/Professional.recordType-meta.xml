@@ -542,30 +542,4 @@
             <default>false</default>
         </values>
     </picklistValues>
-    <picklistValues>
-        <picklist>tdc_tvte__Level__c</picklist>
-        <values>
-            <fullName>Primary</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Secondary</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Tertiary</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
-        <picklist>tdc_tvte__Phone_Verification_Status__c</picklist>
-        <values>
-            <fullName>Invalid</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Valid</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
 </RecordType>

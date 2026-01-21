@@ -83,6 +83,11 @@
                 <label>Delayed clamping</label>
             </value>
             <value>
+                <fullName>Did Not Inquire</fullName>
+                <default>false</default>
+                <label>Did Not Inquire</label>
+            </value>
+            <value>
                 <fullName>Don&apos;t think they will need stem cells</fullName>
                 <default>false</default>
                 <label>Don&apos;t think they will need stem cells</label>
@@ -91,6 +96,11 @@
                 <fullName>Donating</fullName>
                 <default>false</default>
                 <label>Donating</label>
+            </value>
+            <value>
+                <fullName>Foreign/Invalid Number</fullName>
+                <default>false</default>
+                <label>Foreign/Invalid Number</label>
             </value>
             <value>
                 <fullName>Medical Reasons</fullName>
@@ -194,6 +204,19 @@
                 <label>Annual Payments</label>
             </value>
         </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Bad/Bot Lead</controllingFieldValue>
+            <valueName>Did Not Inquire</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bad/Bot Lead</controllingFieldValue>
+            <valueName>Foreign/Invalid Number</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bad/Bot Lead</controllingFieldValue>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Not Pregnant</valueName>
+        </valueSettings>
         <valueSettings>
             <controllingFieldValue>Closed Lost</controllingFieldValue>
             <valueName>Baby Came Early</valueName>
@@ -305,10 +328,6 @@
         <valueSettings>
             <controllingFieldValue>Closed Lost</controllingFieldValue>
             <valueName>Not Interested - Sweepstakes</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Closed Lost</controllingFieldValue>
-            <valueName>Not Pregnant</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Closed Lost</controllingFieldValue>

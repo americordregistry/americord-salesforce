@@ -22,6 +22,45 @@
         <offset>0</offset>
     </actionCalls>
     <actionCalls>
+        <description>Log kit at lab activity</description>
+        <name>Log_Activity_on_Email_Sent_for_Kit_At_Lab</name>
+        <label>Log Activity on Email Sent for Kit At Lab</label>
+        <locationX>314</locationX>
+        <locationY>3324</locationY>
+        <actionName>aircall__NewTask</actionName>
+        <actionType>quickAction</actionType>
+        <connector>
+            <targetReference>Did_Parent_Names_Change</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>contextId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Subject</name>
+            <value>
+                <stringValue>Sent Email To Client For Kit At Lab</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>OwnerId</name>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Status</name>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>aircall__NewTask</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
         <description>Create a task for the email sent to client when kit shipped.</description>
         <name>Log_Task_to_Lab_for_Shipped_Email</name>
         <label>Log Task to Lab for Shipped Email</label>
@@ -186,7 +225,7 @@
         <actionName>Lab__c.Send_email_to_mother_when_collection_arrives_at_the_lab</actionName>
         <actionType>emailAlert</actionType>
         <connector>
-            <targetReference>Update_Lab_for_Collection_Email_Sent</targetReference>
+            <targetReference>Log_Activity_on_Email_Sent_for_Kit_At_Lab</targetReference>
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
@@ -978,24 +1017,10 @@
             <name>YES_Collection_Kit_At_Lab</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>$Record.DCS__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Collection at lab</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.Cord_Blood_Collection_Completed__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
                 <leftValueReference>$Record.SMS_Sent_Collection_at_Lab__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <booleanValue>false</booleanValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -1007,13 +1032,6 @@
             </conditions>
             <conditions>
                 <leftValueReference>$Record.Mothers_Email__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.Father_s_Email__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -2293,23 +2311,6 @@
             <field>Number_of_Kits_FedEx__c</field>
             <value>
                 <elementReference>$Record.Number_of_Kits__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputReference>$Record</inputReference>
-    </recordUpdates>
-    <recordUpdates>
-        <description>Update the triggering lab record for email sent.</description>
-        <name>Update_Lab_for_Collection_Email_Sent</name>
-        <label>Update Lab for Collection Email Sent</label>
-        <locationX>314</locationX>
-        <locationY>3324</locationY>
-        <connector>
-            <targetReference>Did_Parent_Names_Change</targetReference>
-        </connector>
-        <inputAssignments>
-            <field>SMS_Sent_Collection_at_Lab__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>

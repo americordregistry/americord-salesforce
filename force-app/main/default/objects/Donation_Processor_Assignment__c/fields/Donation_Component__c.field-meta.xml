@@ -13,14 +13,19 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
+                <fullName>Amnion/Chorion</fullName>
+                <default>false</default>
+                <label>Amnion/Chorion</label>
+            </value>
+            <value>
+                <fullName>Amniotic Membrane</fullName>
+                <default>false</default>
+                <label>Amniotic Membrane</label>
+            </value>
+            <value>
                 <fullName>Exosomes</fullName>
                 <default>false</default>
                 <label>Exosomes</label>
-            </value>
-            <value>
-                <fullName>Plasma</fullName>
-                <default>false</default>
-                <label>Plasma</label>
             </value>
             <value>
                 <fullName>HSC</fullName>
@@ -28,19 +33,29 @@
                 <label>HSC</label>
             </value>
             <value>
+                <fullName>Placenta</fullName>
+                <default>false</default>
+                <label>Placenta</label>
+            </value>
+            <value>
+                <fullName>Plasma</fullName>
+                <default>false</default>
+                <label>Plasma</label>
+            </value>
+            <value>
                 <fullName>Whole Umbilical Cord</fullName>
                 <default>false</default>
                 <label>Whole Umbilical Cord</label>
             </value>
             <value>
-                <fullName>Amnion/Chorion</fullName>
+                <fullName>15x10^6 cells</fullName>
                 <default>false</default>
-                <label>Amnion/Chorion</label>
+                <label>15x10^6 cells</label>
             </value>
             <value>
-                <fullName>Placenta</fullName>
+                <fullName>30x10^6 cells</fullName>
                 <default>false</default>
-                <label>Placenta</label>
+                <label>30x10^6 cells</label>
             </value>
             <value>
                 <fullName>Umbilical Cord</fullName>
