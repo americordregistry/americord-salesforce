@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Insulated Foam Shipping Kit (12x12x11)</label>
+    <protected>false</protected>
+    <values>
+        <field>Unit_Cost__c</field>
+        <value xsi:type="xsd:double">24.7</value>
+    </values>
+    <values>
+        <field>Unit__c</field>
+        <value xsi:type="xsd:string">per box</value>
+    </values>
+</CustomMetadata>
