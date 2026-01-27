@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>kPa_Bags_Used_Per_Box__c</fullName>
+    <description>Number of kPa bags used in each box. If not applicable, type 0.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Number of kPa bags used in each box. If not applicable, type 0.</inlineHelpText>
+    <label>kPa Bags Used Per Box</label>
+    <precision>3</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>
