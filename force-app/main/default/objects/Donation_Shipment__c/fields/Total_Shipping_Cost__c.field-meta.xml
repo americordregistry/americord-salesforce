@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Shipping_Cost__c</fullName>
+    <description>This automatically calculates the total shipping cost for the donation shipment based on box count, supplies used, and shipment-level costs.</description>
+    <formula>BLANKVALUE(Dry_Ice_Cost__c, 0)
++
+BLANKVALUE(Shipping_Label_Cost__c, 0)
++
+(
+  BLANKVALUE(Boxes_Used__c, 0)
+  *
+  (
+    $CustomMetadata.Shipping_Supply_Cost__mdt.Liner_12x12.Unit_Cost__c
+    +
+    $CustomMetadata.Shipping_Supply_Cost__mdt.Foam_Kit_12x12x11.Unit_Cost__c
+  )
+)
++
+(
+  BLANKVALUE(Boxes_Used__c, 0)
+  *
+  BLANKVALUE(Ice_Bags_Used_Per_Box__c, 0)
+  *
+  $CustomMetadata.Shipping_Supply_Cost__mdt.Ice_Bag.Unit_Cost__c
+)
++
+(
+  BLANKVALUE(Boxes_Used__c, 0)
+  *
+  BLANKVALUE(kPa_Bags_Used_Per_Box__c, 0)
+  *
+  $CustomMetadata.Shipping_Supply_Cost__mdt.kPa_Bag.Unit_Cost__c
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>This field is auto-calculated. Enter boxes used, per-box supplies, and shipment-level costs (dry ice and shipping label).</inlineHelpText>
+    <label>Total Shipping Cost</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

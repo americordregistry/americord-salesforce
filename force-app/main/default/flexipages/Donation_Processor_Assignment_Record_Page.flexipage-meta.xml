@@ -58,6 +58,12 @@
                 <identifier>RecordAssignment_Context_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Microbiology__c</fieldItem>
+                <identifier>RecordMicrobiology__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-47f31974-d84a-47ed-a9fa-5860522b671b</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -136,14 +142,54 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.IDM__c</fieldItem>
+                <identifier>RecordIDM_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.TNC_Number__c</fieldItem>
                 <identifier>RecordTNC_Number_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Date_Pooled__c</fieldItem>
+                <identifier>RecordDate_Pooled_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Expiration_Date__c</fieldItem>
+                <identifier>RecordExpiration_Date_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-75884868-4561-4fcd-9f6d-bb562c958161</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Lot__c</fieldItem>
+                <identifier>RecordLot_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
@@ -162,6 +208,16 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Shipped_Date__c</fieldItem>
                 <identifier>RecordShipped_Date_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Tracking_Number__c</fieldItem>
+                <identifier>RecordTracking_Number_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-f705ae7a-8372-4785-9f7f-5b6490ce082d</name>
@@ -260,8 +316,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Invoiced_Amount__c</fieldItem>
-                <identifier>RecordInvoiced_Amount_cField</identifier>
+                <fieldItem>Record.Invoice_Number__c</fieldItem>
+                <identifier>RecordInvoice_Number_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -274,6 +330,26 @@
                 <identifier>RecordInvoiced_Date_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Invoiced_Amount__c</fieldItem>
+                <identifier>RecordInvoiced_Amount_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Shipping_Cost__c</fieldItem>
+                <identifier>RecordShipping_Cost_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-f546d572-b9a9-4fa0-b23a-dafee1e8f2bf</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -284,8 +360,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Invoice_Number__c</fieldItem>
-                <identifier>RecordInvoice_Number_cField</identifier>
+                <fieldItem>Record.Donation_Shipment__c</fieldItem>
+                <identifier>RecordDonation_Shipment_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -296,6 +372,26 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Paid_Date__c</fieldItem>
                 <identifier>RecordPaid_Date_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Paid_Amount__c</fieldItem>
+                <identifier>RecordPaid_Amount_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Credit_Amount__c</fieldItem>
+                <identifier>RecordCredit_Amount_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-a15059dc-633a-4ac8-bd64-4c48068c6876</name>
