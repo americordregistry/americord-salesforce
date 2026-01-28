@@ -28,6 +28,10 @@
                 <behavior>Edit</behavior>
                 <field>Donation_Component__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Microbiology__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

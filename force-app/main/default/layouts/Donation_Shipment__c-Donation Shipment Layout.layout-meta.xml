@@ -72,6 +72,9 @@
                 <field>Total_Plasma_Bulk_liters__c</field>
             </layoutItems>
             <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Tracking_Info__c</field>
             </layoutItems>
