@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This flow will reassign the client and all child records.</description>
+    <flowDefinition>ScreenFlow_Client_Reassignment</flowDefinition>
+    <label>Reassign Client</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>
