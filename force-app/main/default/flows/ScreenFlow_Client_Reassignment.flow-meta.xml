@@ -132,7 +132,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Client_Account_Ownership_Change_Account_Select</targetReference>
+                <targetReference>Get_Account</targetReference>
             </connector>
             <label>Yes - Can run flow</label>
         </rules>
@@ -212,14 +212,14 @@
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Contacts</targetReference>
+            <targetReference>Client_Account_Ownership_Change_Account_Select</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>LookupClientAccount.recordId</elementReference>
+                <elementReference>recordId</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
@@ -420,7 +420,7 @@
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Get_Account</targetReference>
+            <targetReference>Get_Contacts</targetReference>
         </connector>
         <fields>
             <name>LookupClientAccount</name>
@@ -453,7 +453,7 @@
             <inputParameters>
                 <name>recordId</name>
                 <value>
-                    <elementReference>varAccountRecordId</elementReference>
+                    <elementReference>recordId</elementReference>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -574,6 +574,14 @@
         </connector>
     </start>
     <status>Active</status>
+    <variables>
+        <description>This is the record id for the account.</description>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
     <variables>
         <name>varAccountRecordId</name>
         <dataType>String</dataType>
