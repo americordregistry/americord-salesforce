@@ -10,7 +10,10 @@
         <locationY>0</locationY>
         <assignmentItems>
             <assignToReference>varRecCollContToUpdate</assignToReference>
-            <operator>Assign</operator>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_Over_Contacts</elementReference>
+            </value>
         </assignmentItems>
         <connector>
             <targetReference>Loop_Over_Contacts</targetReference>
@@ -24,7 +27,10 @@
         <locationY>0</locationY>
         <assignmentItems>
             <assignToReference>varRecCollInvToUpdate</assignToReference>
-            <operator>Assign</operator>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_Over_Invoices</elementReference>
+            </value>
         </assignmentItems>
         <connector>
             <targetReference>Loop_Over_Invoices</targetReference>
