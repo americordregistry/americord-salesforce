@@ -13,6 +13,7 @@ public with sharing class ContentDocumentLinkHelper {
         Set<Id> setCDL = new Set<Id>();
         Map<Id,Client_Document_Tracker__c> mapClientDocumentTrackerParentsCreate = new Map<Id,Client_Document_Tracker__c>();
         Map<Id,Client_Document_Tracker__c> mapClientDocumentTracker = new Map<Id,Client_Document_Tracker__c>();
+        Map<Id,Lab__c> mapLabsToUpdateStatus = new Map<Id,Lab__c>();
 
         // loop through and find ContentDocumentLinkS on lab/fam member - create sublist
         for(ContentDocumentLink cdl: newContentDocumentLinkMap.values()){
@@ -85,7 +86,7 @@ public with sharing class ContentDocumentLinkHelper {
             WHERE Id IN :setCDL
         ];
 
-        if (lstLabContentDocumentLinks.size() > 0){ // if contentdocumentlinks            
+        if (lstLabContentDocumentLinks.size() > 0){ // if contentdocumentlinks
             // loop over document links
             for(ContentDocumentLink cdl: lstLabContentDocumentLinks){
                 Id idLab = getLabFromCDL(cdl);
@@ -103,8 +104,12 @@ public with sharing class ContentDocumentLinkHelper {
                     else{
                         currentDocTracker = ClientDocumentTracker.setTrackerFields(new Client_Document_Tracker__c (Lab__c = idLab),cdl);
                         mapClientDocumentTrackerParentsCreate.put(idLab,currentDocTracker);
-                    }   
+                    }
                 }
+
+                // Check document type and update Lab status fields accordingly
+                String strDocType = ClientDocumentTracker.doctypeBasedOnDocumentName(cdl.ContentDocument.Title, currentDocTracker);
+                updateLabStatusForDocumentType(idLab, strDocType, mapLabsToUpdateStatus);
             }
         }
 
@@ -116,7 +121,12 @@ public with sharing class ContentDocumentLinkHelper {
         if(mapClientDocumentTrackerParentsUpdate.values().size()>0){
             update mapClientDocumentTrackerParentsUpdate.values();
         }
-        
+
+        // update Lab status fields
+        if(mapLabsToUpdateStatus.values().size()>0){
+            update mapLabsToUpdateStatus.values();
+        }
+
     }
 
     private static Id getLabFromCDL(ContentDocumentLink cdl){
@@ -254,5 +264,27 @@ public with sharing class ContentDocumentLinkHelper {
         return strReturnPrefix;
     }
 
+    private static void updateLabStatusForDocumentType(Id labId, String strDocType, Map<Id,Lab__c> mapLabsToUpdate){
+        Lab__c labToUpdate;
+        if(mapLabsToUpdate.containsKey(labId)){
+            labToUpdate = mapLabsToUpdate.get(labId);
+        }
+        else{
+            labToUpdate = new Lab__c(Id = labId);
+        }
+
+        if(strDocType == 'MHQ' || strDocType == 'SURROGATE MHQ'){
+            labToUpdate.MHQ_Status__c = 'Completed';
+            mapLabsToUpdate.put(labId, labToUpdate);
+        }
+        else if(strDocType == 'INFORMED CONSENT' || strDocType == 'SURROGATE INFORMED CONSENT'){
+            labToUpdate.Informed_Consent_Status__c = 'Completed';
+            mapLabsToUpdate.put(labId, labToUpdate);
+        }
+        else if(strDocType == 'HEALTHCARE TEAM'){
+            labToUpdate.Your_Health_Care_Team_Status__c = 'Completed';
+            mapLabsToUpdate.put(labId, labToUpdate);
+        }
+    }
 
 }
