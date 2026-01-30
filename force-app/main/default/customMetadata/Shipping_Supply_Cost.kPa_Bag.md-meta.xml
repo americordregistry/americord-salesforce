@@ -4,7 +4,7 @@
     <protected>false</protected>
     <values>
         <field>Unit_Cost__c</field>
-        <value xsi:type="xsd:double">7.01</value>
+        <value xsi:type="xsd:double">7.0</value>
     </values>
     <values>
         <field>Unit__c</field>
