@@ -5,9 +5,9 @@
     <externalId>false</externalId>
     <inlineHelpText>Total number of amniotic membranes shipped</inlineHelpText>
     <label>Total Amniotic Membrane</label>
-    <precision>18</precision>
+    <precision>16</precision>
     <required>false</required>
-    <scale>2</scale>
+    <scale>0</scale>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Number</type>
