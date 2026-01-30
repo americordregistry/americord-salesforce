@@ -1099,7 +1099,7 @@
         <name>Is_Contact_First_Name_Set_And_Ship_First_Name_is_Null</name>
         <label>Is Contact First Name Set And Ship First Name is Null</label>
         <locationX>701</locationX>
-        <locationY>9798</locationY>
+        <locationY>9498</locationY>
         <defaultConnectorLabel>Dont Update Ship Firstname Lastname</defaultConnectorLabel>
         <rules>
             <name>First_Name_Set_and_Ship_First_Name_Not</name>
@@ -1509,7 +1509,7 @@
         <locationX>1378</locationX>
         <locationY>8988</locationY>
         <defaultConnector>
-            <targetReference>Is_Your_Healthcare_Team_Completed</targetReference>
+            <targetReference>Is_Contact_First_Name_Set_And_Ship_First_Name_is_Null</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -1835,33 +1835,6 @@
         </rules>
     </decisions>
     <decisions>
-        <description>Check to see if Your Healthcare Team is completed.</description>
-        <name>Is_Your_Healthcare_Team_Completed</name>
-        <label>Is Your Healthcare Team Completed</label>
-        <locationX>701</locationX>
-        <locationY>9498</locationY>
-        <defaultConnector>
-            <targetReference>Is_Contact_First_Name_Set_And_Ship_First_Name_is_Null</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>NO - Your Healthcare Not Complete</defaultConnectorLabel>
-        <rules>
-            <name>YES_Your_Healthcare_Team_Complete</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Your_Health_Care_Team_Status__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Completed</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Create_HCP_and_Hospital_Accounts</targetReference>
-            </connector>
-            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
-            <label>YES - Your Healthcare Team Complete</label>
-        </rules>
-    </decisions>
-    <decisions>
         <description>Determine if we are using the fax or email</description>
         <name>Using_Fax_or_Email</name>
         <label>Using Fax or Email</label>
@@ -2164,7 +2137,7 @@
         <locationX>982</locationX>
         <locationY>9096</locationY>
         <connector>
-            <targetReference>Is_Your_Healthcare_Team_Completed</targetReference>
+            <targetReference>Is_Contact_First_Name_Set_And_Ship_First_Name_is_Null</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -2223,7 +2196,7 @@
         <locationX>454</locationX>
         <locationY>8880</locationY>
         <connector>
-            <targetReference>Is_Your_Healthcare_Team_Completed</targetReference>
+            <targetReference>Is_Contact_First_Name_Set_And_Ship_First_Name_is_Null</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -2523,7 +2496,7 @@
         <name>Update_Ship_First_Name_and_Last_Name</name>
         <label>Update Ship First Name and Last Name</label>
         <locationX>569</locationX>
-        <locationY>9906</locationY>
+        <locationY>9606</locationY>
         <inputAssignments>
             <field>Ship_to_First_Name__c</field>
             <value>
@@ -2728,24 +2701,6 @@
             <targetReference>Update_Account_Combined_Phone_and_Email_Fields_Contact_1</targetReference>
         </connector>
         <flowName>Lab_Update_Contact_1</flowName>
-        <inputAssignments>
-            <name>varLabID</name>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </inputAssignments>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </subflows>
-    <subflows>
-        <description>Create HCP records for client.</description>
-        <name>Create_HCP_and_Hospital_Accounts</name>
-        <label>Create HCP and Hospital Accounts</label>
-        <locationX>569</locationX>
-        <locationY>9606</locationY>
-        <connector>
-            <targetReference>Is_Contact_First_Name_Set_And_Ship_First_Name_is_Null</targetReference>
-        </connector>
-        <flowName>Lab_OBGYN_Create_Account_and_Contact</flowName>
         <inputAssignments>
             <name>varLabID</name>
             <value>
